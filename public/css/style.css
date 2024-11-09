@@ -1,5 +1,6 @@
 :root {
     box-sizing: border-box;
+    margin: 0;
 }
 
 :root,
@@ -83,26 +84,29 @@ html * {
 
 /* index page side image */
 .side-img-container {
-    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    overflow-x: none;
+    height: 80%;
     padding: 0;
     margin: 0;
 }
 
 .side-img-logo {
     position: absolute;
-    margin: 0 auto;
-    height: 80%;
-    width: 80%;
-    top: 50%;
+    height: auto;
+    width: 75%;
+    top: 53%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 .side-img-spinner {
-    height: 100%;
-    width: 100%;
+    display: block;
+    position: absolute;
+    width: 80%;
+    height: auto;
     animation: rotate-image 20s linear infinite;
 }
 
