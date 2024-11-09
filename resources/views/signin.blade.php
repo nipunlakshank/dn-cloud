@@ -20,9 +20,16 @@
                 <div class="row d-flex justify-content-end align-items-center text-center mt-2">
                     <span class="fs-color lable-fs">Welcome</span><span class="fs-color lable-fs">to the application</span>
                 </div>
-                <div class="row d-flex justify-content-center mt-4 mb-4" >
+                <div class="row d-flex justify-content-center mt-4 mb-3" id="email-comp">
                     <div class="col-8 col-lg-4"><label class="text-center fs-color input-text">Your Email</label>
-                        <input class="form-control border-3 input-login bg-transparent fs-color" id="email" onkeypress="check(event);"/></div>
+                        <input class="form-control border-3 input-login bg-transparent fs-color" type="text" id="email"/></div>
+                </div>
+                <div class="row d-flex justify-content-center mb-4" id="password-comp">
+                    <div class="col-8 col-lg-4"><label class="text-center fs-color input-text">Your Password</label>
+                        <input class="form-control border-3 input-login bg-transparent fs-color" type="password" id="password"/></div>
+                </div>
+                <div class="row d-flex justify-content-center mt-2 mb-4" >
+                    <div class="col-8 col-lg-4"><button class="btn btn-main w-100" id="signin" onclick="check();">Sign In</button></div>
                 </div>
                 <div class="row d-flex justify-content-end align-items-center text-center mt-2 d-none" id="otp-text">
                     <span class="fs-color lable-fs">We sent an email to you!</span>
@@ -30,6 +37,9 @@
                 <div class="row d-flex justify-content-center mb-4 d-none" id="otp-comp">
                     <div class="col-8 col-lg-4"><label class="text-center fs-color input-text">Your OTP</label>
                         <input class="form-control border-3 input-login bg-transparent fs-color" id="otp" onkeypress="check();"/></div>
+                </div>
+                <div class="row d-flex justify-content-center mt-2 mb-4 d-none" id="confirm-comp" >
+                    <div class="col-8 col-lg-4"><button class="btn btn-main w-100" onclick="check();">Confirm</button></div>
                 </div>
                 <div class="row d-flex justify-content-end align-items-center text-center mt-5">
                     <span class="fs-color fs-small">Need help? <a class="lable-fs">X FAQ</a></span>

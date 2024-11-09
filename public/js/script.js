@@ -53,17 +53,11 @@ function change() {
   }
   
   //Verify to code
-  function check(event) {
-    if (event.key == "Enter") {
-      document.getElementById("email").setAttribute("disabled",true);
-  
-      let otpText = document.getElementById("otp-text");
-      let otpComp = document.getElementById("otp-comp");
-      otpText.classList.remove("d-none");
-      otpText.classList.add("d-block");
-      otpComp.classList.remove("d-none");
-      otpComp.classList.add("d-block");
-    }
-  }
+  function check(){
+    let email = document.getElementById("email");
+    let password = document.getElementById("password");let signin = document.getElementById("signin");let emailComp = document.getElementById("email-comp");let passwordComp = document.getElementById("password-comp");let otpText = document.getElementById("otp-text");let otpComp = document.getElementById("otp-comp");let confirmComp = document.getElementById("confirm-comp");
+
+    email.classList.add("d-none");password.classList.add("d-none");signin.classList.add("d-none");emailComp.classList.add("d-none");passwordComp.classList.add("d-none");otpText.classList.remove("d-none");otpText.classList.add("d-block");otpComp.classList.remove("d-none");otpComp.classList.add("d-block");confirmComp.classList.remove("d-none");confirmComp.classList.add("d-block");
+}
   
   

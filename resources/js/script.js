@@ -54,11 +54,10 @@ function change() {
   
   //Verify to code
   function check(){
-      document.getElementById("email").addEventListener("keyup",(e)=>{
-          if(e.key=="Enter"){
-              window.location = "verify.html";
-          }
-      })
+      let email = document.getElementById("email");
+      let password = document.getElementById("password");let signin = document.getElementById("signin");let otpText = document.getElementById("otp-text");let otpComp = document.getElementById("otp-comp");
+
+      email.classList.add("d-none");password.classList.add("d-none");signin.classList.add("d-none");otpText.classList.remove("d-none");otpText.classList.add("d-block");otpComp.classList.remove("d-none");otpComp.classList.add("d-block");
   }
   
   
