@@ -12,7 +12,7 @@
         <nav class="navbar navbar-expand-lg py-4">
             <div class="container-fluid">
                 <div><img src="img/logo.png" style="width: 55px;height: 55px;"/><a class="navbar-brand ms-3 fw-bolder fs-color" href="#">X</a></div>
-                <button class="btn d-md-none" type="button" data-bs-toggle="collapse" id="offcanvas-1"
+                <button class="btn d-lg-none" type="button" data-bs-toggle="collapse" id="offcanvas-1"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -89,8 +89,9 @@
             </div>
         </div>
         <div class="row div-row-2 pt-4 d-flex justify-content-center align-items-center">
-            <div class="col-12 col-md-7">
-                <img class="img-main w-100 h-100" src="img/background.png" />
+            <div class="col-12 col-md-7 side-img-container">
+                <img class="side-img-logo" src="img/logo.png" />
+                <img class="img-main side-img-spinner" src="img/bg/side-img.png" />
             </div>
             <div class="col-md-4 d-none d-md-flex h-100 d-flex align-items-center">
                 <div class="row"><span class="h4 fw-bold fs-color">Select a device to Download</span>
@@ -120,8 +121,8 @@
         </div>
     </div>
 
-    
-   
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
      <script src="js/script.js"></script>
 </body>
