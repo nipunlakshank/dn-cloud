@@ -75,7 +75,7 @@
                         </li>
                     </ul>
                     <div class="me-5">
-                        <button class="btn btn-main "><a class="text-decoration-none" href="/signin">Open in Browser</a></button>
+                        <button class="btn btn-main "><a class="text-decoration-none" href="/signin">Log in</a></button>
                     </div>
                 </div>
             </div>
@@ -124,6 +124,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+     <script src="js/functions.js"></script>
      <script src="js/script.js"></script>
 </body>
 </html>
