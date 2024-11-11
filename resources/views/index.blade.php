@@ -1,130 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dn Clouds</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Chatting Landing Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="container-fluid main" theme="light" id="main">
-    <div class="offset-1 col-10">
-        <nav class="navbar navbar-expand-lg py-4">
-            <div class="container-fluid">
-                <div><img src="img/logo.png" style="width: 55px;height: 55px;"/><a class="navbar-brand ms-3 fw-bolder fs-color" href="#">X</a></div>
-                <button class="btn d-lg-none" type="button" data-bs-toggle="collapse" id="offcanvas-1"
-                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown me-md-2" id="dd-1">
-                            <a class="nav-link dropdown-toggle fs-color" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                FAQ
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item fs-color" href="#">Action</a></li>
-                                <li><a class="dropdown-item fs-color" href="#">Another action</a></li>
-                                <li><a class="dropdown-item fs-color" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown me-md-4" id="dd-2">
-                            <a class="nav-link dropdown-toggle fs-color" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                EN
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item fs-color" href="#">Action</a></li>
-                                <li><a class="dropdown-item fs-color" href="#">Another action</a></li>
-                                <li><a class="dropdown-item fs-color" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <div class="mt-2 me-3" onclick="change();"><img src="img/white.png" id="toggle-img"
-                                    style="width: 20px; height: 20px;" /></div>
-                        </li>
-                        <li class="nav-item dropdown me-md-4 d-md-none d-block" id="dd-3">
-                            <a class="nav-link dropdown-toggle fs-color" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Download
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <div class="ms-3"><img class="me-3" src="windows.png" id="windows-canvas"
-                                            style="width: 20px; height: 20px;" /><span class="fw-bold fs-color">X for
-                                            Windows</span></div>
-                                </li>
-                                <li>
-                                    <div class="ms-3"><img class="me-3" src="mac.png" id="mac-canvas"
-                                            style="width: 20px; height: 20px;" /><span class="fw-bold fs-color">X for
-                                            MacOS</span></div>
-                                </li>
-                                <li>
-                                    <div class="ms-3"><img class="me-3" src="android.png" id="android-canvas"
-                                            style="width: 20px; height: 20px;" /><span class="fw-bold fs-color">X for
-                                            Android</span></div>
-                                </li>
-                                <li>
-                                    <div class="ms-3"><img class="me-3" src="ios.png" id="ios-canvas"
-                                            style="width: 20px; height: 20px;" /><span class="fw-bold fs-color">X for
-                                            IOS</span></div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <div class="me-5">
-                        <button class="btn btn-main "><a class="text-decoration-none" href="/signin">Log in</a></button>
-                    </div>
-                </div>
-            </div>
-        </nav>
-        <div class="row div-row-1 pt-4 mt-4">
-            <div class="offset-2 col-8 d-flex justify-content-center align-items-center">
-                <span class="fw-bold fs-color">X is space for Teamwork</span>
-            </div>
-            <div class="offset-2 col-8 mt-2 d-flex justify-content-center align-items-center text-center text-md-start">
-                <span class="fs-color">Secure communication and file sharing within the company</span>
-            </div>
-        </div>
-        <div class="row div-row-2 pt-4 d-flex justify-content-center align-items-center">
-            <div class="col-12 col-md-7 side-img-container">
-                <img class="side-img-logo" src="img/logo.png" />
-                <img class="img-main side-img-spinner" src="img/bg/side-img.png" />
-            </div>
-            <div class="col-md-4 d-none d-md-flex h-100 d-flex align-items-center">
-                <div class="row"><span class="h4 fw-bold fs-color">Select a device to Download</span>
-                    <div class="mt-4"><img class="me-3" src="img/windows.png" style="width: 20px; height: 20px;" id="windows"/><span
-                            class="fw-bold fs-color">X for Windows</span></div>
-                    <label class="lable-fs">Available for Windows 7+</label>
-                    <div class="mt-2"><img class="me-3" src="img/mac.png" style="width: 20px; height: 20px;" id="mac"/><span
-                            class="fw-bold fs-color">X for MacOS</span></div>
-                    <label class="lable-fs">Available for MacOS 10.11+</label>
-                    <div class="mt-2"><img class="me-3" src="img/android.png" style="width: 20px; height: 20px;" id="android"/><span
-                            class="fw-bold fs-color">X for Android</span></div>
-                    <label class="lable-fs">Available for Android 10+</label>
-                    <div class="mt-2"><img class="me-3" src="img/ios.png" style="width: 20px; height: 20px;" id="ios" /><span
-                            class="fw-bold fs-color">X for IOS</span></div>
-                    <label class="lable-fs">Available for IOS 10+</label>
-                </div>
+<body class="bg-blue-50 font-sans">
 
+  <!-- Navbar -->
+  <nav class="flex justify-between items-center p-6">
+    <div class="text-2xl font-bold text-blue-700">LOGO</div>
+    <ul class="hidden md:flex space-x-6 text-gray-600">
+      <li><a href="#" class="hover:text-blue-600">Home</a></li>
+      <li><a href="#" class="hover:text-blue-600">About</a></li>
+      <li><a href="#" class="hover:text-blue-600">Service</a></li>
+      <li><a href="#" class="hover:text-blue-600">Contact Us</a></li>
+      <li><a href="#" class="hover:text-blue-600">FAQ</a></li>
+    </ul>
+    <!-- Mobile Menu Button -->
+    <button class="md:hidden text-gray-600 focus:outline-none">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </nav>
 
-            </div>
+  <!-- Hero Section -->
+  <section class="flex flex-col md:flex-row items-center px-6 md:px-8 py-10 md:py-20">
+    <!-- Illustration -->
+    <div class="flex-1 flex justify-center mb-8 md:mb-0">
+      <div class="relative w-48 h-72 md:w-60 md:h-96 bg-blue-100 rounded-lg shadow-lg">
+        <div class="absolute top-3 left-3 w-40 h-64 md:w-52 md:h-80 bg-blue-50 rounded-lg shadow-inner"></div>
+        <!-- Chat Bubbles -->
+        <div class="absolute top-10 left-8 w-32 md:w-40 p-3 md:p-4 bg-blue-400 text-white rounded-lg shadow-md">
+          <p class="text-xs md:text-sm">Hello! How can I help you?</p>
         </div>
-        <div>
-            <hr class="fs-color">
+        <div class="absolute bottom-12 right-6 w-32 md:w-40 p-3 md:p-4 bg-yellow-400 text-white rounded-lg shadow-md">
+          <p class="text-xs md:text-sm">I'm looking for some information.</p>
         </div>
-        <div class="row mb-5">
-            <span class="col-12 col-md-9 lable-fs text-center text-md-start">&copy; Copyright X 2024</span><span
-                class="col-12 col-md-2 lable-fs text-center text-md-end">Support@x.com</span>
-        </div>
+      </div>
     </div>
 
+    <!-- Text Content -->
+    <div class="flex-1 text-center md:text-left">
+      <h1 class="text-3xl md:text-4xl font-bold text-blue-700 mb-4">Online Chatting</h1>
+      <p class="text-gray-600 mb-6 text-sm md:text-base">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed diam nonummy nibh euismod tincidunt ut.
+      </p>
+      <div class="flex justify-center md:justify-start space-x-4">
+        <button class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 text-sm md:text-base">Get started</button>
+        <button class="bg-gray-200 text-blue-600 py-2 px-4 rounded hover:bg-gray-300 text-sm md:text-base">Free Trial 30 Days</button>
+      </div>
+    </div>
+  </section>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-     <script src="js/functions.js"></script>
-     <script src="js/script.js"></script>
 </body>
 </html>
