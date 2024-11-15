@@ -6,7 +6,7 @@
   <title>About Us</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-blue-50 font-sans">
+<body class="transition-colors duration-500" id="body">
 
   <!-- About Page Header -->
   <header class="bg-blue-800 text-white text-center py-10">
@@ -88,6 +88,6 @@
   <footer class="bg-blue-800 text-gray-200 py-6 text-center">
     <p>© 2024 ChatApp. All rights reserved.</p>
   </footer>
-
+  <script src="/js/colorchange.js"></script>
 </body>
 </html>
