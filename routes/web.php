@@ -18,6 +18,12 @@ Route::get('/signin', function () {
 Route::get('/signin-bt', function () {
     return view('signin');
 });
+Route::get('/contact', function () {
+    return view('contact');
+});
+Route::get('/aboutus', function () {
+    return view('aboutus');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
