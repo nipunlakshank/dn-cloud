@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-
-<body class="flex items-center justify-center min-h-screen bg-gray-50">
+<x-guest-layout>
 
     <div class="w-full h-full sm:h-auto sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-2xl p-6 md:p-8 lg:p-10 bg-white rounded-none sm:rounded-lg shadow-none sm:shadow-lg flex flex-col justify-center">
-        <div class="flex justify-center mb-6">
-            <!-- Logo -->
-            <img src="img/logo.png" alt="DN Cloud Logo" class="h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24">
-        </div>
+        <!-- <div class="flex justify-center mb-6"> -->
+        <!--     <img src="img/logo.png" alt="DN Cloud Logo" class="h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24"> -->
+        <!-- </div> -->
 
         <!-- Title and Subtitle -->
         <h2 class="text-xl sm:text-2xl lg:text-3xl font-semibold text-center text-gray-800">Login to X</h2>
@@ -46,8 +35,6 @@
         </div>
     </div>
 
-</body>
+</x-guest-layout>
 
-</html>
 
-</html>

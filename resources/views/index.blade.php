@@ -8,23 +8,30 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-blue-40 font-sans">
+<body class="transition-colors font-sans" id="body">
   <div class="container mx-auto  sm:max-w-full md:max-w-full lg:max-w-full xl:max-w-full 2xl:max-w-full">
     <!-- Navbar -->
     <nav class="flex justify-between items-center p-6">
       <div class="grid grid-rows-1 grid-flow-col ">
         <img src="img/logo.png" style="width: 100px;height: 100px;" class="row-end-3 row-span-2" />
-        <div class="text-3xl font-bold text-blue-700 text-justify mt-8 row-start-1 row-span-2 ">DN CLOUD</div>
+        <div class="text-3xl font-bold   text-justify mt-8 row-start-1 row-span-2 transition-colors" id="header-text">DN CLOUD</div>
       </div>
 
       <ul class="hidden md:flex space-x-6 text-gray-600 mr-6">
 
-        <li class="pt-2"><a href="#" class="hover:text-white hover:bg-blue-500 p-2 rounded">Home</a></li>
-        <li class="pt-2 hover:blue-500"><a href="#" class="hover:text-white hover:bg-blue-500 p-2 rounded">About</a></li>
+        <li class="pt-2"><a href="#" class="hover:text-white hover:bg-blue-500 p-2 rounded" id="textname1">Home</a></li>
+        <li class="pt-2 hover:blue-500"><a href="/aboutus" class="hover:text-white hover:bg-blue-500 p-2 rounded" id="textname2">About</a></li>
 
-        <li class="pt-2 hover:blue-500"><a href="#" class="hover:text-white hover:bg-blue-500 p-2 rounded">Contact Us</a></li>
+        <li class="pt-2 hover:blue-500"><a href="/contact" class="hover:text-white hover:bg-blue-500 p-2 rounded" id="textname3">Contact Us</a></li>
 
         <a class="bg-blue-600 text-white py-2 px-5 rounded hover:bg-blue-700 text-sm md:text-base mb-7 " href="/signin">Login</a>
+
+        <button 
+      class="bg-blue-600 text-white py-2 px-5 rounded hover:bg-blue-700 text-sm md:text-base mb-7 "
+      onclick="cycleColors()">
+      color
+    </button>
+
       </ul>
       <!-- Mobile Menu Button -->
       <button class="md:hidden text-gray-600 focus:outline-none">
@@ -37,22 +44,14 @@
     <!-- Hero Section -->
     <section class="flex flex-col md:flex-row items-center px-6 md:px-8 py-10 md:py-20">
       <!-- Illustration -->
-      <div class="flex-1 flex justify-center mb-8 md:mb-0">
-        <div class="relative w-48 h-72 md:w-60 md:h-96 bg-blue-100 rounded-lg shadow-lg">
-          <div class="absolute top-3 left-3 w-40 h-64 md:w-52 md:h-80 bg-blue-50 rounded-lg shadow-inner"></div>
-          <!-- Chat Bubbles -->
-          <div class="absolute top-10 left-8 w-32 md:w-40 p-3 md:p-4 bg-blue-400 text-white rounded-lg shadow-md">
-            <p class="text-xs md:text-sm">Hello! How can I help you?</p>
-          </div>
-          <div class="absolute bottom-12 right-6 w-32 md:w-40 p-3 md:p-4 bg-yellow-400 text-white rounded-lg shadow-md">
-            <p class="text-xs md:text-sm">I'm looking for some information.</p>
-          </div>
-        </div>
+      <div class="flex-2 flex justify-center mb-8 md:mb-0">
+        <img src="/img/homebackground.png" alt="">
+        
       </div>
 
       <!-- Text Content -->
       <div class="flex-1 text-center md:text-left">
-        <h1 class="text-3xl md:text-4xl font-bold text-blue-700 mb-4">DN Cloud</h1>
+        <h1 class="text-6xxl md:text-6xl font-bold leading-tight mb-3" id="textname">Have your <br> best chat</h1>
         <p class="text-gray-600 mb-6 text-sm md:text-base">
           We are Online chat application for companys to share them files.
         </p>
@@ -121,6 +120,7 @@
     </footer>
 
   </div>
+  <script src="/js/colorchange.js"></script>
 </body>
 
 </html>
