@@ -11,20 +11,6 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/signin', function () {
-    return view('login');
-});
-
-Route::get('/signin-bt', function () {
-    return view('signin');
-});
-Route::get('/contact', function () {
-    return view('contact');
-});
-Route::get('/aboutus', function () {
-    return view('aboutus');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
