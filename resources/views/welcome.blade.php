@@ -5,32 +5,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Online Chatting Landing Page</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Styles / Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script defer type="text/javascript">
+        const ROOT = "{{ URL::to('/') }}"
+    </script>
+    <script defer src="/js/functions.js"></script>
+    <script defer src="/js/script.js"></script>
 </head>
 
-<body class="transition-colors font-sans" id="body">
+<body class="transition-colors font-sans bg-white dark:bg-gray-800">
   <div class="container mx-auto  sm:max-w-full md:max-w-full lg:max-w-full xl:max-w-full 2xl:max-w-full">
     <!-- Navbar -->
-    <nav class="flex justify-between items-center p-6">
+    <nav class="flex justify-between items-center p-6 text-gray-600 dark:text-gray-200">
       <div class="grid grid-rows-1 grid-flow-col ">
         <img src="img/logo.png" style="width: 100px;height: 100px;" class="row-end-3 row-span-2" />
         <div class="text-3xl font-bold   text-justify mt-8 row-start-1 row-span-2 transition-colors" id="header-text">DN CLOUD</div>
       </div>
 
-      <ul class="hidden md:flex space-x-6 text-gray-600 mr-6">
+      <ul class="hidden md:flex space-x-6 text-gray-600 mr-6 dark:text-gray-200">
 
         <li class="pt-2"><a href="#" class="hover:text-white hover:bg-blue-500 p-2 rounded" id="textname1">Home</a></li>
-        <li class="pt-2 hover:blue-500"><a href="/aboutus" class="hover:text-white hover:bg-blue-500 p-2 rounded" id="textname2">About</a></li>
+        <li class="pt-2 hover:blue-500"><a href="/about-us" class="hover:text-white hover:bg-blue-500 p-2 rounded" id="textname2">About</a></li>
 
         <li class="pt-2 hover:blue-500"><a href="/contact" class="hover:text-white hover:bg-blue-500 p-2 dark:bg-gray-800 rounded" id="textname3">Contact Us</a></li>
 
         <a class="bg-blue-600 text-white py-2 px-5 rounded hover:bg-blue-700 text-sm md:text-base mb-7 " href="/login">Login</a>
 
         <button
-      class="bg-blue-600 text-white py-2 px-5 rounded hover:bg-blue-700 text-sm md:text-base mb-7 "
-      onclick="cycleColors()">
-      color
-    </button>
+          class="bg-blue-600 text-white py-2 px-5 rounded hover:bg-blue-700 text-sm md:text-base mb-7"
+          onclick="toggleDarkMode()">
+          color
+        </button>
 
       </ul>
       <!-- Mobile Menu Button -->
@@ -50,8 +56,8 @@
 
       <!-- Text Content -->
       <div class="flex-2 text-center md:text-left">
-        <h1 class="text-6xxl md:text-6xl font-bold leading-tight mb-3" id="textname">Have your <br> best chat</h1>
-        <p class="text-gray-600 mb-6 text-sm md:text-base">
+        <h1 class="text-6xxl md:text-6xl font-bold leading-tight mb-3 text-black dark:text-white">Have your <br> best chat</h1>
+        <p class="text-gray-600 mb-6 text-sm md:text-base dark:text-gray-200">
           We are Online chat application for companys to share them files.
         </p>
         <div class="flex justify-center md:justify-start space-x-4">
@@ -119,7 +125,6 @@
     </footer>
 
   </div>
-  <script src="/js/colorchange.js"></script>
 </body>
 
 </html>
