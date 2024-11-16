@@ -17,7 +17,7 @@
   <!-- Contact Section -->
   <section class="max-w-6xl mx-auto px-6 py-12 md:py-20">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-      
+
       <!-- Contact Form -->
       <div class="bg-white p-8 shadow-lg rounded-lg">
         <h2 class="text-2xl font-semibold text-gray-700 mb-6">Send Us a Message</h2>
@@ -73,8 +73,6 @@
   <footer class="bg-blue-800 text-gray-200 py-6 text-center">
     <p>© 2024 ChatApp. All rights reserved.</p>
   </footer>
-
-  <script src="/js/colorchange.js"></script>
 
 </body>
 </html>
