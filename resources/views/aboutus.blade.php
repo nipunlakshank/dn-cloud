@@ -88,6 +88,5 @@
   <footer class="bg-blue-800 text-gray-200 py-6 text-center">
     <p>© 2024 ChatApp. All rights reserved.</p>
   </footer>
-  <script src="/js/colorchange.js"></script>
 </body>
 </html>

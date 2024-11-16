@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"  class="{{ localStorage.getItem('theme') === 'dark' ? 'dark' : '' }}">
 
 <head>
     <meta charset="utf-8">
