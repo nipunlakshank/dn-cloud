@@ -24,9 +24,9 @@
 
         <li class="pt-2 hover:blue-500"><a href="/contact" class="hover:text-white hover:bg-blue-500 p-2 rounded" id="textname3">Contact Us</a></li>
 
-        <a class="bg-blue-600 text-white py-2 px-5 rounded hover:bg-blue-700 text-sm md:text-base mb-7 " href="/signin">Login</a>
+        <a class="bg-blue-600 text-white py-2 px-5 rounded hover:bg-blue-700 text-sm md:text-base mb-7 " href="/login">Login</a>
 
-        <button 
+        <button
       class="bg-blue-600 text-white py-2 px-5 rounded hover:bg-blue-700 text-sm md:text-base mb-7 "
       onclick="cycleColors()">
       color
@@ -46,7 +46,7 @@
       <!-- Illustration -->
       <div class="flex-2 flex justify-center mb-8 md:mb-0">
         <img src="/img/homebackground.png" alt="">
-        
+
       </div>
 
       <!-- Text Content -->
