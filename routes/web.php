@@ -1,17 +1,10 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-});
-
-Route::get('/home', function () {
-    return view('home');
-});
+Route::get('/', [IndexController::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
