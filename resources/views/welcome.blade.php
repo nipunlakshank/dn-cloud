@@ -10,12 +10,12 @@
     <script defer type="text/javascript">
         const ROOT = "{{ URL::to('/') }}"
     </script>
-    <script defer src="/js/functions.js"></script>
-    <script defer src="/js/script.js"></script>
+    <script defer src="js/functions.js"></script>
+    <script defer src="js/script.js"></script>
 </head>
 
-<body class="h-full bg-white font-sans transition-colors dark:bg-gray-800">
-  <div class="container mx-auto sm:max-w-full md:max-w-full lg:max-w-full xl:max-w-full 2xl:max-w-full">
+<body class="min-h-screen bg-white font-sans transition-colors dark:bg-gray-800">
+  <div class="container border-2 border-red mx-auto sm:max-w-full md:max-w-full lg:max-w-full xl:max-w-full 2xl:max-w-full h-full flex flex-col justify-between">
     <!-- Navbar -->
     <nav class="flex items-center justify-between p-6 text-gray-600 dark:text-gray-200">
       <div class="grid grid-flow-col grid-rows-1 ">
@@ -51,7 +51,7 @@
     <section class="flex flex-col items-center justify-center px-6 py-10 md:flex-row md:px-8 md:py-20">
       <!-- Illustration -->
       <div class="align-center mb-8 flex flex-1 justify-center md:mb-0">
-        <img src="/img/homebackground.png" alt="">
+        <img src="img/homebackground.png" alt="">
       </div>
 
       <!-- Text Content -->
@@ -65,10 +65,10 @@
           <button class="rounded bg-gray-200 px-4 py-2 text-sm text-blue-600 hover:bg-gray-300 md:text-base">Free Trial 30 Days</button>
         </div>
       </div>
-    </section>\
+    </section>
     <!-- Footer -->
-    <x-footer></x-footer>
   </div>
+  <x-footer></x-footer>
 </body>
 
 </html>
