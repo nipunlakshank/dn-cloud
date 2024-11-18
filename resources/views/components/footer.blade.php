@@ -1,7 +1,7 @@
 <!-- Footer -->
 <footer class="mb-0 mt-10 bg-blue-800 py-10 text-gray-200">
     <div class="mx-auto max-w-6xl px-6 md:px-8">
-        <div class="sticky bottom-0 gap-8 md:grid-cols-3">
+        <div class="sticky bottom-0 grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
 
             <!-- About Section -->
             <div>

@@ -55,7 +55,7 @@
             </nav>
 
             <!-- Hero Section -->
-            <section class="flex flex-col items-center justify-center px-6 py-10 md:flex-row md:px-8 md:py-20">
+            <section class="flex flex-col items-center justify-center px-6 py-10 xl:flex-row md:px-8 md:py-20">
                 <!-- Illustration -->
                 <div class="align-center mb-8 flex flex-1 justify-center md:mb-0">
                     <img src="img/homebackground.png" alt="">
