@@ -5,35 +5,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Online Chatting Landing Page</title>
-    <!-- Styles / Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script defer type="text/javascript">
-        const ROOT = "{{ URL::to('/') }}"
-    </script>
-    <script defer src="js/functions.js"></script>
-    <script defer src="js/script.js"></script>
+  <!-- Styles / Scripts -->
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <script defer type="text/javascript">
+    const ROOT = "{{ URL::to('/') }}"
+  </script>
+  <script defer src="js/functions.js"></script>
+  <script defer src="js/script.js"></script>
 </head>
 
-<body class="min-h-screen bg-white font-sans transition-colors dark:bg-gray-800">
-  <div class="container border-2 border-red mx-auto sm:max-w-full md:max-w-full lg:max-w-full xl:max-w-full 2xl:max-w-full h-full flex flex-col justify-between">
+<body class="min-h-screen bg-blue-300 font-sans transition-colors dark:bg-gray-800 flex flex-col justify-between">
+  <div
+    class="container mx-auto sm:max-w-full md:max-w-full lg:max-w-full xl:max-w-full 2xl:max-w-full h-full flex flex-col flex-grow">
     <!-- Navbar -->
     <nav class="flex items-center justify-between p-6 text-gray-600 dark:text-gray-200">
       <div class="grid grid-flow-col grid-rows-1 ">
         <img src="img/logo.png" style="width: 100px;height: 100px;" class="row-span-2 row-end-3" />
-        <div class="row-span-2 row-start-1   mt-8 text-justify text-3xl font-bold transition-colors" id="header-text">DN CLOUD</div>
+        <div class="row-span-2 row-start-1   mt-8 text-justify text-3xl font-bold transition-colors" id="header-text">DN
+          CLOUD</div>
       </div>
 
       <ul class="mr-6 hidden space-x-6 text-gray-600 md:flex dark:text-gray-200">
 
         <li class="pt-2"><a href="#" class="rounded p-2 hover:bg-blue-500 hover:text-white" id="textname1">Home</a></li>
-        <li class="hover:blue-500 pt-2"><a href="/about-us" class="rounded p-2 hover:bg-blue-500 hover:text-white" id="textname2">About</a></li>
+        <li class="hover:blue-500 pt-2"><a href="/about-us" class="rounded p-2 hover:bg-blue-500 hover:text-white"
+            id="textname2">About</a></li>
 
-        <li class="hover:blue-500 pt-2"><a href="/contact" class="rounded p-2 hover:bg-blue-500 hover:text-white dark:bg-gray-800" id="textname3">Contact Us</a></li>
+        <li class="hover:blue-500 pt-2"><a href="/contact"
+            class="rounded p-2 hover:bg-blue-500 hover:text-white dark:bg-gray-800" id="textname3">Contact Us</a></li>
 
-        <a class="mb-7 rounded bg-blue-600 px-5 py-2 text-sm text-white hover:bg-blue-700 md:text-base " href="/login">Login</a>
+        <a class="mb-7 rounded bg-blue-600 px-5 py-2 text-sm text-white hover:bg-blue-700 md:text-base "
+          href="/login">Login</a>
 
-        <button
-          class="mb-7 rounded bg-blue-600 px-5 py-2 text-sm text-white hover:bg-blue-700 md:text-base"
+        <button class="mb-7 rounded bg-blue-600 px-5 py-2 text-sm text-white hover:bg-blue-700 md:text-base"
           onclick="toggleDarkMode()">
           color
         </button>
@@ -56,13 +60,16 @@
 
       <!-- Text Content -->
       <div class="flex-2 text-center md:text-left">
-        <h1 class="text-6xxl mb-3 font-bold leading-tight text-black md:text-6xl dark:text-white">Have your <br> best chat</h1>
+        <h1 class="text-6xxl mb-3 font-bold leading-tight text-black md:text-6xl dark:text-white">Have your <br> best
+          chat</h1>
         <p class="mb-6 text-sm text-gray-600 md:text-base dark:text-gray-200">
           We are Online chat application for companys to share them files.
         </p>
         <div class="flex justify-center space-x-4 md:justify-start">
-          <a class="rounded bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 md:text-base" href="/signin">Login</a>
-          <button class="rounded bg-gray-200 px-4 py-2 text-sm text-blue-600 hover:bg-gray-300 md:text-base">Free Trial 30 Days</button>
+          <a class="rounded bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 md:text-base"
+            href="/signin">Login</a>
+          <button class="rounded bg-gray-200 px-4 py-2 text-sm text-blue-600 hover:bg-gray-300 md:text-base">Free Trial
+            30 Days</button>
         </div>
       </div>
     </section>
