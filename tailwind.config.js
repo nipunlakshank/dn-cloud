@@ -32,8 +32,12 @@ export default {
                 seconday: withOpacity("--color-secondary"),
                 accent1: withOpacity("--color-accent-1"),
                 accent2: withOpacity("--color-accent-2"),
-                hover: withOpacity("--color-hover"),
+                hover1: withOpacity("--btn-hover-color1"),
+                hover2: withOpacity("--btn-hover-color2"),
+                hover3: withOpacity("--btn-hover-color3"),
                 fill: withOpacity("--background-fill"),
+                font: withOpacity("--font-color"),
+                hefont: withOpacity("--font-color1"),
             },
 
             textColor: {
@@ -43,6 +47,8 @@ export default {
                 accent2: withOpacity("--color-accent-2"),
                 hover: withOpacity("--color-hover"),
                 fill: withOpacity("--color-fill"),
+                font: withOpacity("--font-color"),
+                hefont: withOpacity("--font-color1"),
             },
         },
     },

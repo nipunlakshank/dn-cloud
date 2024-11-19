@@ -10,8 +10,11 @@
 }
 :root[theme="dark"]{
     --background-color:31 41 55;
-    --font-color:white;
-    --btn-color:#535C91;
-    --btn-hover-color:#0C134F;
+    --primary:30 64 175;
+    --secondry:black;
+    --accent-color1:37 99 235;
+    --accent-color2:129 140 248;
+    --btn-hover-color1:29 78 216;
+    --btn-hover-color2:#C6E7FF;
     --font-secoundary-color:gray;
 }

@@ -4,9 +4,20 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Contact Us</title>
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+         <!-- Styles / Scripts -->
+         @vite(['resources/css/app.css', 'resources/js/app.js'])
+         <script defer type="text/javascript">
+             const ROOT = "{{ URL::to('/') }}"
+         </script>
+         <script defer src="js/functions.js"></script>
+         <script defer src="js/script.js"></script>
     </head>
-    <body class="transition-colors duration-500" id="body">
+    <body class="transition-colors duration-500 bg-fill" id="body">
+
+        <!-- Navbar -->
+        <x-nav>
+                
+        </x-nav>
 
         <!-- Contact Page Header -->
         <header class="bg-blue-800 py-10 text-center text-white">
@@ -52,7 +63,7 @@
                 </div>
 
                 <!-- Contact Information -->
-                <div class="flex flex-col justify-center space-y-6 text-gray-700">
+                <div class="flex flex-col justify-center space-y-6 text-hefont">
                     <div class="flex items-center space-x-4">
                         <svg class="h-6 w-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
                             <path

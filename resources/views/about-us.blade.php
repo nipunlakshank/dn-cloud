@@ -4,9 +4,20 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>About Us</title>
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+         <!-- Styles / Scripts -->
+         @vite(['resources/css/app.css', 'resources/js/app.js'])
+         <script defer type="text/javascript">
+             const ROOT = "{{ URL::to('/') }}"
+         </script>
+         <script defer src="js/functions.js"></script>
+         <script defer src="js/script.js"></script>
     </head>
-    <body class="transition-colors duration-500" id="body">
+    <body class="transition-colors duration-500 bg-fill" id="body">
+
+        <!-- Navbar -->
+        <x-nav>
+                
+        </x-nav>
 
         <!-- About Page Header -->
         <header class="bg-blue-800 py-10 text-center text-white">
@@ -15,7 +26,7 @@
         </header>
 
         <!-- Introduction Section -->
-        <section class="mx-auto max-w-6xl px-6 py-12 text-gray-700 md:py-20">
+        <section class="mx-auto max-w-6xl px-6 py-12 text-hefont md:py-20">
             <h2 class="mb-6 text-center text-3xl font-semibold">Who We Are</h2>
             <p class="mx-auto max-w-3xl text-center text-lg">
                 We are a passionate team dedicated to connecting people through innovative online chatting solutions.
@@ -37,7 +48,7 @@
         </section>
 
         <!-- Team Section -->
-        <section class="mx-auto max-w-6xl px-6 py-12 text-gray-700 md:py-20">
+        <section class="mx-auto max-w-6xl px-6 py-12 text-hefont md:py-20">
             <h2 class="mb-6 text-center text-3xl font-semibold">Meet Our Team</h2>
             <div class="grid grid-cols-1 gap-8 text-center md:grid-cols-3">
                 <!-- Team Member 1 -->

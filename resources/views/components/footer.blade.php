@@ -57,7 +57,7 @@
         </div>
 
         <!-- Footer Bottom -->
-        <div class="mt-10 text-center text-sm text-gray-500">
+        <div class="mt-10 text-center text-sm text-font">
             © 2024 ChatApp. All rights reserved.
         </div>
     </div>
