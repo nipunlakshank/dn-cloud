@@ -68,13 +68,14 @@
                         chat
                     </h1>
                     <p class="mb-6 text-sm text-gray-600 md:text-base dark:text-gray-200">
+
                         We are Online chat application for companys to share them files.
                     </p>
                     <div class="flex justify-center space-x-4 md:justify-start">
                         <a class="rounded bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 md:text-base"
                             href="/signin">Login</a>
                         <button
-                            class="rounded bg-gray-200 px-4 py-2 text-sm text-blue-600 hover:bg-gray-300 md:text-base">
+                            class="rounded bg-indigo-400 px-4 py-2 text-sm text-white font-bold hover:bg-gray-300 md:text-base">
                             Free Trial 30 Days
                         </button>
                     </div>

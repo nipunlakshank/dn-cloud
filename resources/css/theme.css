@@ -1,0 +1,16 @@
+:root{
+    --background-color:147 197 253;
+    --primary:30 64 175;
+    --secondry:black;
+    --accent-color1:#37 99 235;
+    --accent-color2:#D4F6FF;
+    --btn-hover-color:#C6E7FF;
+    --font-secoundary-color:gray;
+}
+:root[theme="dark"]{
+    --background-color:31 41 55;
+    --font-color:white;
+    --btn-color:#535C91;
+    --btn-hover-color:#0C134F;
+    --font-secoundary-color:gray;
+}

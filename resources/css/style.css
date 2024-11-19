@@ -1,17 +1,4 @@
-:root,[theme="light"]{
-    --background-color:white;
-    --font-color:black;
-    --btn-color:#D4F6FF;
-    --btn-hover-color:#C6E7FF;
-    --font-secoundary-color:gray;
-}
-[theme="dark"]{
-    --background-color:rgb(38, 38, 38);
-    --font-color:white;
-    --btn-color:#535C91;
-    --btn-hover-color:#0C134F;
-    --font-secoundary-color:gray;
-}
+
 
 @font-face {
     font-family: "mon-regular";
