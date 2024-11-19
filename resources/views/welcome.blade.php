@@ -14,7 +14,7 @@
         <script defer src="js/script.js"></script>
     </head>
 
-    <body class="flex min-h-screen flex-col justify-between bg-blue-300 font-sans transition-colors dark:bg-gray-800">
+    <body class="flex min-h-screen flex-col justify-between bg-fill font-sans transition-colors dark:bg-gray-800">
         <div
             class="container mx-auto flex h-full flex-grow flex-col sm:max-w-full md:max-w-full lg:max-w-full xl:max-w-full 2xl:max-w-full">
             <!-- Navbar -->

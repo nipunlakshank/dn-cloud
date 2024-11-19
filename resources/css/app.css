@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    :root {
+        --background-fill: 147, 197, 253;
+        --primary: 30, 64, 175;
+        --secondry: 0, 0, 0;
+        --accent-color1: 37, 99, 235;
+        --accent-color2: 129, 140, 248;
+        --btn-hover-color1: 29, 78, 216;
+        --btn-hover-color2: 198, 231, 255;
+        --font-secondary-color: 128, 128, 128;
+        --color-fill: 154, 192, 243;
+    }
+    .dark {
+        --background-fill: 31, 41, 55;
+        --font-color: 255, 255, 255;
+        --btn-color: 83, 92, 145;
+        --btn-hover-color: 12, 19, 79;
+        --font-secondary-color: 128, 128, 128;
+        --color-fill: 154, 192, 243;
+    }
+}
+
+/* NOTE: This is for reference only, don't uncomment this code
+*
+ .referece {
+    :root {
+        --background-color: rgb(147, 197, 253);
+        --primary: rgb(30, 64, 175);
+        --secondry: rgb(0, 0, 0);
+        --accent-color1: rgb(37, 99, 235);
+        --accent-color2: rgb(129, 140, 248);
+        --btn-hover-color1: rgb(29, 78, 216);
+        --btn-hover-color2: rgb(198,, 231,, 255);
+        --font-secondary-color: rgb(128, 128, 128);
+        --fill-color: rgb(154, 192, 243);
+    }
+    :root[theme="dark"] {
+        --background-color: rgb(31, 41, 55);
+        --font-color: rgb(255, 255, 255);
+        --btn-color: rgb(83, 92, 145);
+        --btn-hover-color: rgb(12, 19, 79);
+        --font-secondary-color: rgb(128, 128, 128);
+        --fill-color: rgb(154, 192, 243);
+    }
+} */
