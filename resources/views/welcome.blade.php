@@ -34,7 +34,7 @@
                             class="rounded p-2 hover:bg-blue-500 hover:text-white" id="textname2">About</a></li>
 
                     <li class="hover:blue-500 pt-2"><a href="/contact"
-                            class="rounded p-2 hover:bg-blue-500 hover:text-white dark:bg-gray-800"
+                            class="rounded p-2 hover:bg-blue-500 hover:text-white "
                             id="textname3">Contact Us</a></li>
 
                     <a class="mb-7 rounded bg-blue-600 px-5 py-2 text-sm text-white hover:bg-blue-700 md:text-base"
@@ -75,7 +75,7 @@
                         <a class="rounded bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 md:text-base"
                             href="/signin">Login</a>
                         <button
-                            class="rounded bg-indigo-400 px-4 py-2 text-sm text-white font-bold hover:bg-gray-300 md:text-base">
+                            class="rounded bg-indigo-400 px-4 py-2 text-sm text-white font-bold hover:bg-gray-50 hover:text-gray-900 md:text-base">
                             Free Trial 30 Days
                         </button>
                     </div>
