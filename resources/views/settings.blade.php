@@ -1,7 +1,3 @@
 <x-app-layout>
-    <x-settings.form-settings>
-    
-    </x-settings.form-settings>    
+    <x-settings.form></x-settings.form>
 </x-app-layout>
-
-

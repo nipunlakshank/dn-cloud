@@ -1,12 +1,11 @@
 <nav x-data="{ open: false }"
-
-    class="bg-gray-800 p-4 text-white fixed left-0 top-0 z-10 w-full border-b border-gray-200 dark:border-gray-700 dark:bg-gray-800">
+    class="fixed left-0 top-0 z-10 w-full border-b border-gray-200 bg-gray-800 p-4 text-white dark:border-gray-700 dark:bg-gray-800">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
             <div class="flex items-center justify-start rtl:justify-end">
-                <button data-drawer-target="drawer-navigation"  aria-controls="drawer-navigation"   data-drawer-show="drawer-navigation"
-                    type="button"
-                    class="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200  dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                <button data-drawer-target="drawer-navigation" aria-controls="drawer-navigation"
+                    data-drawer-show="drawer-navigation" type="button"
+                    class="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                     <span class="sr-only">Open sidebar</span>
                     <svg class="h-6 w-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +16,7 @@
                 </button>
                 <a href="{{ Auth::guest() ? '/' : '/dashboard' }}" class="ms-2 flex md:me-24">
                     <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="me-3 h-8" alt="FlowBite Logo" /> -->
-                    <x-application-logo class="w-[50px] h-[50px]"></x-application-logo>
+                    <x-application-logo class="h-[50px] w-[50px]"></x-application-logo>
                     <span class="self-center whitespace-nowrap text-xl font-semibold sm:text-2xl dark:text-white">DN
                         Cloud</span>
                 </a>
@@ -76,9 +75,6 @@
             </div>
         </div>
     </div>
-    <x-settings.sidebar-settings>
 
-    </x-settings.sidebar-settings>
+    <x-settings.sidebar></x-settings.sidebar>
 </nav>
-
-
