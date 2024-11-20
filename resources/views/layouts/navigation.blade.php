@@ -15,8 +15,9 @@
                         </path>
                     </svg>
                 </button>
-                <a href="{{ Auth::guest() ? '/' : '/home' }}" class="ms-2 flex md:me-24">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="me-3 h-8" alt="FlowBite Logo" />
+                <a href="{{ Auth::guest() ? '/' : '/dashboard' }}" class="ms-2 flex md:me-24">
+                    <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="me-3 h-8" alt="FlowBite Logo" /> -->
+                    <x-application-logo class="w-[50px] h-[50px]"></x-application-logo>
                     <span class="self-center whitespace-nowrap text-xl font-semibold sm:text-2xl dark:text-white">DN
                         Cloud</span>
                 </a>
