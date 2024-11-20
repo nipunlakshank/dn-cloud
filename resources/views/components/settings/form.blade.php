@@ -1,4 +1,4 @@
-<div class="align-items-center pt-[40px] flex w-full justify-center h-screen">
+<div class="align-items-center pt-[40px] mb-[40px] flex w-full justify-center h-screen">
     <form class="flex flex-col h-screen">
         <div class="mb-6 grid gap-6 md:grid-cols-2">
             <div>
