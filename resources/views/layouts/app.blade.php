@@ -12,6 +12,9 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+        <script defer src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+
         <script defer type="text/javascript">
             const ROOT = "{{ URL::to('/') }}"
         </script>
@@ -22,7 +25,7 @@
     </head>
 
     <body class="bg-gray-50 font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen h-full bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -35,7 +38,7 @@
             @endisset
 
             <!-- Page Content -->
-            <main>
+            <main class="mt-14 h-full">
                 {{ $slot }}
             </main>
         </div>
