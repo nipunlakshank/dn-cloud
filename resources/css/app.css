@@ -4,7 +4,7 @@
 
 @layer base {
     :root {
-        --background-fill: 147, 197, 253;
+        --background-fill: 255, 255, 255;
         --font-color: 255, 255, 255;
         --font-color1: 30, 64, 175;
         --primary: 30, 64, 175;
@@ -32,7 +32,7 @@
 *
  .referece {
     :root {
-        --background-color: rgb(147, 197, 253);
+        --background-color: rgb(255, 255, 255);
         --font-color: rgb(255, 255, 255);
         --font-color1: rgb(30, 64, 175);
         --primary: rgb(30, 64, 175);
