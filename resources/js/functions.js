@@ -9,10 +9,10 @@ async function get(url) {
         method: "get",
         headers: {
             Accept: "application/json",
-        }
+        },
     })
-        .then(response => response.json())
-        .catch(err => console.error(err))
+        .then((response) => response.json())
+        .catch((err) => console.error(err));
 }
 
 /**
@@ -27,11 +27,10 @@ async function post(url, body = {}) {
         method: "post",
         body: JSON.stringify(body),
         headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
+            Accept: "application/json",
+            "Content-Type": "application/json",
         },
     })
-        .then(response => response.json())
-        .catch(err => console.log(err))
+        .then((response) => response.json())
+        .catch((err) => console.log(err));
 }
-

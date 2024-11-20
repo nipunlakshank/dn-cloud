@@ -34,7 +34,7 @@
         </div>
 
         <!-- Fixed Bottom Bar for Input -->
-        <div class="fixed bottom-0 left-1/4 right-0 flex items-center bg-white dark:bg-gray-800 p-4 text-white">
+        <div class="fixed bottom-0 left-1/4 right-0 flex items-center  p-4 text-white">
             <x-chat.input-bar placeholder="Type a message...">Type a message...</x-chat.input-bar>
         </div>
     </div>
