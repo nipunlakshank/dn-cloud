@@ -21,21 +21,21 @@
     <div class="flex h-full flex-1 flex-col">
         <!-- Chat Content Scrollable Area -->
         <div class="flex-1 overflow-y-scroll p-4 pb-[50px]">
-            <x-chat.canvas class="chat-messages flex flex-col space-y-4">
+            <x-chat.canvas>
                 <!-- Chat messages go here -->
-                <x-chat.bubble class="rounded-lg bg-white p-4 shadow-md">Message 1</x-chat.bubble>
-                <x-chat.bubble class="rounded-lg bg-white p-4 shadow-md">Message 2</x-chat.bubble>
-                <x-chat.bubble class="rounded-lg bg-white p-4 shadow-md">Message 3</x-chat.bubble>
-                <x-chat.bubble class="rounded-lg bg-white p-4 shadow-md">Message 4</x-chat.bubble>
-                <x-chat.bubble class="rounded-lg bg-white p-4 shadow-md">Message 5</x-chat.bubble>
-                <x-chat.bubble class="rounded-lg bg-white p-4 shadow-md">Message 6</x-chat.bubble>
-                <x-chat.bubble class="rounded-lg bg-white p-4 shadow-md">Message 5</x-chat.bubble>
+                <x-chat.bubble>Message 1</x-chat.bubble>
+                <x-chat.bubble>Message 2</x-chat.bubble>
+                <x-chat.bubble>Message 3</x-chat.bubble>
+                <x-chat.bubble>Message 4</x-chat.bubble>
+                <x-chat.bubble>Message 5</x-chat.bubble>
+                <x-chat.bubble>Message 6</x-chat.bubble>
+                <x-chat.bubble>Message 7</x-chat.bubble>
             </x-chat.canvas>
         </div>
 
         <!-- Fixed Bottom Bar for Input -->
-        <div class="fixed bottom-0 left-1/4 right-0 flex items-center  p-4 text-white">
-            <x-chat.input-bar placeholder="Type a message...">Type a message...</x-chat.input-bar>
+        <div class="fixed bottom-0 left-1/4 right-0 flex items-center  p-4">
+            <x-chat.input-bar>Type a message...</x-chat.input-bar>
         </div>
     </div>
 </x-app-layout>
