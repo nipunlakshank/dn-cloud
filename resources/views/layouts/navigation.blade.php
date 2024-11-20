@@ -1,4 +1,6 @@
-<nav x-data="{ open: false }" class="fixed top-0 z-50 w-full border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
+<nav x-data="{ open: false }"
+
+    class="bg-gray-800 p-4 text-white fixed left-0 top-0 z-10 w-full border-b border-gray-200 dark:border-gray-700 dark:bg-gray-800">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
             <div class="flex items-center justify-start rtl:justify-end">
@@ -62,7 +64,7 @@
 
                                     <x-dropdown-link :href="route('logout')"
                                         onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                                    this.closest('form').submit();">
                                         {{ __('Log Out') }}
                                     </x-dropdown-link>
                                 </form>
