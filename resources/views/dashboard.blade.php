@@ -1,4 +1,19 @@
 <x-app-layout>
+    <!-- Control bar -->
+    <div class="fixed left-0 top-0 z-30 mt-[100px] w-full border-none px-4 bg-gray-100 dark:bg-gray-800 lg:hidden">
+        <div class="flex items-center justify-between p-4">
+            <div class="items flex">
+                <button class="flex items-center" type="button">
+                    <svg class="h-6 w-6 text-gray-800 dark:text-white" aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Sidebar -->
     <x-chat.list>
         <x-chat.list-item>Chat 1</x-chat.list-item>
@@ -18,7 +33,7 @@
     </x-chat.list>
 
     <!-- Main Content Area -->
-    <div class="flex h-full flex-1 flex-col">
+    <div class="flex h-full flex-1 flex-col pt-[50px] lg:pt-1">
         <!-- Chat Content Scrollable Area -->
         <div class="flex-1 overflow-y-scroll p-4 pb-[50px]">
             <x-chat.canvas>
@@ -34,7 +49,7 @@
         </div>
 
         <!-- Fixed Bottom Bar for Input -->
-        <div class="fixed bottom-0 left-1/4 right-0 flex items-center  p-4">
+        <div class="fixed bottom-0 left-1/4 right-0 flex items-center p-4">
             <x-chat.input-bar>Type a message...</x-chat.input-bar>
         </div>
     </div>
