@@ -1,6 +1,6 @@
 {
     "indentSize": 4,
-    "wrapAttributes": "preserve-aligned",
+    "wrapAttributes": "preserve",
     "wrapLineLength": 120,
     "wrapAttributesMinAttrs": 2,
     "indentInnerHtml": true,
