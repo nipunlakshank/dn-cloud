@@ -1,4 +1,4 @@
-<aside id="logo-sidebar" class="h-full w-1/4 space-y-4 overflow-y-auto text-white transition-transform sm:translate-x-0"
+<aside id="logo-sidebar" class="h-full w-1/4 space-y-4 overflow-y-auto text-white transition-transform hidden lg:block"
     aria-label="Sidebar">
     <div class="p-4">
         <x-search-bar></x-search-bar>
