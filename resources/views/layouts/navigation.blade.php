@@ -1,5 +1,5 @@
 <nav x-data="{ open: false }"
-    class="fixed left-0 top-0 z-10 w-full border-b border-gray-200 bg-gray-800 p-4 text-white dark:border-gray-700 dark:bg-gray-800">
+    class="fixed left-0 top-0 z-50 w-full border-b border-gray-200 bg-gray-800 p-4 text-white dark:border-gray-700 dark:bg-gray-800">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
             <div class="flex items-center justify-start rtl:justify-end">
