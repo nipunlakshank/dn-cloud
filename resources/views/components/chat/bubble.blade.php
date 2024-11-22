@@ -9,8 +9,7 @@
         </div>
         <div
             class="leading-1.5 flex flex-col rounded-e-xl rounded-es-xl border-gray-200 bg-gray-100 p-4 dark:bg-gray-700">
-            <p class="text-sm font-normal text-gray-900 dark:text-white"> That's awesome. I think our users will really
-                appreciate the improvements.</p>
+            <p class="text-sm font-normal text-gray-900 dark:text-white">{{ $slot }}</p>
         </div>
         <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Delivered</span>
     </div>
