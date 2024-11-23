@@ -42,9 +42,9 @@
                 <x-chat.bubble>Message 2</x-chat.bubble>
                 <x-chat.bubble>Message 3</x-chat.bubble>
                 <x-chat.bubble>Message 4</x-chat.bubble>
-                <x-chat.bubble>Message 5</x-chat.bubble>
-                <x-chat.bubble>Message 6</x-chat.bubble>
-                <x-chat.bubble>Message 7</x-chat.bubble>
+                <x-chat.bubble-right>Message 5</x-chat.bubble-right>
+                <x-chat.bubble-right>Message 6</x-chat.bubble-right>
+                <x-chat.bubble-right>Message 7</x-chat.bubble-right>
             </x-chat.canvas>
         </div>
 
