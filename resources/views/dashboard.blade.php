@@ -38,7 +38,9 @@
         <div class="flex-1 overflow-y-scroll p-4 pb-[50px]">
             <x-chat.canvas>
                 <!-- Chat messages go here -->
-                <x-chat.bubble>Message 1</x-chat.bubble>
+                <x-chat.bubble>
+                    Message 1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione quibusdam soluta optio iure dignissimos velit consequatur quos nesciunt sunt quam?
+                </x-chat.bubble>
                 <x-chat.bubble>Message 2</x-chat.bubble>
                 <x-chat.bubble>Message 3</x-chat.bubble>
                 <x-chat.bubble>Message 4</x-chat.bubble>
