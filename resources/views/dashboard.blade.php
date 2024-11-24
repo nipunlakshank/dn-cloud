@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Control bar -->
-    <div class="fixed left-0 top-0 z-30 mt-[100px] w-full border-none px-4 bg-gray-100 dark:bg-gray-800 lg:hidden">
+    <div class="fixed left-0 top-0 z-30 mt-[100px] w-full border-none bg-gray-100 px-4 lg:hidden dark:bg-gray-800">
         <div class="flex items-center justify-between p-4">
             <div class="items flex">
                 <button class="flex items-center" type="button">
@@ -43,15 +43,15 @@
                 </x-chat.bubble>
                 <x-chat.bubble>Message 2</x-chat.bubble>
                 <x-chat.bubble>Message 3</x-chat.bubble>
-                <x-chat.bubble>Message 4</x-chat.bubble>
-                <x-chat.bubble-right>Message 5</x-chat.bubble-right>
-                <x-chat.bubble-right>Message 6</x-chat.bubble-right>
-                <x-chat.bubble-right>Message 7</x-chat.bubble-right>
+                <x-chat.bubble>👍</x-chat.bubble>
+                <x-chat.bubble>Message 6</x-chat.bubble>
+                <x-chat.bubble>Message 5 👍</x-chat.bubble>
+                <x-chat.bubble>Message 7</x-chat.bubble>
             </x-chat.canvas>
         </div>
 
         <!-- Fixed Bottom Bar for Input -->
-        <div class="fixed bottom-0 left-1/4 right-0 flex items-center p-4">
+        <div class="fixed bottom-0 left-0 right-0 flex items-center p-4 lg:left-1/4">
             <x-chat.input-bar>Type a message...</x-chat.input-bar>
         </div>
     </div>
