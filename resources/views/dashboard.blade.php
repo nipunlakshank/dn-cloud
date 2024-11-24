@@ -41,12 +41,15 @@
                 <x-chat.bubble>
                     Message 1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione quibusdam soluta optio iure dignissimos velit consequatur quos nesciunt sunt quam?
                 </x-chat.bubble>
-                <x-chat.bubble>Message 2</x-chat.bubble>
+                <x-chat.bubble dir="rtl">Message 2</x-chat.bubble>
                 <x-chat.bubble>Message 3</x-chat.bubble>
-                <x-chat.bubble>👍</x-chat.bubble>
+                <x-chat.bubble dir="ltr">👍</x-chat.bubble>
                 <x-chat.bubble>Message 6</x-chat.bubble>
-                <x-chat.bubble>Message 5 👍</x-chat.bubble>
+                <x-chat.bubble dir="rtl">Message 5 👍</x-chat.bubble>
                 <x-chat.bubble>Message 7</x-chat.bubble>
+                <x-chat.bubble dir="rtl">
+                    Message 8 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione quibusdam soluta optio iure dignissimos velit consequatur quos nesciunt sunt quam?
+                </x-chat.bubble>
             </x-chat.canvas>
         </div>
 

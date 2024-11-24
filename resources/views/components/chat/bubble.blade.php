@@ -1,4 +1,4 @@
-<div class="flex items-start gap-2.5">
+<div class="flex items-start gap-2.5" {{ $attributes }}>
 
     <img class="h-8 w-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="Jese image">
 
