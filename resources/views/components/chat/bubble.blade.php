@@ -1,8 +1,8 @@
-<div class="flex items-start gap-2.5">
+<div class="flex items-start gap-2.5" dir="ltr">
 
     <img class="h-8 w-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="Jese image">
 
-    <div class="flex w-full max-w-[320px] flex-col gap-1">
+    <div class="flex w-fit max-w-[60%] lg:max-w-md flex-col gap-1">
         <div class="flex items-center space-x-2 rtl:space-x-reverse">
             <span class="text-sm font-semibold text-gray-900 dark:text-white">Bonnie Green</span>
             <span class="text-sm font-normal text-gray-500 dark:text-gray-400">11:46</span>
