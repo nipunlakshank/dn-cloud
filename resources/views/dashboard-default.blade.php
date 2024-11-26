@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                {{ __('Dashboard') }}
+                {{ __('Chat') }}
             </h2>
             <form action="/logout" method="POST">
                 @csrf

@@ -14,7 +14,7 @@
                         </path>
                     </svg>
                 </button>
-                <a href="{{ Auth::guest() ? '/' : '/dashboard' }}" class="ms-2 flex md:me-24">
+                <a href="{{ Auth::guest() ? '/' : '/chat' }}" class="ms-2 flex md:me-24">
                     <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="me-3 h-8" alt="FlowBite Logo" /> -->
                     <x-application-logo class="h-[50px] w-[50px]"></x-application-logo>
                     <span class="self-center whitespace-nowrap text-xl font-semibold sm:text-2xl dark:text-white">DN
@@ -46,7 +46,7 @@
                             <li>
                                 <a href="#"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                    role="menuitem">Dashboard</a>
+                                    role="menuitem">Chat</a>
                             </li>
                             <li>
                                 <button

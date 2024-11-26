@@ -11,7 +11,7 @@ class IndexController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            return Redirect::route('dashboard');
+            return Redirect::route('chat');
         }
         return view('welcome');
     }
