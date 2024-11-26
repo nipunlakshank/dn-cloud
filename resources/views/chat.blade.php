@@ -1,6 +1,6 @@
 <x-chat-layout>
     <!-- Control bar -->
-    <div class="fixed left-0 top-0 z-30 w-full border-none bg-gray-100 px-4 dark:bg-gray-800">
+    <div class="fixed left-0 top-0 z-30 w-full border-none bg-gray-200 px-4 dark:bg-gray-800">
         <div class="flex items-center justify-between p-4">
             <div class="items flex">
                 <button class="flex items-center lg:hidden" type="button">
