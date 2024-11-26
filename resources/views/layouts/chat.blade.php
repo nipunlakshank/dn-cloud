@@ -18,26 +18,14 @@
         <script defer type="text/javascript">
             const ROOT = "{{ URL::to('/') }}"
         </script>
-        <script defer src="/js/script.js"></script>
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/functions.js'])
     </head>
 
     <body class="flex font-sans antialiased overflow-y-auto bg-gray-100 dark:bg-gray-900">
         <div class="flex h-screen w-full flex-col">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow dark:bg-gray-800">
-                    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
             <!-- Page Content -->
-            <main class="flex h-screen flex-1 py-[100px]">
+            <main class="flex h-screen flex-1">
                 {{ $slot }}
             </main>
         </div>
