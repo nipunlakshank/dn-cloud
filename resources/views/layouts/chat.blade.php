@@ -19,7 +19,7 @@
             const ROOT = "{{ URL::to('/') }}"
         </script>
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/functions.js'])
+        @vite([ 'resources/js/functions.js', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/script.js' ])
     </head>
 
     <body class="flex font-sans antialiased overflow-y-auto bg-gray-100 dark:bg-gray-900">
