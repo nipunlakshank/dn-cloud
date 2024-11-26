@@ -52,9 +52,13 @@
                 <x-chat.bubble dir="rtl"><x-slot:text>Message 2</x-slot:text></x-chat.bubble>
                 <x-chat.bubble><x-slot:text>Message 3</x-slot:text></x-chat.bubble>
                 <x-chat.bubble dir="ltr"><x-slot:text>👍</x-slot:text></x-chat.bubble>
+                <x-chat.bubble-img><x-slot:text>This is the new office</x-slot:text></x-chat.bubble>
                 <x-chat.bubble><x-slot:text>Message 6</x-slot:text></x-chat.bubble>
+                <x-chat.bubble-img-multi><x-slot:text>This is the new office</x-slot:text></x-chat.bubble>
                 <x-chat.bubble dir="rtl"><x-slot:text>Message 5 👍</x-slot:text></x-chat.bubble>
                 <x-chat.bubble><x-slot:text>Message 7</x-slot:text></x-chat.bubble>
+                <x-chat.bubble-file dir="rtl"></x-chat.bubble-file>
+                <x-chat.bubble-file></x-chat.bubble-file>
 
                 <x-chat.bubble dir="rtl">
                     <x-slot:text>
@@ -65,6 +69,8 @@
                     <x-slot:status>Sent</x-slot:status>
                 </x-chat.bubble>
 
+                <x-chat.bubble-img dir="rtl"><x-slot:text>This is the new office</x-slot:text><x-slot:status>Sent</x-slot:status></x-chat.bubble>
+                <x-chat.bubble-img-multi dir="rtl"><x-slot:text>This is the new office</x-slot:text><x-slot:status>Sent</x-slot:status></x-chat.bubble>
             </x-chat.canvas>
         </div>
 
