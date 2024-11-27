@@ -50,8 +50,8 @@
                             </li>
                             <li>
                                 <button
-                                type="button" data-modal-target="crypto-modal" data-modal-toggle="crypto-modal"
-                                    class="block px-4 py-2 text-sm w-full text-start text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    type="button" data-modal-target="crypto-modal" data-modal-toggle="crypto-modal"
+                                    class="block w-full px-4 py-2 text-start text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                     role="menuitem">Settings</button>
                             </li>
                             <li>
