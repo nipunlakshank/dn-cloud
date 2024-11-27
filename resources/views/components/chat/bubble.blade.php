@@ -5,7 +5,7 @@
     <div class="flex w-fit max-w-[60%] flex-col gap-1 lg:max-w-md">
         <div class="flex items-center space-x-2 rtl:space-x-reverse">
             <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ $name ?? 'Bonnie Green' }}</span>
-            <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $time ?? '11:46'  }}</span>
+            <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $time ?? '11:46' }}</span>
         </div>
         <div
             class="leading-1.5 flex flex-col rounded-e-xl rounded-es-xl border-gray-200 bg-white p-4 dark:bg-gray-700">

@@ -62,7 +62,8 @@
 
                 <x-chat.bubble dir="rtl">
                     <x-slot:text>
-                        Message 8 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione quibusdam soluta
+                        Message 8 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione quibusdam
+                        soluta
                         optio
                         iure dignissimos velit consequatur quos nesciunt sunt quam?
                     </x-slot:text>
