@@ -13,13 +13,6 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-        <script defer type="text/javascript">
-            const ROOT = "{{ URL::to('/') }}"
-        </script>
-
-        <script defer src="/js/functions.js"></script>
-        <script defer src="/js/script.js"></script>
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <div
