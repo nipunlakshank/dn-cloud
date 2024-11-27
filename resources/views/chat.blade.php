@@ -35,7 +35,7 @@
     <!-- Main Content Area -->
     <div class="flex h-full flex-1 flex-col pb-[90px] pt-[50px] lg:pt-10">
         <!-- Chat Content Scrollable Area -->
-        <div class="flex-1 overflow-y-scroll p-4 pb-[50px]">
+        <div class="flex-1 overflow-y-scroll p-4">
             <x-chat.canvas>
                 <!-- Chat messages go here -->
                 <x-chat.bubble>
@@ -76,7 +76,7 @@
         </div>
 
         <!-- Fixed Bottom Bar for Input -->
-        <div class="fixed bottom-0 left-0 right-0 flex items-center p-4 lg:left-1/4">
+        <div class="fixed bottom-0 left-0 right-0 flex items-center bg-gray-100 p-4 lg:left-1/4 dark:bg-gray-900">
             <x-chat.input-bar>Type a message...</x-chat.input-bar>
         </div>
     </div>
