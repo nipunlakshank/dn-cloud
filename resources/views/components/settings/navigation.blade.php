@@ -57,7 +57,8 @@ Connect wallet
                         </button>
                     </li>
                     <li>
-                        <a href="#"
+                        <button type="button"
+                            onclick="toggleTheme()"
                             class="group flex items-center rounded-lg bg-gray-50 p-3 text-base font-bold text-gray-900 hover:bg-gray-100 hover:shadow dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -65,8 +66,6 @@ Connect wallet
                                     d="M12 21C7.02944 21 3 16.9706 3 12C3 7.19723 6.76201 3.27311 11.5 3.01367V3C11.1456 3.96621 11 4.91097 11 6.00002C11 10.9706 15.0294 15 20 15C20.2387 15 20.2539 15.0183 20.4879 15C19.2524 18.4956 15.9187 21 12 21Z"
                                     stroke="#111928" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-
-                            <span class="ms-3 flex-1 whitespace-nowrap">Dark Mode</span>
 
                             <span class="ms-3 flex-1 whitespace-nowrap">Dark Mode</span>
 
@@ -85,7 +84,7 @@ Connect wallet
                                 </div>
 
                             </label>
-                        </a>
+                        </button>
                     </li>
                     <li>
                         <a href="#"
