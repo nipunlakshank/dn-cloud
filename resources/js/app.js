@@ -20,7 +20,7 @@ function toggleTheme() {
     document.documentElement.classList.toggle("dark")
 }
 
-const logout = () => {
+function logout() {
     axios.post(`/logout`)
         .then(() => (window.location.href = "/"))
         .catch((error) => console.error(error))
