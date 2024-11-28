@@ -26,6 +26,7 @@
                 {{ $slot }}
             </main>
         </div>
+        <x-settings.navigation></x-settings.navigation>
     </body>
 
 </html>

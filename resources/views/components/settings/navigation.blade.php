@@ -40,8 +40,7 @@ Connect wallet
                                     stroke="#111928" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" />
                             </svg>
                             <span class="ms-3 flex-1 whitespace-nowrap">Profile</span>
-                            <span
-                                class="ms-3 inline-flex items-center justify-center rounded bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-500 dark:bg-gray-700 dark:text-gray-400">Popular</span>
+                            
                         </button>
                     </li>
                     <li>
@@ -58,8 +57,8 @@ Connect wallet
                     </li>
                     <li>
                         <button type="button"
-                            onclick="toggleTheme()"
-                            class="group flex items-center rounded-lg bg-gray-50 p-3 text-base font-bold text-gray-900 hover:bg-gray-100 hover:shadow dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500">
+                           
+                            class="group flex items-center w-full text-start rounded-lg bg-gray-50 p-3 text-base font-bold text-gray-900 hover:bg-gray-100 hover:shadow dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -67,10 +66,10 @@ Connect wallet
                                     stroke="#111928" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
 
-                            <span class="ms-3 flex-1 whitespace-nowrap">Dark Mode</span>
+                            <span class="ms-3 flex-1  whitespace-nowrap">Dark Mode</span>
 
                             <label class="inline-flex cursor-pointer items-center lg:hidden">
-                                <input type="checkbox" value="" class="peer sr-only">
+                                <input type="checkbox"  onchange="toggleTheme()" value="" class="peer sr-only">
                                 <div
                                     class="peer relative h-5 w-9 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rtl:peer-checked:after:-translate-x-full dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800">
                                 </div>
@@ -78,7 +77,7 @@ Connect wallet
                             </label>
 
                             <label class="hidden cursor-pointer items-center lg:inline-flex">
-                                <input type="checkbox" value="" class="peer sr-only">
+                                <input type="checkbox" onchange="toggleTheme()" value="" class="peer sr-only">
                                 <div
                                     class="peer relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rtl:peer-checked:after:-translate-x-full dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800">
                                 </div>

@@ -1,8 +1,6 @@
 <x-chat-layout>
     <!-- Navbar -->
-    <x-chat.navigation>
-        <x-slot:status>Online</x-slot:status>
-    </x-chat.navigation>
+    
 
     <!-- Sidebar -->
     <x-chat.list>
@@ -24,9 +22,14 @@
 
     <!-- Main Content Area -->
     <div class="flex h-full flex-1 flex-col pb-[90px] pt-[50px] lg:pt-10">
+        
         <!-- Chat Content Scrollable Area -->
         <div class="flex-1 overflow-y-scroll p-4">
+            <x-chat.navigation>
+                <x-slot:status>Online</x-slot:status>
+            </x-chat.navigation>
             <x-chat.canvas>
+
                 <!-- Chat messages go here -->
                 <x-chat.bubble>
                     <x-slot:name>John Doe</x-slot:name>
@@ -69,4 +72,5 @@
         <x-chat.input-bar>Type a message...</x-chat.input-bar>
 
     </div>
+    
 </x-chat-layout>
