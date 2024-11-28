@@ -63,7 +63,7 @@
                 </div>
 
                 <!-- Contact Information -->
-                <div class="flex flex-col justify-center space-y-6 text-hefont">
+                <div class="flex flex-col justify-center space-y-6 text-header">
                     <div class="flex items-center space-x-4">
                         <svg class="h-6 w-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
                             <path

@@ -1,6 +1,6 @@
 
-<button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="text-white bg-fill  focus:ring-4 focus:outline-none focus:ring-blue-300  rounded-lg text-sm px-5  text-center inline-flex items-center   dark:focus:ring-blue-800" type="button"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 6H12.01M12 12H12.01M12 18H12.01" stroke="#111928" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class=" bg-blue-400  focus:ring-4 focus:outline-none focus:ring-blue-300  rounded-lg text-sm px-5  text-center inline-flex items-center   dark:focus:ring-blue-800" type="button"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 6H12.01M12 12H12.01M12 18H12.01" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
     <
     
     </button>

@@ -1,7 +1,7 @@
 <nav class="flex items-center justify-between p-6">
     <div class="grid grid-flow-col grid-rows-1">
         <img src="img/logo.png" style="width: 100px;height: 100px;" class="row-span-2 row-end-3" />
-        <h1 class="row-span-2 row-start-1 mt-8 text-justify text-3xl font-bold transition-colors text-hefont">DN CLOUD</h1>
+        <h1 class="row-span-2 row-start-1 mt-8 text-justify text-3xl font-bold transition-colors text-header">DN CLOUD</h1>
     </div>
 
     <ul class="mr-6 hidden space-x-6 text-gray-600 md:flex dark:text-gray-200">
@@ -18,10 +18,7 @@
         <a class="mb-7 rounded bg-blue-600 px-5 py-2 text-sm text-white hover:bg-blue-700 md:text-base"
             href="/login">Login</a>
 
-        <button class="mb-7 rounded bg-blue-600 px-5 py-2 text-sm text-white hover:bg-blue-700 md:text-base"
-            onclick="toggleDarkMode()">
-            color
-        </button>
+        
 
     </ul>
     <!-- Mobile Menu Button -->

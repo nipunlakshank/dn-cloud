@@ -26,7 +26,7 @@
         </header>
 
         <!-- Introduction Section -->
-        <section class="mx-auto max-w-6xl px-6 py-12 text-hefont md:py-20">
+        <section class="mx-auto max-w-6xl px-6 py-12 text-header md:py-20">
             <h2 class="mb-6 text-center text-3xl font-semibold">Who We Are</h2>
             <p class="mx-auto max-w-3xl text-center text-lg">
                 We are a passionate team dedicated to connecting people through innovative online chatting solutions.
@@ -48,7 +48,7 @@
         </section>
 
         <!-- Team Section -->
-        <section class="mx-auto max-w-6xl px-6 py-12 text-hefont md:py-20">
+        <section class="mx-auto max-w-6xl px-6 py-12 text-header md:py-20">
             <h2 class="mb-6 text-center text-3xl font-semibold">Meet Our Team</h2>
             <div class="grid grid-cols-1 gap-8 text-center md:grid-cols-3">
                 <!-- Team Member 1 -->

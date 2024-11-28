@@ -37,7 +37,7 @@ export default {
                 hover3: withOpacity("--btn-hover-color3"),
                 fill: withOpacity("--background-fill"),
                 font: withOpacity("--font-color"),
-                hefont: withOpacity("--font-color1"),
+                header: withOpacity("--font-color1"),
             },
 
             textColor: {
@@ -48,7 +48,7 @@ export default {
                 hover: withOpacity("--color-hover"),
                 fill: withOpacity("--color-fill"),
                 font: withOpacity("--font-color"),
-                hefont: withOpacity("--font-color1"),
+                header: withOpacity("--font-color1"),
             },
         },
     },

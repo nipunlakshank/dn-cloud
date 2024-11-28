@@ -31,7 +31,7 @@
 
                 <!-- Text Content -->
                 <div class="flex-2 text-center md:text-left">
-                    <h1 class="text-6xxl mb-3 font-bold leading-tight md:text-6xl text-hefont">Have your
+                    <h1 class="text-6xxl mb-3 font-bold leading-tight md:text-6xl text-header">Have your
                         <br> best
                         chat
                     </h1>
@@ -42,10 +42,7 @@
                     <div class="flex justify-center space-x-4 md:justify-start">
                         <a class="rounded bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 md:text-base"
                             href="/signin">Login</a>
-                        <button
-                            class="rounded bg-indigo-400 px-4 py-2 text-sm text-white font-bold hover:bg-gray-50 hover:text-gray-900 md:text-base">
-                            Free Trial 30 Days
-                        </button>
+                        
                     </div>
                 </div>
             </section>
