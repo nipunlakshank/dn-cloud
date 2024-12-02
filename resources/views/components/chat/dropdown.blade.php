@@ -1,5 +1,5 @@
 <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation"
-    class="inline-flex items-center rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white p-2 text-center text-sm focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800"
+    class="inline-flex items-center rounded-lg bg-white dark:bg-gray-700 text-gray-500 dark:text-gray-300 p-2 text-center text-sm focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800"
     type="button"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 6H12.01M12 12H12.01M12 18H12.01" stroke="currentColor" stroke-width="4" stroke-linecap="round"
             stroke-linejoin="round" />
