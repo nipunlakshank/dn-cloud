@@ -1,23 +1,28 @@
 <x-chat-layout>
     <!-- Navbar -->
-    
 
     <!-- Sidebar -->
     <x-chat.list>
-        <x-chat.list-item>Chat 1</x-chat.list-item>
-        <x-chat.list-item>Chat 2</x-chat.list-item>
-        <x-chat.list-item>Chat 3</x-chat.list-item>
-        <x-chat.list-item>Chat 4</x-chat.list-item>
-        <x-chat.list-item>Chat 5</x-chat.list-item>
-        <x-chat.list-item>Chat 6</x-chat.list-item>
-        <x-chat.list-item>Chat 7</x-chat.list-item>
-        <x-chat.list-item>Chat 8</x-chat.list-item>
-        <x-chat.list-item>Chat 9</x-chat.list-item>
-        <x-chat.list-item>Chat 10</x-chat.list-item>
-        <x-chat.list-item>Chat 11</x-chat.list-item>
-        <x-chat.list-item>Chat 12</x-chat.list-item>
-        <x-chat.list-item>Chat 13</x-chat.list-item>
-        <x-chat.list-item>Chat 14</x-chat.list-item>
+
+        <x-chat.list-item>
+            <x-slot:chatName>John Doe</x-slot:chatName>
+            <x-slot:lastMessage>Message 1 Lorem ipsum dolor sit amet.</x-slot:lastMessage>
+            <x-slot:time>11:46</x-slot:time>
+        </x-chat.list-item>
+
+        <x-chat.list-item><x-slot:lastMessage>Message 2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, architecto!</x-slot:lastMessage></x-chat.list-item>
+        <x-chat.list-item><x-slot:lastMessage>Message 3 Lorem ipsum dolor sit amet.</x-slot:lastMessage></x-chat.list-item>
+        <x-chat.list-item><x-slot:lastMessage>Message 4 Lorem, ipsum.</x-slot:lastMessage></x-chat.list-item>
+        <x-chat.list-item><x-slot:lastMessage>Message 5</x-slot:lastMessage></x-chat.list-item>
+        <x-chat.list-item><x-slot:lastMessage>Message 6</x-slot:lastMessage></x-chat.list-item>
+        <x-chat.list-item><x-slot:lastMessage>Message 7</x-slot:lastMessage></x-chat.list-item>
+        <x-chat.list-item><x-slot:lastMessage>Message 8</x-slot:lastMessage></x-chat.list-item>
+        <x-chat.list-item><x-slot:lastMessage>Message 9</x-slot:lastMessage></x-chat.list-item>
+        <x-chat.list-item><x-slot:lastMessage>Message 10</x-slot:lastMessage></x-chat.list-item>
+        <x-chat.list-item><x-slot:lastMessage>Message 11</x-slot:lastMessage></x-chat.list-item>
+        <x-chat.list-item><x-slot:lastMessage>Message 12</x-slot:lastMessage></x-chat.list-item>
+        <x-chat.list-item><x-slot:lastMessage>Message 13</x-slot:lastMessage></x-chat.list-item>
+        <x-chat.list-item><x-slot:lastMessage>Message 14</x-slot:lastMessage></x-chat.list-item>
     </x-chat.list>
 
     <!-- Main Content Area -->
