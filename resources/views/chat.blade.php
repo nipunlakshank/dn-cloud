@@ -22,9 +22,9 @@
 
     <!-- Main Content Area -->
     <div class="flex h-full flex-1 flex-col pb-[90px] pt-[50px] lg:pt-10">
-        
+
         <!-- Chat Content Scrollable Area -->
-        <div class="flex-1 overflow-y-scroll p-4">
+        <div id="chat-canvas-area" class="flex-1 overflow-y-scroll p-4">
             <x-chat.navigation>
                 <x-slot:status>Online</x-slot:status>
             </x-chat.navigation>
@@ -72,5 +72,5 @@
         <x-chat.input-bar>Type a message...</x-chat.input-bar>
 
     </div>
-    
+
 </x-chat-layout>
