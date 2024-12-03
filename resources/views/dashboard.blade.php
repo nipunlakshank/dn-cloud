@@ -2,7 +2,7 @@
     <!-- Navbar -->
 
 
-    <aside id="logo-sidebar" class="h-full  w-1/4 space-y-4 overflow-y-auto text-white transition-transform  "
+    <aside id="chat-sidebar" class="h-full  w-1/4 space-y-4 overflow-y-auto text-white transition-transform  "
         aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <a href="https://flowbite.com/" class="flex items-center ps-2.5 mb-5">
@@ -64,8 +64,8 @@
                         <span class="flex-1 ms-3 whitespace-nowrap">User Registration</span>
                     </button>
                 </li>
-                
-                
+
+
                 <li>
                     <a href="#"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -100,24 +100,24 @@
                 class="flex-1 bg-gradient-to-r  from-indigo-500 via-purple-500 to-pink-500 block max-w-sm p-6 border border-gray-200 rounded-lg shadow ">
 
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Wallets</h5>
-                
+
             </a>
 
             <a href="/chat"
                 class="flex-1 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% block max-w-sm p-6 border border-gray-200 rounded-lg shadow  ">
 
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Chat</h5>
-                
+
             </a>
 
             <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 block max-w-sm p-6  border border-gray-200 rounded-lg shadow  ">
 
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">User Registration</h5>
-                
+
             </button>
-            
-            
-            
+
+
+
 
 
         </div>

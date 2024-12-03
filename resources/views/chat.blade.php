@@ -26,7 +26,7 @@
     </x-chat.list>
 
     <!-- Main Content Area -->
-    <div class="flex h-full flex-1 flex-col pb-[90px] pt-[50px] lg:pt-10">
+    <div id="chat-content" class="flex h-full flex-1 flex-col pb-[90px] pt-[50px] lg:pt-10">
 
         <!-- Chat Content Scrollable Area -->
         <div id="chat-canvas-area" class="flex-1 overflow-y-scroll p-4">

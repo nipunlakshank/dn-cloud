@@ -21,6 +21,12 @@ function logout() {
         .catch((error) => console.error(error))
 }
 
+function showChatList() {
+    console.log("showChatList")
+    document.getElementById("chat-sidebar").classList.remove("hidden")
+    document.getElementById("chat-content").classList.add("hidden")
+}
+
 // set theme
 let darkMode = localStorage.getItem("theme") === "dark"
 if (darkMode) document.documentElement.classList.add("dark")
@@ -32,3 +38,4 @@ chatCanvas.scrollTop = chatCanvas.scrollHeight
 // Expose functions
 window.toggleTheme = toggleTheme
 window.logout = logout
+window.showChatList = showChatList
