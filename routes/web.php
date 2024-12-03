@@ -9,6 +9,9 @@ Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+Route::get('/wallets', function () {
+    return view('wallets');
+})->name('wallets');
 
 Route::get('/about-us', function () {
     return view('about-us');
