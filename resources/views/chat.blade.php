@@ -30,11 +30,11 @@
 
         <!-- Chat Content Scrollable Area -->
         <div id="chat-canvas-area" class="flex-1 overflow-y-scroll p-4">
-            <x-chat.navigation>
+            <x-chat.topbar>
                 <x-slot:status>Online</x-slot:status>
-            </x-chat.navigation>
-            <x-chat.canvas>
+            </x-chat.topbar>
 
+            <x-chat.canvas>
                 <!-- Chat messages go here -->
                 <x-chat.bubble>
                     <x-slot:name>John Doe</x-slot:name>
