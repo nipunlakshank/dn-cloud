@@ -1,4 +1,4 @@
-<div class="mx-auto max-w-md flex-1 justify-self-end border border-red-600">
+<div class="mx-auto max-w-md flex-1 justify-self-end">
     <form>
         <label for="default-search" class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label>
         <div class="relative">
