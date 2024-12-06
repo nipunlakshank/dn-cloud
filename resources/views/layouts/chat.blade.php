@@ -17,6 +17,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
     </head>
 
     <body class="flex overflow-y-auto bg-gray-100 font-sans antialiased dark:bg-gray-900">
@@ -27,6 +28,8 @@
             </main>
         </div>
         <x-settings.navigation></x-settings.navigation>
+
+        @livewireScripts
     </body>
 
 </html>
