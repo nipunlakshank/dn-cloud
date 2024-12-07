@@ -39,6 +39,28 @@ function scrollManager(key) {
         }
     };
 }
+const profile = document.getElementById("crud-modalp");
+const modalNavigation = document.getElementById("crypto-modal");
+
+function openModal(){
+    //navigaton model
+    modalNavigation.setAttribute("aria-hidden","true");
+    modalNavigation.classList.add("hidden");
+
+     // profile model
+    profile.setAttribute("aria-hidden","false");
+    profile.classList.remove("hidden");
+}
+function backModal(){
+    //navigaton model
+    modalNavigation.setAttribute("aria-hidden","false");
+    modalNavigation.classList.remove("hidden");
+
+     // profile model
+     profile.setAttribute("aria-hidden","true");
+    profile.classList.add("hidden");
+    
+}
 
 // set theme
 let darkMode = localStorage.getItem("theme") === "dark"
@@ -53,3 +75,5 @@ window.toggleTheme = toggleTheme
 window.logout = logout
 window.showChatList = showChatList
 window.scrollManager = scrollManager
+window.openModal = openModal
+window.backModal = backModal

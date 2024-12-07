@@ -31,7 +31,7 @@ Connect wallet
                     providers or create a new one.</p>
                 <ul class="my-4 space-y-3">
                     <li>
-                        <button data-modal-target="crud-modalp" data-modal-toggle="crud-modalp"
+                        <button onclick="openModal();"
                             class="group flex w-full items-center rounded-lg bg-gray-50 p-3 text-start text-base font-bold text-gray-900 hover:bg-gray-100 hover:shadow dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -103,6 +103,7 @@ Connect wallet
             </div>
         </div>
     </div>
-    <x-settings.registration></x-settings.registration>
-    <x-settings.profile></x-settings.profile>
+    
 </div>
+<x-settings.registration></x-settings.registration>
+<x-settings.profile></x-settings.profile>
