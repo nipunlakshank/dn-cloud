@@ -10,7 +10,8 @@
             <x-slot:time>11:46</x-slot:time>
         </x-chat.list-item>
 
-        <x-chat.list-item><x-slot:lastMessage>Message 2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, architecto!</x-slot:lastMessage></x-chat.list-item>
+        <x-chat.list-item><x-slot:lastMessage>Message 2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo,
+                architecto!</x-slot:lastMessage></x-chat.list-item>
         <x-chat.list-item><x-slot:lastMessage>Message 3 Lorem ipsum dolor sit amet.</x-slot:lastMessage></x-chat.list-item>
         <x-chat.list-item><x-slot:lastMessage>Message 4 Lorem, ipsum.</x-slot:lastMessage></x-chat.list-item>
         <x-chat.list-item><x-slot:lastMessage>Message 5</x-slot:lastMessage></x-chat.list-item>
@@ -28,11 +29,13 @@
     <!-- Main Content Area -->
     <div id="chat-content" class="flex h-full flex-1 flex-col pb-[90px] pt-[50px] lg:pt-10">
 
+        <x-chat.topbar>
+            <x-slot:status>Online</x-slot:status>
+        </x-chat.topbar>
+
         <!-- Chat Content Scrollable Area -->
-        <div id="chat-canvas-area" class="flex-1 overflow-y-scroll p-4">
-            <x-chat.topbar>
-                <x-slot:status>Online</x-slot:status>
-            </x-chat.topbar>
+        <div id="chat-canvas-area" class="flex-1 overflow-y-scroll p-4"
+            x-data="scrollManager('chat-canvas')" x-init="initScroll()" x-on:scroll="saveScroll($event)">
 
             <x-chat.canvas>
                 <!-- Chat messages go here -->
