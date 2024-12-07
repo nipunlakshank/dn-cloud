@@ -21,6 +21,25 @@ function showChatList() {
     document.getElementById("chat-content").classList.add("hidden")
 }
 
+function scrollManager(key) {
+    return {
+        initScroll() {
+            const savedPosition = localStorage.getItem(`${key}-scroll`);
+            if (savedPosition) {
+                this.$el.scrollTop = parseInt(savedPosition, 10);
+                console.log("scroll to", savedPosition);
+            }
+        },
+        saveScroll(event) {
+            const scrollTop = event.target.scrollTop;
+            localStorage.setItem(`${key}-scroll`, scrollTop);
+        },
+        removeScroll() {
+            localStorage.removeItem(`${key}-scroll`);
+        }
+    };
+}
+
 // set theme
 let darkMode = localStorage.getItem("theme") === "dark"
 if (darkMode) document.documentElement.classList.add("dark")
@@ -33,3 +52,4 @@ chatCanvas.scrollTop = chatCanvas.scrollHeight
 window.toggleTheme = toggleTheme
 window.logout = logout
 window.showChatList = showChatList
+window.scrollManager = scrollManager
