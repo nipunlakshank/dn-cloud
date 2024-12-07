@@ -2,15 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\UserType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserType>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Chat>
  */
-class UserTypeFactory extends Factory
+class ChatFactory extends Factory
 {
-    protected $model = UserType::class;
     /**
      * Define the model's default state.
      *
@@ -19,7 +17,8 @@ class UserTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'type' => $this->faker->randomElement(['Admin', 'User']),
+            'name' => fake()->name(),
+            'is_group' => fake()->randomElement([true, false]),
         ];
     }
 }
