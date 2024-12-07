@@ -24,7 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'last_name',
         'email',
         'password',
-        'user_types_id'
+        'role',
     ];
 
     /**
@@ -45,13 +45,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
+            'email_verified_at' => 'timestamp',
             'password' => 'hashed',
         ];
-    }
-
-    protected function userType()
-    {
-        return $this->belongsTo(UserType::class, 'user_types_id');
     }
 }
