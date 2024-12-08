@@ -23,7 +23,7 @@
     <body class="flex overflow-y-auto bg-gray-100 font-sans antialiased dark:bg-gray-900">
         <div class="flex h-dvh w-full flex-col">
             <!-- Page Content -->
-            <main class="flex h-screen flex-1">
+            <main class="flex h-dvh flex-1">
                 {{ $slot }}
             </main>
         </div>

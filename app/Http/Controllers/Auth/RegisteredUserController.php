@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
@@ -36,11 +37,8 @@ class RegisteredUserController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => ['string', 'in:admin,supervisor,accountant,worker'],
         ]);
-
-        $userType = \App\Models\UserType::where('type', 'User')->first();
-
-        $validated['user_types_id'] = $userType->id;
 
         $user = User::create($validated);
 
@@ -48,6 +46,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('home', absolute: false));
+        return redirect(route(Str::contains($validated['role'], ['admin', 'supervisor']) ? 'dashboard' : 'chat', absolute: false));
     }
 }
