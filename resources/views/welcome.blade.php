@@ -41,8 +41,8 @@
                     </p>
                     <div class="flex justify-center space-x-4 md:justify-start">
                         <a class="rounded bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 md:text-base"
-                            href="/signin">Login</a>
-                        
+                            href="/login">Login</a>
+
                     </div>
                 </div>
             </section>
