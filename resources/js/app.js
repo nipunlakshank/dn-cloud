@@ -2,9 +2,10 @@ import "./bootstrap"
 
 const axios = window.axios
 
-function toggleTheme() {
-    darkMode = localStorage.getItem("theme") === "dark"
-    darkMode = !darkMode
+function toggleTheme(darkMode) {
+    if (darkMode === undefined)
+        darkMode = !(localStorage.getItem("theme") === "dark")
+
     localStorage.setItem("theme", darkMode ? "dark" : "light")
     document.documentElement.classList.toggle("dark")
 }
@@ -42,24 +43,24 @@ function scrollManager(key) {
 const profile = document.getElementById("crud-modalp");
 const modalNavigation = document.getElementById("crypto-modal");
 
-function openModal(){
+function openModal() {
     //navigaton model
-    modalNavigation.setAttribute("aria-hidden","true");
+    modalNavigation.setAttribute("aria-hidden", "true");
     modalNavigation.classList.add("hidden");
 
-     // profile model
-    profile.setAttribute("aria-hidden","false");
+    // profile model
+    profile.setAttribute("aria-hidden", "false");
     profile.classList.remove("hidden");
 }
-function backModal(){
+function backModal() {
     //navigaton model
-    modalNavigation.setAttribute("aria-hidden","false");
+    modalNavigation.setAttribute("aria-hidden", "false");
     modalNavigation.classList.remove("hidden");
 
-     // profile model
-     profile.setAttribute("aria-hidden","true");
+    // profile model
+    profile.setAttribute("aria-hidden", "true");
     profile.classList.add("hidden");
-    
+
 }
 
 // set theme
