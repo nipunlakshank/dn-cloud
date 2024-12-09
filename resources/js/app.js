@@ -2,9 +2,10 @@ import "./bootstrap"
 
 const axios = window.axios
 
-function toggleTheme() {
-    darkMode = localStorage.getItem("theme") === "dark"
-    darkMode = !darkMode
+function toggleTheme(darkMode) {
+    if (darkMode === undefined)
+        darkMode = !(localStorage.getItem("theme") === "dark")
+
     localStorage.setItem("theme", darkMode ? "dark" : "light")
     document.documentElement.classList.toggle("dark")
 }
@@ -53,3 +54,5 @@ window.toggleTheme = toggleTheme
 window.logout = logout
 window.showChatList = showChatList
 window.scrollManager = scrollManager
+window.openModal = openModal
+window.backModal = backModal
