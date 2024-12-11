@@ -119,7 +119,7 @@
 
 
 
-
+<x-dashboard-table></x-dashboard-table>
         </div>
 
 
