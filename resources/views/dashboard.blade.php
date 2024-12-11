@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="/wallets"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -96,7 +96,7 @@
         <!-- dashbord Content Scrollable Area -->
         <div class=" flex flex-wrap gap-3 overflow-y-scroll p-4">
 
-            <a href="#"
+            <a href="/wallets"
                 class="flex-1 bg-gradient-to-r  from-indigo-500 via-purple-500 to-pink-500 block max-w-sm p-6 border border-gray-200 rounded-lg shadow ">
 
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Wallets</h5>
