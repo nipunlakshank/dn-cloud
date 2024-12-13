@@ -31,7 +31,6 @@ function scrollManager(element) {
             const savedPosition = localStorage.getItem(`${key}-scroll`);
             if (savedPosition) {
                 this.$el.scrollTop = parseInt(savedPosition, 10);
-                console.log("scroll to", savedPosition);
             }
         },
         saveScroll(event) {
