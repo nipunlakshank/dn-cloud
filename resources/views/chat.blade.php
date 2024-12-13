@@ -34,8 +34,8 @@
         </x-chat.topbar>
 
         <!-- Chat Content Scrollable Area -->
-        <div id="chat-canvas-area" class="flex-1 overflow-y-scroll p-4"
-            x-data="scrollManager('chat-canvas')" x-init="initScroll()" x-on:scroll="saveScroll($event)">
+        <div id="chat-canvas-area" key="some-unique-key" class="flex-1 overflow-y-scroll p-4"
+            x-data="scrollManager($el)" x-init="initScroll()" x-on:scroll="saveScroll($event)">
 
             <x-chat.canvas>
                 <!-- Chat messages go here -->

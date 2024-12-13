@@ -22,7 +22,10 @@ function showChatList() {
     document.getElementById("chat-content").classList.add("hidden")
 }
 
-function scrollManager(key) {
+function scrollManager(element) {
+
+    const key = element.getAttribute("key");
+
     return {
         initScroll() {
             const savedPosition = localStorage.getItem(`${key}-scroll`);
@@ -54,5 +57,3 @@ window.toggleTheme = toggleTheme
 window.logout = logout
 window.showChatList = showChatList
 window.scrollManager = scrollManager
-window.openModal = openModal
-window.backModal = backModal
