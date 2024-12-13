@@ -33,5 +33,5 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/' . 'auth.php';
 
-// NOTE: Should exclude this file from production environment
+// WARNING: Should exclude this file from production environment
 require __DIR__ . '/' . 'dev.php';
