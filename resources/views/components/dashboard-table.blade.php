@@ -59,32 +59,41 @@
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                
+
                 <th scope="col" class="px-6 py-3">
-                    Product name
+                    Id 
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Color
+                    Wallet name
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Category
+                Date
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                    Diposits
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Action
+                    Withdrawels
                 </th>
+
+                <th scope="col" class="px-6 py-3">
+                    Summary
+                </th>
+
+
             </tr>
         </thead>
         <tbody>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                
+
+                <td class="px-6 py-4">
+                    1
+                </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple MacBook Pro 17"
+                    Ater BT
                 </th>
                 <td class="px-6 py-4">
-                    Silver
+                    2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
                     Laptop
@@ -92,17 +101,17 @@
                 <td class="px-6 py-4">
                     $2999
                 </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                
+
+                <td class="px-6 py-4">
+                    2
+                </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Microsoft Surface Pro
+                    Trans BT
                 </th>
                 <td class="px-6 py-4">
-                    White
+                    2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
                     Laptop PC
@@ -110,17 +119,17 @@
                 <td class="px-6 py-4">
                     $1999
                 </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                
+
+                <td class="px-6 py-4">
+                    3
+                </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Magic Mouse 2
+                    Darino DFCC
                 </th>
                 <td class="px-6 py-4">
-                    Black
+                    2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
                     Accessories
@@ -128,17 +137,17 @@
                 <td class="px-6 py-4">
                     $99
                 </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                
+
+                <td class="px-6 py-4">
+                    4
+                </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple Watch
+                    Aster NTB
                 </th>
                 <td class="px-6 py-4">
-                    Silver
+                    2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
                     Accessories
@@ -147,21 +156,19 @@
                     $179
                 </td>
                 <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    $179
                 </td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                    <div class="flex items-center">
-                        <input id="checkbox-table-3" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checkbox-table-3" class="sr-only">checkbox</label>
-                    </div>
+                
+                <td class="px-6 py-4">
+                    5
                 </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    iPad
+                    Aster Ipay
                 </th>
                 <td class="px-6 py-4">
-                    Gold
+                    2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
                     Tablet
@@ -169,22 +176,18 @@
                 <td class="px-6 py-4">
                     $699
                 </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
             </tr>
-            <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                    <div class="flex items-center">
-                        <input id="checkbox-table-3" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checkbox-table-3" class="sr-only">checkbox</label>
-                    </div>
+
+            <tr class="bg-white  border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                <td class="px-6 py-4">
+                    6
                 </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple iMac 27"
+                Poseidon iPay
                 </th>
                 <td class="px-6 py-4">
-                    Silver
+                    2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
                     PC Desktop
@@ -192,8 +195,138 @@
                 <td class="px-6 py-4">
                     $3999
                 </td>
+
+            <tr class="bg-white border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+            
                 <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    7
+                </td>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                Poseidon Com Bank
+                </th>
+                <td class="px-6 py-4">
+                    2024/11/17 to 2024/12/17
+                </td>
+                <td class="px-6 py-4">
+                    PC Desktop
+                </td>
+                <td class="px-6 py-4">
+                    $3999
+                </td>
+            </tr>
+
+            <tr class="bg-white border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                
+                <td class="px-6 py-4">
+                    8
+                </td>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Poseidon Sampath Vishwa
+                </th>
+                <td class="px-6 py-4">
+                    2024/11/17 to 2024/12/17
+                </td>
+                <td class="px-6 py-4">
+                    PC Desktop
+                </td>
+                <td class="px-6 py-4">
+                    $3999
+                </td>
+            </tr>
+
+            <tr class="bg-white  border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                
+                <td class="px-6 py-4">
+                    9
+                </td>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Nirvana combank 
+                </th>
+                <td class="px-6 py-4">
+                    2024/11/17 to 2024/12/17
+                </td>
+                <td class="px-6 py-4">
+                    PC Desktop
+                </td>
+                <td class="px-6 py-4">
+                    $3999
+                </td>
+            </tr>
+
+            <tr class="bg-white border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                
+                <td class="px-6 py-4">
+                    10
+                </td>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Nirvana Ipay 
+                </th>
+                <td class="px-6 py-4">
+                    2024/11/17 to 2024/12/17
+                </td>
+                <td class="px-6 py-4">
+                    PC Desktop
+                </td>
+                <td class="px-6 py-4">
+                    $3999
+                </td>
+            </tr>
+
+            <tr class="bg-white border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                
+                <td class="px-6 py-4">
+                    11
+                </td>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Aster SAMPATH VISHWA 
+                </th>
+                <td class="px-6 py-4">
+                      2024/11/17 to 2024/12/17
+                </td>
+                <td class="px-6 py-4">
+                    PC Desktop
+                </td>
+                <td class="px-6 py-4">
+                    $3999
+                </td>
+            </tr>
+
+            <tr class="bg-white border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                
+                <td class="px-6 py-4">
+                    12
+                </td>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Trans NTB 
+                </th>
+                <td class="px-6 py-4">
+                    2024/11/17 to 2024/12/17
+                </td>
+                <td class="px-6 py-4">
+                    PC Desktop
+                </td>
+                <td class="px-6 py-4">
+                    $3999
+                </td>
+            </tr>
+
+
+            <tr class="bg-white border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                
+                <td class="px-6 py-4">
+                    13
+                </td>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Trans Neos Pay 
+                </th>
+                <td class="px-6 py-4">
+                    2024/11/17 to 2024/12/17
+                </td>
+                <td class="px-6 py-4">
+                    PC Desktop
+                </td>
+                <td class="px-6 py-4">
+                    $3999
                 </td>
             </tr>
         </tbody>
