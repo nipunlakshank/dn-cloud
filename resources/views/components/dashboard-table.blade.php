@@ -61,7 +61,7 @@
             <tr>
 
                 <th scope="col" class="px-6 py-3">
-                    Id 
+                    Id
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Wallet name
@@ -90,16 +90,20 @@
                     1
                 </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Ater BT
+                    Aster BT
                 </th>
                 <td class="px-6 py-4">
                     2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
-                    Laptop
+                    Rs.150000
                 </td>
                 <td class="px-6 py-4">
-                    $2999
+                    Rs.150000
+                </td>
+
+                <td class="px-6 py-4">
+                    <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"disabled>view</button>
                 </td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -114,10 +118,13 @@
                     2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
-                    Laptop PC
+                    Rs.150000
                 </td>
                 <td class="px-6 py-4">
-                    $1999
+                    Rs.150000
+                </td>
+                <td class="px-6 py-4">
+                    <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"disabled>view</button>
                 </td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -132,10 +139,13 @@
                     2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
-                    Accessories
+                    Rs.150000
                 </td>
                 <td class="px-6 py-4">
-                    $99
+                    Rs.150000
+                </td>
+                <td class="px-6 py-4">
+                    <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"disabled>view</button>
                 </td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -150,17 +160,17 @@
                     2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
-                    Accessories
+                    Rs.150000
                 </td>
                 <td class="px-6 py-4">
-                    $179
+                    Rs.150000
                 </td>
                 <td class="px-6 py-4">
-                    $179
+                    <button type="button" class=" text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" disabled>view</button>
                 </td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                
+
                 <td class="px-6 py-4">
                     5
                 </td>
@@ -171,10 +181,13 @@
                     2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
-                    Tablet
+                    Rs.150000
                 </td>
                 <td class="px-6 py-4">
-                    $699
+                    Rs.150000
+                </td>
+                <td class="px-6 py-4">
+                    <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"  disabled>view</button>
                 </td>
             </tr>
 
@@ -190,14 +203,17 @@
                     2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
-                    PC Desktop
+                    Rs.150000
                 </td>
                 <td class="px-6 py-4">
-                    $3999
+                    Rs.150000
+                </td>
+                <td class="px-6 py-4">
+                    <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"disabled>view</button>
                 </td>
 
             <tr class="bg-white border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-            
+
                 <td class="px-6 py-4">
                     7
                 </td>
@@ -208,15 +224,18 @@
                     2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
-                    PC Desktop
+                    Rs.150000
                 </td>
                 <td class="px-6 py-4">
-                    $3999
+                    Rs.150000
+                </td>
+                <td class="px-6 py-4">
+                    <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"disabled>view</button>
                 </td>
             </tr>
 
             <tr class="bg-white border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                
+
                 <td class="px-6 py-4">
                     8
                 </td>
@@ -227,106 +246,124 @@
                     2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
-                    PC Desktop
+                    Rs.150000
                 </td>
                 <td class="px-6 py-4">
-                    $3999
+                    Rs.150000
+                </td>
+                <td class="px-6 py-4">
+                    <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"disabled>view</button>
                 </td>
             </tr>
 
             <tr class="bg-white  border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                
+
                 <td class="px-6 py-4">
                     9
                 </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Nirvana combank 
+                    Nirvana combank
                 </th>
                 <td class="px-6 py-4">
                     2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
-                    PC Desktop
+                    Rs.150000
                 </td>
                 <td class="px-6 py-4">
-                    $3999
+                    Rs.150000
+                </td>
+                <td class="px-6 py-4">
+                    <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"disabled>view</button>
                 </td>
             </tr>
 
             <tr class="bg-white border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                
+
                 <td class="px-6 py-4">
                     10
                 </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Nirvana Ipay 
+                    Nirvana Ipay
                 </th>
                 <td class="px-6 py-4">
                     2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
-                    PC Desktop
+                    Rs.150000
                 </td>
                 <td class="px-6 py-4">
-                    $3999
+                    Rs.150000
+                </td>
+                <td class="px-6 py-4">
+                    <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"disabled>view</button>
                 </td>
             </tr>
 
             <tr class="bg-white border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                
+
                 <td class="px-6 py-4">
                     11
                 </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Aster SAMPATH VISHWA 
+                    Aster SAMPATH VISHWA
                 </th>
                 <td class="px-6 py-4">
                       2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
-                    PC Desktop
+                    Rs.150000
                 </td>
                 <td class="px-6 py-4">
-                    $3999
+                    Rs.150000
                 </td>
-            </tr>
+                <td class="px-6 py-4">
+                    <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"disabled>view</button>
+                </td>
+            </tr> 
 
             <tr class="bg-white border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                
+
                 <td class="px-6 py-4">
                     12
                 </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Trans NTB 
+                    Trans NTB
                 </th>
                 <td class="px-6 py-4">
                     2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
-                    PC Desktop
+                    Rs.150000
                 </td>
                 <td class="px-6 py-4">
-                    $3999
+                    Rs.150000
+                </td>
+                <td class="px-6 py-4">
+                    <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"disabled>view</button>
                 </td>
             </tr>
 
 
             <tr class="bg-white border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                
+
                 <td class="px-6 py-4">
                     13
                 </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Trans Neos Pay 
+                    Trans Neos Pay
                 </th>
                 <td class="px-6 py-4">
                     2024/11/17 to 2024/12/17
                 </td>
                 <td class="px-6 py-4">
-                    PC Desktop
+                    Rs.150000
                 </td>
                 <td class="px-6 py-4">
-                    $3999
+                    Rs.150000
+                </td>
+                <td class="px-6 py-4">
+                    <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"disabled>view</button>
                 </td>
             </tr>
         </tbody>
