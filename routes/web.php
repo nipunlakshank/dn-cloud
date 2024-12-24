@@ -22,7 +22,7 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::get('/chat', function () {
-    return view('chat');
+    return view('livewire.chat');
 })->middleware(['auth', 'verified'])->name('chat');
 
 Route::middleware('auth')->group(function () {
@@ -33,5 +33,5 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/' . 'auth.php';
 
-// WARNING: Should exclude this file from production environment
+// WARN: Should exclude this file from production environment
 require __DIR__ . '/' . 'dev.php';

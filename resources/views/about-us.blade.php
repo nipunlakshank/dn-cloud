@@ -15,9 +15,7 @@
     <body class="transition-colors duration-500 bg-fill" id="body">
 
         <!-- Navbar -->
-        <x-nav>
-                
-        </x-nav>
+        <x-nav></x-nav>
 
         <!-- About Page Header -->
         <header class="bg-blue-800 py-10 text-center text-white">

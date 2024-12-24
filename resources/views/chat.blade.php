@@ -1,4 +1,4 @@
-<x-chat-layout>
+<div>
     <!-- Navbar -->
 
     <!-- Sidebar -->
@@ -81,4 +81,4 @@
 
     </div>
 
-</x-chat-layout>
+</div>
