@@ -55,6 +55,19 @@ Connect wallet
                             <span class="ms-3 flex-1 whitespace-nowrap">Registration</span>
                         </button>
                     </li>
+<li>
+                        <button data-modal-target="addgroup" data-modal-toggle="addgroup"
+                            class="group flex w-full items-center rounded-lg bg-gray-50 p-3 text-start text-base font-bold text-gray-900 hover:bg-gray-100 hover:shadow dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16 12H20M18 14V10M4 18V17C4 15.3431 5.34315 14 7 14H11C12.6569 14 14 15.3431 14 17V18C14 18.5523 13.5523 19 13 19H5C4.44772 19 4 18.5523 4 18ZM12 8C12 9.65685 10.6569 11 9 11C7.34315 11 6 9.65685 6 8C6 6.34315 7.34315 5 9 5C10.6569 5 12 6.34315 12 8Z"
+                                    stroke="#111928" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span class="ms-3 flex-1 whitespace-nowrap">Add Group</span>
+                        </button>
+                    </li>
+
                     <li>
                         <button type="button"
                             x-data="{ darkMode: localStorage.getItem('theme') === 'dark' }"
@@ -114,3 +127,5 @@ Connect wallet
 </div>
 <x-settings.registration></x-settings.registration>
 <x-settings.profile></x-settings.profile>
+<x-settings.addgroup></x-settings.addgroup>
+
