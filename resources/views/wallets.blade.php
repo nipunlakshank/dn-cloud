@@ -4,7 +4,7 @@
     <!-- Sidebar -->
     <x-wallets.list>
 
-        
+
 
         <x-wallets.list-item><x-slot:chatName>Wallet 2</x-slot:chatName></x-wallets.list-item>
         <x-wallets.list-item><x-slot:chatName>Wallet 3</x-slot:chatName></x-wallets.list-item>
@@ -26,9 +26,6 @@
 
         <!-- Chat Content Scrollable Area -->
         <div id="chat-canvas-area" class="flex-1 overflow-y-scroll p-4">
-            <x-chat.navigation>
-                <x-slot:status>Online</x-slot:status>
-            </x-chat.navigation>
             <x-chat.canvas>
 
                 <!-- Chat messages go here -->

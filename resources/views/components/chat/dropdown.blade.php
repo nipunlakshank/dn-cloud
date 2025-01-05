@@ -18,8 +18,21 @@
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformationButton">
 
             <li>
+                <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+                    class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Registration</button>
+            </li>
+ <li>
                 <button data-modal-target="crypto-modal" data-modal-toggle="crypto-modal"
                     class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</button>
+            </li>
+
+<li>
+                <button data-modal-target="addgroup" data-modal-toggle="addgroup"
+                    class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Add Group</button>
+            </li>
+<li>
+                <button data-modal-target="newchat" data-modal-toggle="newchat"
+                    class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">New Chat</button>
             </li>
 
         </ul>
