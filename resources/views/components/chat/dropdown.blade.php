@@ -37,9 +37,9 @@
 
         </ul>
         <div class="py-2">
-            <a href="#"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">Sign
-                out</a>
-        </div>
+            <button data-modal-target="logout" data-modal-toggle="logout"
+                    class="block w-full px-4 py-2 text-start text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Log Out</button>        
+
+         </div>
     </div>
 </div>

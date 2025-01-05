@@ -92,4 +92,5 @@ Connect wallet
 <x-settings.profile></x-settings.profile>
 <x-settings.addgroup></x-settings.addgroup>
 <x-settings.newChat></x-settings.newChat>
+<x-settings.logout></x-settings.logout>
 
