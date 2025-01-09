@@ -41,7 +41,7 @@
         </ul>
         <div class="py-2">
             <button data-modal-target="logout" data-modal-toggle="logout"
-                class="block w-full px-4 py-2 text-start text-sm hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+                class="block w-full px-4 py-2 text-start text-sm text-gray-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
                 Log Out
             </button>
         </div>
