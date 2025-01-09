@@ -43,6 +43,6 @@
         </div>
 
         <!-- Fixed Bottom Bar for Input -->
-        @livewire('chat.chat-box')
+        @livewire('chat.chat-input')
     </div>
 </div>

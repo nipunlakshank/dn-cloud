@@ -4,10 +4,10 @@ namespace App\Livewire\Chat;
 
 use Livewire\Component;
 
-class ChatBox extends Component
+class ChatInput extends Component
 {
     public function render()
     {
-        return view('livewire.chat.chat-box');
+        return view('livewire.chat.chat-input');
     }
 }
