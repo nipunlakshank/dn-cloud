@@ -23,10 +23,13 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/chat', function () {
-    return view('chat');
-})->middleware(['auth', 'verified'])->name('chat');
+// Route::get('/chat', function () {
+//     return view('chat');
+// })->middleware(['auth', 'verified'])->name('chat');
 
+// Livewire routes
+Route::get('/chat/{key}', Main::class)->middleware(['auth', 'verified'])->name('chat');
+Route::get('/chat', Main::class)->middleware(['auth', 'verified'])->name('chat');
 Route::get('/users', CreateChat::class)->middleware(['auth', 'verified'])->name('users');
 
 Route::middleware('auth')->group(function () {
