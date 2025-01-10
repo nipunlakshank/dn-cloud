@@ -20,25 +20,29 @@
             <li>
                 <a href="/dashboard" class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
             </li>
- <li>
+            <li>
                 <button data-modal-target="crypto-modal" data-modal-toggle="crypto-modal"
                     class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</button>
             </li>
 
-<li>
+            <li>
                 <button data-modal-target="addgroup" data-modal-toggle="addgroup"
-                    class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Add Group</button>
+                    class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Add
+                    Group</button>
             </li>
-<li>
+            <li>
                 <button data-modal-target="newchat" data-modal-toggle="newchat"
-                    class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">New Chat</button>
+                    class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    New Chat
+                </button>
             </li>
 
         </ul>
         <div class="py-2">
             <button data-modal-target="logout" data-modal-toggle="logout"
-                    class="block w-full px-4 py-2 text-start text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Log Out</button>
-
-         </div>
+                class="block w-full px-4 py-2 text-start text-sm text-gray-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+                Log Out
+            </button>
+        </div>
     </div>
 </div>
