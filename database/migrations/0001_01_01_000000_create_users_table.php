@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -20,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('role', ['admin', 'supervisor', 'accountant', 'worker'])->default('worker');
             $table->boolean('is_active')->default(true);
+            $table->timestamp('active_since')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->rememberToken();
             $table->timestamps();
         });
