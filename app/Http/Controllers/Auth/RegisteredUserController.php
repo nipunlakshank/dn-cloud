@@ -44,7 +44,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
         return redirect(route(Str::contains($validated['role'], ['admin', 'supervisor']) ? 'dashboard' : 'chat', absolute: false));
     }

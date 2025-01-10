@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Chat\CreateChat;
+use App\Livewire\Chat\Main;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
@@ -21,9 +23,14 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/chat', function () {
-    return view('chat');
-})->middleware(['auth', 'verified'])->name('chat');
+// Route::get('/chat', function () {
+//     return view('chat');
+// })->middleware(['auth', 'verified'])->name('chat');
+
+// Livewire routes
+Route::get('/chat/{key}', Main::class)->middleware(['auth', 'verified'])->name('chat');
+Route::get('/chat', Main::class)->middleware(['auth', 'verified'])->name('chat');
+Route::get('/users', CreateChat::class)->middleware(['auth', 'verified'])->name('users');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -33,5 +40,5 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/' . 'auth.php';
 
-// WARNING: Should exclude this file from production environment
+// WARN: Should exclude below file from production environment
 require __DIR__ . '/' . 'dev.php';
