@@ -5,7 +5,7 @@
     <aside id="chat-sidebar" class="h-full  w-1/4 space-y-4 overflow-y-auto text-white transition-transform  "
         aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-            <a href="https://flowbite.com/" class="flex items-center ps-2.5 mb-5">
+            <a href="/" class="flex items-center ps-2.5 mb-5">
                 <x-application-logo class="w-[60px]"></x-application-logo>
                 <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">DN Cloud</span>
             </a>
