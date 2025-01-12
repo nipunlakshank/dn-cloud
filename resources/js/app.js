@@ -48,7 +48,7 @@ let darkMode = localStorage.getItem("theme") === "dark"
 if (darkMode) document.documentElement.classList.add("dark")
 else document.documentElement.classList.remove("dark")
 
-const chatCanvas = document.getElementById("chat-canvas-area")
+const chatCanvas = document.getElementById("chat-canvas")
 chatCanvas.scrollTop = chatCanvas.scrollHeight
 
 // Expose functions

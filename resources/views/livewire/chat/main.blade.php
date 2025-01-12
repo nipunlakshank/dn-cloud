@@ -1,21 +1,23 @@
 <div class="flex w-full border border-gray-100 dark:border-gray-900">
     <!-- Sidebar -->
-    <div class="hidden w-full space-y-4 overflow-y-auto pb-4 text-white transition-transform lg:block lg:w-1/3">
+    <div id="chat-sidebar"
+        class="hidden w-full space-y-4 overflow-y-auto pb-4 text-white transition-transform md:block md:w-1/3">
         @livewire('chat.chat-list')
     </div>
 
     <!-- Chat Content Area -->
-    <div id="chat-canvas-area" key="some-unique-key" class="flex w-full flex-col">
+    <div id="chat-content" class="flex w-full flex-col">
 
         <!-- Top Bar with Status -->
-        <div class="w-full border-none bg-gray-200 px-4 lg:left-1/4 dark:bg-gray-800">
+        <div class="w-full border-none bg-gray-200 px-4 dark:bg-gray-800">
             <x-chat.topbar>
                 <x-slot:status>Online</x-slot:status>
             </x-chat.topbar>
         </div>
 
         <!-- Chat-Canvas -->
-        <div class="align-center relative w-full flex-col justify-end space-y-4 overflow-y-scroll px-4 py-2"
+        <div id="chat-canvas" key="some-unique-key"
+            class="align-center relative h-full w-full flex-col justify-end space-y-4 overflow-y-scroll px-4 pb-2 pt-4"
             x-data="scrollManager($el)" x-init="initScroll()"
             x-on:scroll="saveScroll($event)">
             <!-- Chat messages go here -->
