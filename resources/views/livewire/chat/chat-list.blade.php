@@ -5,7 +5,7 @@
         <x-chat.dropdown></x-chat.dropdown>
         <x-search-bar></x-search-bar>
     </div>
-    <div class="flex flex-col space-y-4 overflow-y-auto px-3 py-1">
+    <div class="flex flex-col space-y-2 overflow-y-auto px-3 py-1">
         {{-- Chat list items --}}
         <x-chat.list-item>
             <x-slot:chatName>John Doe</x-slot:chatName>
