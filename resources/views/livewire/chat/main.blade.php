@@ -1,17 +1,23 @@
 <div class="flex w-full border border-gray-100 dark:border-gray-900">
-    @livewire('chat.chat-list')
+    <!-- Sidebar -->
+    <div class="hidden w-full space-y-4 overflow-y-auto pb-4 text-white transition-transform lg:block lg:w-1/3">
+        @livewire('chat.chat-list')
+    </div>
 
-    <!-- Top Bar with Status -->
-    <x-chat.topbar>
-        <x-slot:status>Online</x-slot:status>
-    </x-chat.topbar>
+    <!-- Chat Content Area -->
+    <div id="chat-canvas-area" key="some-unique-key" class="flex w-full flex-col">
 
-    <!-- Chat Content Scrollable Area -->
-    <div id="chat-canvas-area" key="some-unique-key" class="flex-1 overflow-y-scroll p-4 py-8"
-        x-data="scrollManager($el)" x-init="initScroll()"
-        x-on:scroll="saveScroll($event)">
-        <!-- Canvas -->
-        <div class="align-center relative w-full flex-col justify-end space-y-4 py-14">
+        <!-- Top Bar with Status -->
+        <div class="w-full border-none bg-gray-200 px-4 lg:left-1/4 dark:bg-gray-800">
+            <x-chat.topbar>
+                <x-slot:status>Online</x-slot:status>
+            </x-chat.topbar>
+        </div>
+
+        <!-- Chat-Canvas -->
+        <div class="align-center relative w-full flex-col justify-end space-y-4 overflow-y-scroll px-4 py-2"
+            x-data="scrollManager($el)" x-init="initScroll()"
+            x-on:scroll="saveScroll($event)">
             <!-- Chat messages go here -->
             <x-chat.bubble>
                 <x-slot:name>John Doe</x-slot:name>
@@ -42,7 +48,9 @@
             <x-chat.bubble-file></x-chat.bubble-file>
         </div>
 
-        <!-- Fixed Bottom Bar for Input -->
-        @livewire('chat.chat-input')
+        <!-- Bottom Bar for Input -->
+        <div class="sticky bottom-0 flex items-center bg-gray-100 p-4 dark:bg-gray-900">
+            @livewire('chat.chat-input')
+        </div>
     </div>
 </div>

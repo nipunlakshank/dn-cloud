@@ -1,5 +1,5 @@
-<div class="fixed bottom-0 left-0 right-0 flex items-center bg-gray-100 p-4 lg:left-1/4 dark:bg-gray-900">
-    <form class="w-full">
+<div class="w-full">
+    <form>
         <label for="chat" class="sr-only">Your message</label>
         <div class="flex items-center rounded-lg bg-gray-50 px-3 py-2 dark:bg-gray-700">
             <button type="button"
