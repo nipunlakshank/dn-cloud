@@ -36,15 +36,12 @@ class RegisteredUserController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'role' => ['string', 'in:admin,supervisor,accountant,worker'],
         ]);
 
         $user = User::create($validated);
 
         event(new Registered($user));
-
-        // Auth::login($user);
 
         return redirect(route(Str::contains($validated['role'], ['admin', 'supervisor']) ? 'dashboard' : 'chat', absolute: false));
     }

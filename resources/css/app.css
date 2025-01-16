@@ -16,7 +16,9 @@
         --btn-hover-color3: 59, 130, 246;
         --font-secondary-color: 128, 128, 128;
         --color-fill: 154, 192, 243;
+        --scollbar-color: 102, 102, 102;
     }
+
     .dark {
         --background-fill: 31, 41, 55;
         --font-color: 255, 255, 255;
@@ -25,33 +27,52 @@
         --btn-hover-color: 12, 19, 79;
         --font-secondary-color: 128, 128, 128;
         --color-fill: 154, 192, 243;
+        --scollbar-color: 128, 128, 128;
     }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+        background-color: var(--background-fill);
+        border-radius: 1em;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0.4em;
+        background-color: var(--background-fill);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: rgb(var(--scollbar-color));
+        border: 1px solid rgb(var(--scollbar-color));
+        border-radius: 1em;
+    }
+
 }
 
 /* NOTE: This is for reference only, don't uncomment this code
 *
- .referece {
-    :root {
-        --background-color: rgb(255, 255, 255);
-        --font-color: rgb(255, 255, 255);
-        --font-color1: rgb(30, 64, 175);
-        --primary: rgb(30, 64, 175);
-        --secondry: rgb(0, 0, 0);
-        --accent-color1: rgb(37, 99, 235);
-        --accent-color2: rgb(129, 140, 248);
-        --btn-hover-color1: rgb(29, 78, 216);
-        --btn-hover-color2: rgb(198, 231, 255);
-        --btn-hover-color3: rgb(59, 130, 246);
-        --font-secondary-color: rgb(128, 128, 128);
-        --fill-color: rgb(154, 192, 243);
-    }
-    :root[theme="dark"] {
-        --background-color: rgb(31, 41, 55);
-        --font-color: rgb(255, 255, 255);
-        --font-color1: rgb(255, 255, 255);
-        --btn-color: rgb(83, 92, 145);
-        --btn-hover-color: rgb(12, 19, 79);
-        --font-secondary-color: rgb(128, 128, 128);
-        --fill-color: rgb(154, 192, 243);
-    }
+.referece {
+:root {
+--background-color: rgb(255, 255, 255);
+--font-color: rgb(255, 255, 255);
+--font-color1: rgb(30, 64, 175);
+--primary: rgb(30, 64, 175);
+--secondry: rgb(0, 0, 0);
+--accent-color1: rgb(37, 99, 235);
+--accent-color2: rgb(129, 140, 248);
+--btn-hover-color1: rgb(29, 78, 216);
+--btn-hover-color2: rgb(198, 231, 255);
+--btn-hover-color3: rgb(59, 130, 246);
+--font-secondary-color: rgb(128, 128, 128);
+--fill-color: rgb(154, 192, 243);
+}
+:root[theme="dark"] {
+--background-color: rgb(31, 41, 55);
+--font-color: rgb(255, 255, 255);
+--font-color1: rgb(255, 255, 255);
+--btn-color: rgb(83, 92, 145);
+--btn-hover-color: rgb(12, 19, 79);
+--font-secondary-color: rgb(128, 128, 128);
+--fill-color: rgb(154, 192, 243);
+}
 } */
