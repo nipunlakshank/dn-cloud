@@ -33,7 +33,7 @@
             @endisset
 
             <!-- Page Content -->
-            <main class="flex h-screen flex-1 py-[100px]">
+            <main class="flex min-h-screen flex-1 pt-[100px]">
                 {{ $slot }}
             </main>
         </div>
