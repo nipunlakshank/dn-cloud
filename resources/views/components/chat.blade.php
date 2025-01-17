@@ -13,9 +13,9 @@
 
         <!-- Additional chat list items -->
         @foreach (range(2, 14) as $i)
-            <x-chat.list-item>
-                <x-slot:lastMessage>Message {{ $i }} Lorem ipsum dolor sit amet.</x-slot:lastMessage>
-            </x-chat.list-item>
+        <x-chat.list-item>
+            <x-slot:lastMessage>Message {{ $i }} Lorem ipsum dolor sit amet.</x-slot:lastMessage>
+        </x-chat.list-item>
         @endforeach
     </x-chat.list>
 
@@ -44,9 +44,9 @@
 
                 <!-- Additional chat bubbles -->
                 @foreach (range(2, 8) as $i)
-                    <x-chat.bubble dir="{{ $i % 2 == 0 ? 'rtl' : 'ltr' }}">
-                        <x-slot:text>Message {{ $i }}</x-slot:text>
-                    </x-chat.bubble>
+                <x-chat.bubble dir="{{ $i % 2 == 0 ? 'rtl' : 'ltr' }}">
+                    <x-slot:text>Message {{ $i }}</x-slot:text>
+                </x-chat.bubble>
                 @endforeach
 
                 <!-- Image and file bubbles -->
@@ -63,5 +63,7 @@
 
         <!-- Fixed Bottom Bar for Input -->
         <x-chat.input-bar>Type a message...</x-chat.input-bar>
+
+
     </div>
 </x-chat-layout>

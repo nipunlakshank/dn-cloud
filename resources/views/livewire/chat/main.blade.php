@@ -34,9 +34,9 @@
 
             <!-- Additional chat bubbles -->
             @foreach (range(2, 8) as $i)
-                <x-chat.bubble dir="{{ $i % 2 == 0 ? 'rtl' : 'ltr' }}">
-                    <x-slot:text>Message {{ $i }}</x-slot:text>
-                </x-chat.bubble>
+            <x-chat.bubble dir="{{ $i % 2 == 0 ? 'rtl' : 'ltr' }}">
+                <x-slot:text>Message {{ $i }}</x-slot:text>
+            </x-chat.bubble>
             @endforeach
 
             <!-- Image and file bubbles -->
@@ -48,6 +48,9 @@
             </x-chat.bubble-img-multi>
             <x-chat.bubble-file dir="rtl"></x-chat.bubble-file>
             <x-chat.bubble-file></x-chat.bubble-file>
+
+            <!-- Chat Attachment modals (Image / Document / Daily reports) -->
+            <x-chat.attachment-modal></x-chat.attachment-modal>
         </div>
 
         <!-- Bottom Bar for Input -->
