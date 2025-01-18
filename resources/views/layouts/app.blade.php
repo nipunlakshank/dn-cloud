@@ -32,11 +32,10 @@
         </header>
         @endisset
 
-        <!-- Page Content -->
-        <main class="flex h-screen flex-1 py-[100px]">
-            {{ $slot }}
-        </main>
-    </div>
-</body>
+            <!-- Page Content -->
+            <main class="flex min-h-screen flex-1 pt-[100px]">
+                {{ $slot }}
+            </main>
+        </div>
+    </body>
 
-</html>

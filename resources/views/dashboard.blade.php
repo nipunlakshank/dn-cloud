@@ -1,19 +1,18 @@
-<x-chat-layout>
+<x-app-layout>
     <!-- Navbar -->
 
-
-    <aside id="chat-sidebar" class="h-full  w-1/4 space-y-4 overflow-y-auto text-white transition-transform  "
+    <aside id="chat-sidebar" class="h-full w-1/4 space-y-4 overflow-y-auto text-white transition-transform"
         aria-label="Sidebar">
-        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-            <a href="/" class="flex items-center ps-2.5 mb-5">
+        <div class="h-full overflow-y-auto bg-gray-50 px-3 py-4 dark:bg-gray-800">
+            <a href="/" class="mb-5 flex items-center ps-2.5">
                 <x-application-logo class="w-[60px]"></x-application-logo>
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">DN Cloud</span>
+                <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">DN Cloud</span>
             </a>
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="#"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <svg class="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 22 21">
                             <path
@@ -26,64 +25,63 @@
                 </li>
                 <li>
                     <a href="/wallets"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 18 18">
                             <path
                                 d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Wallet</span>
+                        <span class="ms-3 flex-1 whitespace-nowrap">Wallet</span>
                         <span
-                            class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span>
+                            class="ms-3 inline-flex items-center justify-center rounded-full bg-gray-100 px-2 text-sm font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-300">Pro</span>
                     </a>
                 </li>
                 <li>
                     <a href="/chat"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 20">
                             <path
                                 d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Chat</span>
+                        <span class="ms-3 flex-1 whitespace-nowrap">Chat</span>
                         <span
-                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+                            class="ms-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-blue-100 p-3 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300">3</span>
                     </a>
                 </li>
-<li>
+                <li>
                     <button data-modal-target="crud-modalp" data-modal-toggle="crud-modalp"
-                        class="flex w-full text-start items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 18">
                             <path
                                 d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Profile</span>
+                        <span class="ms-3 flex-1 whitespace-nowrap">Profile</span>
                     </button>
                 </li>
 
                 <li>
                     <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-                        class="flex w-full text-start items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 18">
                             <path
                                 d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">User Registration</span>
+                        <span class="ms-3 flex-1 whitespace-nowrap">User Registration</span>
                     </button>
                 </li>
-
 
                 <li>
                     <button data-modal-target="logout" data-modal-toggle="logout"
 
-                        class=" w-full text-start flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 20">
                             <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
@@ -92,53 +90,48 @@
                             <path
                                 d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
+                        <span class="ms-3 flex-1 whitespace-nowrap">Sign Out</span>
                     </button>
                 </li>
             </ul>
         </div>
 
-
     </aside>
 
     <!-- Sidebar -->
-
 
     <!-- Main Content Area -->
     <div class="flex h-full flex-1 flex-col">
 
         <!-- dashbord Content Scrollable Area -->
-        <div class=" flex flex-wrap gap-3 overflow-y-scroll p-4">
+        <div class="flex flex-wrap gap-3 overflow-y-scroll p-4">
 
             <a href="/wallets"
-                class="flex-1 bg-gradient-to-r  from-indigo-500 via-purple-500 to-pink-500 block max-w-sm p-6 border border-gray-200 rounded-lg shadow ">
+                class="block max-w-sm flex-1 rounded-lg border border-gray-200 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-6 shadow">
 
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Wallets</h5>
 
             </a>
 
             <a href="/chat"
-                class="flex-1 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% block max-w-sm p-6 border border-gray-200 rounded-lg shadow  ">
+                class="block max-w-sm flex-1 rounded-lg border border-gray-200 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% p-6 shadow">
 
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Chat</h5>
 
             </a>
 
-            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 block max-w-sm p-6  border border-gray-200 rounded-lg shadow  ">
+            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+                class="block max-w-sm flex-1 rounded-lg border border-gray-200 bg-gradient-to-r from-cyan-500 to-blue-500 p-6 shadow">
 
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">User Registration</h5>
 
             </button>
 
-
-
-
-<x-dashboard-table></x-dashboard-table>
+            <x-dashboard-table></x-dashboard-table>
         </div>
-
 
         <x-settings.registration></x-settings.registration>
 
     </div>
-<x-settings.logout></x-settings.logout>
-</x-chat-layout>
+    <x-settings.logout></x-settings.logout>
+</x-app-layout>
