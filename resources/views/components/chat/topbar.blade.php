@@ -12,4 +12,5 @@
     <img class="relative h-10 w-10 rounded-full"
         src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="Jese image">
     <span class="ml-4 text-sm font-semibold text-gray-900 dark:text-white">{{ $chatName ?? 'Unknown' }}</span>
+ <span class="text-sm font-semibold text-gray-900 dark:text-white">online</span>
 </div>
