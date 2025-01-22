@@ -9,8 +9,14 @@
                 d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13" />
         </svg>
     </button>
-    <img class="relative h-10 w-10 rounded-full"
-        src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="Jese image">
-    <span class="ml-4 text-sm font-semibold text-gray-900 dark:text-white">{{ $chatName ?? 'Unknown' }}</span>
- <span class="text-sm font-semibold text-gray-900 dark:text-white">online</span>
+    <div class="flex gap-3">
+        <img class="relative h-10 w-10 rounded-full"
+            src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="Jese image">
+        <div class="flex flex-col">
+            <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ $chatName ?? 'Unknown' }}</span>
+
+            <span class="text-sm font-light text-gray-900 dark:text-white">online</span>
+        </div>
+
+    </div>
 </div>
