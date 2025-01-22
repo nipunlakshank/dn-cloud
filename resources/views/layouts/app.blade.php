@@ -32,12 +32,12 @@
                 </header>
             @endisset
 
-        <!-- Page Content -->
-        <main class="flex min-h-screen flex-1 pt-[100px]">
-            {{ $slot }}
-        </main>
+            <!-- Page Content -->
+            <main class="flex min-h-screen flex-1 pt-[100px]">
+                {{ $slot }}
+            </main>
 
-        <!-- Settings Modal for Dashboard & Chat -->
-        <x-settings.navigation></x-settings.navigation>
-    </div>
-</body>
+            <!-- Settings Modal for Dashboard & Chat -->
+            <x-settings.navigation></x-settings.navigation>
+        </div>
+    </body>

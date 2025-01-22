@@ -94,31 +94,36 @@
     <!-- Main Content Area -->
     <div class="flex h-full w-full flex-col">
 
-        <!-- dashboard Content Scrollable Area -->
-        <div class="flex flex-wrap gap-3 overflow-y-scroll p-4">
+        <!-- dashbord Content Scrollable Area -->
+        <div class="flex flex-col gap-10 overflow-y-scroll p-4">
+            <div class="flex flex-col gap-3 lg:flex-row">
+                <a href="/wallets"
+                    class="block max-w-sm flex-1 rounded-lg border border-gray-200 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-6 shadow">
 
-            <a href="/wallets"
-                class="block max-w-sm flex-1 rounded-lg border border-gray-200 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-6 shadow">
-                <h5 class="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Wallets</h5>
-            </a>
-            <a href="/chat"
-                class="block max-w-sm flex-1 rounded-lg border border-gray-200 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% p-6 shadow">
-                <h5 class="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Chat</h5>
-            </a>
-            <button data-modal-target="user-registration-modal" data-modal-toggle="user-registration-modal"
-                class="block max-w-sm flex-1 rounded-lg border border-gray-200 bg-gradient-to-r from-cyan-500 to-blue-500 p-6 shadow">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">User Registration</h5>
-            </button>
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Wallets</h5>
+
+                </a>
+
+                <a href="/chat"
+                    class="block max-w-sm flex-1 rounded-lg border border-gray-200 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% p-6 shadow">
+
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Chat</h5>
+
+                </a>
+
+                <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+                    class="block max-w-sm flex-1 rounded-lg border border-gray-200 bg-gradient-to-r from-cyan-500 to-blue-500 p-6 text-start shadow">
+
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">User Registration
+                    </h5>
 
                 </button>
             </div>
+
             <x-dashboard-table></x-dashboard-table>
-
             <x-users-table></x-users-table>
-
         </div>
-
         <x-settings.registration></x-settings.registration>
-
     </div>
     <x-settings.logout></x-settings.logout>
+</x-app-layout>
