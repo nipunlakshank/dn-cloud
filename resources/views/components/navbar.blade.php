@@ -15,8 +15,8 @@
                 </button>
                 <a href="{{ Auth::guest() ? '/' : '/home' }}" class="ms-2 flex md:me-24">
                     <img src="https://flowbite.com/docs/images/logo.svg" class="me-3 h-8" alt="FlowBite Logo" />
-                    <span class="self-center whitespace-nowrap text-xl font-semibold sm:text-2xl dark:text-white">DN
-                        Cloud</span>
+                    <span class="self-center whitespace-nowrap text-xl font-semibold sm:text-2xl dark:text-white">
+                        DN Cloud</span>
                 </a>
             </div>
             <div class="flex items-center">
@@ -42,14 +42,14 @@
                         </div>
                         <ul class="py-1" role="none">
                             <li>
-                                <a href="#"
+                                <a href="{{ route('chat') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                     role="menuitem">Chat</a>
                             </li>
                             <li>
-                                <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                    role="menuitem">Settings</a>
+                                <button type="button" data-modal-target="settings-modal" data-modal-show="settings-modal" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
+                                    Settings
+                                </button>
                             </li>
                             <li>
                                 <a href="#"
@@ -59,7 +59,6 @@
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-
                                     <x-dropdown-link :href="route('logout')"
                                         onclick="event.preventDefault();
                                                 this.closest('form').submit();">

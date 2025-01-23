@@ -3,6 +3,7 @@
         <x-chat.dropdown></x-chat.dropdown>
         <x-search-bar></x-search-bar>
     </div>
+
     {{-- Chat list --}}
     <div class="flex flex-col space-y-1 overflow-y-auto px-1 py-1 md:space-y-2 lg:px-2">
         {{-- Chat list items --}}
@@ -14,9 +15,9 @@
 
         <!-- Additional chat list items -->
         @foreach (range(2, 14) as $i)
-            <x-chat.list-item>
-                <x-slot:lastMessage>Message {{ $i }} Lorem ipsum dolor sit amet.</x-slot:lastMessage>
-            </x-chat.list-item>
+        <x-chat.list-item>
+            <x-slot:lastMessage>Message {{ $i }} Lorem ipsum dolor sit amet.</x-slot:lastMessage>
+        </x-chat.list-item>
         @endforeach
     </div>
 </aside>

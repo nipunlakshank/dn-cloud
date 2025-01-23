@@ -1,16 +1,11 @@
 <x-app-layout>
     <!-- Navbar -->
-
     <aside id="chat-sidebar" class="h-full w-1/4 space-y-4 overflow-y-auto text-white transition-transform"
         aria-label="Sidebar">
         <div class="h-full overflow-y-auto bg-gray-50 px-3 py-4 dark:bg-gray-800">
-            <a href="/" class="mb-5 flex items-center ps-2.5">
-                <x-application-logo class="w-[60px]"></x-application-logo>
-                <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">DN Cloud</span>
-            </a>
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="#"
+                    <a href="/dashboard"
                         class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         <svg class="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -33,8 +28,7 @@
                                 d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
                         </svg>
                         <span class="ms-3 flex-1 whitespace-nowrap">Wallet</span>
-                        <span
-                            class="ms-3 inline-flex items-center justify-center rounded-full bg-gray-100 px-2 text-sm font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-300">Pro</span>
+                        <!-- <span class="ms-3 inline-flex items-center justify-center rounded-full bg-gray-100 px-2 text-sm font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-300">Pro</span> -->
                     </a>
                 </li>
                 <li>
@@ -52,7 +46,7 @@
                     </a>
                 </li>
                 <li>
-                    <button data-modal-target="crud-modalp" data-modal-toggle="crud-modalp"
+                    <button data-modal-target="profile-update-modal" data-modal-toggle="profile-update-modal"
                         class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -65,7 +59,7 @@
                 </li>
 
                 <li>
-                    <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+                    <button data-modal-target="user-registration-modal" data-modal-toggle="user-registration-modal"
                         class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -79,7 +73,6 @@
 
                 <li>
                     <button data-modal-target="logout" data-modal-toggle="logout"
-
                         class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -103,28 +96,20 @@
     <!-- Main Content Area -->
     <div class="flex h-full flex-1 flex-col">
 
-        <!-- dashbord Content Scrollable Area -->
+        <!-- dashboard Content Scrollable Area -->
         <div class="flex flex-wrap gap-3 overflow-y-scroll p-4">
 
             <a href="/wallets"
                 class="block max-w-sm flex-1 rounded-lg border border-gray-200 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-6 shadow">
-
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Wallets</h5>
-
+                <h5 class="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Wallets</h5>
             </a>
-
             <a href="/chat"
                 class="block max-w-sm flex-1 rounded-lg border border-gray-200 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% p-6 shadow">
-
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Chat</h5>
-
+                <h5 class="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Chat</h5>
             </a>
-
-            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+            <button data-modal-target="user-registration-modal" data-modal-toggle="user-registration-modal"
                 class="block max-w-sm flex-1 rounded-lg border border-gray-200 bg-gradient-to-r from-cyan-500 to-blue-500 p-6 shadow">
-
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">User Registration</h5>
-
             </button>
 
             <x-dashboard-table></x-dashboard-table>

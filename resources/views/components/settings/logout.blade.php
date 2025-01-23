@@ -1,7 +1,3 @@
-{{--  <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-Toggle modal
-</button> --}}
-
 <div id="logout" tabindex="-1"
     class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0">
     <div class="relative max-h-full w-full max-w-md p-4">
@@ -14,7 +10,7 @@ Toggle modal
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                 </svg>
-                <span class="sr-only">Close modal</span>
+                <span class="sr-only">modal</span>
             </button>
             <div class="p-4 text-center md:p-5">
                 <svg class="mx-auto mb-4 h-12 w-12 text-gray-400 dark:text-gray-200" aria-hidden="true"
