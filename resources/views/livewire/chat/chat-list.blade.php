@@ -1,5 +1,5 @@
-<aside aria-label="Sidebar" class="relative">
-    <div class="sticky top-0 flex justify-between gap-2 bg-gray-100 p-4 pt-6 dark:bg-gray-900">
+<aside aria-label="Sidebar">
+    <div class="sticky top-0 z-10 flex justify-between gap-2 bg-gray-100 p-4 pt-6 dark:bg-gray-900">
         <x-chat.dropdown></x-chat.dropdown>
         <x-search-bar></x-search-bar>
     </div>
