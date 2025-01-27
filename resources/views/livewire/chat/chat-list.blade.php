@@ -4,19 +4,16 @@
         <x-search-bar></x-search-bar>
     </div>
     {{-- Chat list --}}
-    <div class="flex flex-col space-y-1 overflow-y-auto px-1 py-1 md:space-y-2 lg:px-2">
-        {{-- Chat list items --}}
-        <x-chat.list-item>
-            <x-slot:chatName>John Doe</x-slot:chatName>
-            <x-slot:lastMessage>Message 1 Lorem ipsum dolor sit amet.</x-slot:lastMessage>
-            <x-slot:time>11:46</x-slot:time>
-        </x-chat.list-item>
+    <div class="flex flex-col gap-1 overflow-y-auto px-1 py-1 md:gap-2 lg:px-2">
+        @livewire('chat.chat-card', [
+            'chatName' => 'John Doe',
+            'lastMessage' => 'Message 1 Lorem ipsum dolor sit amet.',
+            'time' => '11:46',
+        ])
 
         <!-- Additional chat list items -->
         @foreach (range(2, 14) as $i)
-            <x-chat.list-item>
-                <x-slot:lastMessage>Message {{ $i }} Lorem ipsum dolor sit amet.</x-slot:lastMessage>
-            </x-chat.list-item>
+            @livewire('chat.chat-card')
         @endforeach
     </div>
 </aside>
