@@ -83,7 +83,7 @@
                     6
                 </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Poseidon iPay
+                    Poseidon iPay
                 </th>
                 <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                    Closed</td>
@@ -93,7 +93,7 @@
                     7
                 </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Poseidon Com Bank
+                    Poseidon Com Bank
                 </th>
                  <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                    Closed</td>
@@ -168,4 +168,3 @@
                    Closed</td>            </tr>
         </tbody>
     </table>
-</div>

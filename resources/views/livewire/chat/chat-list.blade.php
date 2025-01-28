@@ -3,6 +3,7 @@
         <x-chat.dropdown></x-chat.dropdown>
         <x-search-bar></x-search-bar>
     </div>
+
     {{-- Chat list --}}
     <div class="flex flex-col gap-1 overflow-y-auto px-1 py-1 md:gap-2 lg:px-2">
         @livewire('chat.chat-card', [
@@ -16,4 +17,3 @@
             @livewire('chat.chat-card')
         @endforeach
     </div>
-</aside>
