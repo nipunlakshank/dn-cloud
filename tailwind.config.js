@@ -17,7 +17,6 @@ export default {
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
-        "./node_modules/flowbite/**/*.js"
     ],
 
     darkMode: "selector",
@@ -54,7 +53,5 @@ export default {
         },
     },
 
-    plugins: [forms,
-        require("flowbite/plugin")
-    ],
+    plugins: [forms],
 };
