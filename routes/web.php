@@ -4,6 +4,8 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Chat\CreateChat;
 use App\Livewire\Chat\Main;
+use App\Livewire\Reports\Main as Reports;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
@@ -22,6 +24,12 @@ Route::get('/about-us', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
+
+Route::get('/reports', function () {
+    return view('livewire.reports.main');
+})->name('reports');
+
+Route::get('/reports', Reports::class)->middleware(['auth', 'verified'])->name('reports');
 
 // Route::get('/chat', function () {
 //     return view('chat');

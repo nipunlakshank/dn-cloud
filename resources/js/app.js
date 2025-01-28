@@ -1,4 +1,4 @@
-import "./bootstrap";
+import "./bootstrap"
 
 const axios = window.axios;
 
