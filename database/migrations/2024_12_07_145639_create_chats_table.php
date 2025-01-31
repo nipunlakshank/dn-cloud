@@ -26,6 +26,13 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->timestamps();
         });
+
+        Schema::create('wallets', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -35,5 +42,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('chat_members');
         Schema::dropIfExists('chats');
+        Schema::dropIfExists('wallets');
     }
 };

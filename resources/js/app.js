@@ -1,4 +1,4 @@
-import "./bootstrap"
+import "./bootstrap";
 
 const axios = window.axios;
 
@@ -51,6 +51,20 @@ document.querySelector("#avatar").addEventListener("input", (event) => {
             URL.createObjectURL(new_avatar);
     }
 });
+
+// Dashboard Drawer Toggle : Small Screen
+document
+    .querySelector("#drawer-toggle-button")
+    .addEventListener("click", () => {
+        const drawer = document.querySelector("#chat-sidebar");
+        if (drawer.classList.contains("max-sm:-translate-x-full")) {
+            drawer.classList.remove("max-sm:-translate-x-full");
+            drawer.classList.add("max-sm:translate-x-0");
+        } else {
+            drawer.classList.remove("max-sm:translate-x-0");
+            drawer.classList.add("max-sm:-translate-x-full");
+        }
+    });
 
 // set theme
 let darkMode = localStorage.getItem("theme") === "dark";
