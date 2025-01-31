@@ -1,4 +1,5 @@
-<button class="cursor-pointer justify-between rounded-lg border-none bg-gray-200 p-4 text-start dark:bg-gray-700">
+<div
+    class="cursor-pointer select-none justify-between rounded-lg border-none bg-gray-200 p-4 text-start dark:bg-gray-700">
     <span class="float-right text-xs font-normal text-gray-500 dark:text-gray-400"
         dir="rtl">{{ $time ?? '00:00' }}</span>
     <div class="relative flex items-center space-x-2">
@@ -19,4 +20,4 @@
             @endif
         </div>
     </div>
-</button>
+</div>
