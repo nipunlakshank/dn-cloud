@@ -20,10 +20,12 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('chat_members', function (Blueprint $table) {
+        Schema::create('chat_user', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Chat::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
+            $table->boolean('is_admin')->default(false);
+            $table->timestamp('active_since')->nullable()->useCurrent();
             $table->timestamps();
         });
     }
