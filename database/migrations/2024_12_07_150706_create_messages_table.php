@@ -19,6 +19,8 @@ return new class extends Migration
             $table->longText('content');
             $table->foreignIdFor(Chat::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
+            $table->foreignId('replied_to')->nullable()->constrained('messages')->onDelete('set null');
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
 
@@ -26,7 +28,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Message::class)->constrained()->onDelete('cascade');
             $table->string('path');
-            $table->enum('type', ['text', 'file', 'image'])->default('text');
+            $table->enum('type', ['file', 'image']);
             $table->timestamps();
         });
 
@@ -45,13 +47,6 @@ return new class extends Migration
             $table->enum('status', ['sent', 'delivered', 'read']);
             $table->timestamps();
         });
-
-        Schema::create('message_replies', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(Message::class)->constrained()->onDelete('cascade');
-            $table->foreignId('reply_id')->constrained('messages')->onDelete('cascade');
-            $table->timestamps();
-        });
     }
 
     /**
@@ -59,7 +54,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('message_replies');
         Schema::dropIfExists('message_status');
         Schema::dropIfExists('message_reactions');
         Schema::dropIfExists('message_attachments');

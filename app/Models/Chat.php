@@ -20,4 +20,27 @@ class Chat extends Model
         'name',
         'is_group'
     ];
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    public function lastMessage(): ?Message
+    {
+        return $this->hasOne(Message::class)->latest('created_at');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)
+            ->using(ChatUser::class)
+            ->withPivot('is_admin', 'active_since')
+            ->withTimestamps();
+    }
+
+    public function activeUsers()
+    {
+        return $this->users()->whereNotNull('chat_user.active_since');
+    }
 }

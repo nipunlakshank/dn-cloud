@@ -101,4 +101,3 @@
 
     <!-- Logout -->
     <x-settings.logout></x-settings.logout>
-</x-app-layout>
