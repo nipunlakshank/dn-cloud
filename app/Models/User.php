@@ -57,4 +57,23 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return "{$this->first_name} {$this->last_name}";
     }
+
+    public function chats()
+    {
+        return $this->belongsToMany(Chat::class)
+            ->using(ChatUser::class)
+            ->withPivot('is_admin', 'active_since')
+            ->withTimestamps();
+    }
+
+    public function activeChats()
+    {
+        return $this->chats()->whereNotNull('chat_user.active_since')
+            ->orderBy('chat_user.active_since');
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }
