@@ -53,9 +53,8 @@ document.querySelector("#avatar").addEventListener("input", (event) => {
 });
 
 // Dashboard Drawer Toggle : Small Screen
-document
-    .querySelector("#drawer-toggle-button")
-    .addEventListener("click", () => {
+document.querySelector("#drawer-toggle-button")
+    ?.addEventListener("click", () => {
         const drawer = document.querySelector("#chat-sidebar");
         if (drawer.classList.contains("max-sm:-translate-x-full")) {
             drawer.classList.remove("max-sm:-translate-x-full");
