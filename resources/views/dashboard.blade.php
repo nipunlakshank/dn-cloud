@@ -1,6 +1,7 @@
 <x-app-layout>
     <!-- Navbar -->
-    <aside id="chat-sidebar" class="h-full w-1/4 max-sm:w-3/4 space-y-4 overflow-hidden text-white transition-transform max-sm:absolute max-sm:-translate-x-full z-50">
+    <aside id="chat-sidebar"
+        class="z-50 h-full w-1/4 space-y-4 overflow-hidden text-white transition-transform max-sm:absolute max-sm:w-3/4 max-sm:-translate-x-full">
         <div class="h-full overflow-y-hidden bg-gray-50 px-3 py-4 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
@@ -86,10 +87,10 @@
     </aside>
 
     <!-- Main Content Area -->
-    <div class="flex w-full h-full overflow-hidden p-6">
+    <div class="flex h-full w-full overflow-hidden p-6">
 
         <!-- Dashboard table Area -->
-        <div class=" flex w-full h-full flex-row justify-center align-top gap-6 overflow-hidden max-sm:flex-col">
+        <div class="flex h-full w-full flex-row justify-center gap-6 overflow-hidden align-top max-sm:flex-col">
             <x-dashboard-table :wallets="$wallets"></x-dashboard-table>
             <x-users-table :users="$users"></x-users-table>
         </div>
@@ -101,3 +102,4 @@
 
     <!-- Logout -->
     <x-settings.logout></x-settings.logout>
+</x-app-layout>
