@@ -11,14 +11,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/dashboard/wallet-status/{id}/{status}', [DashboardController::class, 'walletStatusUpdate'])->name('wallet-status');
-Route::get('/dashboard/user-status/{id}/{status}', [DashboardController::class, 'userStatusUpdate'])->name('user-status');
-
-Route::get('/wallets', function () {
-    return view('wallets');
-})->name('wallets');
-
 Route::get('/about-us', function () {
     return view('about-us');
 })->name('about-us');
@@ -33,7 +25,9 @@ Route::get('/reports', function () {
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/wallet-status/{id}/{status}', [DashboardController::class, 'walletStatusUpdate'])->name('wallet-status');
+    Route::get('/dashboard/user-status/{id}/{status}', [DashboardController::class, 'userStatusUpdate'])->name('user-status');
 
     Route::get('/chat/{chat}', ChatIndex::class)->name('chat');
     Route::get('/chat', ChatIndex::class)->name('chat');
