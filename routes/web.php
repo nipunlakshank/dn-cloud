@@ -4,7 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Chat\CreateChat;
-use App\Livewire\Chat\Main;
+use App\Livewire\Chat\Index as ChatIndex;
 use App\Livewire\Reports\Main as Reports;
 
 use Illuminate\Support\Facades\Route;
@@ -31,16 +31,16 @@ Route::get('/reports', function () {
     return view('livewire.reports.main');
 })->name('reports');
 
-Route::get('/reports', Reports::class)->middleware(['auth', 'verified'])->name('reports');
 
-// Route::get('/chat', function () {
-//     return view('chat');
-// })->middleware(['auth', 'verified'])->name('chat');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
 
-// Livewire routes
-Route::get('/chat/{key}', Main::class)->middleware(['auth', 'verified'])->name('chat');
-Route::get('/chat', Main::class)->middleware(['auth', 'verified'])->name('chat');
-Route::get('/users', CreateChat::class)->middleware(['auth', 'verified'])->name('users');
+    Route::get('/chat/{chat}', ChatIndex::class)->name('chat');
+    Route::get('/chat', ChatIndex::class)->name('chat');
+
+    Route::get('/users', CreateChat::class)->name('users');
+    Route::get('/reports', Reports::class)->name('reports');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
