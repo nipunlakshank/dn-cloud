@@ -1,10 +1,5 @@
-{{-- <button type="button" data-modal-target="crypto-modal" data-modal-toggle="crypto-modal" class="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700">
-<svg aria-hidden="true" class="w-4 h-4 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
-Connect wallet
-</button> --}}
-
 <!-- Main modal -->
-<div id="crypto-modal" tabindex="-1" aria-hidden="true"
+<div id="settings-modal" tabindex="-1" aria-hidden="true"
     class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0">
     <div class="relative max-h-full w-full max-w-md p-4">
         <!-- Modal content -->
@@ -16,7 +11,7 @@ Connect wallet
                 </h3>
                 <button type="button"
                     class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-                    data-modal-toggle="crypto-modal">
+                    data-modal-toggle="settings-modal">
                     <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -93,4 +88,4 @@ Connect wallet
 <x-settings.add-group></x-settings.add-group>
 <x-settings.new-chat></x-settings.new-chat>
 <x-settings.logout></x-settings.logout>
-
+<x-chat.chat-image-viewer></x-chat.chat-image-viewer>

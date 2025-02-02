@@ -15,7 +15,6 @@
                     </svg>
                 </button>
                 <a href="{{ Auth::guest() ? '/' : '/chat' }}" class="ms-2 flex md:me-24">
-                    <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="me-3 h-8" alt="FlowBite Logo" /> -->
                     <x-application-logo class="h-[50px] w-[50px]"></x-application-logo>
                     <span class="self-center whitespace-nowrap text-xl font-semibold sm:text-2xl dark:text-white">DN
                         Cloud</span>

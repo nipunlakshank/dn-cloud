@@ -1,4 +1,4 @@
-import "./bootstrap"
+import "./bootstrap";
 
 const axios = window.axios;
 
@@ -50,6 +50,17 @@ document.querySelector("#avatar").addEventListener("input", (event) => {
         document.querySelector("#avatar_preview").src =
             URL.createObjectURL(new_avatar);
     }
+});
+
+// Chat Image Viewer
+document.querySelectorAll(".chat-image-bubble").forEach((bubble) => {
+    const viewer = document.querySelector("#chat-image-viewer");
+
+    bubble.addEventListener("click", (event) => {
+        let messageId = event.target.getAttribute("data-message-id");
+        viewer.querySelector("#message-image").srcset = event.target.src;
+        console.log("Id : ", messageId);
+    });
 });
 
 // set theme

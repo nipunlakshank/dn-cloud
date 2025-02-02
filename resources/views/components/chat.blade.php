@@ -64,6 +64,5 @@
         <!-- Fixed Bottom Bar for Input -->
         <x-chat.input-bar>Type a message...</x-chat.input-bar>
 
-
     </div>
 </x-chat-layout>
