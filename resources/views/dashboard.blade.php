@@ -1,8 +1,8 @@
 <x-app-layout>
     <!-- Navbar -->
-    <aside id="chat-sidebar" class="h-full w-1/4 space-y-4 overflow-y-auto text-white transition-transform"
-        aria-label="Sidebar">
-        <div class="h-full overflow-y-auto bg-gray-50 px-3 py-4 dark:bg-gray-800">
+    <aside id="chat-sidebar"
+        class="z-50 h-full w-1/4 space-y-4 overflow-hidden text-white transition-transform max-sm:absolute max-sm:w-3/4 max-sm:-translate-x-full">
+        <div class="h-full overflow-y-hidden bg-gray-50 px-3 py-4 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="/dashboard"
@@ -19,7 +19,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/wallets"
+                    <a href="/reports"
                         class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -55,7 +55,6 @@
                         <span class="ms-3 flex-1 whitespace-nowrap">Profile</span>
                     </button>
                 </li>
-
                 <li>
                     <button data-modal-target="user-registration-modal" data-modal-toggle="user-registration-modal"
                         class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
@@ -68,7 +67,6 @@
                         <span class="ms-3 flex-1 whitespace-nowrap">User Registration</span>
                     </button>
                 </li>
-
                 <li>
                     <button data-modal-target="logout" data-modal-toggle="logout"
                         class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
@@ -86,44 +84,22 @@
                 </li>
             </ul>
         </div>
-
     </aside>
 
-    <!-- Sidebar -->
-
     <!-- Main Content Area -->
-    <div class="flex h-full w-full flex-col">
+    <div class="flex h-full w-full overflow-hidden p-6">
 
-        <!-- dashbord Content Scrollable Arear-->
-        <div class="flex flex-col gap-10 overflow-y-scroll p-4">
-            <div class="flex flex-col gap-3 lg:flex-row">
-                <a href="/wallets"
-                    class="block max-w-sm flex-1 rounded-lg border border-gray-200 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-6 shadow">
-
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Wallets</h5>
-
-                </a>
-
-                <a href="/chat"
-                    class="block max-w-sm flex-1 rounded-lg border border-gray-200 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% p-6 shadow">
-
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Chat</h5>
-
-                </a>
-
-                <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-                    class="block max-w-sm flex-1 rounded-lg border border-gray-200 bg-gradient-to-r from-cyan-500 to-blue-500 p-6 text-start shadow">
-
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">User Registration
-                    </h5>
-
-                </button>
-            </div>
-
-            <x-dashboard-table></x-dashboard-table>
-            <x-users-table></x-users-table>
+        <!-- Dashboard table Area -->
+        <div class="flex h-full w-full flex-row justify-center gap-6 overflow-hidden align-top max-sm:flex-col">
+            <x-dashboard-table :wallets="$wallets"></x-dashboard-table>
+            <x-users-table :users="$users"></x-users-table>
         </div>
-        <x-settings.registration></x-settings.registration>
+
     </div>
+
+    <!-- User Registration -->
+    <x-settings.registration></x-settings.registration>
+
+    <!-- Logout -->
     <x-settings.logout></x-settings.logout>
 </x-app-layout>
