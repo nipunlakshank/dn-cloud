@@ -44,10 +44,18 @@ class DatabaseSeeder extends Seeder
         $chats->each(function ($chat) use ($users) {
             if ($chat->is_group) {
                 $chat->users()->attach($users->random()->id, ['is_admin' => true]);
-                ChatUser::factory(5)->create([
-                    'chat_id' => $chat->id,
-                    'user_id' => $users->random()->id,
-                ]);
+                for ($i = 0; $i < 5; $i++) {
+                    $userId = $users->random()->id;
+
+                    while ($chat->users()->where('user_id', $userId)->exists()) {
+                        $userId = $users->random()->id;
+                    }
+
+                    ChatUser::factory()->create([
+                        'chat_id' => $chat->id,
+                        'user_id' => $userId,
+                    ]);
+                }
             } else {
                 $firstUser = $users->random();
                 $secondUser = $users->random();
