@@ -16,7 +16,7 @@
         </div>
 
         <!-- Chat-Canvas -->
-        @livewire('chat.chat-body')
+        @livewire('chat.chat-content', ['chat' => $chat])
 
         <!-- Bottom Bar for Input -->
         <div class="sticky bottom-0 flex items-center bg-gray-100 p-2 dark:bg-gray-900">
@@ -24,4 +24,3 @@
         </div>
     </div>
 </div>
-

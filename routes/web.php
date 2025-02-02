@@ -19,10 +19,11 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/reports', function () {
-    return view('livewire.reports.main');
-})->name('reports');
-
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -32,14 +33,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/chat/{chat}', ChatIndex::class)->name('chat');
     Route::get('/chat', ChatIndex::class)->name('chat');
 
+    Route::view('/reports', 'livewire.reports.main')->name('reports');
+
     Route::get('/users', CreateChat::class)->name('users');
     Route::get('/reports', Reports::class)->name('reports');
-});
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__ . '/' . 'auth.php';
