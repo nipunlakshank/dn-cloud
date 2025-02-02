@@ -11,4 +11,3 @@
             @livewire('chat.chat-card', ['chat' => $chat], key('chat-card-' . $chat->id))
         @endforeach
     </div>
-</aside>

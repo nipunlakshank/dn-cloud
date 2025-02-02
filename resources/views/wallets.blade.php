@@ -3,9 +3,6 @@
 
     <!-- Sidebar -->
     <x-wallets.list>
-
-
-
         <x-wallets.list-item><x-slot:chatName>Wallet 2</x-slot:chatName></x-wallets.list-item>
         <x-wallets.list-item><x-slot:chatName>Wallet 3</x-slot:chatName></x-wallets.list-item>
         <x-wallets.list-item><x-slot:chatName>Wallet 4</x-slot:chatName></x-wallets.list-item>

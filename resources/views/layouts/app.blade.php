@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
     <head>
         <meta charset="utf-8">
@@ -36,5 +36,8 @@
             <main class="flex min-h-screen flex-1 pt-[100px]">
                 {{ $slot }}
             </main>
+
+            <!-- Settings Modal for Dashboard & Chat -->
+            <x-settings.navigation></x-settings.navigation>
         </div>
     </body>

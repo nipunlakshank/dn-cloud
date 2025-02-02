@@ -90,7 +90,7 @@ Connect wallet
 </div>
 <x-settings.registration></x-settings.registration>
 <x-settings.profile></x-settings.profile>
-<x-settings.addgroup></x-settings.addgroup>
-<x-settings.newChat></x-settings.newChat>
+<x-settings.add-group></x-settings.add-group>
+<x-settings.new-chat></x-settings.new-chat>
 <x-settings.logout></x-settings.logout>
 

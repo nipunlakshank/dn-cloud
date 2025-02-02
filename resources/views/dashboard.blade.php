@@ -1,16 +1,11 @@
 <x-app-layout>
     <!-- Navbar -->
-
     <aside id="chat-sidebar" class="h-full w-1/4 space-y-4 overflow-y-auto text-white transition-transform"
         aria-label="Sidebar">
         <div class="h-full overflow-y-auto bg-gray-50 px-3 py-4 dark:bg-gray-800">
-            <a href="/" class="mb-5 flex items-center ps-2.5">
-                <x-application-logo class="w-[60px]"></x-application-logo>
-                <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">DN Cloud</span>
-            </a>
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="#"
+                    <a href="/dashboard"
                         class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         <svg class="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -49,7 +44,7 @@
                     </a>
                 </li>
                 <li>
-                    <button data-modal-target="crud-modalp" data-modal-toggle="crud-modalp"
+                    <button data-modal-target="profile-update-modal" data-modal-toggle="profile-update-modal"
                         class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -62,7 +57,7 @@
                 </li>
 
                 <li>
-                    <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+                    <button data-modal-target="user-registration-modal" data-modal-toggle="user-registration-modal"
                         class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -76,7 +71,6 @@
 
                 <li>
                     <button data-modal-target="logout" data-modal-toggle="logout"
-
                         class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -100,7 +94,7 @@
     <!-- Main Content Area -->
     <div class="flex h-full w-full flex-col">
 
-        <!-- dashbord Content Scrollable Area -->
+        <!-- dashbord Content Scrollable Arear-->
         <div class="flex flex-col gap-10 overflow-y-scroll p-4">
             <div class="flex flex-col gap-3 lg:flex-row">
                 <a href="/wallets"
@@ -125,14 +119,11 @@
 
                 </button>
             </div>
+
             <x-dashboard-table></x-dashboard-table>
-
             <x-users-table></x-users-table>
-
         </div>
-
         <x-settings.registration></x-settings.registration>
-
     </div>
     <x-settings.logout></x-settings.logout>
 </x-app-layout>

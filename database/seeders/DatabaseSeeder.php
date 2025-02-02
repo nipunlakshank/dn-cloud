@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Ramsey\Uuid\Type\Integer;
 
 class DatabaseSeeder extends Seeder
 {
