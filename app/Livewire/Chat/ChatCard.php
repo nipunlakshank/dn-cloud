@@ -9,12 +9,14 @@ class ChatCard extends Component
     public $chat;
     public $lastMessage;
     public $timeElapsed;
+    public $unreadCount;
 
     public function mount($chat)
     {
         $this->chat = $chat;
         $this->lastMessage = $chat->lastMessage;
         $this->timeElapsed = $this->calculateTimeElapsed($this->lastMessage->created_at);
+        $this->unreadCount = $chat->unreadCount ?? 24;
     }
 
     public function render()
@@ -33,8 +35,8 @@ class ChatCard extends Component
     {
         if ($timestamp->diffInSeconds() < 60) {
             return 'Just now';
-        } elseif ($timestamp->diffInMinutes() < 60) {
-            return $timestamp->diffForHumans();
+        } elseif ($timestamp->diffInHours() < 6) {
+            return $timestamp->shortAbsoluteDiffForHumans();
         } elseif ($timestamp->isToday()) {
             return $timestamp->format('H:i');
         } else {
