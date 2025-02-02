@@ -6,21 +6,39 @@ use Livewire\Component;
 
 class ChatCard extends Component
 {
-    public $chatName;
+    public $chat;
     public $lastMessage;
-    public $time;
-    public $unreadCount;
+    public $timeElapsed;
+
+    public function mount($chat)
+    {
+        $this->chat = $chat;
+        $this->lastMessage = $chat->lastMessage;
+        $this->timeElapsed = $this->calculateTimeElapsed($this->lastMessage->created_at);
+    }
 
     public function render()
     {
-        return view('livewire.chat.chat-card');
+        return view('livewire.chat.chat-card', [
+            'chat' => $this->chat,
+        ]);
     }
 
-    public function mount($chatName = null, $lastMessage = null, $time = null, $unreadCount = null)
+    public function refreshLastMessage()
     {
-        $this->chatName = $chatName ?? fake()->name();
-        $this->lastMessage = $lastMessage ?? fake()->sentence();
-        $this->time = $time ?? fake()->time('H:i');
-        $this->unreadCount = $unreadCount ?? fake()->numberBetween(0, 10);
+        $this->lastMessage = $this->chat->lastMessage()->get();
+    }
+
+    public function calculateTimeElapsed($timestamp)
+    {
+        if ($timestamp->diffInSeconds() < 60) {
+            return 'Just now';
+        } elseif ($timestamp->diffInMinutes() < 60) {
+            return $timestamp->diffForHumans();
+        } elseif ($timestamp->isToday()) {
+            return $timestamp->format('H:i');
+        } else {
+            return $timestamp->format('d/m/Y');
+        }
     }
 }

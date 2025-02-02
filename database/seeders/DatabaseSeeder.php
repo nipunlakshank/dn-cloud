@@ -48,8 +48,12 @@ class DatabaseSeeder extends Seeder
                     'user_id' => $users->random()->id,
                 ]);
             } else {
-                $chat->users()->attach($users->random()->id);
-                $chat->users()->attach($users->random()->id);
+                $firstUser = $users->random();
+                $secondUser = $users->random();
+                while ($secondUser->id === $firstUser->id) {
+                    $secondUser = $users->random();
+                }
+                $chat->users()->attach([$firstUser->id, $secondUser->id]);
             }
         });
 
