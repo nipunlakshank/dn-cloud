@@ -46,13 +46,14 @@ function scrollManager(element) {
 }
 
 // Profile Image Preview Update Listener
-document.querySelector("#avatar").addEventListener("input", (event) => {
-    const new_avatar = event.target.files[0];
-    if (new_avatar) {
-        document.querySelector("#avatar_preview").src =
-            URL.createObjectURL(new_avatar);
-    }
-});
+document.querySelector("#avatar")
+    ?.addEventListener("input", (event) => {
+        const new_avatar = event.target.files[0];
+        if (new_avatar) {
+            document.querySelector("#avatar_preview").src =
+                URL.createObjectURL(new_avatar);
+        }
+    });
 
 // Dashboard Drawer Toggle : Small Screen
 document.querySelector("#drawer-toggle-button")
