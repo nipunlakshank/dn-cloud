@@ -30,7 +30,9 @@ class ChatMessages extends Component
         return view('livewire.chat.chat-messages', [
             'messages' => $this->chat->messages()
                 ->orderBy('created_at', 'desc')
-                ->paginate(10, ['*'], 'page', $this->page)
+                ->paginate(20, ['*'], 'page', $this->page)
+                ->through(fn($message) => $message) // Keep collection but modify order
+                ->reverse()
         ]);
     }
 
