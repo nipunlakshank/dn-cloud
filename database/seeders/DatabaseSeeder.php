@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
         });
 
         $chats->each(function ($chat) {
-            for ($i = 0; $i < 10; $i++) {
+            for ($i = 0; $i < 100; $i++) {
                 Message::factory()->create([
                     'chat_id' => $chat->id,
                     'user_id' => $chat->users()->inRandomOrder()->first()->id,

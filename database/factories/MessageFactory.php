@@ -19,7 +19,7 @@ class MessageFactory extends Factory
     {
         $chat = Chat::query()->inRandomOrder()->first();
         return [
-            'content' => $this->faker->sentence(),
+            'text' => $this->faker->sentence(),
             'chat_id' => $chat->id,
             'user_id' => $chat->users()->inRandomOrder()->first()->id,
         ];

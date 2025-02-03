@@ -17,7 +17,7 @@
             </span>
             <div class="flex w-full items-center justify-between gap-1">
                 <span class="last-message truncate py-1 text-sm font-normal text-gray-900 dark:text-white">
-                    {{ $chat->lastMessage->content ?? '-' }}
+                    {{ $chat->lastMessage->text ?? '-' }}
                 </span>
                 @if (isset($unreadCount) && $unreadCount > 0)
                     <span
