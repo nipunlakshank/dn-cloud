@@ -28,7 +28,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Message::class)->constrained()->onDelete('cascade');
             $table->string('path');
-            $table->enum('type', ['file', 'image']);
+            $table->enum('type', ['document', 'image', 'report']);
             $table->timestamps();
         });
 

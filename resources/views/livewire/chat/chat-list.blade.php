@@ -6,8 +6,11 @@
     </div>
 
     {{-- Chat list --}}
-    <div class="flex flex-col gap-1 overflow-y-auto px-1 py-1 md:gap-2 lg:px-2">
+    <div class="flex flex-col gap-1 overflow-y-auto px-1 py-1 md:gap-2 lg:px-2" wire:key="chat-list-{{ auth()->id() }}">
         @foreach ($chats as $chat)
-            @livewire('chat.chat-card', ['chat' => $chat], key('chat-card-' . $chat->id))
+            <div wire:key="chat-card-{{ $chat->id }}" wire:ignore>
+                @livewire('chat.chat-card', ['chat' => $chat])
+            </div>
         @endforeach
     </div>
+</aside>

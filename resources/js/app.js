@@ -24,13 +24,15 @@ function showChatList() {
 }
 
 function scrollManager(element) {
-    const key = element.getAttribute("key");
+    const key = element.getAttribute("scroll-key");
 
     return {
         initScroll() {
             const savedPosition = localStorage.getItem(`${key}-scroll`);
             if (savedPosition) {
                 this.$el.scrollTop = parseInt(savedPosition, 10);
+            } else {
+                this.$el.scrollTop = this.$el.scrollHeight;
             }
         },
         saveScroll(event) {
@@ -71,7 +73,9 @@ if (darkMode) document.documentElement.classList.add("dark");
 else document.documentElement.classList.remove("dark");
 
 const chatCanvas = document.getElementById("chat-canvas");
-chatCanvas.scrollTop = chatCanvas.scrollHeight;
+if (chatCanvas) {
+    chatCanvas.scrollTop = chatCanvas.scrollHeight;
+}
 
 // Expose functions
 window.toggleTheme = toggleTheme;
