@@ -8,7 +8,7 @@
     <!-- Chat Content Area -->
     <div id="chat-container" class="{{ $chat ? 'flex' : 'hidden' }} w-full sm:flex">
         @if ($chat)
-            <div id="chat-content" class="flex w-full flex-col" wire:key="chat-container-{{ auth()->id() }}">
+            <div id="chat-content" class="flex w-full flex-col" wire:key="chat-content-{{ auth()->id() }}">
                 <!-- Top Bar with Status -->
                 <div class="w-full border-none bg-gray-200 px-4 dark:bg-gray-800">
                     @livewire('chat.chat-header', ['chat' => $chat], key('chat-header-' . $chat->id))
