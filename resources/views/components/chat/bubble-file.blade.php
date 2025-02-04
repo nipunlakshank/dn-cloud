@@ -1,6 +1,6 @@
 <div class="flex items-start gap-2.5" {{ $attributes }}>
     <img class="h-8 w-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
-        alt="Jese image">
+        alt="Avatar">
 
     <div class="flex flex-col gap-1">
         <div class="flex items-center space-x-2 rtl:space-x-reverse">

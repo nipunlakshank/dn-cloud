@@ -6,7 +6,7 @@
     </button>
     <div class="flex gap-3">
         <img class="relative h-10 w-10 rounded-full"
-            src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="Jese image">
+            src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="Avatar">
         <div class="flex flex-col">
             <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ $chatName ?? 'Unknown' }}</span>
 

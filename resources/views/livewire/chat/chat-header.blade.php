@@ -1,4 +1,4 @@
-<div class="flex space-x-4 py-4">
+<div class="flex gap-4 py-4">
     <button
         class="flex items-center rounded-lg border border-transparent bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-300"
         type="button" onclick="deselectChat()">
@@ -9,7 +9,7 @@
     </button>
     <div class="flex gap-3">
         <img class="relative h-10 w-10 rounded-full"
-            src="{{ $chatAvatar }}" alt="Jese image">
+            src="{{ $chatAvatar }}" alt="Avatar">
         <div class="flex flex-col">
             <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ $chatName ?? 'Unknown' }}</span>
 
