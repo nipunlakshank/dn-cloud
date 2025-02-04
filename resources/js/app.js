@@ -99,6 +99,8 @@ window.addEventListener("message.sent", event => {
             clearInterval(intervalId);
         }
     }, 50);
+
+    setTimeout(() => clearInterval(intervalId), 5000);
 });
 
 // Expose functions
