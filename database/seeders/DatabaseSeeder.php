@@ -27,6 +27,16 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
+        User::factory()->create([
+            'first_name' => 'Test',
+            'last_name' => 'User',
+            'email' => 'test@gmail.com',
+            'password' => Hash::make('Test@123'),
+            'remember_token' => Str::random(10),
+            'role' => 'admin',
+            'email_verified_at' => now(),
+        ]);
+
         User::factory(5)->create();
 
         Chat::factory(5)->create([
@@ -34,6 +44,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Chat::factory(5)->create([
             'name' => null,
+            'avatar' => null,
             'is_group' => false,
         ]);
 

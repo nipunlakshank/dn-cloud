@@ -18,6 +18,7 @@ class ChatFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'avatar' => fake()->imageUrl(category: 'people', width: 100, height: 100),
             'is_group' => fake()->randomElement([true, false]),
         ];
     }

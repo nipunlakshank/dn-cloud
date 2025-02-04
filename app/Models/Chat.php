@@ -18,6 +18,7 @@ class Chat extends Model
      */
     protected $fillable = [
         'name',
+        'avatar',
         'is_group'
     ];
 
