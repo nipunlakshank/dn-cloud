@@ -1,5 +1,7 @@
 <div
+    tabindex="0"
     wire:click="selectChat"
+    x-on:keyup.enter="$wire.selectChat()"
     class="{{ $selected ? 'bg-gray-400 dark:bg-gray-800' : 'bg-gray-200 dark:bg-gray-700' }} relative cursor-pointer select-none justify-between rounded-lg border-none p-4 pt-6 text-start">
 
     <span class="absolute right-4 top-2 text-xs font-normal text-gray-500 dark:text-gray-400"
