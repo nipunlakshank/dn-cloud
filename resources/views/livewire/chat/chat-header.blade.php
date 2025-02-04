@@ -1,6 +1,6 @@
 <div class="flex space-x-4 py-4">
     <button
-        class="flex items-center rounded-lg border border-transparent bg-gray-100 text-gray-500 md:hidden dark:bg-gray-700 dark:text-gray-300"
+        class="flex items-center rounded-lg border border-transparent bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-300"
         type="button" onclick="deselectChat()">
         <svg class="h-5 w-10" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
