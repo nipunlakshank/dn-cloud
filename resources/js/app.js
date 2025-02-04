@@ -78,7 +78,15 @@ function deselectChat() {
 
 window.addEventListener("keyup", (event) => {
     const chatContent = document.getElementById("chat-content")
+    const chatInput = document.getElementById("message-text")
+
     if (!chatContent) return
+
+    if (event.key === "Enter" && chatInput !== document.activeElement) {
+        chatInput.focus()
+        return
+    }
+
     if (event.key === "Escape") {
         deselectChat()
     }
