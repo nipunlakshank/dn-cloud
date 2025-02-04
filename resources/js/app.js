@@ -17,12 +17,6 @@ function logout() {
         .catch((error) => console.error(error));
 }
 
-function showChatList() {
-    console.log("showChatList");
-    document.getElementById("chat-sidebar").classList.remove("hidden");
-    document.getElementById("chat-content").classList.add("hidden");
-}
-
 function scrollManager(element) {
     const key = element.getAttribute("scroll-key");
 
@@ -78,8 +72,20 @@ if (chatCanvas) {
     chatCanvas.scrollTop = chatCanvas.scrollHeight;
 }
 
+function deselectChat() {
+    Livewire.dispatch("chat.deselect")
+}
+
+window.addEventListener("keyup", (event) => {
+    const chatContent = document.getElementById("chat-content")
+    if (!chatContent) return
+    if (event.key === "Escape") {
+        deselectChat()
+    }
+})
+
 // Expose functions
 window.toggleTheme = toggleTheme;
 window.logout = logout;
-window.showChatList = showChatList;
+window.deselectChat = deselectChat;
 window.scrollManager = scrollManager;

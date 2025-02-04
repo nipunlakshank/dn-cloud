@@ -2,13 +2,13 @@
     <!-- Sidebar -->
     <div id="chat-sidebar"
         class="hidden w-full space-y-4 overflow-y-auto pb-4 text-white transition-transform md:block md:w-1/3">
-        @livewire('chat.chat-list')
+        @livewire('chat.chat-list', key('chat-list-' . auth()->id()))
     </div>
 
     <!-- Chat Content Area -->
-    <div id="chat-content" class="flex w-full" wire:key="chat-content-{{ auth()->id() }}">
+    <div class="flex w-full" wire:key="chat-container-{{ auth()->id() }}">
         @if ($chat)
-            <div class="flex w-full flex-col">
+            <div id="chat-content" class="flex w-full flex-col">
                 <!-- Top Bar with Status -->
                 <div class="w-full border-none bg-gray-200 px-4 dark:bg-gray-800">
                     @livewire('chat.chat-header', ['chat' => $chat], key('chat-header-' . $chat->id))
@@ -23,7 +23,8 @@
                 </div>
             </div>
         @else
-            <div class="flex h-full w-full items-center justify-center text-lg">
+            <div class="flex h-full w-full items-center justify-center text-lg"
+                wire:key="chat-not-selected-{{ auth()->id() }}">
                 <span class="text-gray-500 dark:text-gray-400">Select a chat to start messaging</span>
             </div>
         @endif

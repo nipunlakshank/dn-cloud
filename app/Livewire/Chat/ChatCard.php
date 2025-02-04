@@ -2,29 +2,49 @@
 
 namespace App\Livewire\Chat;
 
+use App\Models\Chat;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ChatCard extends Component
 {
-    public $chat;
+    public Chat $chat;
     public $lastMessage;
     public $timeElapsed;
     public $unreadCount;
     public $chatName;
     public $chatAvatar;
-    public $selected = false;
+    public $selected;
+
+    #[On('chatChanging')]
+    public function chatChanging(Chat $chat)
+    {
+        if ($chat->id !== $this->chat->id) {
+            $this->selected = false;
+        }
+    }
+
+    #[On('chat.deselect')]
+    public function deselectChat()
+    {
+        $this->selected = false;
+    }
 
     public function selectChat()
     {
+        if ($this->selected) {
+            return;
+        }
         $this->selected = true;
+        $this->dispatch('chatChanging', $this->chat);
         $this->dispatch('chatSelected', $this->chat);
     }
 
-    public function mount($chat)
+    public function mount(Chat $chat)
     {
         $this->chat = $chat;
+        $this->selected = false;
         $this->lastMessage = $chat->lastMessage;
         $this->timeElapsed = $this->calculateTimeElapsed($this->lastMessage->created_at);
         $this->unreadCount = $chat->unreadCount ?? 24;
@@ -51,7 +71,8 @@ class ChatCard extends Component
 
     public function refreshLastMessage()
     {
-        $this->lastMessage = $this->chat->lastMessage()->get();
+        $this->lastMessage = $this->chat->lastMessage()->first();
+        $this->timeElapsed = $this->calculateTimeElapsed();
     }
 
     public function calculateTimeElapsed($timestamp = null)

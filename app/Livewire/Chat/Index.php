@@ -26,6 +26,7 @@ class Index extends Component
         $this->chat = $chat;
     }
 
+    #[On('chat.deselect')]
     public function deselectChat()
     {
         $this->chat = null;
