@@ -13,6 +13,7 @@ class ChatMessages extends Component
 
     public Chat $chat;
     public int $page = 1;
+    protected $listeners = ['message.sent' => '$refresh'];
 
     public function mount(Chat $chat)
     {

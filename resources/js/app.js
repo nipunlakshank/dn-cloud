@@ -84,6 +84,23 @@ window.addEventListener("keyup", (event) => {
     }
 })
 
+window.addEventListener("message.sent", event => {
+    const intervalId = setInterval(() => {
+        const chatContent = document.getElementById("chat-messages");
+        const messageId = JSON.parse(event.detail).id;
+        const message = document.getElementById(`message-${messageId}`);
+        if (!chatContent) {
+            clearInterval(intervalId);
+            return;
+        }
+
+        if (message) {
+            message.scrollIntoView({ behavior: "smooth" });
+            clearInterval(intervalId);
+        }
+    }, 50);
+});
+
 // Expose functions
 window.toggleTheme = toggleTheme;
 window.logout = logout;

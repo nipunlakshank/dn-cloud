@@ -1,17 +1,15 @@
 <div
-    wire:key="chat-last-message-{{ $chat->id . '-' . $chat->lastMessage->id }}"
-    wire:poll="refreshLastMessage()"
     wire:click="selectChat"
     class="{{ $selected ? 'bg-gray-400 dark:bg-gray-800' : 'bg-gray-200 dark:bg-gray-700' }} relative cursor-pointer select-none justify-between rounded-lg border-none p-4 pt-6 text-start">
 
     <span class="absolute right-4 top-2 text-xs font-normal text-gray-500 dark:text-gray-400"
-        disabled="false">
+        x-init="() => setInterval(() => $wire.refreshLastMessage(), 1000 * 5)">
         {{ $timeElapsed }}
     </span>
+
     <div class="relative flex items-center gap-2">
-        <img class="h-10 w-10 rounded-full"
-            src="{{ $chatAvatar }}"
-            alt="Jese image">
+        <img class="h-10 w-10 rounded-full" src="{{ $chatAvatar }}" alt="Chat Avatar">
+
         <div class="grid w-full grid-cols-1">
             <span class="truncate text-sm font-semibold text-gray-900 dark:text-gray-100">
                 {{ $chatName . ' (' . $chat->users->count() . ')' }}

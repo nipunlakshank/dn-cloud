@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Chat;
 
-use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -12,20 +11,13 @@ use Livewire\Component;
 class ChatList extends Component
 {
     public ?Collection $chats;
-    public ?Chat $selectedChat;
 
     public function mount()
     {
         $this->loadChats();
-        $this->selectedChat = null;
     }
 
-    #[On('chatSelected')]
-    public function selectChat(Chat $chat)
-    {
-        $this->selectedChat = $chat;
-    }
-
+    #[On('message.sent')]
     public function refreshChats()
     {
         $this->loadChats();

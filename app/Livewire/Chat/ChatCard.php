@@ -3,6 +3,7 @@
 namespace App\Livewire\Chat;
 
 use App\Models\Chat;
+use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -68,6 +69,18 @@ class ChatCard extends Component
     {
         return view('livewire.chat.chat-card');
     }
+
+    #[On('message.sent')]
+    public function newMessageCheck(mixed $message)
+    {
+        $message = Json::decode($message, false);
+        if ($message->chat_id !== $this->chat->id) {
+            return;
+        }
+        $this->refreshLastMessage();
+        $this->unreadCount = $this->chat->unreadCount;
+    }
+
 
     public function refreshLastMessage()
     {

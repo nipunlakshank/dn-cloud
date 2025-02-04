@@ -1,4 +1,5 @@
-<div class="flex items-start gap-2.5" dir="{{ $user->id === auth()->id() ? 'rtl' : 'ltr' }}">
+<div id="message-{{ $message->id }}" class="group flex items-start gap-2.5"
+    dir="{{ $user->id === auth()->id() ? 'rtl' : 'ltr' }}">
 
     <img class="h-8 w-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="Jese image">
 
@@ -16,11 +17,12 @@
             <p dir="ltr" class="text-sm font-normal text-gray-900 dark:text-white">
                 {{ $message->text ?? 'Message' }}</p>
         </div>
-        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $status ?? 'Delivered' }}</span>
+        <span
+            class="invisible text-sm font-normal text-gray-500 group-hover:visible dark:text-gray-400">{{ $status ?? 'Delivered' }}</span>
     </div>
 
     <button id="dropdownMenuIconButton" data-dropdown-toggle="dropdownDots" data-dropdown-placement="bottom-start"
-        class="inline-flex items-center self-center rounded-lg bg-white p-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-50 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800 dark:focus:ring-gray-600"
+        class="hidden items-center self-center rounded-lg bg-white p-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-50 group-hover:inline-flex dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800 dark:focus:ring-gray-600"
         type="button">
         <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
             fill="currentColor" viewBox="0 0 4 15">
