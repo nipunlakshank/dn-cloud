@@ -20,7 +20,7 @@ class ChatMessages extends Component
         $this->chat = $chat;
     }
 
-    #[On('chatSelected')]
+    #[On('chat.select')]
     public function loadMessages(Chat $chat)
     {
         $this->chat = $chat;

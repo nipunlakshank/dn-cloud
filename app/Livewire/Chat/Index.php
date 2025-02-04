@@ -20,7 +20,7 @@ class Index extends Component
         return view('livewire.chat.index');
     }
 
-    #[On('chatSelected')]
+    #[On('chat.select')]
     public function selectChat(Chat $chat)
     {
         $this->chat = $chat;

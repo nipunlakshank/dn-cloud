@@ -18,7 +18,7 @@ class ChatHeader extends Component
         $this->setChatDetails($chat);
     }
 
-    #[On('chatSelected')]
+    #[On('chat.select')]
     public function setChatDetails(Chat $chat)
     {
         $this->chat = $chat;
