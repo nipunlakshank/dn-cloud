@@ -18,6 +18,7 @@
             <x-chat.attachment-menu></x-chat.attachment-menu>
 
             <textarea id="message-text"
+                rows="1"
                 wire:model="text"
                 x-init="() => { $el.focus(); }"
                 x-on:keydown.enter="if (event.shiftKey) return; event.preventDefault(); $wire.sendMessage()"
