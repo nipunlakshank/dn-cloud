@@ -4,7 +4,6 @@ namespace App\Livewire\Chat;
 
 use App\Models\Chat;
 use App\Models\Message;
-use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -36,7 +35,7 @@ class ChatInput extends Component
             'text' => $this->text,
         ]);
 
-        $this->dispatch('message.sent', Json::encode($message));
+        $this->dispatch('message.sent', $message);
         $this->text = '';
     }
 }

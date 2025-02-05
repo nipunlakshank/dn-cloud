@@ -3,7 +3,7 @@
 namespace App\Livewire\Chat;
 
 use App\Models\Chat;
-use Illuminate\Database\Eloquent\Casts\Json;
+use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -11,12 +11,12 @@ use Livewire\Component;
 class ChatCard extends Component
 {
     public Chat $chat;
-    public $lastMessage;
-    public $timeElapsed;
-    public $unreadCount;
-    public $chatName;
-    public $chatAvatar;
-    public $selected;
+    public ?Message $lastMessage;
+    public ?string $timeElapsed;
+    public ?int $unreadCount;
+    public ?string $chatName;
+    public ?string $chatAvatar;
+    public bool $selected;
 
     #[On('chat.changing')]
     public function chatChanging(Chat $chat)
@@ -48,7 +48,7 @@ class ChatCard extends Component
         $this->selected = false;
         $this->lastMessage = $chat->lastMessage;
         $this->timeElapsed = $this->calculateTimeElapsed($this->lastMessage->created_at);
-        $this->unreadCount = $chat->unreadCount ?? 24;
+        $this->unreadCount = $chat->unreadCount ?? 0;
 
         if ($chat->is_group) {
             $this->chatName = $chat->name;
@@ -71,9 +71,8 @@ class ChatCard extends Component
     }
 
     #[On('message.sent')]
-    public function newMessageCheck(mixed $message)
+    public function newMessageCheck(Message $message)
     {
-        $message = Json::decode($message, false);
         if ($message->chat_id !== $this->chat->id) {
             return;
         }
@@ -81,10 +80,15 @@ class ChatCard extends Component
         $this->unreadCount = $this->chat->unreadCount;
     }
 
-
     public function refreshLastMessage()
     {
-        $this->lastMessage = $this->chat->lastMessage()->first();
+        if ($this->chat->lastMessage()->first()->id !== $this->lastMessage->id) {
+            $this->lastMessage = $this->chat->lastMessage()->first();
+            if ($this->lastMessage->user_id !== Auth::id()) {
+                $this->unreadCount = ($this->unreadCount ?? 0) + 1;
+                $this->dispatch('message.received', $this->lastMessage);
+            }
+        }
         $this->timeElapsed = $this->calculateTimeElapsed();
     }
 

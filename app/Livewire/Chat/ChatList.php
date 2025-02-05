@@ -23,6 +23,7 @@ class ChatList extends Component
         $this->loadChats();
     }
 
+    #[On('message.received')]
     public function loadChats()
     {
         $this->chats = User::find(Auth::id())

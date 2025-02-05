@@ -6,7 +6,7 @@
     <div class="flex w-fit max-w-[60%] flex-col gap-1 lg:max-w-md">
         <div class="flex items-center space-x-2 rtl:space-x-reverse">
             <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                {{ $user->name() ?? 'Bonnie Green' }}
+                {{ $user->name ?? 'Unknown' }}
             </span>
             <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
                 {{ $message->created_at->format('H:i') ?? '11:46' }}

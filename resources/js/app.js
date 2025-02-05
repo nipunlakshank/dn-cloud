@@ -29,11 +29,12 @@ function scrollManager(element) {
                 this.$el.scrollTop = this.$el.scrollHeight;
             }
         },
-        saveScroll(event) {
+        handleScroll(event) {
             const scrollTop = event.target.scrollTop;
             localStorage.setItem(`${key}-scroll`, scrollTop);
+            loadMoreMessages();
         },
-        removeScroll() {
+        removeScrollKey() {
             localStorage.removeItem(`${key}-scroll`);
         },
     };
@@ -76,6 +77,13 @@ function deselectChat() {
     Livewire.dispatch("chat.deselect")
 }
 
+function loadMoreMessages() {
+    const chatMessages = document.getElementById("chat-messages")
+    if (chatMessages.scrollTop === 0) {
+        Livewire.dispatch("chat.loadMoreMessages")
+    }
+}
+
 window.addEventListener("keyup", (event) => {
     const chatContent = document.getElementById("chat-content")
     const chatInput = document.getElementById("message-text")
@@ -92,11 +100,12 @@ window.addEventListener("keyup", (event) => {
     }
 })
 
-window.addEventListener("message.sent", event => {
+window.addEventListener("message.pushed", event => {
     const intervalId = setInterval(() => {
+        const messageId = event.detail[0];
         const chatContent = document.getElementById("chat-messages");
-        const messageId = JSON.parse(event.detail).id;
         const message = document.getElementById(`message-${messageId}`);
+
         if (!chatContent) {
             clearInterval(intervalId);
             return;
@@ -106,7 +115,7 @@ window.addEventListener("message.sent", event => {
             message.scrollIntoView({ behavior: "smooth" });
             clearInterval(intervalId);
         }
-    }, 50);
+    }, 100);
 
     setTimeout(() => clearInterval(intervalId), 5000);
 });
@@ -116,3 +125,4 @@ window.toggleTheme = toggleTheme;
 window.logout = logout;
 window.deselectChat = deselectChat;
 window.scrollManager = scrollManager;
+window.loadMoreMessages = loadMoreMessages;
