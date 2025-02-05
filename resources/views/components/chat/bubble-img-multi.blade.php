@@ -11,67 +11,19 @@
             <p class="text-sm font-normal text-gray-900 dark:text-white">{{ $text ?? 'Message' }}</p>
             <div class="my-2.5 grid grid-cols-2 gap-4">
                 <div class="group relative">
-                    <div
-                        class="absolute flex h-full w-full items-center justify-center rounded-lg bg-gray-900/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <button data-tooltip-target="download-image-1"
-                            class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30 hover:bg-white/50 focus:outline-none focus:ring-4 focus:ring-gray-50 dark:text-white">
-                            <svg class="h-4 w-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 16 18">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3" />
-                            </svg>
-                        </button>
-                        <div id="download-image-1" role="tooltip"
-                            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-                            Download image
-                            <div class="tooltip-arrow" data-popper-arrow></div>
-                        </div>
-                    </div>
-                    <img src="https://flowbite.com/docs/images/blog/image-1.jpg" class="rounded-lg" />
+
+                    <img src="https://flowbite.com/docs/images/blog/image-1.jpg" class="rounded-lg chat-image-bubble" data-message-id="002" data-modal-target="chat-image-viewer" data-modal-toggle="chat-image-viewer" " />
+                </div>
+                <div class=" group relative">
+
+                    <img src="https://flowbite.com/docs/images/blog/image-2.jpg" class="rounded-lg chat-image-bubble" data-message-id="003" data-modal-target="chat-image-viewer" data-modal-toggle="chat-image-viewer" />
                 </div>
                 <div class="group relative">
-                    <div
-                        class="absolute flex h-full w-full items-center justify-center rounded-lg bg-gray-900/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <button data-tooltip-target="download-image-2"
-                            class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30 hover:bg-white/50 focus:outline-none focus:ring-4 focus:ring-gray-50 dark:text-white">
-                            <svg class="h-4 w-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 16 18">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3" />
-                            </svg>
-                        </button>
-                        <div id="download-image-2" role="tooltip"
-                            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-                            Download image
-                            <div class="tooltip-arrow" data-popper-arrow></div>
-                        </div>
-                    </div>
-                    <img src="https://flowbite.com/docs/images/blog/image-2.jpg" class="rounded-lg" />
+
+                    <img src="https://flowbite.com/docs/images/blog/image-3.jpg" class="rounded-lg chat-image-bubble" data-message-id="004" data-modal-target="chat-image-viewer" data-modal-toggle="chat-image-viewer" />
                 </div>
                 <div class="group relative">
-                    <div
-                        class="absolute flex h-full w-full items-center justify-center rounded-lg bg-gray-900/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <button data-tooltip-target="download-image-3"
-                            class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30 hover:bg-white/50 focus:outline-none focus:ring-4 focus:ring-gray-50 dark:text-white">
-                            <svg class="h-4 w-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 16 18">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3" />
-                            </svg>
-                        </button>
-                        <div id="download-image-3" role="tooltip"
-                            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-                            Download image
-                            <div class="tooltip-arrow" data-popper-arrow></div>
-                        </div>
-                    </div>
-                    <img src="https://flowbite.com/docs/images/blog/image-3.jpg" class="rounded-lg" />
-                </div>
-                <div class="group relative">
-                    <button
+                    <!-- <button
                         class="absolute flex h-full w-full items-center justify-center rounded-lg bg-gray-900/90 transition-all duration-300 hover:bg-gray-900/50">
                         <span class="text-xl font-medium text-white">+7</span>
                         <div id="download-image" role="tooltip"
@@ -79,8 +31,8 @@
                             Download image
                             <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
-                    </button>
-                    <img src="https://flowbite.com/docs/images/blog/image-1.jpg" class="rounded-lg" />
+                    </button> -->
+                    <img src="https://flowbite.com/docs/images/blog/image-1.jpg" class="rounded-lg chat-image-bubble" data-message-id="005" data-modal-target="chat-image-viewer" data-modal-toggle="chat-image-viewer" />
                 </div>
             </div>
             <div class="flex items-center justify-end">
@@ -131,4 +83,3 @@
         </ul>
     </div>
 </div>
-

@@ -19,7 +19,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="w-screen h-screen flex overflow-y-auto bg-gray-100 font-sans antialiased dark:bg-gray-900">
+<body class="flex overflow-y-auto bg-gray-100 font-sans antialiased dark:bg-gray-900">
     <div class="flex w-full flex-col">
         @include('layouts.navigation')
 
@@ -40,4 +40,3 @@
         <!-- Settings Modal for Dashboard & Chat -->
         <x-settings.navigation></x-settings.navigation>
     </div>
-</body>
