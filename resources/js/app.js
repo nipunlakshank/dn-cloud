@@ -50,6 +50,17 @@ document.querySelector("#avatar")
         }
     });
 
+// Chat Image Viewer
+document.querySelectorAll(".chat-image-bubble").forEach((bubble) => {
+    const viewer = document.querySelector("#chat-image-viewer");
+    bubble.addEventListener("click", (event) => {
+        let messageId = event.target.getAttribute("data-message-id");
+        viewer.querySelector("#message-image").srcset = event.target.src;
+        console.log("Id : ", messageId);
+    });
+});
+
+
 // Dashboard Drawer Toggle : Small Screen
 document.querySelector("#drawer-toggle-button")
     ?.addEventListener("click", () => {
@@ -79,6 +90,7 @@ function deselectChat() {
 
 function loadMoreMessages() {
     const chatMessages = document.getElementById("chat-messages")
+    if (!chatMessages) return
     if (chatMessages.scrollTop === 0) {
         Livewire.dispatch("chat.loadMoreMessages")
     }

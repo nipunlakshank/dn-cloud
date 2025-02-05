@@ -13,9 +13,9 @@
 
         <!-- Additional chat list items -->
         @foreach (range(2, 14) as $i)
-        <x-chat.list-item>
-            <x-slot:lastMessage>Message {{ $i }} Lorem ipsum dolor sit amet.</x-slot:lastMessage>
-        </x-chat.list-item>
+            <x-chat.list-item>
+                <x-slot:lastMessage>Message {{ $i }} Lorem ipsum dolor sit amet.</x-slot:lastMessage>
+            </x-chat.list-item>
         @endforeach
     </x-chat.list>
 
@@ -28,7 +28,7 @@
 
         <!-- Chat Content Scrollable Area -->
         <div id="chat-canvas-area" key="some-unique-key" class="flex-1 overflow-y-scroll p-4"
-            x-data="scrollManager($el)" x-init="initScroll()" x-on:scroll="saveScroll($event)">
+            x-data="scrollManager($el)" x-init="initScroll()" x-on:scroll="handleScroll($event)">
             <x-chat.canvas>
                 <!-- Chat messages go here -->
                 <x-chat.bubble>
@@ -44,9 +44,9 @@
 
                 <!-- Additional chat bubbles -->
                 @foreach (range(2, 8) as $i)
-                <x-chat.bubble dir="{{ $i % 2 == 0 ? 'rtl' : 'ltr' }}">
-                    <x-slot:text>Message {{ $i }}</x-slot:text>
-                </x-chat.bubble>
+                    <x-chat.bubble dir="{{ $i % 2 == 0 ? 'rtl' : 'ltr' }}">
+                        <x-slot:text>Message {{ $i }}</x-slot:text>
+                    </x-chat.bubble>
                 @endforeach
 
                 <!-- Image and file bubbles -->
@@ -66,3 +66,4 @@
 
     </div>
 </x-chat-layout>
+

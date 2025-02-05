@@ -19,7 +19,7 @@
         <div id="chat-canvas" key="some-unique-key"
             class="align-center relative h-full w-full flex-col justify-end space-y-4 overflow-y-scroll px-4 pb-2 pt-4"
             x-data="scrollManager($el)" x-init="initScroll()"
-            x-on:scroll="saveScroll($event)">
+            x-on:scroll="handleScroll($event)">
             <!-- Chat messages go here -->
             <x-chat.bubble>
                 <x-slot:name>John Doe</x-slot:name>
