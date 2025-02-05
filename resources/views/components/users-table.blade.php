@@ -1,90 +1,37 @@
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+<div class="flex w-full h-full relative shadow-md sm:rounded-lg overflow-x-auto">
+    <table class="w-full h-fit text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-lg">
+        <thead class="z-20 sticky top-0 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-
                 <th scope="col" class="px-6 py-3">
                     Id
                 </th>
                 <th scope="col" class="px-6 py-3">
-                Users
+                    Users
                 </th>
                 <th scope="col" class="px-6 py-3">
                     status
                 </th>
-
-
             </tr>
         </thead>
         <tbody>
+            @foreach ($users as $user)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                 <td class="px-6 py-4">
-                    1
+                    {{ $user->id }}
                 </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Ozo
-                </th>
-                <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">Active
-                                   </td>
-                                            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                <td class="px-6 py-4">
-                    2
-                </td>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Trans 
+                    {{ $user->first_name." ".$user->last_name }}
                 </th>
                 <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                Active</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                <td class="px-6 py-4">
-                    3
+                    <form action="{{ route('user-status',['id'=>$user->id,"status"=>$user->is_active]) }}" method="GET">
+                        @csrf
+                        <button type="submit" class="w-full {{ $user->is_active ? "bg-green-500" : "bg-red-500" }}  px-3 py-2 rounded-md hover:brightness-100 active:brightness-80 brightness-90">
+                            {{ $user->is_active ? "Active" : "Inactive" }}
+                        </button>
+                    </form>
                 </td>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Darino 
-                </th>
-                 <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                   Active</td>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                <td class="px-6 py-4">
-                    4
-                </td>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    possiden
-                </th>
-                <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                   Active</td>
-
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                <td class="px-6 py-4">
-                    5
-                </td>
-
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Aster 
-                </th>
-                <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                   active</td>
-            </tr>
-
-            <tr class="bg-white  border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                <td class="px-6 py-4">
-                    6
-                </td>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Nirvana
-                </th>
-                <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                   Deactive</td>
-                    </tbody>
+            @endforeach
+        </tbody>
     </table>
 </div>

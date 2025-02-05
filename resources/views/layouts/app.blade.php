@@ -39,6 +39,4 @@
 
         <!-- Settings Modal for Dashboard & Chat -->
         <x-settings.navigation></x-settings.navigation>
-
     </div>
-</body>

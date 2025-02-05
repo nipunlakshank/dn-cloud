@@ -9,7 +9,6 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Ramsey\Uuid\Type\Integer;
 
 class DatabaseSeeder extends Seeder
 {
@@ -44,13 +43,25 @@ class DatabaseSeeder extends Seeder
         $chats->each(function ($chat) use ($users) {
             if ($chat->is_group) {
                 $chat->users()->attach($users->random()->id, ['is_admin' => true]);
-                ChatUser::factory(5)->create([
-                    'chat_id' => $chat->id,
-                    'user_id' => $users->random()->id,
-                ]);
+                for ($i = 0; $i < 5; $i++) {
+                    $userId = $users->random()->id;
+
+                    while ($chat->users()->where('user_id', $userId)->exists()) {
+                        $userId = $users->random()->id;
+                    }
+
+                    ChatUser::factory()->create([
+                        'chat_id' => $chat->id,
+                        'user_id' => $userId,
+                    ]);
+                }
             } else {
-                $chat->users()->attach($users->random()->id);
-                $chat->users()->attach($users->random()->id);
+                $firstUser = $users->random();
+                $secondUser = $users->random();
+                while ($secondUser->id === $firstUser->id) {
+                    $secondUser = $users->random();
+                }
+                $chat->users()->attach([$firstUser->id, $secondUser->id]);
             }
         });
 

@@ -88,4 +88,3 @@
 <x-settings.add-group></x-settings.add-group>
 <x-settings.new-chat></x-settings.new-chat>
 <x-settings.logout></x-settings.logout>
-<x-chat.chat-image-viewer></x-chat.chat-image-viewer>

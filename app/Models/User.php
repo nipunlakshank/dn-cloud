@@ -66,14 +66,26 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withTimestamps();
     }
 
-    public function activeChats()
-    {
-        return $this->chats()->whereNotNull('chat_user.active_since')
-            ->orderBy('chat_user.active_since');
-    }
-
     public function messages()
     {
         return $this->hasMany(Message::class);
+    }
+
+    public function lastMessage()
+    {
+        return $this->hasOne(Message::class)->latestOfMany(['created_at', 'id']);
+    }
+
+    public function activeChats()
+    {
+        return $this->chats()
+            ->whereNotNull('chat_user.active_since') // Only active chats
+            ->orderByDesc(
+                Message::select('created_at')
+                    ->whereColumn('chat_id', 'chats.id')
+                    ->orderByDesc('created_at')
+                    ->orderByDesc('id')
+                    ->limit(1)
+            );
     }
 }

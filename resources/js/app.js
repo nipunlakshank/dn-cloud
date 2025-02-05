@@ -24,13 +24,15 @@ function showChatList() {
 }
 
 function scrollManager(element) {
-    const key = element.getAttribute("key");
+    const key = element.getAttribute("scroll-key");
 
     return {
         initScroll() {
             const savedPosition = localStorage.getItem(`${key}-scroll`);
             if (savedPosition) {
                 this.$el.scrollTop = parseInt(savedPosition, 10);
+            } else {
+                this.$el.scrollTop = this.$el.scrollHeight;
             }
         },
         saveScroll(event) {
@@ -52,16 +54,18 @@ document.querySelector("#avatar").addEventListener("input", (event) => {
     }
 });
 
-// Chat Image Viewer
-document.querySelectorAll(".chat-image-bubble").forEach((bubble) => {
-    const viewer = document.querySelector("#chat-image-viewer");
-
-    bubble.addEventListener("click", (event) => {
-        let messageId = event.target.getAttribute("data-message-id");
-        viewer.querySelector("#message-image").srcset = event.target.src;
-        console.log("Id : ", messageId);
+// Dashboard Drawer Toggle : Small Screen
+document.querySelector("#drawer-toggle-button")
+    ?.addEventListener("click", () => {
+        const drawer = document.querySelector("#chat-sidebar");
+        if (drawer.classList.contains("max-sm:-translate-x-full")) {
+            drawer.classList.remove("max-sm:-translate-x-full");
+            drawer.classList.add("max-sm:translate-x-0");
+        } else {
+            drawer.classList.remove("max-sm:translate-x-0");
+            drawer.classList.add("max-sm:-translate-x-full");
+        }
     });
-});
 
 // set theme
 let darkMode = localStorage.getItem("theme") === "dark";
@@ -69,7 +73,9 @@ if (darkMode) document.documentElement.classList.add("dark");
 else document.documentElement.classList.remove("dark");
 
 const chatCanvas = document.getElementById("chat-canvas");
-chatCanvas.scrollTop = chatCanvas.scrollHeight;
+if (chatCanvas) {
+    chatCanvas.scrollTop = chatCanvas.scrollHeight;
+}
 
 // Expose functions
 window.toggleTheme = toggleTheme;

@@ -23,12 +23,12 @@ class Chat extends Model
 
     public function messages()
     {
-        return $this->hasMany(Message::class);
+        return $this->hasMany(Message::class)->with('user');
     }
 
-    public function lastMessage(): ?Message
+    public function lastMessage()
     {
-        return $this->hasOne(Message::class)->latest('created_at');
+        return $this->hasOne(Message::class)->orderByDesc('created_at')->orderByDesc('id');
     }
 
     public function users()
@@ -37,6 +37,11 @@ class Chat extends Model
             ->using(ChatUser::class)
             ->withPivot('is_admin', 'active_since')
             ->withTimestamps();
+    }
+
+    public function otherUsers(User $user)
+    {
+        return $this->users()->where('user_id', '!=', $user->id);
     }
 
     public function activeUsers()

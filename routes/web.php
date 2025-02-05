@@ -1,21 +1,15 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Chat\CreateChat;
-use App\Livewire\Chat\Main;
+use App\Livewire\Chat\Index as ChatIndex;
 use App\Livewire\Reports\Main as Reports;
 
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-Route::get('/wallets', function () {
-    return view('wallets');
-})->name('wallets');
 
 Route::get('/about-us', function () {
     return view('about-us');
@@ -25,25 +19,24 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/reports', function () {
-    return view('livewire.reports.main');
-})->name('reports');
-
-Route::get('/reports', Reports::class)->middleware(['auth', 'verified'])->name('reports');
-
-// Route::get('/chat', function () {
-//     return view('chat');
-// })->middleware(['auth', 'verified'])->name('chat');
-
-// Livewire routes
-Route::get('/chat/{key}', Main::class)->middleware(['auth', 'verified'])->name('chat');
-Route::get('/chat', Main::class)->middleware(['auth', 'verified'])->name('chat');
-Route::get('/users', CreateChat::class)->middleware(['auth', 'verified'])->name('users');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/wallet/{id}/{status}', [DashboardController::class, 'walletStatusUpdate'])->name('wallet-status');
+    Route::get('/dashboard/user/{id}/{status}', [DashboardController::class, 'userStatusUpdate'])->name('user-status');
+
+    Route::get('/chat/{chat}', ChatIndex::class)->name('chat');
+    Route::get('/chat', ChatIndex::class)->name('chat');
+
+    Route::view('/reports', 'livewire.reports.main')->name('reports');
+
+    Route::get('/users', CreateChat::class)->name('users');
+    Route::get('/reports', Reports::class)->name('reports');
 });
 
 require __DIR__ . '/' . 'auth.php';

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('avatar')->nullable();
             $table->boolean('is_group')->default(false);
             $table->timestamps();
         });
@@ -28,6 +29,13 @@ return new class extends Migration
             $table->timestamp('active_since')->nullable()->useCurrent();
             $table->timestamps();
         });
+
+        Schema::create('wallets', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -37,5 +45,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('chat_members');
         Schema::dropIfExists('chats');
+        Schema::dropIfExists('wallets');
     }
 };
