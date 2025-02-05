@@ -1,7 +1,7 @@
 <x-app-layout>
     <!-- Navbar -->
     <aside id="chat-sidebar"
-        class="z-50 h-full w-1/4 space-y-4 overflow-hidden text-white transition-transform max-sm:absolute max-sm:w-3/4 max-sm:-translate-x-full">
+        class="h-full w-1/4 space-y-4 overflow-hidden text-white transition-transform max-sm:absolute max-sm:w-3/4 max-sm:-translate-x-full">
         <div class="h-full overflow-y-hidden bg-gray-50 px-3 py-4 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
