@@ -1,24 +1,22 @@
 <div id="message-{{ $message->id }}" class="group flex items-start gap-2.5"
     dir="{{ $isOwner ? 'rtl' : 'ltr' }}">
 
-    @if ($inAGroup)
-        <img class="h-8 w-8 rounded-full" src="{{ $avatar }}" alt="Avatar">
+    @if ($inAGroup && !$isOwner)
+        <img class="h-8 w-8 select-none rounded-full" src="{{ $avatar }}" alt="Avatar">
     @endif
 
     <div class="flex w-fit max-w-[60%] flex-col gap-1 lg:max-w-md">
-        @if ($inAGroup)
-            <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                    {{ $user->name ?? 'Unknown' }}
-                </span>
-            </div>
+        @if ($inAGroup && !$isOwner)
+            <span class="text-sm font-semibold text-gray-900 dark:text-white">
+                {{ $user->name ?? 'Unknown' }}
+            </span>
         @endif
         <div
-            class="flex flex-col justify-between gap-1 rounded-e-xl rounded-es-xl border-gray-200 bg-white px-4 py-2 dark:bg-gray-700">
+            class="{{ $isOwner ? 'bg-green-100 dark:bg-teal-900' : 'bg-white dark:bg-gray-700' }} flex flex-col justify-between gap-1 rounded-e-xl rounded-es-xl border-gray-200 px-4 py-2">
             <p dir="ltr" class="text-sm font-normal text-gray-900 dark:text-white">
                 {!! nl2br(e($message->text ?? 'Message')) !!}</p>
 
-            <div class="flex w-full justify-end gap-1" dir="ltr">
+            <div class="flex select-none justify-end gap-1" dir="ltr">
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
                     {{ $message->created_at->format('H:i') ?? '00:00' }}
                 </span>
