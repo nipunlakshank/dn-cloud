@@ -15,7 +15,7 @@
         <div
             class="leading-1.5 flex flex-col rounded-e-xl rounded-es-xl border-gray-200 bg-white p-4 dark:bg-gray-700">
             <p dir="ltr" class="text-sm font-normal text-gray-900 dark:text-white">
-                {{ $message->text ?? 'Message' }}</p>
+                {!! nl2br(e($message->text ?? 'Message')) !!}</p>
         </div>
         <span
             class="invisible text-sm font-normal text-gray-500 group-hover:visible dark:text-gray-400">{{ $status ?? 'Delivered' }}</span>
