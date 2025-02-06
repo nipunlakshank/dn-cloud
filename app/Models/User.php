@@ -77,6 +77,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Message::class);
     }
 
+    public function messageInformations()
+    {
+        return $this->belongsToMany(Message::class)
+            ->using(MessageInformation::class)
+            ->withPivot('status', 'is_deleted')
+            ->withTimestamps();
+    }
+
     public function lastMessage()
     {
         return $this->hasOne(Message::class)->latestOfMany(['created_at', 'id']);

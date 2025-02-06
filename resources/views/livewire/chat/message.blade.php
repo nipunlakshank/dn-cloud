@@ -18,7 +18,7 @@
                 {!! nl2br(e($message->text ?? 'Message')) !!}</p>
         </div>
         <span
-            class="invisible text-sm font-normal text-gray-500 group-hover:visible dark:text-gray-400">{{ $status ?? 'Delivered' }}</span>
+            class="invisible text-sm font-normal text-gray-500 group-hover:visible dark:text-gray-400">{{ $status ?? 'sent' }}</span>
     </div>
 
     <button id="dropdownMenuIconButton" data-dropdown-toggle="dropdownDots" data-dropdown-placement="bottom-start"
@@ -34,19 +34,24 @@
     <div id="dropdownDots"
         class="z-10 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow dark:divide-gray-600 dark:bg-gray-700">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
-            <li> <a href="#"
+            <li>
+                <a href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reply</a>
             </li>
-            <li> <a href="#"
+            <li>
+                <a href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Forward</a>
             </li>
-            <li> <a href="#"
+            <li>
+                <a href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Copy</a>
             </li>
-            <li> <a href="#"
+            <li>
+                <a href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
             </li>
-            <li> <a href="#"
+            <li>
+                <a href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
             </li>
         </ul>
