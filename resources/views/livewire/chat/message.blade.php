@@ -1,24 +1,33 @@
 <div id="message-{{ $message->id }}" class="group flex items-start gap-2.5"
-    dir="{{ $user->id === auth()->id() ? 'rtl' : 'ltr' }}">
+    dir="{{ $isOwner ? 'rtl' : 'ltr' }}">
 
-    <img class="h-8 w-8 rounded-full" src="{{ $avatar }}" alt="Avatar">
+    @if ($inAGroup)
+        <img class="h-8 w-8 rounded-full" src="{{ $avatar }}" alt="Avatar">
+    @endif
 
     <div class="flex w-fit max-w-[60%] flex-col gap-1 lg:max-w-md">
-        <div class="flex items-center space-x-2 rtl:space-x-reverse">
-            <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                {{ $user->name ?? 'Unknown' }}
-            </span>
-            <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                {{ $message->created_at->format('H:i') ?? '11:46' }}
-            </span>
-        </div>
+        @if ($inAGroup)
+            <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                <span class="text-sm font-semibold text-gray-900 dark:text-white">
+                    {{ $user->name ?? 'Unknown' }}
+                </span>
+            </div>
+        @endif
         <div
-            class="leading-1.5 flex flex-col rounded-e-xl rounded-es-xl border-gray-200 bg-white p-4 dark:bg-gray-700">
+            class="flex flex-col justify-between gap-1 rounded-e-xl rounded-es-xl border-gray-200 bg-white px-4 py-2 dark:bg-gray-700">
             <p dir="ltr" class="text-sm font-normal text-gray-900 dark:text-white">
                 {!! nl2br(e($message->text ?? 'Message')) !!}</p>
+
+            <div class="flex w-full justify-end gap-1" dir="ltr">
+                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                    {{ $message->created_at->format('H:i') ?? '00:00' }}
+                </span>
+                @if ($isOwner)
+                    <span
+                        class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $status ?? 'sent' }}</span>
+                @endif
+            </div>
         </div>
-        <span
-            class="invisible text-sm font-normal text-gray-500 group-hover:visible dark:text-gray-400">{{ $status ?? 'sent' }}</span>
     </div>
 
     <button id="dropdownMenuIconButton" data-dropdown-toggle="dropdownDots" data-dropdown-placement="bottom-start"
