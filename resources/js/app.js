@@ -56,7 +56,6 @@ document.querySelectorAll(".chat-image-bubble").forEach((bubble) => {
     bubble.addEventListener("click", (event) => {
         let messageId = event.target.getAttribute("data-message-id");
         viewer.querySelector("#message-image").srcset = event.target.src;
-        console.log("Id : ", messageId);
     });
 });
 
@@ -88,12 +87,27 @@ function deselectChat() {
     Livewire.dispatch("chat.deselect")
 }
 
+// to prevent multiple loading of more messages
+let loadingMoreMessages = false
+
 function loadMoreMessages() {
+    if (loadingMoreMessages) return
     const chatMessages = document.getElementById("chat-messages")
     if (!chatMessages) return
     if (chatMessages.scrollTop === 0) {
+        loadingMoreMessages = true
+        Livewire.dispatch("chat.scrollUpdate", { scrollHeight: chatMessages.scrollHeight })
         Livewire.dispatch("chat.loadMoreMessages")
     }
+}
+
+function updateChatScroll(data, el) {
+    setTimeout(() => {
+        const topMessage = document.getElementById(`message-${data.topMessageId}`)
+        if (!topMessage) return
+        el.scrollTop = el.scrollHeight - data.scrollHeight
+        loadingMoreMessages = false
+    }, 0)
 }
 
 window.addEventListener("keyup", (event) => {
@@ -131,6 +145,11 @@ window.addEventListener("message.pushed", event => {
 
     setTimeout(() => clearInterval(intervalId), 5000);
 });
+
+window.addEventListener("chat.moreMessagesLoaded", event => {
+    const chatMassages = document.getElementById("chat-messages")
+    updateChatScroll(event.detail[0], chatMassages)
+})
 
 // Expose functions
 window.toggleTheme = toggleTheme;

@@ -17,6 +17,7 @@ class ChatMessages extends Component
     public int $moreMessagesLimit = 20;
     public bool $allMessagesLoaded = false;
     public Message $latestMessage;
+    public int $scrollHeight = -1;
 
 
     public function mount(Chat $chat)
@@ -52,6 +53,16 @@ class ChatMessages extends Component
             $this->messages = $moreMessages;
         }
         $this->page++;
+
+        if ($this->scrollHeight !== -1) {
+            $this->dispatch('chat.moreMessagesLoaded', ['scrollHeight' => $this->scrollHeight, 'topMessageId' => $this->messages->first()->id]);
+        }
+    }
+
+    #[On('chat.scrollUpdate')]
+    public function updateScroll($scrollHeight)
+    {
+        $this->scrollHeight = $scrollHeight;
     }
 
     #[On('chat.select')]
