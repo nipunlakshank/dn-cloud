@@ -20,7 +20,7 @@
             <textarea id="message-text"
                 rows="1"
                 wire:model="text"
-                x-init="() => { $el.focus(); }"
+                x-init="() => { if (!('ontouchstart' in window)) $el.focus() }"
                 x-on:keydown.enter="if (event.shiftKey) return; event.preventDefault(); $wire.sendMessage()"
                 x-on:keyup.escape="event => { event.stopPropagation(); $el.blur(); }"
                 style="field-sizing: content;"
