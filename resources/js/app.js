@@ -22,7 +22,7 @@ function scrollManager(element) {
 
     return {
         initScroll() {
-            const savedPosition = localStorage.getItem(`${key}-scroll`);
+            const savedPosition = sessionStorage.getItem(`${key}-scroll`);
             if (savedPosition) {
                 this.$el.scrollTop = parseInt(savedPosition, 10);
             } else {
@@ -31,11 +31,11 @@ function scrollManager(element) {
         },
         handleScroll(event) {
             const scrollTop = event.target.scrollTop;
-            localStorage.setItem(`${key}-scroll`, scrollTop);
+            sessionStorage.setItem(`${key}-scroll`, scrollTop);
             loadMoreMessages();
         },
         removeScrollKey() {
-            localStorage.removeItem(`${key}-scroll`);
+            sessionStorage.removeItem(`${key}-scroll`);
         },
     };
 }
