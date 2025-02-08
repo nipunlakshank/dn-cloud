@@ -88,3 +88,4 @@
 <x-settings.add-group></x-settings.add-group>
 <x-settings.new-chat></x-settings.new-chat>
 <x-settings.logout></x-settings.logout>
+<x-chat.attachment-modal></x-chat.attachment-modal>

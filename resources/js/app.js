@@ -41,14 +41,13 @@ function scrollManager(element) {
 }
 
 // Profile Image Preview Update Listener
-document.querySelector("#avatar")
-    ?.addEventListener("input", (event) => {
-        const new_avatar = event.target.files[0];
-        if (new_avatar) {
-            document.querySelector("#avatar_preview").src =
-                URL.createObjectURL(new_avatar);
-        }
-    });
+document.querySelector("#avatar")?.addEventListener("input", (event) => {
+    const new_avatar = event.target.files[0];
+    if (new_avatar) {
+        document.querySelector("#avatar_preview").src =
+            URL.createObjectURL(new_avatar);
+    }
+});
 
 // Chat Image Viewer
 document.querySelectorAll(".chat-image-bubble").forEach((bubble) => {
@@ -60,9 +59,9 @@ document.querySelectorAll(".chat-image-bubble").forEach((bubble) => {
     });
 });
 
-
 // Dashboard Drawer Toggle : Small Screen
-document.querySelector("#drawer-toggle-button")
+document
+    .querySelector("#drawer-toggle-button")
     ?.addEventListener("click", () => {
         const drawer = document.querySelector("#chat-sidebar");
         if (drawer.classList.contains("max-sm:-translate-x-full")) {
@@ -85,34 +84,34 @@ if (chatCanvas) {
 }
 
 function deselectChat() {
-    Livewire.dispatch("chat.deselect")
+    Livewire.dispatch("chat.deselect");
 }
 
 function loadMoreMessages() {
-    const chatMessages = document.getElementById("chat-messages")
-    if (!chatMessages) return
+    const chatMessages = document.getElementById("chat-messages");
+    if (!chatMessages) return;
     if (chatMessages.scrollTop === 0) {
-        Livewire.dispatch("chat.loadMoreMessages")
+        Livewire.dispatch("chat.loadMoreMessages");
     }
 }
 
 window.addEventListener("keyup", (event) => {
-    const chatContent = document.getElementById("chat-content")
-    const chatInput = document.getElementById("message-text")
+    const chatContent = document.getElementById("chat-content");
+    const chatInput = document.getElementById("message-text");
 
-    if (!chatContent) return
+    if (!chatContent) return;
 
     if (event.key === "Enter" && chatInput !== document.activeElement) {
-        chatInput.focus()
-        return
+        chatInput.focus();
+        return;
     }
 
     if (event.key === "Escape") {
-        deselectChat()
+        deselectChat();
     }
-})
+});
 
-window.addEventListener("message.pushed", event => {
+window.addEventListener("message.pushed", (event) => {
     const intervalId = setInterval(() => {
         const messageId = event.detail[0];
         const chatContent = document.getElementById("chat-messages");
