@@ -9,10 +9,14 @@ function toggleTheme(darkMode) {
     localStorage.setItem("theme", darkMode ? "dark" : "light");
     document.documentElement.classList.toggle("dark");
 }
+// set theme
+let darkMode = localStorage.getItem("theme") === "dark";
+if (darkMode) document.documentElement.classList.add("dark");
+else document.documentElement.classList.remove("dark");
+
 
 function logout() {
-    axios
-        .post(`/logout`)
+    axios.post(`/logout`)
         .then(() => (window.location.href = "/"))
         .catch((error) => console.error(error));
 }
@@ -54,7 +58,7 @@ document.querySelector("#avatar")
 document.querySelectorAll(".chat-image-bubble").forEach((bubble) => {
     const viewer = document.querySelector("#chat-image-viewer");
     bubble.addEventListener("click", (event) => {
-        let messageId = event.target.getAttribute("data-message-id");
+        // let messageId = event.target.getAttribute("data-message-id");
         viewer.querySelector("#message-image").srcset = event.target.src;
     });
 });
@@ -72,11 +76,6 @@ document.querySelector("#drawer-toggle-button")
             drawer.classList.add("max-sm:-translate-x-full");
         }
     });
-
-// set theme
-let darkMode = localStorage.getItem("theme") === "dark";
-if (darkMode) document.documentElement.classList.add("dark");
-else document.documentElement.classList.remove("dark");
 
 const chatCanvas = document.getElementById("chat-canvas");
 if (chatCanvas) {
