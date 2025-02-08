@@ -68,8 +68,9 @@
 
     @script
         <script type="text/javascript">
+            let isOwner = @js($isOwner);
             $options = {
-                placement: "right-end",
+                placement: isOwner ? 'left-end' : 'right-end',
                 triggerType: "click",
                 offsetSkidding: 0,
                 offsetDistance: 10,
