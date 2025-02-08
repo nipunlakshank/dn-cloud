@@ -24,7 +24,7 @@
                 x-on:keydown.enter="if (event.shiftKey) return; event.preventDefault(); $wire.sendMessage()"
                 x-on:keyup.escape="event => { event.stopPropagation(); $el.blur(); }"
                 style="field-sizing:content;"
-                class="mx-4 box-content block max-h-[15ch] min-h-[2ch] w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                class="mx-4 box-content block max-h-[15ch] min-h-[2ch] w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-gray-900 focus:border-none focus:ring-blue-700 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
                 placeholder="Your message...">
             </textarea>
             <button type="submit"
@@ -67,4 +67,3 @@
         </script>
     @endscript
 </div>
-
