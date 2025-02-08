@@ -1,24 +1,31 @@
 <div id="message-{{ $message->id }}" class="group flex items-start gap-2.5"
-    dir="{{ $user->id === auth()->id() ? 'rtl' : 'ltr' }}">
+    dir="{{ $isOwner ? 'rtl' : 'ltr' }}">
 
-    <img class="h-8 w-8 rounded-full" src="{{ $avatar }}" alt="Avatar">
+    @if ($inAGroup && !$isOwner)
+        <img class="h-8 w-8 select-none rounded-full" src="{{ $avatar }}" alt="Avatar">
+    @endif
 
     <div class="flex w-fit max-w-[60%] flex-col gap-1 lg:max-w-md">
-        <div class="flex items-center space-x-2 rtl:space-x-reverse">
+        @if ($inAGroup && !$isOwner)
             <span class="text-sm font-semibold text-gray-900 dark:text-white">
                 {{ $user->name ?? 'Unknown' }}
             </span>
-            <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                {{ $message->created_at->format('H:i') ?? '11:46' }}
-            </span>
-        </div>
+        @endif
         <div
-            class="leading-1.5 flex flex-col rounded-e-xl rounded-es-xl border-gray-200 bg-white p-4 dark:bg-gray-700">
+            class="{{ $isOwner ? 'bg-green-100 dark:bg-teal-900' : 'bg-white dark:bg-gray-700' }} flex flex-col justify-between gap-1 rounded-e-xl rounded-es-xl border-gray-200 px-4 py-2">
             <p dir="ltr" class="text-sm font-normal text-gray-900 dark:text-white">
                 {!! nl2br(e($message->text ?? 'Message')) !!}</p>
+
+            <div class="flex select-none justify-end gap-1" dir="ltr">
+                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                    {{ $message->created_at->format('H:i') ?? '00:00' }}
+                </span>
+                @if ($isOwner)
+                    <span
+                        class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $status ?? 'sent' }}</span>
+                @endif
+            </div>
         </div>
-        <span
-            class="invisible text-sm font-normal text-gray-500 group-hover:visible dark:text-gray-400">{{ $status ?? 'Delivered' }}</span>
     </div>
 
     <button id="dropdownMenuIconButton-{{ $message->id }}" data-dropdown-toggle="dropdownDots-{{ $message->id }}" data-dropdown-placement="bottom-start"
@@ -34,19 +41,24 @@
     <div id="dropdownDots-{{ $message->id }}"
         class="z-10 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow dark:divide-gray-600 dark:bg-gray-700">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
-            <li> <a href="#"
+            <li>
+                <a href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reply</a>
             </li>
-            <li> <a href="#"
+            <li>
+                <a href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Forward</a>
             </li>
-            <li> <a href="#"
+            <li>
+                <a href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Copy</a>
             </li>
-            <li> <a href="#"
+            <li>
+                <a href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
             </li>
-            <li> <a href="#"
+            <li>
+                <a href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
             </li>
         </ul>

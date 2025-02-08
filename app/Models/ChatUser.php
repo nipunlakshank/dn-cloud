@@ -27,6 +27,6 @@ class ChatUser extends Pivot
     public function clear()
     {
         $this->active_since = null;
-        $this->save();
+        $this->update();
     }
 }

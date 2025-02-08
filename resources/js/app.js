@@ -9,10 +9,14 @@ function toggleTheme(darkMode) {
     localStorage.setItem("theme", darkMode ? "dark" : "light");
     document.documentElement.classList.toggle("dark");
 }
+// set theme
+let darkMode = localStorage.getItem("theme") === "dark";
+if (darkMode) document.documentElement.classList.add("dark");
+else document.documentElement.classList.remove("dark");
+
 
 function logout() {
-    axios
-        .post(`/logout`)
+    axios.post(`/logout`)
         .then(() => (window.location.href = "/"))
         .catch((error) => console.error(error));
 }
@@ -22,7 +26,7 @@ function scrollManager(element) {
 
     return {
         initScroll() {
-            const savedPosition = localStorage.getItem(`${key}-scroll`);
+            const savedPosition = sessionStorage.getItem(`${key}-scroll`);
             if (savedPosition) {
                 this.$el.scrollTop = parseInt(savedPosition, 10);
             } else {
@@ -31,11 +35,11 @@ function scrollManager(element) {
         },
         handleScroll(event) {
             const scrollTop = event.target.scrollTop;
-            localStorage.setItem(`${key}-scroll`, scrollTop);
+            sessionStorage.setItem(`${key}-scroll`, scrollTop);
             loadMoreMessages();
         },
         removeScrollKey() {
-            localStorage.removeItem(`${key}-scroll`);
+            sessionStorage.removeItem(`${key}-scroll`);
         },
     };
 }
@@ -53,9 +57,8 @@ document.querySelector("#avatar")?.addEventListener("input", (event) => {
 document.querySelectorAll(".chat-image-bubble").forEach((bubble) => {
     const viewer = document.querySelector("#chat-image-viewer");
     bubble.addEventListener("click", (event) => {
-        let messageId = event.target.getAttribute("data-message-id");
+        // let messageId = event.target.getAttribute("data-message-id");
         viewer.querySelector("#message-image").srcset = event.target.src;
-        console.log("Id : ", messageId);
     });
 });
 
@@ -73,11 +76,6 @@ document
         }
     });
 
-// set theme
-let darkMode = localStorage.getItem("theme") === "dark";
-if (darkMode) document.documentElement.classList.add("dark");
-else document.documentElement.classList.remove("dark");
-
 const chatCanvas = document.getElementById("chat-canvas");
 if (chatCanvas) {
     chatCanvas.scrollTop = chatCanvas.scrollHeight;
@@ -87,12 +85,27 @@ function deselectChat() {
     Livewire.dispatch("chat.deselect");
 }
 
+// to prevent multiple loading of more messages
+let loadingMoreMessages = false
+
 function loadMoreMessages() {
-    const chatMessages = document.getElementById("chat-messages");
-    if (!chatMessages) return;
+    if (loadingMoreMessages) return
+    const chatMessages = document.getElementById("chat-messages")
+    if (!chatMessages) return
     if (chatMessages.scrollTop === 0) {
-        Livewire.dispatch("chat.loadMoreMessages");
+        loadingMoreMessages = true
+        Livewire.dispatch("chat.scrollUpdate", { scrollHeight: chatMessages.scrollHeight })
+        Livewire.dispatch("chat.loadMoreMessages")
     }
+}
+
+function updateChatScroll(data, el) {
+    setTimeout(() => {
+        const topMessage = document.getElementById(`message-${data.topMessageId}`)
+        if (!topMessage) return
+        el.scrollTop = el.scrollHeight - data.scrollHeight
+        loadingMoreMessages = false
+    }, 0)
 }
 
 window.addEventListener("keyup", (event) => {
@@ -130,6 +143,11 @@ window.addEventListener("message.pushed", (event) => {
 
     setTimeout(() => clearInterval(intervalId), 5000);
 });
+
+window.addEventListener("chat.moreMessagesLoaded", event => {
+    const chatMassages = document.getElementById("chat-messages")
+    updateChatScroll(event.detail[0], chatMassages)
+})
 
 // Expose functions
 window.toggleTheme = toggleTheme;

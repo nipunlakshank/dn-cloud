@@ -40,11 +40,12 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('message_status', function (Blueprint $table) {
+        Schema::create('message_informations', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(Message::class)->constrained()->onDelete('cascade');
-            $table->enum('status', ['sent', 'delivered', 'read']);
+            $table->enum('status', ['sent', 'delivered', 'read'])->default('sent');
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
     }
@@ -54,7 +55,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('message_status');
+        Schema::dropIfExists('message_informations');
         Schema::dropIfExists('message_reactions');
         Schema::dropIfExists('message_attachments');
         Schema::dropIfExists('messages');
