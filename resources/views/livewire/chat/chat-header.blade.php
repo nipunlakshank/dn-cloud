@@ -1,4 +1,4 @@
-<div class="flex gap-4 py-4">
+<div class="flex gap-4 py-4" wire:transition.origin.left>
     <button
         class="flex items-center rounded-lg border border-transparent bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-300"
         type="button" onclick="deselectChat()">
