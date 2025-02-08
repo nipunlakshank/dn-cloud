@@ -28,7 +28,8 @@
         </div>
     </div>
 
-    <button id="dropdownMenuIconButton-{{ $message->id }}" data-dropdown-toggle="dropdownDots-{{ $message->id }}" data-dropdown-placement="bottom-start"
+    <button id="messageOptionsButton-{{ $message->id }}" data-dropdown-toggle="messageOptions-{{ $message->id }}"
+        data-dropdown-placement="bottom-start"
         class="hidden items-center self-center rounded-lg bg-white p-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-50 group-hover:inline-flex dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800 dark:focus:ring-gray-600"
         type="button">
         <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -38,9 +39,10 @@
         </svg>
     </button>
 
-    <div id="dropdownDots-{{ $message->id }}"
+    <div id="messageOptions-{{ $message->id }}" dir="ltr"
         class="z-10 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow dark:divide-gray-600 dark:bg-gray-700">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
+        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="messageOptionsButton-{{ $message->id }}">
             <li>
                 <a href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reply</a>
@@ -65,29 +67,30 @@
     </div>
 
     @script
-    <script>
-        $optionsDdM = {
-            placement: "bottom-start",
-            triggerType: "click",
-            offsetSkidding: 0,
-            offsetDistance: 10,
-            ignoreClickOutsideClass: false,
-        };
+        <script type="text/javascript">
+            let isOwner = @js($isOwner);
+            $options = {
+                placement: isOwner ? 'left-end' : 'right-end',
+                triggerType: "click",
+                offsetSkidding: 0,
+                offsetDistance: 10,
+                ignoreClickOutsideClass: false,
+            };
 
-        $instanceOptionsDdM = {
-            id: "dropdownDots-{{ $message->id }}",
-            override: true,
-        };
+            $instanceOptions = {
+                id: "messageOptions-{{ $message->id }}",
+                override: true,
+            };
 
-        $targetDdM = document.getElementById("dropdownDots-{{ $message->id }}");
-        $triggerDdBtn = document.getElementById("dropdownMenuIconButton-{{ $message->id }}");
+            $target = document.getElementById("messageOptions-{{ $message->id }}");
+            $trigger = document.getElementById("messageOptionsButton-{{ $message->id }}");
 
-        new Dropdown(
-            $targetDdM,
-            $triggerDdBtn,
-            $optionsDdM,
-            $instanceOptionsDdM
-        );
-    </script>
+            new Dropdown(
+                $target,
+                $trigger,
+                $options,
+                $instanceOptions
+            );
+        </script>
     @endscript
 </div>

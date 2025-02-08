@@ -8,7 +8,10 @@
     <!-- Chat Content Area -->
     <div id="chat-container" class="{{ $chat ? 'flex' : 'hidden' }} w-full sm:flex">
         @if ($chat)
-            <div id="chat-content" class="flex w-full flex-col" wire:key="chat-content-{{ auth()->id() }}">
+            <div id="chat-content"
+                class="flex w-full flex-col"
+                wire:transition.origin.left
+                wire:key="chat-content-{{ auth()->id() }}">
                 <!-- Top Bar with Status -->
                 <div class="w-full border-none bg-gray-200 px-4 dark:bg-gray-800">
                     @livewire('chat.chat-header', ['chat' => $chat], key('chat-header-' . $chat->id))
@@ -24,6 +27,7 @@
             </div>
         @else
             <div class="flex h-full w-full items-center justify-center text-lg"
+                wire:transition
                 wire:key="chat-not-selected-{{ auth()->id() }}">
                 <span class="text-gray-500 dark:text-gray-400">{{ __('Select a chat to start messaging') }}</span>
             </div>
