@@ -23,15 +23,15 @@ class ChatHeader extends Component
     {
         $this->chat = $chat;
         if ($this->chat->is_group) {
-            $this->chatName = $this->chat->name;
+            $this->chatName = $this->chat->group->name;
         } else {
-            $this->chatName = $this->chat->otherUsers(Auth::user())->first()->name();
+            $this->chatName = $this->chat->otherUsers(Auth::id())->first()->name();
         }
 
         if ($this->chat->is_group) {
-            $this->chatAvatar = $this->chat->avatar;
+            $this->chatAvatar = $this->chat->group->avatar;
         } else {
-            $this->chatAvatar = $this->chat->otherUsers(Auth::user())->first()->avatar;
+            $this->chatAvatar = $this->chat->otherUsers(Auth::id())->first()->avatar;
         }
 
         $this->chatAvatar = $this->chatAvatar ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->chatName) . '&background=random';

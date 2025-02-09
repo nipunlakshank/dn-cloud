@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('avatar')->nullable();
             $table->boolean('is_group')->default(false);
             $table->timestamps();
         });
@@ -25,15 +23,16 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Chat::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
-            $table->boolean('is_admin')->default(false);
+            $table->enum('role', ['owner', 'admin', 'member'])->default('member');
             $table->timestamp('active_since')->nullable()->useCurrent();
             $table->timestamps();
         });
 
-        Schema::create('wallets', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->boolean('is_active')->default(true);
+            $table->string('name')->nullable();
+            $table->string('avatar')->nullable();
+            $table->foreignIdFor(Chat::class)->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -43,8 +42,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('groups');
         Schema::dropIfExists('chat_members');
         Schema::dropIfExists('chats');
-        Schema::dropIfExists('wallets');
     }
 };

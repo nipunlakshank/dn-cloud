@@ -10,7 +10,6 @@
         @if ($chat)
             <div id="chat-content"
                 class="flex w-full flex-col"
-                wire:transition.origin.left
                 wire:key="chat-content-{{ auth()->id() }}">
                 <!-- Top Bar with Status -->
                 <div class="w-full border-none bg-gray-200 px-4 dark:bg-gray-800">

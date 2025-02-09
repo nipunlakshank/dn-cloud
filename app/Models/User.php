@@ -68,7 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Chat::class)
             ->using(ChatUser::class)
-            ->withPivot('is_admin', 'active_since')
+            ->withPivot('role', 'active_since')
             ->withTimestamps();
     }
 
@@ -77,11 +77,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Message::class);
     }
 
-    public function messageInformations()
+    public function messageStatus()
     {
         return $this->belongsToMany(Message::class)
-            ->using(MessageInformation::class)
-            ->withPivot('status', 'is_deleted')
+            ->withPivot('sent_at', 'delivered_at', 'read_at', 'deleted_at')
             ->withTimestamps();
     }
 

@@ -23,7 +23,7 @@ function logout() {
 }
 
 function scrollManager(element) {
-    const key = element.getAttribute("scroll-key");
+    const key = element.getAttribute("data-scroll-key");
 
     return {
         initScroll() {

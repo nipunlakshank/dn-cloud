@@ -7,6 +7,7 @@ use App\Models\ChatUser;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -43,8 +44,6 @@ class DatabaseSeeder extends Seeder
             'is_group' => true,
         ]);
         Chat::factory(5)->create([
-            'name' => null,
-            'avatar' => null,
             'is_group' => false,
         ]);
 
@@ -53,7 +52,7 @@ class DatabaseSeeder extends Seeder
 
         $chats->each(function ($chat) use ($users) {
             if ($chat->is_group) {
-                $chat->users()->attach($users->random()->id, ['is_admin' => true]);
+                $chat->users()->attach($users->random()->id, ['role' => 'owner']);
                 for ($i = 0; $i < 5; $i++) {
                     $userId = $users->random()->id;
 
@@ -77,15 +76,31 @@ class DatabaseSeeder extends Seeder
         });
 
         $chats->each(function ($chat) {
+            $messages = Collection::empty();
+
             for ($i = 0; $i < 100; $i++) {
-                Message::factory()->create([
+                $user = $chat->users()->inRandomOrder()->first();
+
+                $message = Message::factory()->create([
                     'chat_id' => $chat->id,
-                    'user_id' => $chat->users()->inRandomOrder()->first()->id,
+                    'user_id' => $user->id,
                     'replied_to' => $i % 2 === 0 ? null : Message::query()
                         ->where('chat_id', $chat->id)
                         ->inRandomOrder()->first()->id,
                 ]);
+
+                $messages->push($message);
             }
+
+            $messages->each(function ($message) {
+                $receivers = $message->receivers;
+                $receivers->each(function ($receiver) use ($message) {
+                    $message->status()->where('user_id', $receiver->id)->update([
+                        'delivered_at' => now(),
+                        'read_at' => now(),
+                    ]);
+                });
+            });
         });
     }
 }

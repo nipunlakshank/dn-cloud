@@ -20,7 +20,7 @@ class ChatUser extends Pivot
     protected $fillable = [
         'chat_id',
         'user_id',
-        'is_admin',
+        'role',
         'active_since',
     ];
 

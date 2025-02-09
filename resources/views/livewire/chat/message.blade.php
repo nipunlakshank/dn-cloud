@@ -12,17 +12,33 @@
             </span>
         @endif
         <div
-            class="{{ $isOwner ? 'bg-green-100 dark:bg-teal-900' : 'bg-white dark:bg-gray-700' }} flex flex-col justify-between gap-1 rounded-e-xl rounded-es-xl border-gray-200 px-4 py-2 transition-colors">
+            class="{{ $isOwner ? 'bg-green-200 dark:bg-teal-900' : 'bg-white dark:bg-gray-700' }} flex flex-col justify-between gap-1 rounded-e-xl rounded-es-xl border-gray-200 px-4 py-2 transition-colors">
             <p dir="ltr" class="text-sm font-normal text-gray-900 dark:text-white">
                 {!! nl2br(e($message->text ?? 'Message')) !!}</p>
 
-            <div class="flex select-none justify-end gap-1" dir="ltr">
+            <div class="flex select-none items-end justify-end gap-1" dir="ltr">
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                    {{ $message->created_at->format('H:i') ?? '00:00' }}
+                    {{ $message->created_at->format('h:i a') ?? '00:00' }}
                 </span>
                 @if ($isOwner)
-                    <span
-                        class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $status ?? 'sent' }}</span>
+                    <div
+                        class="{{ $state === 'read' ? 'text-blue-500' : 'text-gray-400' }} relative h-[18px] w-[24px]">
+                        <!-- First Check (Always visible) -->
+                        <svg class="absolute left-0 top-0 h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12L9 16L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+
+                        @if ($state === 'delivered' || $state === 'read')
+                            <!-- Second Check (Only visible when delivered or read) -->
+                            <svg class="{{ $state === 'read' ? 'text-blue-500' : 'text-gray-400' }} absolute left-[0.33rem] top-0 h-[18px] w-[18px]"
+                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12L9 16L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        @endif
+                    </div>
                 @endif
             </div>
         </div>

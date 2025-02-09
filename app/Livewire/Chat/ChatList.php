@@ -29,6 +29,7 @@ class ChatList extends Component
         $this->chats = User::find(Auth::id())
             ->activeChats()
             ->with('lastMessage')
+            ->with('group')
             ->get();
     }
 

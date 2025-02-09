@@ -36,16 +36,20 @@ class Message extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function receivers()
+    {
+        return $this->chat->users()->where('user_id', '!=', Auth::id());
+    }
+
     public function replies()
     {
         return $this->hasMany(Message::class, 'replied_to');
     }
 
-    public function info()
+    public function status()
     {
-        return $this->belongsToMany(User::class)
-            ->using(MessageInformation::class)
-            ->withPivot('status', 'is_deleted')
+        return $this->belongsToMany(User::class, 'message_status')
+            ->withPivot('sent_at', 'delivered_at', 'read_at', 'deleted_at')
             ->withTimestamps();
     }
 
@@ -56,7 +60,7 @@ class Message extends Model
 
     public function deleteForMe()
     {
-        $this->info()->where('user_id', Auth::id())->update(['is_deleted' => true]);
+        $this->info()->where('user_id', Auth::id())->update(['deleted_at' => now()]);
     }
 
     public function canDeleteForAll(): bool
@@ -70,6 +74,6 @@ class Message extends Model
         if (!$this->canDeleteForAll()) {
             return;
         }
-        $this->info()->update(['is_deleted' => true]);
+        $this->update(['is_deleted' => true]);
     }
 }

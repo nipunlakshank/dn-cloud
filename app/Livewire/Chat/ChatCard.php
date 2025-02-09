@@ -51,15 +51,15 @@ class ChatCard extends Component
         $this->unreadCount = $chat->unreadCount ?? 0;
 
         if ($chat->is_group) {
-            $this->chatName = $chat->name;
+            $this->chatName = $chat->group->name;
         } else {
-            $this->chatName = $chat->otherUsers(Auth::user())->first()->name();
+            $this->chatName = $chat->otherUsers(Auth::id())->first()->name();
         }
 
         if ($chat->is_group) {
-            $this->chatAvatar = $chat->avatar;
+            $this->chatAvatar = $chat->group->avatar;
         } else {
-            $this->chatAvatar = $chat->otherUsers(Auth::user())->first()->avatar;
+            $this->chatAvatar = $chat->otherUsers(Auth::id())->first()->avatar;
         }
 
         $this->chatAvatar = $this->chatAvatar ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->chatName) . '&background=random';
