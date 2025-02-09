@@ -44,7 +44,7 @@ class Chat extends Model
             ->withTimestamps();
     }
 
-    public function otherUsers(int $userId = null)
+    public function otherUsers(?int $userId)
     {
         return $this->users()->where('user_id', '!=', $userId ?? Auth::id());
     }

@@ -1,8 +1,8 @@
 <div id="new-chat-modal" tabindex="-1" aria-hidden="true"
-    class="fixed inset-0 z-50 hidden items-center justify-center overflow-x-hidden">
-    <div class="relative max-h-[90vh] w-full max-w-md p-4">
+    class="fixed inset-0 z-50 flex hidden items-center justify-center overflow-x-hidden">
+    <div class="relative h-[70vh] w-full max-w-md p-4">
         <!-- Modal content -->
-        <div class="relative flex flex-col rounded-lg bg-white shadow dark:bg-gray-700">
+        <div class="relative flex h-full flex-col rounded-lg bg-white shadow dark:bg-gray-700">
             <!-- Modal header -->
             <div
                 class="flex items-center justify-between rounded-t border-b bg-white p-4 md:p-5 dark:border-gray-600 dark:bg-gray-700">
@@ -22,7 +22,18 @@
             </div>
 
             <!-- Modal body -->
-            <div class="flex max-h-[70vh] flex-col p-4 md:p-5" x-data="{ search: '' }">
+            <div class="flex h-full flex-col p-4 md:p-5"
+                x-data="{
+                    search: '',
+                    users: @entangle('users'),
+                    get filteredUsers() {
+                        return this.users.filter(user =>
+                            user.name.toLowerCase().includes(this.search.toLowerCase()) ||
+                            user.email.toLowerCase().includes(this.search.toLowerCase())
+                        );
+                    }
+                }">
+
                 <!-- Search bar -->
                 <div class="mb-5">
                     <input type="text" x-model="search"
@@ -31,27 +42,30 @@
                 </div>
 
                 <!-- User list -->
-                <ul class="max-h-[50vh] max-w-md divide-y divide-gray-200 overflow-y-auto dark:divide-gray-700">
-                    @foreach ($users as $user)
-                        <li class="pb-3 sm:pb-4"
-                            x-show="{{ str_contains(strtolower($user->name), strtolower('search')) }}">
-                            <div class="flex items-center space-x-4 rtl:space-x-reverse">
+                <ul class="max-h-[50vh] flex-1 divide-y divide-gray-200 overflow-y-auto dark:divide-gray-700">
+                    <template x-for="user in filteredUsers" :key="user.id">
+                        <li class="pb-1 sm:pb-2">
+                            <div tabindex=0
+                                class="flex cursor-pointer items-center space-x-4 rounded p-2 rtl:space-x-reverse hover:dark:bg-gray-800">
                                 <div class="flex-shrink-0">
                                     <img class="h-8 w-8 rounded-full"
-                                        src="{{ $user->avatar }}"
-                                        alt="{{ $user->name }} Avatar">
+                                        :src="user.avatar"
+                                        :alt="user.name + ' Avatar'">
                                 </div>
                                 <div class="min-w-0 flex-1">
-                                    <p class="truncate text-sm font-medium text-gray-900 dark:text-white">
-                                        {{ $user->name }}
-                                    </p>
-                                    <p class="truncate text-sm text-gray-500 dark:text-gray-400">
-                                        {{ $user->email }}
+                                    <p class="truncate text-sm font-medium text-gray-900 dark:text-white"
+                                        x-text="user.name"></p>
+                                    <p class="truncate text-sm text-gray-500 dark:text-gray-400" x-text="user.email">
                                     </p>
                                 </div>
                             </div>
                         </li>
-                    @endforeach
+                    </template>
+
+                    <!-- Show message if no users match -->
+                    <li class="p-4 text-center text-gray-500 dark:text-gray-400" x-show="filteredUsers.length === 0">
+                        No users found.
+                    </li>
                 </ul>
             </div>
         </div>

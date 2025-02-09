@@ -3,17 +3,16 @@
 namespace App\Livewire\Modals;
 
 use App\Models\User;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class NewChat extends Component
 {
-    public Collection $users;
+    public array $users;
 
     public function mount()
     {
-        $this->users = User::query()->where('id', '!=', Auth::id())->withFullName()->get();
+        $this->users = User::where('id', '!=', Auth::id())->withFullName()->get()->toArray();
     }
 
     public function render()
