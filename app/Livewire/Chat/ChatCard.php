@@ -18,13 +18,6 @@ class ChatCard extends Component
     public ?string $chatAvatar;
     public bool $selected;
 
-    #[On('chat.changing')]
-    public function chatChanging(Chat $chat)
-    {
-        if ($chat->id !== $this->chat->id) {
-            $this->selected = false;
-        }
-    }
 
     #[On('chat.deselect')]
     public function deselectChat()
@@ -37,9 +30,13 @@ class ChatCard extends Component
         if ($this->selected) {
             return;
         }
-        $this->selected = true;
-        $this->dispatch('chat.changing', $this->chat);
         $this->dispatch('chat.select', $this->chat);
+    }
+
+    #[On('chat.select')]
+    public function updatedSelected(Chat $chat)
+    {
+        $this->selected = $chat->id === $this->chat->id;
     }
 
     public function mount(Chat $chat)

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Modals;
 
+use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -9,6 +10,21 @@ use Livewire\Component;
 class NewChat extends Component
 {
     public array $users;
+
+    public function startChat(int $userId)
+    {
+        $chat = Chat::query()
+            ->where('is_group', false)
+            ->whereHas('users', function ($query) {
+                $query->where('user_id', Auth::id());
+            })->whereHas('users', function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })->first();
+
+        $chat = $chat ?? Chat::create(['is_group' => false]);
+        $chat->users()->sync([$userId, Auth::id()]);
+        $this->dispatch('chat.select', $chat);
+    }
 
     public function mount()
     {

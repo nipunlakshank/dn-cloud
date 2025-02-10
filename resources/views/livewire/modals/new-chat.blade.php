@@ -42,11 +42,13 @@
                 </div>
 
                 <!-- User list -->
-                <ul class="max-h-[50vh] flex-1 divide-y divide-gray-200 overflow-y-auto dark:divide-gray-700">
+                <ul class="max-h-[50vh] flex-1 divide-y divide-gray-200 overflow-y-auto dark:divide-gray-600">
                     <template x-for="user in filteredUsers" :key="user.id">
                         <li class="pb-1 sm:pb-2">
                             <div tabindex=0
-                                class="flex cursor-pointer items-center space-x-4 rounded p-2 rtl:space-x-reverse hover:dark:bg-gray-800">
+                                data-modal-toggle="new-chat-modal"
+                                x-on:click="$wire.startChat(user.id)"
+                                class="flex cursor-pointer items-center space-x-4 rounded p-2 focus-within:outline-none rtl:space-x-reverse hover:dark:bg-gray-800 focus-visible:dark:bg-gray-800">
                                 <div class="flex-shrink-0">
                                     <img class="h-8 w-8 rounded-full"
                                         :src="user.avatar"

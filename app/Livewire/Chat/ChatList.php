@@ -31,6 +31,10 @@ class ChatList extends Component
             ->with('lastMessage')
             ->with('group')
             ->get();
+
+        $this->chats = $this->chats->filter(function ($chat) {
+            return $chat->lastMessage !== null;
+        });
     }
 
     public function render()
