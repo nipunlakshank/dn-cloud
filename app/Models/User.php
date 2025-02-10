@@ -68,7 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         return $this->avatar
             ? asset("storage/{$this->avatar}")
-            : 'https://ui-avatars.com/api/?name=' . urlencode($this->name());
+            : 'https://ui-avatars.com/api/?name=' . urlencode($this->name()) . '&background=random';
     }
 
     public function scopeWithFullName(Builder $query): void
