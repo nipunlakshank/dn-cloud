@@ -3,7 +3,6 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
-use App\Livewire\Chat\CreateChat;
 use App\Livewire\Chat\Index as ChatIndex;
 use App\Livewire\Reports\Main as Reports;
 
@@ -35,7 +34,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::view('/reports', 'livewire.reports.main')->name('reports');
 
-    Route::get('/users', CreateChat::class)->name('users');
     Route::get('/reports', Reports::class)->name('reports');
 });
 
