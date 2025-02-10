@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -57,6 +59,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function name(): string
     {
         return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function avatarUrl(): string
+    {
+        if ($this->avatar && Str::startsWith($this->avatar, ['http://', 'https://'])) {
+            return $this->avatar;
+        }
+        return $this->avatar
+            ? asset("storage/{$this->avatar}")
+            : 'https://ui-avatars.com/api/?name=' . urlencode($this->name());
     }
 
     public function scopeWithFullName(Builder $query): void

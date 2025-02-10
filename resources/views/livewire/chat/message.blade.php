@@ -1,4 +1,4 @@
-<div id="message-{{ $message->id }}" class="group flex items-start gap-2.5"
+<div id="message-{{ $message->id }}" class="group flex items-center gap-2.5"
     dir="{{ $isOwner ? 'rtl' : 'ltr' }}">
 
     @if ($inAGroup && !$isOwner)
