@@ -51,7 +51,7 @@
                                 class="flex cursor-pointer items-center space-x-4 rounded p-2 focus-within:outline-none rtl:space-x-reverse hover:dark:bg-gray-800 focus-visible:dark:bg-gray-800">
                                 <div class="flex-shrink-0">
                                     <img class="h-8 w-8 rounded-full"
-                                        :src="user.avatar"
+                                        :src="user.avatar_url"
                                         :alt="user.name + ' Avatar'">
                                 </div>
                                 <div class="min-w-0 flex-1">

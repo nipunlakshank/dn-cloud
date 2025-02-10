@@ -33,6 +33,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'active_since',
     ];
 
+    protected $appends = ['avatar_url'];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -61,13 +63,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return "{$this->first_name} {$this->last_name}";
     }
 
-    public function avatarUrl(): string
+    public function getAvatarUrlAttribute(): string
     {
         if ($this->avatar && Str::startsWith($this->avatar, ['http://', 'https://'])) {
             return $this->avatar;
         }
         return $this->avatar
-            ? asset("storage/{$this->avatar}")
+            ? url("storage/{$this->avatar}")
             : 'https://ui-avatars.com/api/?name=' . urlencode($this->name()) . '&background=random';
     }
 

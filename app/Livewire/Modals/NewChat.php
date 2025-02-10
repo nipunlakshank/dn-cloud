@@ -10,7 +10,6 @@ use Livewire\Component;
 class NewChat extends Component
 {
     public array $users;
-    public string $avatar;
 
     public function startChat(int $userId)
     {
@@ -30,11 +29,7 @@ class NewChat extends Component
 
     public function mount()
     {
-        $users = User::where('id', '!=', Auth::id())->withFullName()->get()->collect();
-        $users->each(function (User $user) {
-            $user->avatar = $user->avatarUrl();
-        });
-        $this->users = $users->toArray();
+        $this->users = User::where('id', '!=', Auth::id())->withFullName()->get()->toArray();
     }
 
     public function render()
