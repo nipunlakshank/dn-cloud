@@ -2,7 +2,7 @@
     <!-- Sidebar -->
     <div id="chat-sidebar" wire:key="chat-sidebar-{{ auth()->id() }}"
         class="{{ $chat ? 'hidden' : 'block' }} w-full gap-4 overflow-y-auto pb-4 text-white transition-transform sm:block sm:w-[45%] md:w-1/2 lg:w-2/5">
-        @livewire('chat.chat-list')
+        @livewire('chat.chat-sidebar')
     </div>
 
     <!-- Chat Content Area -->
