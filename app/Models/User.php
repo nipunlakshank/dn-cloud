@@ -106,7 +106,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function activeChats()
     {
         return $this->chats()
-            ->whereNotNull('chat_user.active_since') // Only active chats
+            ->where('chat_user.active_since', '<', now()) // Only chats that are active
             ->orderByDesc(
                 Message::select('created_at')
                     ->whereColumn('chat_id', 'chats.id')

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreignIdFor(Chat::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->enum('role', ['owner', 'admin', 'member'])->default('member');
-            $table->timestamp('active_since')->nullable()->useCurrent();
+            $table->timestamp('active_since')->useCurrent();
             $table->timestamps();
         });
 

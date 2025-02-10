@@ -23,10 +23,4 @@ class ChatUser extends Pivot
         'role',
         'active_since',
     ];
-
-    public function clear()
-    {
-        $this->active_since = null;
-        $this->update();
-    }
 }

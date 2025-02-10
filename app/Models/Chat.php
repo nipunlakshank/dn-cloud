@@ -53,4 +53,11 @@ class Chat extends Model
     {
         return $this->users()->whereNotNull('chat_user.active_since');
     }
+
+    public function clear()
+    {
+        $this->users()->updateExistingPivot(Auth::id(), [
+            'active_since' => now(),
+        ]);
+    }
 }
