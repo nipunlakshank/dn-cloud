@@ -2,14 +2,14 @@
     dir="{{ $isOwner ? 'rtl' : 'ltr' }}">
 
     @if ($inAGroup && !$isOwner)
-        <img class="h-8 w-8 select-none rounded-full" src="{{ $avatar }}" alt="Avatar">
+    <img class="h-8 w-8 select-none rounded-full" src="{{ $avatar }}" alt="Avatar">
     @endif
 
     <div class="flex w-fit max-w-[60%] flex-col gap-1 lg:max-w-md">
         @if ($inAGroup && !$isOwner)
-            <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                {{ $user->name ?? 'Unknown' }}
-            </span>
+        <span class="text-sm font-semibold text-gray-900 dark:text-white">
+            {{ $user->name ?? 'Unknown' }}
+        </span>
         @endif
         <div
             class="{{ $isOwner ? 'bg-green-100 dark:bg-teal-900' : 'bg-white dark:bg-gray-700' }} flex flex-col justify-between gap-1 rounded-e-xl rounded-es-xl border-gray-200 px-4 py-2">
@@ -21,8 +21,8 @@
                     {{ $message->created_at->format('H:i') ?? '00:00' }}
                 </span>
                 @if ($isOwner)
-                    <span
-                        class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $status ?? 'sent' }}</span>
+                <span
+                    class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $status ?? 'sent' }}</span>
                 @endif
             </div>
         </div>
@@ -38,7 +38,7 @@
         </svg>
     </button>
 
-    <div id="dropdownDots"
+    <div id="dropdownDots-{{ $message->id }}" dir="ltr"
         class="z-10 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow dark:divide-gray-600 dark:bg-gray-700">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
             <li>
