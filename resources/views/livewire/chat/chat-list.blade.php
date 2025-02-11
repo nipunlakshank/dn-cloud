@@ -19,7 +19,7 @@
                 </svg>
             </button>
             <button
-                data-modal-toggle="add-group-modal"
+                data-modal-toggle="create-group-modal"
                 class="flex w-[80%] items-center justify-center gap-1 rounded-lg bg-blue-400 px-1 py-2 text-gray-100 dark:bg-blue-700 dark:text-gray-100">
                 <span>Create a group</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
