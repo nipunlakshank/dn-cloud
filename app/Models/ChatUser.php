@@ -20,13 +20,7 @@ class ChatUser extends Pivot
     protected $fillable = [
         'chat_id',
         'user_id',
-        'is_admin',
+        'role',
         'active_since',
     ];
-
-    public function clear()
-    {
-        $this->active_since = null;
-        $this->update();
-    }
 }

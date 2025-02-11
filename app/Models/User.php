@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -30,6 +30,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'avatar',
         'active_since',
     ];
+
+    protected $appends = ['avatar_url'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -59,6 +61,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return "{$this->first_name} {$this->last_name}";
     }
 
+    public function getAvatarUrlAttribute(): string
+    {
+        if ($this->avatar && Str::startsWith($this->avatar, ['http://', 'https://'])) {
+            return $this->avatar;
+        }
+        return $this->avatar
+            ? url("storage/{$this->avatar}")
+            : 'https://ui-avatars.com/api/?name=' . urlencode($this->name()) . '&background=random';
+    }
+
     public function scopeWithFullName(Builder $query): void
     {
         $query->selectRaw("*, CONCAT(first_name, ' ', last_name) AS name");
@@ -68,7 +80,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Chat::class)
             ->using(ChatUser::class)
-            ->withPivot('is_admin', 'active_since')
+            ->withPivot('role', 'active_since')
             ->withTimestamps();
     }
 
@@ -77,11 +89,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Message::class);
     }
 
-    public function messageInformations()
+    public function messageStatus()
     {
         return $this->belongsToMany(Message::class)
-            ->using(MessageInformation::class)
-            ->withPivot('status', 'is_deleted')
+            ->withPivot('sent_at', 'delivered_at', 'read_at', 'deleted_at')
             ->withTimestamps();
     }
 
@@ -93,7 +104,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function activeChats()
     {
         return $this->chats()
-            ->whereNotNull('chat_user.active_since') // Only active chats
+            ->where('chat_user.active_since', '<', now()) // Only chats that are active
             ->orderByDesc(
                 Message::select('created_at')
                     ->whereColumn('chat_id', 'chats.id')

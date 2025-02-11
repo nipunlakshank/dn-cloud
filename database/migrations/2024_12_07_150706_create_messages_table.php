@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      */
@@ -40,12 +39,14 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('message_informations', function (Blueprint $table) {
+        Schema::create('message_status', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(Message::class)->constrained()->onDelete('cascade');
-            $table->enum('status', ['sent', 'delivered', 'read'])->default('sent');
-            $table->boolean('is_deleted')->default(false);
+            $table->timestamp('sent_at')->nullable();
+            $table->timestamp('delivered_at')->nullable();
+            $table->timestamp('read_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }
@@ -55,7 +56,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('message_informations');
+        Schema::dropIfExists('message_status');
         Schema::dropIfExists('message_reactions');
         Schema::dropIfExists('message_attachments');
         Schema::dropIfExists('messages');

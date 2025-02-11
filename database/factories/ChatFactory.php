@@ -16,11 +16,7 @@ class ChatFactory extends Factory
      */
     public function definition(): array
     {
-        $name = fake()->name();
-
         return [
-            'name' => $name,
-            'avatar' => fake()->randomElement(['https://picsum.photos/seed/avatar' . fake()->randomNumber() . '/200', null]),
             'is_group' => fake()->randomElement([true, false]),
         ];
     }

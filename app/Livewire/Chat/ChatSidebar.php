@@ -4,10 +4,10 @@ namespace App\Livewire\Chat;
 
 use Livewire\Component;
 
-class CreateChat extends Component
+class ChatSidebar extends Component
 {
     public function render()
     {
-        return view('livewire.chat.create-chat');
+        return view('livewire.chat.chat-sidebar');
     }
 }

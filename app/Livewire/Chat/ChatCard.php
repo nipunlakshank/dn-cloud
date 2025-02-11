@@ -18,13 +18,6 @@ class ChatCard extends Component
     public ?string $chatAvatar;
     public bool $selected;
 
-    #[On('chat.changing')]
-    public function chatChanging(Chat $chat)
-    {
-        if ($chat->id !== $this->chat->id) {
-            $this->selected = false;
-        }
-    }
 
     #[On('chat.deselect')]
     public function deselectChat()
@@ -37,9 +30,13 @@ class ChatCard extends Component
         if ($this->selected) {
             return;
         }
-        $this->selected = true;
-        $this->dispatch('chat.changing', $this->chat);
         $this->dispatch('chat.select', $this->chat);
+    }
+
+    #[On('chat.select')]
+    public function updatedSelected(Chat $chat)
+    {
+        $this->selected = $chat->id === $this->chat->id;
     }
 
     public function mount(Chat $chat)
@@ -51,15 +48,15 @@ class ChatCard extends Component
         $this->unreadCount = $chat->unreadCount ?? 0;
 
         if ($chat->is_group) {
-            $this->chatName = $chat->name;
+            $this->chatName = $chat->group->name;
         } else {
-            $this->chatName = $chat->otherUsers(Auth::user())->first()->name();
+            $this->chatName = $chat->otherUsers(Auth::id())->first()->name();
         }
 
         if ($chat->is_group) {
-            $this->chatAvatar = $chat->avatar;
+            $this->chatAvatar = $chat->group->avatar;
         } else {
-            $this->chatAvatar = $chat->otherUsers(Auth::user())->first()->avatar;
+            $this->chatAvatar = $chat->otherUsers(Auth::id())->first()->avatar;
         }
 
         $this->chatAvatar = $this->chatAvatar ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->chatName) . '&background=random';

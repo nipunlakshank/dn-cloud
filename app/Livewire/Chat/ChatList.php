@@ -29,7 +29,12 @@ class ChatList extends Component
         $this->chats = User::find(Auth::id())
             ->activeChats()
             ->with('lastMessage')
+            ->with('group')
             ->get();
+
+        $this->chats = $this->chats->filter(function ($chat) {
+            return $chat->lastMessage !== null;
+        });
     }
 
     public function render()

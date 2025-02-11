@@ -39,6 +39,7 @@ class ChatMessages extends Component
         $moreMessages = $this->chat->messages()
             ->orderBy('created_at', 'asc')
             ->orderBy('id', 'asc')
+            ->with('status')
             ->skip($skip)
             ->take($this->moreMessagesLimit)
             ->get();

@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ChatUser>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Group>
  */
-class ChatUserFactory extends Factory
+class GroupFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,8 @@ class ChatUserFactory extends Factory
     public function definition(): array
     {
         return [
-            'role' => $this->faker->randomElement(['admin', 'member']),
+            'name' => fake()->name(),
+            'avatar' => fake()->randomElement(['https://picsum.photos/seed/avatar' . fake()->randomNumber() . '/200', null]),
         ];
     }
 }

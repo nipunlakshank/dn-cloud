@@ -1,10 +1,13 @@
 <div class="w-full">
+
     <form wire:submit.prevent="sendMessage">
         <label for="chat" class="sr-only">Your message</label>
         <div class="flex items-center rounded-lg bg-gray-50 px-3 py-2 dark:bg-gray-700">
 
-            <button id="attachment-menu-button" data-dropdown-toggle="attachment-menu"
-                data-dropdown-placement="bottom-start" type="button"
+            <!-- Chat Attachment Popup Menu -->
+            <x-chat.attachment-menu></x-chat.attachment-menu>
+
+            <button id="attachment-menu-button" data-dropdown-toggle="attachment-menu" type="button"
                 class="inline-flex cursor-pointer justify-center rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
                 <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -14,18 +17,16 @@
                 <span class="sr-only">Attachment Menu</span>
             </button>
 
-            <!-- Chat Attachment Popup Menu -->
-            <x-chat.attachment-menu></x-chat.attachment-menu>
-
             <textarea id="message-text"
                 rows="1"
                 wire:model="text"
                 x-init="() => { if (!('ontouchstart' in window)) $el.focus() }"
                 x-on:keydown.enter="if (event.shiftKey) return; event.preventDefault(); $wire.sendMessage()"
                 x-on:keyup.escape="event => { event.stopPropagation(); $el.blur(); }"
-                style="field-sizing: content;"
-                class="mx-4 box-content block max-h-[15ch] min-h-[2ch] w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                placeholder="Your message..."></textarea>
+                style="field-sizing:content;"
+                class="mx-4 box-content block max-h-[15ch] min-h-[2ch] w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-gray-900 focus:border-none focus:ring-blue-700 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
+                placeholder="Your message...">
+            </textarea>
             <button type="submit"
                 class="inline-flex cursor-pointer justify-center rounded-full p-2 text-blue-600 hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
                 <svg class="h-5 w-5 rotate-90 rtl:-rotate-90" aria-hidden="true"
@@ -38,4 +39,31 @@
             </button>
         </div>
     </form>
+
+    @script
+        <script>
+            $optionsDdM = {
+                placement: "bottom-start",
+                triggerType: "click",
+                offsetSkidding: 0,
+                offsetDistance: 10,
+                ignoreClickOutsideClass: false,
+            };
+
+            $instanceOptionsDdM = {
+                id: "attachment-modal",
+                override: true,
+            };
+
+            $targetDdM = document.getElementById("attachment-menu");
+            $triggerDdBtn = document.getElementById("attachment-menu-button");
+
+            new Dropdown(
+                $targetDdM,
+                $triggerDdBtn,
+                $optionsDdM,
+                $instanceOptionsDdM
+            );
+        </script>
+    @endscript
 </div>

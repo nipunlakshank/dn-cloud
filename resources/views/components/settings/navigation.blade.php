@@ -22,8 +22,6 @@
             </div>
             <!-- Modal body -->
             <div class="p-4 md:p-5">
-                <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Connect with one of our available wallet
-                    providers or create a new one.</p>
                 <ul class="my-4 space-y-3">
 
                     <li>
@@ -85,6 +83,7 @@
 </div>
 <x-settings.registration></x-settings.registration>
 <x-settings.profile></x-settings.profile>
-<x-settings.add-group></x-settings.add-group>
-<x-settings.new-chat></x-settings.new-chat>
 <x-settings.logout></x-settings.logout>
+<x-chat.attachment-modal></x-chat.attachment-modal>
+@livewire('modals.add-group')
+@livewire('modals.new-chat')
