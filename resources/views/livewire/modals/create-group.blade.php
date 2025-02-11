@@ -1,5 +1,11 @@
 <!-- Add Group Modal -->
-<div id="create-group-modal" tabindex="-1" aria-hidden="true"
+<div id="create-group-modal" tabindex="-1" aria-hidden="true" wire:ignore
+    x-data="{ selectedUserIds: @entangle('selectedUserIds'), selectedUserCount: 0 }"
+    x-init="() => {
+        $watch('selectedUserIds', value => {
+            selectedUserCount = value.length;
+        });
+    }"
     class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0">
     <div class="relative max-h-full w-full max-w-md p-4">
         <!-- Modal content -->
@@ -39,13 +45,20 @@
                             id="file_input" type="file">
                     </div>
                     <div class="col-span-2">
-                        <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch"
-                            class="inline-flex items-center rounded-lg bg-blue-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            type="button"> Select Users <svg class="ms-2.5 h-2.5 w-2.5" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 1 4 4 4-4" />
-                            </svg></button>
+                        <div class="flex items-center gap-2">
+                            <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch"
+                                class="inline-flex items-center rounded-lg bg-blue-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                type="button"> Select Users <svg class="ms-2.5 h-2.5 w-2.5" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 4 4 4-4" />
+                                </svg>
+                            </button>
+
+                            <span class="text-sm text-gray-500 dark:text-gray-300"
+                                x-text="selectedUserCount + ' Selected'">
+                            </span>
+                        </div>
 
                         <!-- Select users -->
                         @livewire('dropdowns.select-users', ['users' => $users])
