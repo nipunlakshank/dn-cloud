@@ -5,7 +5,6 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Chat\Index as ChatIndex;
 use App\Livewire\Reports\Main as Reports;
-
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');

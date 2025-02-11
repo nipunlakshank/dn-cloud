@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 class Chat extends Model
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
