@@ -8,4 +8,7 @@ npm install
 
 php artisan migrate --seed
 
-composer dev
+# git configs
+git config core.hooksPath git-hooks
+
+composer run dev

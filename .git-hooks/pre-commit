@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Run Laravel Pint to format code
+./vendor/bin/pint --test
+
+# Check if Pint found any unformatted code
+if [ $? -ne 0 ]; then
+    echo "❌ Code formatting issues detected. Running Pint to fix them..."
+    ./vendor/bin/pint
+    echo "✅ Code formatted. Please stage changes and commit again."
+    exit 1
+fi
+
+echo "✅ Code is already formatted. Proceeding with commit."
+exit 0
