@@ -36,7 +36,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/reports', Reports::class)->name('reports');
 });
 
-require __DIR__ . '/' . 'auth.php';
-
 // WARN: Should exclude below file from production environment
 require __DIR__ . '/' . 'dev.php';
+
+require __DIR__ . '/' . 'auth.php';
