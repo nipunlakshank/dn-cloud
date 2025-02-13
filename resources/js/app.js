@@ -1,5 +1,4 @@
 import "./bootstrap";
-import "flowbite";
 
 const axios = window.axios;
 
