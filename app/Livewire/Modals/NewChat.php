@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Modals;
 
+use App\Actions\Chat\CreatePrivateChatAction;
 use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -13,16 +14,18 @@ class NewChat extends Component
 
     public function startChat(int $userId)
     {
-        $chat = Chat::query()
-            ->where('is_group', false)
-            ->whereHas('users', function ($query) {
-                $query->where('user_id', Auth::id());
-            })->whereHas('users', function ($query) use ($userId) {
-                $query->where('user_id', $userId);
-            })->first();
+        // $chat = Chat::query()
+        //     ->where('is_group', false)
+        //     ->whereHas('users', function ($query) {
+        //         $query->where('user_id', Auth::id());
+        //     })->whereHas('users', function ($query) use ($userId) {
+        //         $query->where('user_id', $userId);
+        //     })->first();
+        //
+        // $chat = $chat ?? Chat::create(['is_group' => false]);
+        // $chat->users()->sync([$userId, Auth::id()]);
 
-        $chat = $chat ?? Chat::create(['is_group' => false]);
-        $chat->users()->sync([$userId, Auth::id()]);
+        $chat = app(CreatePrivateChatAction::class)->execute($userId);
 
         $this->dispatch('chat.select', Chat::find($chat->id));
     }

@@ -5,13 +5,10 @@ namespace Database\Seeders;
 use App\Models\Chat;
 use App\Models\ChatUser;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ChatSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Run the database seeds.
      */

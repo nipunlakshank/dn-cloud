@@ -85,5 +85,5 @@
 <x-settings.profile></x-settings.profile>
 <x-settings.logout></x-settings.logout>
 <x-chat.attachment-modal></x-chat.attachment-modal>
-@livewire('modals.add-group')
+@livewire('modals.create-group')
 @livewire('modals.new-chat')

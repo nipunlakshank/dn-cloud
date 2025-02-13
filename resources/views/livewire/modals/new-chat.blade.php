@@ -1,6 +1,6 @@
 <div id="new-chat-modal" tabindex="-1" aria-hidden="true"
-    class="fixed inset-0 z-50 flex hidden items-center justify-center overflow-x-hidden">
-    <div class="relative h-[70vh] w-full max-w-md p-4">
+    class="fixed inset-0 z-50 hidden items-center justify-center overflow-x-hidden">
+    <div class="relative w-full max-w-md p-4">
         <!-- Modal content -->
         <div class="relative flex h-full flex-col rounded-lg bg-white shadow dark:bg-gray-700">
             <!-- Modal header -->
