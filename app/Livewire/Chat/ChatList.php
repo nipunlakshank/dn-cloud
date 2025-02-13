@@ -17,13 +17,12 @@ class ChatList extends Component
         $this->loadChats();
     }
 
-    #[On('message.sent')]
+    #[On(['message.sent', 'message.received'])]
     public function refreshChats()
     {
         $this->loadChats();
     }
 
-    #[On('message.received')]
     public function loadChats()
     {
         $this->chats = User::find(Auth::id())
