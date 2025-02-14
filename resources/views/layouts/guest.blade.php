@@ -21,9 +21,6 @@
                 <a href="/">
                     <x-application-logo class="h-20 w-20 fill-current text-gray-500" />
                 </a>
-                <button class="" onclick="toggleDarkMode()">
-                    color
-                </button>
             </div>
 
             <div
