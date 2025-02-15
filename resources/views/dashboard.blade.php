@@ -1,12 +1,13 @@
 <x-app-layout>
     <!-- Navbar -->
-    <aside id="chat-sidebar" class="h-full w-1/4 max-[990px]:w-fit space-y-4 overflow-hidden text-white transition-transform max-sm:absolute max-sm:w-3/4 max-sm:-translate-x-full max-sm:z-50">
+    <aside id="chat-sidebar"
+        class="h-full w-1/4 space-y-4 overflow-hidden text-white transition-transform max-[990px]:w-fit max-sm:absolute max-sm:z-50 max-sm:w-3/4 max-sm:-translate-x-full">
         <div class="h-full overflow-y-hidden bg-gray-50 px-3 py-4 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li class="group">
                     <a href="/dashboard"
-                        class="group flex items-center rounded-lg p-2 text-inherit text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                        <svg class="h-5 w-5 font-in text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                        class="group flex items-center rounded-lg p-2 text-gray-900 text-inherit hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <svg class="font-in h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 22 21">
                             <path
@@ -14,7 +15,8 @@
                             <path
                                 d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                         </svg>
-                        <span class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:px-3 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:dark:text-gray-900 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:bg-gray-400 group-hover:sm:max-[990px]:text-gray-100">Dashboard</span>
+                        <span
+                            class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">Dashboard</span>
                     </a>
                 </li>
                 <li class="group">
@@ -26,7 +28,8 @@
                             <path
                                 d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
                         </svg>
-                        <span class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:px-3 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:dark:text-gray-900 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:bg-gray-400 group-hover:sm:max-[990px]:text-gray-100">Wallet</span>
+                        <span
+                            class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">Wallet</span>
 
                     </a>
                 </li>
@@ -39,7 +42,8 @@
                             <path
                                 d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                         </svg>
-                        <span class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:px-3 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:dark:text-gray-900 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:bg-gray-400 group-hover:sm:max-[990px]:text-gray-100">Chat</span>
+                        <span
+                            class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">Chat</span>
                     </a>
                 </li>
                 <li class="group">
@@ -51,7 +55,8 @@
                             <path
                                 d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                         </svg>
-                        <span class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:px-3 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:dark:text-gray-900 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:bg-gray-400 group-hover:sm:max-[990px]:text-gray-100">Profile</span>
+                        <span
+                            class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">Profile</span>
                     </button>
                 </li>
                 <li class="group">
@@ -63,7 +68,9 @@
                             <path
                                 d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                         </svg>
-                        <span class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:px-3 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:dark:text-gray-900 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:bg-gray-400 group-hover:sm:max-[990px]:text-gray-100">User Registration</span>
+                        <span
+                            class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">User
+                            Registration</span>
                     </button>
                 </li>
                 <li class="group">
@@ -78,7 +85,9 @@
                             <path
                                 d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
                         </svg>
-                        <span class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:px-3 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:dark:text-gray-900 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:bg-gray-400 group-hover:sm:max-[990px]:text-gray-100">Sign Out</span>
+                        <span
+                            class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">Sign
+                            Out</span>
                     </button>
                 </li>
             </ul>
@@ -97,8 +106,9 @@
     </div>
 
     <!-- User Registration -->
-    <x-settings.registration></x-settings.registration>
+    @livewire('auth.register-form')
 
     <!-- Logout -->
     <x-settings.logout></x-settings.logout>
 </x-app-layout>
+
