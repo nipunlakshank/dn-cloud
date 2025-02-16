@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Get a list of staged PHP files
 STAGED_PHP_FILES=$(git diff --name-only --cached --diff-filter=d | grep '\.php$')
