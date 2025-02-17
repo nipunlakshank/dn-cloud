@@ -13,7 +13,7 @@ class LoginForm extends Component
     #[Validate('required|email|string')]
     public $email = '';
 
-    #[Validate('string|min:7')]
+    #[Validate('string|min:6')]
     public $password = '';
 
     #[Validate('boolean')]

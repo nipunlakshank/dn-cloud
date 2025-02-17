@@ -28,7 +28,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/wallet/{id}/{status}', [DashboardController::class, 'walletStatusUpdate'])->name('wallet-status');
     Route::get('/dashboard/user/{id}/{status}', [DashboardController::class, 'userStatusUpdate'])->name('user-status');
 
-    Route::get('/chat/{chat}', ChatIndex::class)->name('chat');
     Route::get('/chat', ChatIndex::class)->name('chat');
 
     Route::view('/reports', 'livewire.reports.main')->name('reports');

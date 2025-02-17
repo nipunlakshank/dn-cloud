@@ -9,14 +9,9 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StorageController;
-use App\Livewire\Auth\LoginForm;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Route::get('login-form', LoginForm::class);
-
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
@@ -35,9 +30,6 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('register', [RegisteredUserController::class, 'store'])
         ->name('register');
-
-    Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::get('{filepath}', [StorageController::class, 'get_avatar'])->name('profile.avatar');
 
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
