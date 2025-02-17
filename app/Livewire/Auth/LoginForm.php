@@ -52,7 +52,7 @@ class LoginForm extends Component
     {
         $credentials = $this->validate([
             'email' => ['required', 'email', 'string', 'lowercase'],
-            'password' => ['required', 'min:7'],
+            'password' => ['required', 'min:6'],
         ]);
 
         if (Auth::attempt($credentials, $this->remember)) {
