@@ -13,4 +13,8 @@
         @livewire('chat.message', ['message' => $message], key('message-' . $message->id))
     @endforeach
 
+    @livewire('modals.image-attachment-modal')
+    @livewire('modals.document-attachment-modal')
+    @livewire('modals.report-attachment-modal')
+
 </div>
