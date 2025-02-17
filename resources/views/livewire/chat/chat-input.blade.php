@@ -40,6 +40,8 @@
         </div>
     </form>
 
+    @livewire('dropdowns.attachments-menu')
+
     @script
         <script>
             $optionsDdM = {
