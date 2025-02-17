@@ -2,49 +2,98 @@
 
 namespace App\Livewire\Auth;
 
-use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class LoginForm extends Component
 {
-    #[Validate("required|email|string")]
+    #[Validate('required|email|string')]
     public $email = '';
 
+    #[Validate('string|min:7')]
+    public $password = '';
+
+    #[Validate('boolean')]
+    public $remember = '';
+
+    public $message;
+    public $message_style;
+    public $isPreAuthenticated = false;
     public $visibility = Visibility::Hide;
-    public $next = Visibility::Show;
+    public $buttonType = ButtonType::Next;
 
     /**
-     * Handle an incoming request and check password availability.
+     * Check password availability and show password field.
      */
-    public function authenticate(): mixed
+    public function pre_authenticate(): void
     {
         $this->validate();
-        if ($this->hasPassword($this->email)) {
-            $this->show();
-            return response('Please reset your password before login', 200);
+
+        if ($this->isPreAuthenticated == true) {
+            $this->authenticate();
         } else {
-            // End Password Reset Link to Email
-            // Send to Login and alert email link
-            $data['email'] = $this->email;
-            return redirect()->route('password.request')->with(compact('data'));
+            if ($this->has_password($this->email)) {
+                $this->show();
+            } else {
+                $this->reset_password();
+            }
         }
     }
 
-    public function login(LoginRequest $request): void
+    /**
+     * Authenticate user & store session
+     *
+     * @return mixed|\Illuminate\Http\RedirectResponse
+     */
+    public function authenticate()
     {
-        $request->attributes->set('email', $this->email);
-        $request->attributes->set('password', $this->password);
-        $request->attributes->set('remember', $this->remember);
-        $this->redirect(route('login'));
+        $credentials = $this->validate([
+            'email' => ['required', 'email', 'string', 'lowercase'],
+            'password' => ['required', 'min:7'],
+        ]);
+
+        if (Auth::attempt($credentials, $this->remember)) {
+            session()->regenerate();
+            $this->message = Messages::Success;
+            $this->message_style = MessagesStyle::Success;
+
+            return redirect()->route('dashboard');
+        }
+
+        $this->message = Messages::Failed;
+        $this->message_style = MessagesStyle::Failed;
     }
 
+    /**
+     * Show hidden fields
+     */
     public function show()
     {
         $this->visibility = Visibility::Show;
-        $this->next = Visibility::Hide;
+        $this->buttonType = ButtonType::Login;
+        $this->isPreAuthenticated = true;
+    }
+
+    /**
+     * Determine if the user password is null or not.
+     *
+     * @param  mixed  $email
+     */
+    public function has_password($email): bool
+    {
+        $user = User::where('email', '=', $email)->first();
+        if ($user !== null) {
+            $nullPasswordUsers = User::whereNull('password')->get('email');
+
+            return !$nullPasswordUsers->contains('email', $email);
+        } else {
+            Log::info('Invalid User Credentials :' . $this->email . ' : ' . $this->password);
+        }
+
+        return false;
     }
 
     public function render()
@@ -52,26 +101,31 @@ class LoginForm extends Component
         return view('livewire.auth.login-form');
     }
 
-    /**
-     * Determine if the user password is null or not.
-     * @param mixed $email
-     * @return bool
-     */
-    public function hasPassword($email): bool
+    public function reset_password()
     {
-        $user = User::where('email', '=', $email)->first();
-        if ($user !== null) {
-            $nullPasswordUsers = User::whereNull("password")->get("email");
-            return !$nullPasswordUsers->contains("email", $email);
-        } else {
-            Log::info("No Such User");
-        }
-        return false;
+        return redirect()->route('password.request');
     }
 }
 
 enum Visibility: string
 {
-    case Hide = "hidden";
-    case Show = "block";
+    case Hide = 'hidden';
+    case Show = 'block';
+}
+enum ButtonType: string
+{
+    case Login = 'Log In';
+    case Next = 'Next';
+}
+
+enum Messages: string
+{
+    case Success = 'Log in Successful';
+    case Failed = 'Log in Failed. Invalid user credentials';
+}
+
+enum MessagesStyle: string
+{
+    case Success = 'text-green-500';
+    case Failed = 'text-red-500';
 }
