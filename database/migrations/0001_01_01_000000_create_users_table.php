@@ -16,7 +16,7 @@ return new class () extends Migration {
             $table->string('last_name', 25);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->enum('role', ['admin', 'supervisor', 'accountant', 'worker'])->default('worker');
             $table->boolean('is_active')->default(true);

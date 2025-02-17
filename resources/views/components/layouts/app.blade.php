@@ -39,6 +39,7 @@
         </div>
         <x-settings.navigation></x-settings.navigation>
         <x-chat.chat-image-viewer></x-chat.chat-image-viewer>
+        <x-toast></x-toast>
 
         @livewireScripts
     </body>
