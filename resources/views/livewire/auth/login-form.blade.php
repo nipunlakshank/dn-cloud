@@ -1,5 +1,4 @@
     <form wire:submit="pre_authenticate">
-        @csrf
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
