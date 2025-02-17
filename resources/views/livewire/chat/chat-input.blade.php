@@ -1,11 +1,8 @@
-<div class="w-full">
+<div class="sticky bottom-0 w-full">
 
     <form wire:submit.prevent="sendMessage">
         <label for="chat" class="sr-only">Your message</label>
         <div class="flex items-center rounded-lg bg-gray-50 px-3 py-2 dark:bg-gray-700">
-
-            <!-- Chat Attachment Popup Menu -->
-            <x-chat.attachment-menu></x-chat.attachment-menu>
 
             <button id="attachment-menu-button" data-dropdown-toggle="attachment-menu" type="button"
                 class="inline-flex cursor-pointer justify-center rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
@@ -23,7 +20,7 @@
                 x-init="() => { if (!('ontouchstart' in window)) $el.focus() }"
                 x-on:keydown.enter="if (event.shiftKey) return; event.preventDefault(); $wire.sendMessage()"
                 x-on:keyup.escape="event => { event.stopPropagation(); $el.blur(); }"
-                style="field-sizing:content;"
+                style="field-sizing: content;"
                 class="mx-4 box-content block max-h-[15ch] min-h-[2ch] w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-gray-900 focus:border-none focus:ring-blue-700 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
                 placeholder="Your message...">
             </textarea>
