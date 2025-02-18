@@ -9,4 +9,10 @@ class MessageAttachment extends Model
 {
     /** @use HasFactory<\Database\Factories\MessageAttachmentFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'message_id',
+        'path',
+        'type',
+    ];
 }

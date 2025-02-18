@@ -3,7 +3,7 @@
 namespace App\Livewire\Chat;
 
 use App\Models\Chat;
-use App\Models\Message;
+use App\Services\MessageService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -29,11 +29,7 @@ class ChatInput extends Component
             'text' => 'required|string',
         ]);
 
-        $message = Message::create([
-            'chat_id' => $this->chat->id,
-            'user_id' => Auth::id(),
-            'text' => $this->text,
-        ]);
+        $message = app(MessageService::class)->send($this->chat, Auth::user(), $this->text);
 
         $this->dispatch('message.sent', $message);
         $this->text = '';

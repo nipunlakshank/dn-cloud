@@ -41,6 +41,10 @@
         <x-chat.chat-image-viewer></x-chat.chat-image-viewer>
         <x-toast></x-toast>
 
+        @livewire('modals.image-attachment-modal')
+        @livewire('modals.document-attachment-modal')
+        @livewire('modals.report-attachment-modal')
+
         @livewireScripts
     </body>
 

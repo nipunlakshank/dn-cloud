@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Models\Chat;
-use App\Models\Group;
 
 class ChatObserver
 {
@@ -12,13 +11,7 @@ class ChatObserver
      */
     public function created(Chat $chat): void
     {
-        if (!$chat->is_group || $chat->group) {
-            return;
-        }
-
-        Group::factory()->create([
-            'chat_id' => $chat->id,
-        ]);
+        //
     }
 
     /**

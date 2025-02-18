@@ -31,5 +31,6 @@
                 <span class="text-gray-500 dark:text-gray-400">{{ __('Select a chat to start messaging') }}</span>
             </div>
         @endif
+
     </div>
 </div>

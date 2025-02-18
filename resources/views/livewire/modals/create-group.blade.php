@@ -33,14 +33,15 @@
                         <label for="name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                             Group Name
                         </label>
-                        <input type="text" name="group-name" id="group-name"
+                        <input type="text" name="group-name" id="group-name" wire:model="name"
                             class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
-                            placeholder="Group Name" required="">
+                            placeholder="Group Name" required />
                     </div>
                     <div class="col-span-2">
                         <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                             for="file_input">Upload image</label>
                         <input
+                            wire:model="image"
                             class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"
                             id="file_input" type="file">
                     </div>

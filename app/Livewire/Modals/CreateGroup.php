@@ -3,6 +3,7 @@
 namespace App\Livewire\Modals;
 
 use App\Models\User;
+use App\Services\GroupService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
@@ -10,10 +11,11 @@ use Livewire\Component;
 
 class CreateGroup extends Component
 {
+    public string $name;
+    public $avatar;
     public array $users;
     public Collection $selectedUserIds;
     public int $selectedUserCount;
-
 
     #[On('group.create.addUser')]
     public function addUser($id)
@@ -42,11 +44,32 @@ class CreateGroup extends Component
 
     public function createGroup()
     {
-        dump($this->selectedUserIds);
+        $this->validate([
+            'name' => 'required|string',
+            'avatar' => 'nullable|image|max:1024',
+        ]);
+
+        $avatar = null;
+        if ($this->avatar) {
+            $avatar = $this->avatar->store('avatars');
+        }
+
+        $members = $this->selectedUserIds->toArray();
+        $members[] = Auth::id();
+
+        app(GroupService::class)->create($this->name, $avatar, $members);
+
+        $this->dispatch('group.created');
+        $this->dispatch('alert', ['message' => 'Group created successfully!', 'type' => 'success']);
+        $this->clearSelectedUsers();
+        $this->name = '';
+        $this->avatar = null;
     }
 
     public function mount()
     {
+        $this->name = '';
+        $this->avatar = null;
         $this->users = User::where('id', '!=', Auth::id())->withFullName()->get()->toArray();
         $this->selectedUserIds = Collection::empty();
         $this->selectedUserCount = $this->selectedUserIds->count();
