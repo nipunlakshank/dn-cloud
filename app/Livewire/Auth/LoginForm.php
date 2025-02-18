@@ -3,8 +3,8 @@
 namespace App\Livewire\Auth;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -17,13 +17,21 @@ class LoginForm extends Component
     public $password = '';
 
     #[Validate('boolean')]
-    public $remember = '';
+    public $remember = false;
 
     public $message;
-    public $message_style;
-    public $isPreAuthenticated = false;
+    public $is_pre_authenticated = false;
     public $visibility = Visibility::Hide;
     public $buttonType = ButtonType::Next;
+
+    /**
+     * For styling only
+     */
+    public $message_style;
+
+    public $disable_field = false;
+    public $email_focus = true;
+    public $password_focus = false;
 
     /**
      * Check password availability and show password field.
@@ -32,23 +40,28 @@ class LoginForm extends Component
     {
         $this->validate();
 
-        if ($this->isPreAuthenticated == true) {
-            $this->authenticate();
-        } else {
-            if ($this->has_password($this->email)) {
-                $this->show();
-            } else {
-                $this->reset_password();
-            }
+        switch ($this->is_pre_authenticated) {
+            case true:
+                $this->authenticate();
+                break;
+            case false:
+                switch ($this->has_password($this->email)) {
+                    case true:
+                        $this->show();
+                        break;
+                    case false:
+                        $this->reset_password();
+                        break;
+                }
         }
     }
 
     /**
-     * Authenticate user & store session
+     * Authenticate user
      *
      * @return mixed|\Illuminate\Http\RedirectResponse
      */
-    public function authenticate()
+    public function authenticate(): void
     {
         $credentials = $this->validate([
             'email' => ['required', 'email', 'string', 'lowercase'],
@@ -56,15 +69,62 @@ class LoginForm extends Component
         ]);
 
         if (Auth::attempt($credentials, $this->remember)) {
-            session()->regenerate();
-            $this->message = Messages::Success;
-            $this->message_style = MessagesStyle::Success;
-
-            return redirect()->route('dashboard');
+            $this->login($credentials);
         }
 
         $this->message = Messages::Failed;
         $this->message_style = MessagesStyle::Failed;
+    }
+
+    /**
+     * Store user sessions
+     *
+     * @param  mixed  $credentials
+     * @return RedirectResponse
+     */
+    public function login($credentials)
+    {
+        if (!$this->is_active($credentials['email'])) {
+            session()->invalidate();
+
+            return redirect()->route('notice.inactive');
+        }
+
+        if (!$this->is_email_verified($credentials['email'])) {
+            return redirect()->route('verification.notice');
+        }
+
+        session()->regenerate();
+        $this->message = Messages::Success;
+        $this->message_style = MessagesStyle::Success;
+
+        return redirect()->route('dashboard');
+    }
+
+    /**
+     * Check user is active or inactive
+     *
+     * @return mixed|\Illuminate\Http\RedirectResponse
+     */
+    public function is_active(string $email): bool
+    {
+        if (User::where('email', $email)->value('is_active') == 1) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Check email is verified or not
+     */
+    public function is_email_verified(string $email): bool
+    {
+        if (User::where('email', '=', $email)->value('email_verified_at') != null) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -74,36 +134,41 @@ class LoginForm extends Component
     {
         $this->visibility = Visibility::Show;
         $this->buttonType = ButtonType::Login;
-        $this->isPreAuthenticated = true;
+        $this->is_pre_authenticated = true;
+        $this->password_focus = true;
+        $this->email_focus = false;
+        $this->disable_field = 'disabled';
     }
 
     /**
      * Determine if the user password is null or not.
-     *
-     * @param  mixed  $email
      */
-    public function has_password($email): bool
+    public function has_password(string $email): bool
     {
         $user = User::where('email', '=', $email)->first();
         if ($user !== null) {
             $nullPasswordUsers = User::whereNull('password')->get('email');
 
             return !$nullPasswordUsers->contains('email', $email);
-        } else {
-            Log::info('Invalid User Credentials :' . $this->email . ' : ' . $this->password);
         }
 
         return false;
     }
 
-    public function render()
-    {
-        return view('livewire.auth.login-form');
-    }
-
+    /**
+     *  Redirect to reset password
+     */
     public function reset_password()
     {
         return redirect()->route('password.request');
+    }
+
+    /**
+     * Render view
+     */
+    public function render()
+    {
+        return view('livewire.auth.login-form');
     }
 }
 
