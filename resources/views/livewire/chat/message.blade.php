@@ -2,14 +2,14 @@
     dir="{{ $isOwner ? 'rtl' : 'ltr' }}">
 
     @if ($inAGroup && !$isOwner)
-        <img class="h-8 w-8 select-none rounded-full" src="{{ $avatar }}" alt="Avatar">
+    <img class="h-8 w-8 select-none rounded-full" src="{{ $avatar }}" alt="Avatar">
     @endif
 
     <div class="flex w-fit max-w-[60%] flex-col gap-1 lg:max-w-md">
         @if ($inAGroup && !$isOwner)
-            <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                {{ $user->name ?? 'Unknown' }}
-            </span>
+        <span class="text-sm font-semibold text-gray-900 dark:text-white">
+            {{ $user->name ?? 'Unknown' }}
+        </span>
         @endif
         <div
             class="{{ $isOwner ? 'bg-green-200 dark:bg-teal-900' : 'bg-white dark:bg-gray-700' }} flex flex-col justify-between gap-1 rounded-e-xl rounded-es-xl border-gray-200 px-4 py-2 transition-colors">
