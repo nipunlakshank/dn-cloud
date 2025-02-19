@@ -3,8 +3,10 @@
 namespace App\Livewire\Chat;
 
 use App\Models\Message as MessageModel;
+use App\Models\MessageAttachment;
 use App\Models\User;
 use App\Services\MessageService;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -17,6 +19,13 @@ class Message extends Component
     public bool $inAGroup;
     public string $state;
 
+    /**
+     * @var MessageAttachment[]
+     */
+    public Collection $attachments;
+
+    public int $attachmentCount;
+
     public function mount(MessageModel $message)
     {
         $this->message = $message;
@@ -26,6 +35,8 @@ class Message extends Component
         $this->isOwner = $this->user->id === Auth::id();
         $this->inAGroup = $message->chat->is_group;
         $this->state = app(MessageService::class)->getState($message);
+        $this->attachments = $message->attachments;
+        $this->attachmentCount = $message->attachments->count();
     }
 
     public function render()

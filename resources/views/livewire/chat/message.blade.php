@@ -1,5 +1,4 @@
-<div id="message-{{ $message->id }}" class="group flex items-center gap-2.5"
-    dir="{{ $isOwner ? 'rtl' : 'ltr' }}">
+<div id="message-{{ $message->id }}" class="group flex items-center gap-2.5" dir="{{ $isOwner ? 'rtl' : 'ltr' }}">
 
     @if ($inAGroup && !$isOwner)
         <img class="h-8 w-8 select-none rounded-full" src="{{ $avatar }}" alt="Avatar">
@@ -13,6 +12,18 @@
         @endif
         <div
             class="{{ $isOwner ? 'bg-green-200 dark:bg-teal-900' : 'bg-white dark:bg-gray-700' }} flex flex-col justify-between gap-1 rounded-e-xl rounded-es-xl border-gray-200 px-4 py-2 transition-colors">
+
+            <div class="grid grid-cols-{{ $attachmentCount > 1 ? 2 : 1}} gap-2">
+                @foreach ($attachments as $attachment)
+                    <div class="group relative" wire:key="message-attachment-{{ $attachment->id }}">
+
+                        <img src="{{ asset($attachment->path) }}" class="chat-image-bubble rounded-lg"
+                            data-message-id="{{ $message->id }}" data-modal-target="chat-image-viewer"
+                            data-modal-toggle="chat-image-viewer" />
+                    </div>
+                @endforeach
+            </div>
+
             <p dir="ltr" class="text-sm font-normal text-gray-900 dark:text-white">
                 {!! nl2br(e($message->text ?? 'Message')) !!}</p>
 
@@ -20,9 +31,9 @@
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
                     {{ $message->created_at->format('h:i a') ?? '00:00' }}
                 </span>
+
                 @if ($isOwner)
-                    <div
-                        class="{{ $state === 'read' ? 'text-blue-500' : 'text-gray-400' }} relative h-[18px] w-[24px]">
+                    <div class="{{ $state === 'read' ? 'text-blue-500' : 'text-gray-400' }} relative h-[18px] w-[24px]">
                         <!-- First Check (Always visible) -->
                         <svg class="absolute left-0 top-0 h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -40,6 +51,7 @@
                         @endif
                     </div>
                 @endif
+
             </div>
         </div>
     </div>
@@ -109,4 +121,5 @@
             );
         </script>
     @endscript
+
 </div>

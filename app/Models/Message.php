@@ -36,6 +36,11 @@ class Message extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function attachments()
+    {
+        return $this->hasMany(MessageAttachment::class);
+    }
+
     public function receivers()
     {
         return $this->chat->users()->where('user_id', '!=', Auth::id());

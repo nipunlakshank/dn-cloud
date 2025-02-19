@@ -15,4 +15,9 @@ class MessageAttachment extends Model
         'path',
         'type',
     ];
+
+    public function message()
+    {
+        return $this->belongsTo(Message::class);
+    }
 }
