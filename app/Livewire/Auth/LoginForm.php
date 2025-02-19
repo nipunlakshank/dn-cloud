@@ -40,19 +40,24 @@ class LoginForm extends Component
     {
         $this->validate();
 
-        switch ($this->is_pre_authenticated) {
+        switch (User::where('email', '=', $this->email)->get()->count() == 1) {
             case true:
-                $this->authenticate();
-                break;
-            case false:
-                switch ($this->has_password($this->email)) {
+                switch ($this->is_pre_authenticated) {
                     case true:
-                        $this->show();
+                        $this->authenticate();
                         break;
                     case false:
-                        $this->reset_password();
-                        break;
+                        switch ($this->has_password($this->email)) {
+                            case true:
+                                $this->show();
+                                break;
+                            case false:
+                                $this->reset_password();
+                                break;
+                        }
                 }
+            case false:
+                break;
         }
     }
 
