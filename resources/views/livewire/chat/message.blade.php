@@ -17,7 +17,7 @@
                 @foreach ($attachments as $attachment)
                     <div class="group relative" wire:key="message-attachment-{{ $attachment->id }}">
 
-                        <img src="{{ asset($attachment->path) }}" class="chat-image-bubble rounded-lg"
+                        <img src="{{ Storage::url($attachment->path) }}" class="chat-image-bubble rounded-lg"
                             data-message-id="{{ $message->id }}" data-modal-target="chat-image-viewer"
                             data-modal-toggle="chat-image-viewer" />
                     </div>
