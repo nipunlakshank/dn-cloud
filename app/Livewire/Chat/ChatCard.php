@@ -4,6 +4,7 @@ namespace App\Livewire\Chat;
 
 use App\Models\Chat;
 use App\Models\Message;
+use App\Services\ChatService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -38,13 +39,22 @@ class ChatCard extends Component
         $this->selected = $chat->id === $this->chat->id;
     }
 
+    #[On('chat.read')]
+    public function markAsRead($chatId)
+    {
+        if ($chatId !== $this->chat->id) {
+            return;
+        }
+        $this->unreadCount = 0;
+    }
+
     public function mount(Chat $chat)
     {
         $this->chat = $chat;
         $this->selected = false;
         $this->lastMessage = $chat->lastMessage ?? null;
         $this->timeElapsed = $this->calculateTimeElapsed($this->lastMessage?->created_at);
-        $this->unreadCount = $chat->unreadCount ?? 0;
+        $this->unreadCount = app(ChatService::class)->getUnreadCount($chat, Auth::user());
 
         if ($chat->is_group) {
             $this->chatName = $chat->group->name;

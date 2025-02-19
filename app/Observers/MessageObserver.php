@@ -17,6 +17,12 @@ class MessageObserver
             $message->status()->attach($receiver->id, [
                 'sent_at' => now(),
             ]);
+
+            $message->status()->attach($message->user_id, [
+                'sent_at' => now(),
+                'delivered_at' => now(),
+                'read_at' => now(),
+            ]);
         }
     }
 

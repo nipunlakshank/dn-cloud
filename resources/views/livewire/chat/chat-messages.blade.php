@@ -5,10 +5,14 @@
     class="h-full w-full flex-col justify-end space-y-4 overflow-y-auto px-4 pt-4"
     x-data="scrollManager($el)"
     x-on:scroll="handleScroll($event); loadMoreMessages($event)"
-    x-init="initScroll()"
+    x-init="() => {
+        initScroll();
+        setTimeout(() => {
+            $wire.markChatAsRead();
+        }, 1000);
+    }"
     @transitionstart="initScroll()">
 
-    <!-- Chat messages go here -->
     @foreach ($messages as $message)
         @livewire('chat.message', ['message' => $message], key('message-' . $message->id))
     @endforeach
