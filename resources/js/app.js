@@ -45,13 +45,13 @@ function scrollManager(element) {
 }
 
 // Profile Image Preview Update Listener
-document.querySelector("#avatar")?.addEventListener("input", (event) => {
+/* document.querySelector("#avatar")?.addEventListener("input", (event) => {
     const new_avatar = event.target.files[0];
     if (new_avatar) {
         document.querySelector("#avatar_preview").src =
             URL.createObjectURL(new_avatar);
     }
-});
+}); */
 
 // Chat Image Viewer
 document.querySelectorAll(".chat-image-bubble").forEach((bubble) => {

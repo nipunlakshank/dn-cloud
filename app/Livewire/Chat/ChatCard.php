@@ -18,7 +18,6 @@ class ChatCard extends Component
     public ?string $chatAvatar;
     public bool $selected;
 
-
     #[On('chat.deselect')]
     public function deselectChat()
     {
@@ -43,8 +42,8 @@ class ChatCard extends Component
     {
         $this->chat = $chat;
         $this->selected = false;
-        $this->lastMessage = $chat->lastMessage;
-        $this->timeElapsed = $this->calculateTimeElapsed($this->lastMessage->created_at);
+        $this->lastMessage = $chat->lastMessage ?? null;
+        $this->timeElapsed = $this->calculateTimeElapsed($this->lastMessage?->created_at);
         $this->unreadCount = $chat->unreadCount ?? 0;
 
         if ($chat->is_group) {
@@ -79,7 +78,13 @@ class ChatCard extends Component
 
     public function refreshLastMessage()
     {
-        if ($this->chat->lastMessage()->first()->id !== $this->lastMessage->id) {
+        if ($this->chat->lastMessage === null) {
+            return;
+        }
+
+        $this->lastMessage = $this->lastMessage ?? null;
+
+        if ($this->chat->lastMessage()->first()->id !== $this->lastMessage?->id) {
             $this->lastMessage = $this->chat->lastMessage()->first();
             if ($this->lastMessage->user_id !== Auth::id()) {
                 $this->unreadCount = ($this->unreadCount ?? 0) + 1;
@@ -91,10 +96,14 @@ class ChatCard extends Component
 
     public function calculateTimeElapsed($timestamp = null)
     {
-        $timestamp = $timestamp ?? $this->lastMessage->created_at;
+        $timestamp = $timestamp ?? $this->lastMessage?->created_at;
+        if (!$timestamp) {
+            return null;
+        }
         if ($timestamp->diffInSeconds() < 60) {
             return 'Just now';
         }
+
         return $timestamp->shortAbsoluteDiffForHumans();
     }
 }

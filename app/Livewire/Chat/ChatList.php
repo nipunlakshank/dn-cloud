@@ -32,7 +32,7 @@ class ChatList extends Component
             ->get();
 
         $this->chats = $this->chats->filter(function ($chat) {
-            return $chat->lastMessage !== null;
+            return $chat->is_group || $chat->lastMessage !== null;
         });
     }
 

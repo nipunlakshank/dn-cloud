@@ -3,16 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
+
     use Notifiable;
 
     /**
@@ -66,6 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($this->avatar && Str::startsWith($this->avatar, ['http://', 'https://'])) {
             return $this->avatar;
         }
+
         return $this->avatar
             ? url("storage/{$this->avatar}")
             : 'https://ui-avatars.com/api/?name=' . urlencode($this->name()) . '&background=random';
@@ -107,11 +110,14 @@ class User extends Authenticatable implements MustVerifyEmail
             ->whereNotNull('chat_user.active_since')
             ->where('chat_user.active_since', '<', now())
             ->orderByDesc(
-                Message::select('created_at')
-                    ->whereColumn('chat_id', 'chats.id')
-                    ->orderByDesc('created_at')
-                    ->orderByDesc('id')
-                    ->limit(1)
+                DB::raw('
+                COALESCE(
+                    (SELECT created_at FROM messages 
+                     WHERE messages.chat_id = chats.id 
+                     ORDER BY created_at DESC, id DESC LIMIT 1),
+                    chats.created_at
+                )
+            ')
             );
     }
 }
