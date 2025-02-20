@@ -13,7 +13,7 @@
         <div
             class="{{ $isOwner ? 'bg-green-200 dark:bg-teal-900' : 'bg-white dark:bg-gray-700' }} flex flex-col justify-between gap-1 rounded-e-xl rounded-es-xl border-gray-200 px-4 py-2 transition-colors">
 
-            <div class="grid-cols-{{ $attachmentCount > 1 ? 2 : 1 }} grid gap-2">
+            <div class="grid-cols-{{ $attachmentCount > 1 ? 2 : 1 }} grid gap-1">
                 @foreach ($attachments as $attachment)
                     @if ($attachment->type === 'image')
                         <div class="group relative" wire:key="message-attachment-{{ $attachment->id }}">
@@ -23,11 +23,11 @@
                         </div>
                     @else
                         <div
-                            class="leading-1.5 col-span-2 flex w-full max-w-[320px] flex-col rounded-e-xl rounded-es-xl border-gray-200 bg-gray-50 p-4 dark:bg-gray-700">
+                            class="leading-1.5 col-span-2 flex w-full flex-col rounded border-gray-200 bg-gray-50 dark:bg-gray-700">
                             <div class="flex items-start rounded-xl bg-white p-2 dark:bg-gray-600">
                                 <div class="me-2">
-                                    <span
-                                        class="flex items-center gap-2 pb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    <div
+                                        class="flex max-w-[10%] items-center gap-2 pb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         <svg fill="none" aria-hidden="true" class="h-5 w-5 flex-shrink-0"
                                             viewBox="0 0 20 21">
                                             <g clip-path="url(#clip0_3173_1381)">
@@ -50,8 +50,8 @@
                                                 </clipPath>
                                             </defs>
                                         </svg>
-                                        Document
-                                    </span>
+                                        <span class="text-sm">Document</span>
+                                    </div>
                                     <span class="flex gap-2 text-xs font-normal text-gray-500 dark:text-gray-400">
                                         12 Pages
                                         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="self-center"

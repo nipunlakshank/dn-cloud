@@ -63,9 +63,9 @@ class ChatCard extends Component
         }
 
         if ($chat->is_group) {
-            $this->chatAvatar = $chat->group->avatar;
+            $this->chatAvatar = $chat->group->avatar_url;
         } else {
-            $this->chatAvatar = $chat->otherUsers(Auth::id())->first()->avatar;
+            $this->chatAvatar = $chat->otherUsers(Auth::id())->first()->avatar_url;
         }
 
         $this->chatAvatar = $this->chatAvatar ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->chatName) . '&background=random';

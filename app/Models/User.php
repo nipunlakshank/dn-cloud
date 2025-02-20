@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -70,7 +71,7 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return $this->avatar
-            ? url("storage/{$this->avatar}")
+            ? Storage::url($this->avatar)
             : 'https://ui-avatars.com/api/?name=' . urlencode($this->name()) . '&background=random';
     }
 
