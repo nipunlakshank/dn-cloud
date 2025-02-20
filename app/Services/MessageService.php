@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Storage;
 
 class MessageService
 {
-    public function send(Chat $chat, User $user, string $text, ?string $type = null, $attachments = [], $repliedToId = null)
+    public function send(Chat $chat, User $user, string $text, $attachments = [], $repliedToId = null)
     {
-        return DB::transaction(function () use ($chat, $user, $text, $type, $attachments, $repliedToId) {
+        return DB::transaction(function () use ($chat, $user, $text, $attachments, $repliedToId) {
             $message = Message::create([
                 'chat_id' => $chat->id,
                 'user_id' => $user->id,
@@ -25,11 +25,11 @@ class MessageService
             ]);
 
             foreach ($attachments as $attachment) {
-                $path = Storage::disk('public')->put('attachments', $attachment);
+                $path = Storage::disk('public')->put('attachments', $attachment['path']);
                 MessageAttachment::create([
                     'message_id' => $message->id,
                     'path' => $path,
-                    'type' => $type,
+                    'type' => $attachment['type'],
                 ]);
             }
 

@@ -19,12 +19,17 @@ class ImageAttachmentModal extends Component
 
     public function send()
     {
+        $attachments = [];
+
+        foreach ($this->images as $image) {
+            $attachments[] = ['path' => $image, 'type' => 'image'];
+        }
+
         $message = app(MessageService::class)->send(
             $this->chat,
             Auth::user(),
             $this->text,
-            'image',
-            $this->images,
+            $attachments,
         );
 
         if ($message) {

@@ -19,12 +19,17 @@ class DocumentAttachmentModal extends Component
 
     public function send()
     {
+        $attachments = [];
+
+        foreach ($this->documents as $document) {
+            $attachments[] = ['path' => $document, 'type' => 'image'];
+        }
+
         $message = app(MessageService::class)->send(
             $this->chat,
             Auth::user(),
             $this->text,
-            'document',
-            $this->documents,
+            $attachments,
         );
 
         if ($message) {
