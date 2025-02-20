@@ -40,19 +40,12 @@ class LoginForm extends Component
     {
         $this->validate();
 
-        switch ($this->is_pre_authenticated) {
-            case true:
-                $this->authenticate();
-                break;
-            case false:
-                switch ($this->has_password($this->email)) {
-                    case true:
-                        $this->show();
-                        break;
-                    case false:
-                        $this->reset_password();
-                        break;
-                }
+        if ($this->is_pre_authenticated) {
+            $this->authenticate();
+        } elseif ($this->has_password($this->email)) {
+            $this->show();
+        } else {
+            $this->reset_password();
         }
     }
 
@@ -138,6 +131,8 @@ class LoginForm extends Component
         $this->password_focus = true;
         $this->email_focus = false;
         $this->disable_field = 'disabled';
+
+        $this->dispatch('focus.password');
     }
 
     /**
