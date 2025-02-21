@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Message;
+use Illuminate\Support\Facades\DB;
 
 class MessageObserver
 {
@@ -11,10 +12,10 @@ class MessageObserver
      */
     public function created(Message $message): void
     {
-        $receivers = $message->receivers()->get();
+        DB::transaction(function () use ($message) {
+            $receiverIds = $message->receivers()->pluck('users.id')->toArray();
 
-        foreach ($receivers as $receiver) {
-            $message->status()->attach($receiver->id, [
+            $message->status()->sync($receiverIds, [
                 'sent_at' => now(),
             ]);
 
@@ -23,7 +24,7 @@ class MessageObserver
                 'delivered_at' => now(),
                 'read_at' => now(),
             ]);
-        }
+        });
     }
 
     /**
