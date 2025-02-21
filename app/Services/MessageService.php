@@ -39,63 +39,75 @@ class MessageService
 
     public function delete(Message $message)
     {
-        $message->update(['is_deleted' => true]);
+        DB::transaction(function () use ($message) {
+            $message->update(['is_deleted' => true]);
+        });
     }
 
-    public function reply(Message $originalMessage, User $user, string $text, string $type, $attachments = [])
+    public function reply(Message $replyTo, User $user, string $text, string $type, $attachments = [])
     {
-        return $this->send($originalMessage->chat, $user, $text, $type, $attachments, $originalMessage->id);
+        return $this->send($replyTo->chat, $user, $text, $type, $attachments, $replyTo->id);
     }
 
     public function react(Message $message, User $user, string $reaction)
     {
-        if (!in_array($reaction, ['like', 'dislike', 'love', 'haha', 'wow', 'sad', 'angry'])) {
-            throw new Exception('Invalid reaction type.');
-        }
+        DB::transaction(function () use ($message, $user, $reaction) {
+            if (!in_array($reaction, ['like', 'dislike', 'love', 'haha', 'wow', 'sad', 'angry'])) {
+                throw new Exception('Invalid reaction type.');
+            }
 
-        return MessageReaction::updateOrCreate(
-            ['message_id' => $message->id, 'user_id' => $user->id],
-            ['reaction' => $reaction]
-        );
+            return MessageReaction::updateOrCreate(
+                ['message_id' => $message->id, 'user_id' => $user->id],
+                ['reaction' => $reaction]
+            );
+        });
     }
 
-    public function unreact(Message $message, User $user)
+    public function unreact(Message $message, User $user): void
     {
-        return MessageReaction::where('message_id', $message->id)->where('user_id', $user->id)->delete();
+        DB::transaction(function () use ($message, $user) {
+            MessageReaction::where('message_id', $message->id)->where('user_id', $user->id)->delete();
+        });
     }
 
     public function markAsDelivered(Message $message, User $user): void
     {
-        $status = $message->status()->where('user_id', $user->id)->first();
-        if ($status && $status->pivot->delivered_at) {
-            return;
-        }
-        $message->status()->updateExistingPivot($user->id, [
-            'delivered_at' => now(),
-        ]);
+        DB::transaction(function () use ($message, $user) {
+            $status = $message->status()->where('user_id', $user->id)->first();
+            if ($status && $status->pivot->delivered_at) {
+                return;
+            }
+            $message->status()->updateExistingPivot($user->id, [
+                'delivered_at' => now(),
+            ]);
+        });
     }
 
     public function markAsRead(Message $message, User $user): void
     {
-        $status = $message->status()->where('user_id', $user->id)->first();
+        DB::transaction(function () use ($message, $user) {
 
-        if ($status && $status->pivot->read_at) {
-            return;
-        }
+            $status = $message->status()->where('user_id', $user->id)->first();
 
-        if (!$status->pivot->delivered_at) {
+            if ($status && $status->pivot->read_at) {
+                return;
+            }
+
+            if (!$status->pivot->delivered_at) {
+
+                $message->status()->updateExistingPivot($user->id, [
+                    'delivered_at' => now(),
+                    'read_at' => now(),
+                ]);
+
+                return;
+            }
 
             $message->status()->updateExistingPivot($user->id, [
-                'delivered_at' => now(),
                 'read_at' => now(),
             ]);
 
-            return;
-        }
-
-        $message->status()->updateExistingPivot($user->id, [
-            'read_at' => now(),
-        ]);
+        });
     }
 
     public function isDelivered(Message $message, ?User $user = null): bool
