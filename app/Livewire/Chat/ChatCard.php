@@ -4,6 +4,7 @@ namespace App\Livewire\Chat;
 
 use App\Models\Chat;
 use App\Models\Message;
+use App\Models\User;
 use App\Services\ChatService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
@@ -11,6 +12,7 @@ use Livewire\Component;
 
 class ChatCard extends Component
 {
+    public User $user;
     public Chat $chat;
     public ?Message $lastMessage;
     public ?string $timeElapsed;
@@ -48,34 +50,6 @@ class ChatCard extends Component
         $this->unreadCount = 0;
     }
 
-    public function mount(Chat $chat)
-    {
-        $this->chat = $chat;
-        $this->selected = false;
-        $this->lastMessage = $chat->lastMessage ?? null;
-        $this->timeElapsed = $this->calculateTimeElapsed($this->lastMessage?->created_at);
-        $this->unreadCount = app(ChatService::class)->getUnreadCount($chat, Auth::user());
-
-        if ($chat->is_group) {
-            $this->chatName = $chat->group->name;
-        } else {
-            $this->chatName = $chat->otherUsers(Auth::id())->first()->name();
-        }
-
-        if ($chat->is_group) {
-            $this->chatAvatar = $chat->group->avatar_url;
-        } else {
-            $this->chatAvatar = $chat->otherUsers(Auth::id())->first()->avatar_url;
-        }
-
-        $this->chatAvatar = $this->chatAvatar ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->chatName) . '&background=random';
-    }
-
-    public function render()
-    {
-        return view('livewire.chat.chat-card');
-    }
-
     #[On('message.sent')]
     public function newMessageCheck(Message $message)
     {
@@ -96,7 +70,7 @@ class ChatCard extends Component
 
         if ($this->chat->lastMessage()->first()->id !== $this->lastMessage?->id) {
             $this->lastMessage = $this->chat->lastMessage()->first();
-            if ($this->lastMessage->user_id !== Auth::id()) {
+            if ($this->lastMessage->user_id !== $this->user->id) {
                 $this->unreadCount = ($this->unreadCount ?? 0) + 1;
                 $this->dispatch('message.received', $this->lastMessage);
             }
@@ -115,5 +89,34 @@ class ChatCard extends Component
         }
 
         return $timestamp->shortAbsoluteDiffForHumans();
+    }
+
+    public function mount(Chat $chat)
+    {
+        $this->user = Auth::user();
+        $this->chat = $chat;
+        $this->selected = false;
+        $this->lastMessage = $chat->lastMessage ?? null;
+        $this->timeElapsed = $this->calculateTimeElapsed($this->lastMessage?->created_at);
+        $this->unreadCount = app(ChatService::class)->getUnreadCount($chat, $this->user);
+
+        if ($chat->is_group) {
+            $this->chatName = $chat->group->name;
+        } else {
+            $this->chatName = $chat->otherUsers(Auth::id())->first()->name();
+        }
+
+        if ($chat->is_group) {
+            $this->chatAvatar = $chat->group->avatar_url;
+        } else {
+            $this->chatAvatar = $chat->otherUsers(Auth::id())->first()->avatar_url;
+        }
+
+        $this->chatAvatar = $this->chatAvatar ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->chatName) . '&background=random';
+    }
+
+    public function render()
+    {
+        return view('livewire.chat.chat-card');
     }
 }

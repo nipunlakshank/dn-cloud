@@ -1,4 +1,45 @@
-<div id="message-{{ $message->id }}" class="group flex items-center gap-2.5" dir="{{ $isOwner ? 'rtl' : 'ltr' }}">
+<div
+    x-data="{
+        isOwner: @entangle('isOwner'),
+        state: @entangle('state'),
+        messageId: @entangle('messageId'),
+    }"
+    x-init="() => {
+        const options = {
+            placement: isOwner ? 'left-end' : 'right-end',
+            triggerType: 'click',
+            offsetSkidding: 0,
+            offsetDistance: 10,
+            ignoreClickOutsideClass: false,
+        }
+        const instanceOptions = {
+            id: `messageOptions-${messageId}`,
+            override: true,
+        }
+        new Dropdown(
+            document.getElementById(`messageOptions-${messageId}`),
+            document.getElementById(`messageOptionsButton-${messageId}`),
+            options,
+            instanceOptions
+        )
+    
+        if (isOwner) {
+            const stateId = setInterval(() => {
+                console.dir(messageId, state)
+                if (state === 'read') {
+                    clearInterval(stateId)
+                    return
+                }
+                $wire.refreshState()
+            }, 1000)
+            return
+        }
+    
+        setTimeout(() => {
+            if (state !== 'read') $wire.markAsRead()
+        }, 100);
+    }"
+    id="message-{{ $message->id }}" class="group flex items-center gap-2.5" dir="{{ $isOwner ? 'rtl' : 'ltr' }}">
 
     @if ($inAGroup && !$isOwner)
         <img class="h-8 w-8 select-none rounded-full" src="{{ $avatar }}" alt="Avatar">
@@ -157,33 +198,4 @@
             </li>
         </ul>
     </div>
-
-    @script
-        <script type="text/javascript">
-            let isOwner = @js($isOwner);
-            $options = {
-                placement: isOwner ? 'left-end' : 'right-end',
-                triggerType: "click",
-                offsetSkidding: 0,
-                offsetDistance: 10,
-                ignoreClickOutsideClass: false,
-            };
-
-            $instanceOptions = {
-                id: "messageOptions-{{ $message->id }}",
-                override: true,
-            };
-
-            $target = document.getElementById("messageOptions-{{ $message->id }}");
-            $trigger = document.getElementById("messageOptionsButton-{{ $message->id }}");
-
-            new Dropdown(
-                $target,
-                $trigger,
-                $options,
-                $instanceOptions
-            );
-        </script>
-    @endscript
-
 </div>

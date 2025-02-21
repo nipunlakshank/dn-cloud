@@ -94,14 +94,15 @@ class ChatMessages extends Component
         return app(MessageService::class)->isRead($message);
     }
 
-    public function markChatAsRead()
-    {
-        $this->messages->each(function ($message) {
-            app(MessageService::class)->markAsRead($message, Auth::user());
-        });
-
-        $this->dispatch('chat.read', $this->chat->id);
-    }
+    // PERF: This method always calls the service, which is not necessary
+    // public function markChatAsRead()
+    // {
+    //     $this->messages->each(function ($message) {
+    //         app(MessageService::class)->markAsRead($message, Auth::user());
+    //     });
+    //
+    //     $this->dispatch('chat.read', $this->chat->id);
+    // }
 
     public function shouldAddUnreadMarker(Message $message): bool
     {

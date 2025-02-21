@@ -64,22 +64,6 @@ class MessageService
         return MessageReaction::where('message_id', $message->id)->where('user_id', $user->id)->delete();
     }
 
-    public function markAsRead(Message $message, User $user): void
-    {
-        $status = $message->status()->where('user_id', $user->id)->first();
-        if ($status && $status->pivot->read_at) {
-            return;
-        }
-        $message->status()->updateExistingPivot($user->id, [
-            'read_at' => now(),
-        ]);
-    }
-
-    public function isRead(Message $message): bool
-    {
-        return $this->getState($message) === 'read';
-    }
-
     public function markAsDelivered(Message $message, User $user): void
     {
         $status = $message->status()->where('user_id', $user->id)->first();
@@ -91,23 +75,54 @@ class MessageService
         ]);
     }
 
-    public function isDelivered(Message $message): bool
+    public function markAsRead(Message $message, User $user): void
     {
-        return $this->getState($message) === 'delivered';
+        $status = $message->status()->where('user_id', $user->id)->first();
+
+        if ($status && $status->pivot->read_at) {
+            return;
+        }
+
+        if (!$status->pivot->delivered_at) {
+
+            $message->status()->updateExistingPivot($user->id, [
+                'delivered_at' => now(),
+                'read_at' => now(),
+            ]);
+
+            return;
+        }
+
+        $message->status()->updateExistingPivot($user->id, [
+            'read_at' => now(),
+        ]);
     }
 
-    public function getState(Message $message): string
+    public function isDelivered(Message $message, ?User $user = null): bool
     {
-        $statuses = $message->status()->get();
+        return $this->getState($message, $user) === 'delivered';
+    }
+
+    public function isRead(Message $message, ?User $user = null): bool
+    {
+        return $this->getState($message, $user) === 'read';
+    }
+
+    public function getState(Message $message, ?User $user = null): string
+    {
+        $user = $user ?? Auth::user();
+        $statuses = $message->status()->where('user_id', '!=', $user->id)->get();
 
         $read = true;
         $delivered = true;
         foreach ($statuses as $status) {
-            if ($status->pivot->user_id !== Auth::id() && !$status->pivot->read_at) {
+            if (!$status->pivot->read_at) {
                 $read = false;
             }
-            if ($status->pivot->user_id !== Auth::id() && !$status->pivot->delivered_at) {
+            if (!$status->pivot->delivered_at) {
                 $delivered = false;
+                $read = false;
+                break;
             }
         }
 
