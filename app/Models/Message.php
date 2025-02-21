@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
 class Message extends Model
@@ -26,44 +29,44 @@ class Message extends Model
 
     private int $deleteBeforeSeconds = 60 * 5;
 
-    public function chat()
+    public function chat(): BelongsTo
     {
         return $this->belongsTo(Chat::class);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function attachments()
+    public function attachments(): HasMany
     {
         return $this->hasMany(MessageAttachment::class);
     }
 
-    public function receivers()
+    public function receivers(): BelongsToMany
     {
         return $this->chat->users()->where('user_id', '!=', Auth::id());
     }
 
-    public function replies()
+    public function replies(): HasMany
     {
         return $this->hasMany(Message::class, 'replied_to');
     }
 
-    public function status()
+    public function status(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'message_status')
             ->withPivot('sent_at', 'delivered_at', 'read_at', 'deleted_at')
             ->withTimestamps();
     }
 
-    public function repliedTo()
+    public function repliedTo(): BelongsTo
     {
         return $this->belongsTo(Message::class, 'replied_to');
     }
 
-    public function deleteForMe()
+    public function deleteForMe(): void
     {
         $this->info()->where('user_id', Auth::id())->update(['deleted_at' => now()]);
     }
@@ -74,7 +77,7 @@ class Message extends Model
             && $this->created_at->diffInSeconds() < $this->deleteBeforeSeconds;
     }
 
-    public function deleteForAll()
+    public function deleteForAll(): void
     {
         if (!$this->canDeleteForAll()) {
             return;
