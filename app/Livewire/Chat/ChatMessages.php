@@ -100,8 +100,7 @@ class ChatMessages extends Component
             app(MessageService::class)->markAsRead($message, Auth::user());
         });
 
-        // FIXME: This is breaking this component
-        // $this->dispatch('chat.read', $this->chat->id);
+        $this->dispatch('chat.read', $this->chat->id);
     }
 
     public function shouldAddUnreadMarker(Message $message): bool

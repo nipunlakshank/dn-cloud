@@ -1,4 +1,5 @@
 <div
+    x-data="{ unreadCount: @entangle('unreadCount') }"
     tabindex="0"
     wire:click="selectChat"
     x-on:keyup.enter="$wire.selectChat()"
@@ -20,12 +21,11 @@
                 <span class="last-message truncate py-1 text-sm font-normal text-gray-900 dark:text-white">
                     {{ $chat->lastMessage->text ?? '-' }}
                 </span>
-                @if (isset($unreadCount) && $unreadCount > 0)
-                    <span
-                        class="h-fit rounded-full bg-lime-400 px-[0.5em] py-[0.1em] text-xs text-gray-800 dark:bg-lime-700 dark:text-gray-100">
-                        {{ $unreadCount ?? '0' }}
-                    </span>
-                @endif
+                <span
+                    x-show="unreadCount > 0"
+                    class="h-fit rounded-full bg-lime-400 px-[0.5em] py-[0.1em] text-xs text-gray-800 dark:bg-lime-700 dark:text-gray-100">
+                    {{ $unreadCount ?? '0' }}
+                </span>
             </div>
         </div>
     </div>
