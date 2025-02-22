@@ -143,6 +143,8 @@ class LoginForm extends Component
         $this->password_focus = true;
         $this->email_focus = false;
         $this->disable_field = 'disabled';
+
+        $this->dispatch('focus.password');
     }
 
     /**

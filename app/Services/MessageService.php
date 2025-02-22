@@ -8,6 +8,7 @@ use App\Models\MessageAttachment;
 use App\Models\MessageReaction;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,11 +25,11 @@ class MessageService
             ]);
 
             foreach ($attachments as $attachment) {
-                $path = Storage::put('attachments', $attachment);
+                $path = Storage::disk('public')->put('attachments', $attachment['path']);
                 MessageAttachment::create([
                     'message_id' => $message->id,
                     'path' => $path,
-                    'type' => $attachment->getClientMimeType(),
+                    'type' => $attachment['type'],
                 ]);
             }
 
@@ -38,23 +39,93 @@ class MessageService
 
     public function delete(Message $message)
     {
-        $message->update(['is_deleted' => true]);
+        DB::transaction(function () use ($message) {
+            $message->update(['is_deleted' => true]);
+        });
     }
 
-    public function reply(Message $originalMessage, User $user, string $text, $attachments = [])
+    public function reply(Message $replyTo, User $user, string $text, string $type, $attachments = [])
     {
-        return $this->send($originalMessage->chat, $user, $text, $attachments, $originalMessage->id);
+        return $this->send($replyTo->chat, $user, $text, $type, $attachments, $replyTo->id);
     }
 
     public function react(Message $message, User $user, string $reaction)
     {
-        if (!in_array($reaction, ['like', 'dislike', 'love', 'haha', 'wow', 'sad', 'angry'])) {
-            throw new Exception('Invalid reaction type.');
+        DB::transaction(function () use ($message, $user, $reaction) {
+            if (!in_array($reaction, ['like', 'dislike', 'love', 'haha', 'wow', 'sad', 'angry'])) {
+                throw new Exception('Invalid reaction type.');
+            }
+
+            return MessageReaction::updateOrCreate(
+                ['message_id' => $message->id, 'user_id' => $user->id],
+                ['reaction' => $reaction]
+            );
+        });
+    }
+
+    public function unreact(Message $message, User $user): void
+    {
+        DB::transaction(function () use ($message, $user) {
+            MessageReaction::where('message_id', $message->id)->where('user_id', $user->id)->delete();
+        });
+    }
+
+    public function markAsDelivered(Message $message, User $user): void
+    {
+        DB::transaction(function () use ($message, $user) {
+            $status = $message->status()->where('user_id', $user->id)->first();
+            if ($status && $status->pivot->delivered_at) {
+                return;
+            }
+            $message->status()->updateExistingPivot($user->id, [
+                'delivered_at' => now(),
+            ]);
+        });
+    }
+
+    public function markAsRead(Message $message, User $user): void
+    {
+        DB::transaction(function () use ($message, $user) {
+            $message->status()
+                ->wherePivot('user_id', $user->id)
+                ->whereNull('read_at')
+                ->updateExistingPivot($user->id, [
+                    'delivered_at' => DB::raw('COALESCE(delivered_at, NOW())'),
+                    'read_at' => now(),
+                ]);
+        });
+    }
+
+    public function isDelivered(Message $message, ?User $user = null): bool
+    {
+        return $this->getState($message, $user) === 'delivered';
+    }
+
+    public function isRead(Message $message, ?User $user = null): bool
+    {
+        return $this->getState($message, $user) === 'read';
+    }
+
+    public function getState(Message $message, ?User $user = null): string
+    {
+        $user = $user ?? Auth::user();
+
+        // Check if any status is not delivered
+        $notDelivered = $message->status()
+            ->where('user_id', '!=', $user->id)
+            ->whereNull('delivered_at')
+            ->exists();
+
+        if ($notDelivered) {
+            return 'sent';
         }
 
-        return MessageReaction::updateOrCreate(
-            ['message_id' => $message->id, 'user_id' => $user->id],
-            ['reaction' => $reaction]
-        );
+        // Check if any status is not read
+        $notRead = $message->status()
+            ->where('user_id', '!=', $user->id)
+            ->whereNull('read_at')
+            ->exists();
+
+        return $notRead ? 'delivered' : 'read';
     }
 }

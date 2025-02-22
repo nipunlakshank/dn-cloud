@@ -3,6 +3,7 @@
 namespace App\Livewire\Chat;
 
 use App\Models\User;
+use App\Services\ChatService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
@@ -32,7 +33,9 @@ class ChatList extends Component
             ->get();
 
         $this->chats = $this->chats->filter(function ($chat) {
-            return $chat->lastMessage !== null;
+            app(ChatService::class)->markAsDelivered($chat, Auth::user());
+
+            return $chat->is_group || $chat->lastMessage !== null;
         });
     }
 

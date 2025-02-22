@@ -8,24 +8,26 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Livewire\WithFileUploads;
 
 class CreateGroup extends Component
 {
-    public string $name;
-    public $avatar;
-    public array $users;
+    use WithFileUploads;
+
+    public string $name = '';
+    public ?TemporaryUploadedFile $avatar = null;
+    public array $users = [];
     public Collection $selectedUserIds;
-    public int $selectedUserCount;
+    public int $selectedUserCount = 0;
 
     #[On('group.create.addUser')]
     public function addUser($id)
     {
-        if ($this->selectedUserIds->contains($id)) {
-            return;
+        if (!$this->selectedUserIds->contains($id)) {
+            $this->selectedUserIds->push($id);
+            $this->selectedUserCount = $this->selectedUserIds->count();
         }
-
-        $this->selectedUserIds->push($id);
-        $this->selectedUserCount = $this->selectedUserIds->count();
     }
 
     #[On('group.create.removeUser')]
@@ -39,40 +41,39 @@ class CreateGroup extends Component
     public function clearSelectedUsers()
     {
         $this->selectedUserIds = Collection::empty();
-        $this->selectedUserCount = $this->selectedUserIds->count();
+        $this->selectedUserCount = 0;
     }
 
     public function createGroup()
     {
         $this->validate([
             'name' => 'required|string',
-            'avatar' => 'nullable|image|max:1024',
+            'avatar' => 'nullable|image|max:1024', // Ensure Livewire file validation works
         ]);
 
-        $avatar = null;
-        if ($this->avatar) {
-            $avatar = $this->avatar->store('avatars');
+        $avatarPath = null;
+
+        // Ensure $avatar is a valid file before storing
+        if ($this->avatar instanceof TemporaryUploadedFile) {
+            $avatarPath = $this->avatar->store('avatars', 'public');
         }
 
         $members = $this->selectedUserIds->toArray();
         $members[] = Auth::id();
 
-        app(GroupService::class)->create($this->name, $avatar, $members);
+        app(GroupService::class)->create($this->name, $avatarPath, $members);
 
         $this->dispatch('group.created');
         $this->dispatch('alert', ['message' => 'Group created successfully!', 'type' => 'success']);
+
         $this->clearSelectedUsers();
-        $this->name = '';
-        $this->avatar = null;
+        $this->reset(['name', 'avatar']);
     }
 
     public function mount()
     {
-        $this->name = '';
-        $this->avatar = null;
+        $this->selectedUserIds = collect();
         $this->users = User::where('id', '!=', Auth::id())->withFullName()->get()->toArray();
-        $this->selectedUserIds = Collection::empty();
-        $this->selectedUserCount = $this->selectedUserIds->count();
     }
 
     public function render()

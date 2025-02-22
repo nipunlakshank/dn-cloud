@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Storage;
 
 class GroupService
 {
-    public function create(string $name, ?string $avatar, array $members, ?User $owner = null)
+    public function create(string $name, ?string $avatar, array $memberIds, ?User $owner = null)
     {
-        return DB::transaction(function () use ($owner, $name, $avatar, $members) {
+        return DB::transaction(function () use ($owner, $name, $avatar, $memberIds) {
             $chat = Chat::create(['is_group' => true]);
 
             $group = Group::create([
@@ -24,48 +24,48 @@ class GroupService
 
             $owner = $owner ?? Auth::user();
             $chat->users()->attach($owner->id, ['role' => 'owner']);
-
-            foreach ($members as $memberId) {
-                if ($memberId != $owner->id) {
-                    $chat->users()->attach($memberId, ['role' => 'member']);
-                }
-            }
+            $chat->users()->sync($memberIds, ['role' => 'member']);
 
             return $group;
         });
     }
 
-    public function update(Group $group, string $name, ?string $avatar = null)
+    public function update(Group $group, string $name, ?string $avatar = null): bool
     {
-        if ($avatar) {
-            if ($group->avatar) {
+        return DB::transaction(function () use ($group, $name, $avatar) {
+            if ($avatar && $group->avatar) {
                 Storage::delete($group->avatar);
             }
-            $group->avatar = $avatar;
-        }
 
-        $group->name = $name;
-        $group->save();
-
-        return $group;
+            return $group->update([
+                'name' => $name,
+                'avatar' => $avatar ?? $group->avatar,
+            ]);
+        });
     }
 
-    public function addUser(Group $group, User $user, string $role = 'member')
+    public function addUser(User $user, Group $group, string $role = 'member'): void
     {
-        $group->chat->users()->attach($user->id, ['role' => $role]);
+        DB::transaction(function () use ($user, $group, $role) {
+            $group->chat->users()->attach($user->id, ['role' => $role]);
+        });
     }
 
-    public function removeUser(Group $group, User $user)
+    public function removeUser(User $user, Group $group): void
     {
-        $group->chat->users()->detach($user->id);
+        DB::transaction(function () use ($user, $group) {
+            $group->chat->users()->detach($user->id);
+        });
     }
 
-    public function changeUserRole(Group $group, User $user, string $role)
+    public function changeUserRole(User $user, Group $group, string $role): void
     {
-        $group->chat->users()->updateExistingPivot($user->id, ['role' => $role]);
+        DB::transaction(function () use ($user, $group, $role) {
+            $group->chat->users()->updateExistingPivot($user->id, ['role' => $role]);
+        });
     }
 
-    public function delete(Group $group)
+    public function delete(Group $group): bool
     {
         return DB::transaction(function () use ($group) {
             // Delete the associated chat (cascade will delete group)

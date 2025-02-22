@@ -2,10 +2,59 @@
 
 namespace App\Livewire\Modals;
 
+use App\Models\Chat;
+use App\Services\MessageService;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class ReportAttachmentModal extends Component
 {
+    use WithFileUploads;
+
+    public Chat $chat;
+    public array $images;
+    public array $documents;
+    public string $text;
+
+    public function send()
+    {
+        $attachments = [];
+
+        foreach ($this->images as $image) {
+            $attachments[] = ['path' => $image, 'type' => 'image'];
+        }
+        foreach ($this->documents as $document) {
+            $attachments[] = ['path' => $document, 'type' => 'document'];
+        }
+
+        $message = app(MessageService::class)->send(
+            $this->chat,
+            Auth::user(),
+            $this->text,
+            $attachments,
+        );
+
+        $this->dispatch('message.sent', $message);
+
+        if ($message) {
+            $this->reset(['images', 'text']);
+        }
+    }
+
+    #[On('chat.select')]
+    public function selectChat(Chat $chat)
+    {
+        $this->chat = $chat;
+    }
+
+    public function mount()
+    {
+        $this->images = [];
+        $this->text = '';
+    }
+
     public function render()
     {
         return view('livewire.modals.report-attachment-modal');

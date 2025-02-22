@@ -5,8 +5,13 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -72,7 +77,7 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return $this->avatar
-            ? url("storage/{$this->avatar}")
+            ? Storage::url($this->avatar)
             : 'https://ui-avatars.com/api/?name=' . urlencode($this->name()) . '&background=random';
     }
 
@@ -81,7 +86,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $query->selectRaw("*, CONCAT(first_name, ' ', last_name) AS name");
     }
 
-    public function chats()
+    public function chats(): BelongsToMany
     {
         return $this->belongsToMany(Chat::class)
             ->using(ChatUser::class)
@@ -89,34 +94,37 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withTimestamps();
     }
 
-    public function messages()
+    public function messages(): HasMany
     {
         return $this->hasMany(Message::class);
     }
 
-    public function messageStatus()
+    public function messageStatus(): BelongsToMany
     {
         return $this->belongsToMany(Message::class)
             ->withPivot('sent_at', 'delivered_at', 'read_at', 'deleted_at')
             ->withTimestamps();
     }
 
-    public function lastMessage()
+    public function lastMessage(): HasOne
     {
         return $this->hasOne(Message::class)->latestOfMany(['created_at', 'id']);
     }
 
-    public function activeChats()
+    public function activeChats(): BelongsToMany
     {
         return $this->chats()
             ->whereNotNull('chat_user.active_since')
             ->where('chat_user.active_since', '<', now())
             ->orderByDesc(
-                Message::select('created_at')
-                    ->whereColumn('chat_id', 'chats.id')
-                    ->orderByDesc('created_at')
-                    ->orderByDesc('id')
-                    ->limit(1)
+                DB::raw('
+                    COALESCE(
+                        (SELECT created_at FROM messages
+                         WHERE messages.chat_id = chats.id
+                         ORDER BY created_at DESC, id DESC LIMIT 1),
+                        chats.created_at
+                    )
+                ')
             );
     }
 }

@@ -7,7 +7,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class () extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -19,6 +20,7 @@ return new class () extends Migration {
             $table->foreignIdFor(Chat::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->foreignId('replied_to')->nullable()->constrained('messages')->onDelete('set null');
+            $table->boolean('is_report')->default(false);
             $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
@@ -27,7 +29,7 @@ return new class () extends Migration {
             $table->id();
             $table->foreignIdFor(Message::class)->constrained()->onDelete('cascade');
             $table->string('path');
-            $table->enum('type', ['document', 'image', 'report']);
+            $table->enum('type', ['document', 'image']);
             $table->timestamps();
         });
 

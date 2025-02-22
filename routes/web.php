@@ -39,6 +39,8 @@ Route::group(['auth', 'verified', 'middleware' => 'role:dev|super-admin|admin|ac
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
 Route::group(['auth', 'verified', 'middleware' => 'role:dev|super-admin|admin|accountant'], function () {
@@ -47,8 +49,6 @@ Route::group(['auth', 'verified', 'middleware' => 'role:dev|super-admin|admin|ac
     Route::get('/reports', Reports::class)->name('reports');
 
     Route::post('register', [RegisteredUserController::class, 'store'])->name('register');
-
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
 Route::group(['auth', 'middleware' => 'role:dev|super-admin|admin'], function () {
