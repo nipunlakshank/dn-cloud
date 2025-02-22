@@ -85,32 +85,14 @@ class MessageService
 
     public function markAsRead(Message $message, User $user): void
     {
-        if ($this->isRead($message, $user)) {
-            return;
-        }
-
         DB::transaction(function () use ($message, $user) {
-
-            $status = $message->status()->where('user_id', $user->id)->first();
-
-            if ($status && $status->pivot->read_at) {
-                return;
-            }
-
-            if (!$status->pivot->delivered_at) {
-
-                $message->status()->updateExistingPivot($user->id, [
-                    'delivered_at' => now(),
+            $message->status()
+                ->wherePivot('user_id', $user->id)
+                ->whereNull('read_at')
+                ->updateExistingPivot($user->id, [
+                    'delivered_at' => DB::raw('COALESCE(delivered_at, NOW())'),
                     'read_at' => now(),
                 ]);
-
-                return;
-            }
-
-            $message->status()->updateExistingPivot($user->id, [
-                'read_at' => now(),
-            ]);
-
         });
     }
 
@@ -127,21 +109,23 @@ class MessageService
     public function getState(Message $message, ?User $user = null): string
     {
         $user = $user ?? Auth::user();
-        $statuses = $message->status()->where('user_id', '!=', $user->id)->get();
 
-        $read = true;
-        $delivered = true;
-        foreach ($statuses as $status) {
-            if (!$status->pivot->read_at) {
-                $read = false;
-            }
-            if (!$status->pivot->delivered_at) {
-                $delivered = false;
-                $read = false;
-                break;
-            }
+        // Check if any status is not delivered
+        $notDelivered = $message->status()
+            ->where('user_id', '!=', $user->id)
+            ->whereNull('delivered_at')
+            ->exists();
+
+        if ($notDelivered) {
+            return 'sent';
         }
 
-        return $read ? 'read' : ($delivered ? 'delivered' : 'sent');
+        // Check if any status is not read
+        $notRead = $message->status()
+            ->where('user_id', '!=', $user->id)
+            ->whereNull('read_at')
+            ->exists();
+
+        return $notRead ? 'delivered' : 'read';
     }
 }
