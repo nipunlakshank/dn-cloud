@@ -47,7 +47,7 @@
                 <div class="mb-4 grid grid-cols-2 gap-4">
 
                     <div class="col-span-2">
-                        <label for="chat-attachment-report-image"
+                        <label for="img-input"
                             class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 flex w-full items-center gap-2 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -58,9 +58,9 @@
                                     d="M2 6C2 4.89543 2.89543 4 4 4H20C21.1046 4 22 4.89543 22 6V18C22 18.5561 21.7731 19.0591 21.4068 19.4216C21.3579 19.5267 21.2907 19.6236 21.2071 19.7071C21.0196 19.8946 20.7652 20 20.5 20L4 20C3.86193 20 3.72713 19.986 3.59693 19.9594C2.79951 19.7962 2.17496 19.1584 2.03125 18.3541C2.01072 18.2392 2 18.1208 2 18V6ZM8.89188 18L12.7246 12.644L8.7348 8.32172C8.53068 8.10059 8.23781 7.98314 7.93746 8.00196C7.6371 8.02078 7.36119 8.17387 7.18627 8.41876L4 12.8795V6L20 6V15.9496L16.7433 12.331C16.5405 12.1057 16.2464 11.9845 15.9437 12.0016C15.6411 12.0186 15.3625 12.1721 15.1863 12.4188L11.1997 18H8.89188Z"
                                     fill="currentColor" />
                             </svg>Select Image Files</label>
-                        <input required multiple type="file" accept=".png, .jpg, .jpeg"
+                        <input multiple type="file" accept=".png, .jpg, .jpeg"
                             wire:model="images"
-                            name="chat-attachment-report-image" id="chat-attachment-report-image" class="hidden">
+                            name="img-input" id="img-input" class="hidden">
                     </div>
 
                     <div class="col-span-2">
@@ -93,12 +93,12 @@
                                                 x-on:click="e => {
                                                     // FIXME: Can't remove last item, can't add more yet
                                                     e.preventDefault()
-                                                    docs = docs.filter(item => { 
+                                                    docs = docs.filter(item => {
                                                         console.group('Item')
                                                         console.dir(doc.file)
                                                         console.dir(item)
                                                         console.groupEnd()
-                                                        return item !== doc.file 
+                                                        return item !== doc.file
                                                     })
                                                     console.dir(docs)
                                                 }"
@@ -116,7 +116,7 @@
                                 </div>
                             </div>
                         </label>
-                        <input required multiple type="file" accept=".pdf, .doc, .docx, .xlsx, .xls, .csv"
+                        <input tabindex=0 required multiple type="file" accept=".pdf, .doc, .docx, .xlsx, .xls, .csv"
                             wire:model="documents"
                             id="doc-input" name="doc-input" class="hidden">
                     </div>
