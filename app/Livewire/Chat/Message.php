@@ -41,10 +41,6 @@ class Message extends Component
 
     public function markAsRead()
     {
-        if ($this->isOwner) {
-            return;
-        }
-
         app(MessageService::class)->markAsRead($this->message, Auth::user());
         $this->state = app(MessageService::class)->getState($this->message, Auth::user());
     }

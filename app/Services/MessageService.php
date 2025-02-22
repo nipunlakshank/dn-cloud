@@ -85,6 +85,10 @@ class MessageService
 
     public function markAsRead(Message $message, User $user): void
     {
+        if ($this->isRead($message, $user)) {
+            return;
+        }
+
         DB::transaction(function () use ($message, $user) {
 
             $status = $message->status()->where('user_id', $user->id)->first();
