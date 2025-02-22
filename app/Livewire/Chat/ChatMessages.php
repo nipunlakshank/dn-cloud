@@ -4,6 +4,7 @@ namespace App\Livewire\Chat;
 
 use App\Models\Chat;
 use App\Models\Message;
+use App\Services\ChatService;
 use App\Services\MessageService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -94,15 +95,11 @@ class ChatMessages extends Component
         return app(MessageService::class)->isRead($message);
     }
 
-    // PERF: This method always calls the service, which is not necessary
-    // public function markChatAsRead()
-    // {
-    //     $this->messages->each(function ($message) {
-    //         app(MessageService::class)->markAsRead($message, Auth::user());
-    //     });
-    //
-    //     $this->dispatch('chat.read', $this->chat->id);
-    // }
+    public function markChatAsRead()
+    {
+        app(ChatService::class)->markAsRead($this->chat, Auth::user());
+        $this->dispatch('chat.read', $this->chat->id);
+    }
 
     public function shouldAddUnreadMarker(Message $message): bool
     {

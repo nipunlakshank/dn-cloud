@@ -37,7 +37,7 @@
     
         setTimeout(() => {
             if (state !== 'read') $wire.markAsRead()
-        }, 100);
+        }, 500);
     }"
     id="message-{{ $message->id }}" class="group flex items-center gap-2.5" dir="{{ $isOwner ? 'rtl' : 'ltr' }}">
 

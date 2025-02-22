@@ -7,6 +7,9 @@
     x-on:scroll="handleScroll($event); loadMoreMessages($event)"
     x-init="() => {
         initScroll();
+        setTimeout(() => {
+            $wire.markChatAsRead();
+        }, 500);
     }"
     @transitionstart="initScroll()">
 
