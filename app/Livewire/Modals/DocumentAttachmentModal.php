@@ -22,7 +22,7 @@ class DocumentAttachmentModal extends Component
         $attachments = [];
 
         foreach ($this->documents as $document) {
-            $attachments[] = ['path' => $document, 'type' => 'image'];
+            $attachments[] = ['path' => $document, 'type' => 'document'];
         }
 
         $message = app(MessageService::class)->send(
@@ -31,6 +31,8 @@ class DocumentAttachmentModal extends Component
             $this->text,
             $attachments,
         );
+
+        $this->dispatch('message.sent', $message);
 
         if ($message) {
             $this->reset(['documents', 'text']);

@@ -36,6 +36,8 @@ class ReportAttachmentModal extends Component
             $attachments,
         );
 
+        $this->dispatch('message.sent', $message);
+
         if ($message) {
             $this->reset(['images', 'text']);
         }
