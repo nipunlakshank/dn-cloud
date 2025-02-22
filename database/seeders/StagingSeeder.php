@@ -14,15 +14,15 @@ class StagingSeeder extends Seeder
      */
     public function run(): void
     {
+
         User::create([
             'first_name' => 'Dev',
             'last_name' => 'User',
             'email' => 'dev@gmail.com',
             'password' => Hash::make('Dev@123'),
             'remember_token' => Str::random(10),
-            'role' => 'admin',
             'email_verified_at' => now(),
-        ]);
+        ])->assignRole('dev');
 
         User::create([
             'first_name' => 'Test',
@@ -30,9 +30,8 @@ class StagingSeeder extends Seeder
             'email' => 'test@gmail.com',
             'password' => Hash::make('Test@123'),
             'remember_token' => Str::random(10),
-            'role' => 'admin',
             'email_verified_at' => now(),
-        ]);
+        ])->assignRole('worker');
 
         // Dev Users
         User::create([
@@ -41,9 +40,8 @@ class StagingSeeder extends Seeder
             'email' => 'nipun@gmail.com',
             'password' => Hash::make('Nipun@123'),
             'remember_token' => Str::random(10),
-            'role' => 'admin',
             'email_verified_at' => now(),
-        ]);
+        ])->assignRole('admin');
 
         User::create([
             'first_name' => 'Brayan',
@@ -51,9 +49,8 @@ class StagingSeeder extends Seeder
             'email' => 'brayan@gmail.com',
             'password' => Hash::make('Brayan@123'),
             'remember_token' => Str::random(10),
-            'role' => 'admin',
             'email_verified_at' => now(),
-        ]);
+        ])->assignRole('admin');
 
         User::create([
             'first_name' => 'Madhuka',
@@ -61,8 +58,7 @@ class StagingSeeder extends Seeder
             'email' => 'madhuka@gmail.com',
             'password' => Hash::make('Madhuka@123'),
             'remember_token' => Str::random(10),
-            'role' => 'admin',
             'email_verified_at' => now(),
-        ]);
+        ])->assignRole('admin');
     }
 }

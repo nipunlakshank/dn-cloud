@@ -20,9 +20,8 @@ class ProductionSeeder extends Seeder
             'email' => 'dev@gmail.com',
             'password' => Hash::make('Dev@123'),
             'remember_token' => Str::random(10),
-            'role' => 'admin',
             'email_verified_at' => now(),
-        ]);
+        ])->assignRole('dev');
 
         User::create([
             'first_name' => 'Test',
@@ -30,8 +29,7 @@ class ProductionSeeder extends Seeder
             'email' => 'test@gmail.com',
             'password' => Hash::make('Test@123'),
             'remember_token' => Str::random(10),
-            'role' => 'admin',
             'email_verified_at' => now(),
-        ]);
+        ])->assignRole('worker');
     }
 }

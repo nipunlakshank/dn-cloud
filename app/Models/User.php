@@ -3,16 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
+
+    /** @use Spatie Package */
+    use HasRoles;
+
     use Notifiable;
 
     /**
@@ -25,7 +30,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'last_name',
         'email',
         'password',
-        'role',
         'is_active',
         'avatar',
         'active_since',
@@ -66,6 +70,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($this->avatar && Str::startsWith($this->avatar, ['http://', 'https://'])) {
             return $this->avatar;
         }
+
         return $this->avatar
             ? url("storage/{$this->avatar}")
             : 'https://ui-avatars.com/api/?name=' . urlencode($this->name()) . '&background=random';
