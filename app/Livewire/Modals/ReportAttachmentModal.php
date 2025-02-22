@@ -16,6 +16,8 @@ class ReportAttachmentModal extends Component
     public Chat $chat;
     public array $images;
     public array $documents;
+    public array $imageInfos;
+    public array $documentInfos;
     public string $text;
 
     public function send()
@@ -34,12 +36,38 @@ class ReportAttachmentModal extends Component
             Auth::user(),
             $this->text,
             $attachments,
+            null,
+            true
         );
 
         $this->dispatch('message.sent', $message);
 
         if ($message) {
             $this->reset(['images', 'text']);
+        }
+    }
+
+    public function processImages()
+    {
+        $this->imageInfos = [];
+        foreach ($this->images as $image) {
+            $this->imageInfos[] = [
+                'file' => 'livewire-file:' . $image->getFileName(),
+                'name' => $image->getClientOriginalName(),
+                'type' => 'image',
+            ];
+        }
+    }
+
+    public function processDocuments()
+    {
+        $this->documentInfos = [];
+        foreach ($this->documents as $document) {
+            $this->documentInfos[] = [
+                'file' => 'livewire-file:' . $document->getFileName(),
+                'name' => $document->getClientOriginalName(),
+                'type' => 'document',
+            ];
         }
     }
 
@@ -52,6 +80,9 @@ class ReportAttachmentModal extends Component
     public function mount()
     {
         $this->images = [];
+        $this->documents = [];
+        $this->imageInfos = [];
+        $this->documentInfos = [];
         $this->text = '';
     }
 

@@ -1,5 +1,28 @@
 <!-- Daily Reports modal -->
 <div id="chat-attachment-modal-reports" tabindex="-1" aria-hidden="true"
+    wire:ignore
+    x-data="{
+        imgs: @entangle('images'),
+        docs: @entangle('documents'),
+        imgInfos: @entangle('imageInfos'),
+        docInfos: @entangle('documentInfos'),
+        get docCount() {
+            return this.docs.length;
+        },
+        get imgCount() {
+            return this.imgs.length;
+        }
+    }"
+
+    x-init="() => {
+        $watch('imgs', value => {
+            $wire.processImages(value);
+        });
+        $watch('docs', value => {
+            $wire.processDocuments(value);
+        });
+    }"
+
     class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0">
     <div class="relative max-h-full w-full max-w-md p-4">
         <!-- Modal content -->
@@ -20,7 +43,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form class="p-4 md:p-5">
+            <form class="p-4 md:p-5" wire:submit.prevent="send">
                 <div class="mb-4 grid grid-cols-2 gap-4">
 
                     <div class="col-span-2">
@@ -36,24 +59,71 @@
                                     fill="currentColor" />
                             </svg>Select Image Files</label>
                         <input required multiple type="file" accept=".png, .jpg, .jpeg"
+                            wire:model="images"
                             name="chat-attachment-report-image" id="chat-attachment-report-image" class="hidden">
                     </div>
 
                     <div class="col-span-2">
-                        <label for="chat-attachment-report-document"
+                        <label for="doc-input"
+                            x-on:click="e => docCount > 0 && e.preventDefault()"
                             class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 flex w-full items-center gap-2 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M9 2.22117V7H4.22117C4.31517 6.81709 4.43766 6.64812 4.58579 6.5L8.5 2.58579C8.64812 2.43766 8.81709 2.31517 9 2.22117ZM11 2V7C11 8.10457 10.1046 9 9 9H4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2H11Z"
                                     fill="currentColor" />
-                            </svg>Select Document Files</label>
+                            </svg>
+                            <div
+                                class="scrollbar-hide relative flex items-center gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+                                <span x-show="docCount === 0">Select documents</span>
+                                <button x-show="docCount > 0"
+                                    for="doc-input"
+                                    class="sticky left-0 inline-block text-nowrap rounded bg-blue-400 px-2 py-1 text-sm text-gray-200 dark:bg-blue-600 dark:text-gray-100">
+                                    Add more
+                                </button>
+                                <div x-show="docCount > 0"
+                                    class="flex w-full gap-1">
+                                    <template x-for="doc in docInfos">
+                                        <div
+                                            tabindex="0"
+                                            x-data="{ doc: doc }"
+                                            class="flex gap-1 bg-gray-200 p-1 text-gray-800 dark:bg-gray-500 dark:text-gray-100">
+                                            <span class="truncate text-nowrap text-sm" x-text="doc.name"></span>
+                                            <button type="button"
+                                                x-on:click="e => {
+                                                    // FIXME: Can't remove last item, can't add more yet
+                                                    e.preventDefault()
+                                                    docs = docs.filter(item => { 
+                                                        console.group('Item')
+                                                        console.dir(doc.file)
+                                                        console.dir(item)
+                                                        console.groupEnd()
+                                                        return item !== doc.file 
+                                                    })
+                                                    console.dir(docs)
+                                                }"
+                                                class="flex items-center text-gray-500 dark:text-gray-200">
+                                                <svg width="18" height="18" viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M6 6 18 18M6 18 18 6" stroke="currentColor"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="1" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </label>
                         <input required multiple type="file" accept=".pdf, .doc, .docx, .xlsx, .xls, .csv"
-                            name="chat-attachment-report-document" id="chat-attachment-report-document" class="hidden">
+                            wire:model="documents"
+                            id="doc-input" name="doc-input" class="hidden">
                     </div>
 
                     <div class="col-span-2">
                         <textarea id="report-message" rows="4"
+                            wire:model="text"
                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                             placeholder="Message(Optional)"></textarea>
                     </div>
