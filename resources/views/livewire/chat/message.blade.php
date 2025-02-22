@@ -24,10 +24,9 @@
         )
     
         if (isOwner) {
-            const stateId = setInterval(() => {
-                console.dir(messageId, state)
+            const senderState = setInterval(() => {
                 if (state === 'read') {
-                    clearInterval(stateId)
+                    clearInterval(senderState)
                     return
                 }
                 $wire.refreshState()
@@ -35,9 +34,13 @@
             return
         }
     
-        setTimeout(() => {
-            if (state !== 'read') $wire.markAsRead()
-        }, 500);
+        recieverState = setInterval(() => {
+            if (state === 'read') {
+                clearInterval(recieverState)
+                return
+            }
+            $wire.markAsRead()
+        }, 1000);
     }"
     id="message-{{ $message->id }}" class="group flex items-center gap-2.5" dir="{{ $isOwner ? 'rtl' : 'ltr' }}">
 
@@ -56,9 +59,9 @@
 
             <div class="grid-cols-{{ $attachmentCount > 1 ? 2 : 1 }} grid gap-1">
                 @foreach ($attachments as $attachment)
-                    @if ($attachment->type === 'image')
-                        <div class="group relative" wire:key="message-attachment-{{ $attachment->id }}">
-                            <img src="{{ Storage::url($attachment->path) }}" class="chat-image-bubble rounded-lg"
+                    @if ($attachment['type'] === 'image')
+                        <div class="group relative" wire:key="message-attachment-{{ $attachment['id'] }}">
+                            <img src="{{ Storage::url($attachment['path']) }}" class="chat-image-bubble rounded-lg"
                                 data-message-id="{{ $message->id }}" data-modal-target="chat-image-viewer"
                                 data-modal-toggle="chat-image-viewer" />
                         </div>

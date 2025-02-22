@@ -73,6 +73,9 @@ class ChatCard extends Component
             if ($this->lastMessage->user_id !== $this->user->id) {
                 $this->unreadCount = ($this->unreadCount ?? 0) + 1;
                 $this->dispatch('message.received', $this->lastMessage);
+                if ($this->selected) {
+                    $this->markAsRead($this->chat->id);
+                }
             }
         }
         $this->timeElapsed = $this->calculateTimeElapsed();
