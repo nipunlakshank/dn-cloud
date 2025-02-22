@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 
 class MessageService
 {
-    public function send(Chat $chat, User $user, string $text, $attachments = [], $repliedToId = null)
+    public function send(Chat $chat, User $user, string $text, $attachments = [], ?int $repliedToId = null, bool $isReport = false)
     {
         return DB::transaction(function () use ($chat, $user, $text, $attachments, $repliedToId) {
             $message = Message::create([
