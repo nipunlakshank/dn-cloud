@@ -29,9 +29,9 @@ class ChatHeader extends Component
         }
 
         if ($this->chat->is_group) {
-            $this->chatAvatar = $this->chat->group->avatar;
+            $this->chatAvatar = $this->chat->group->avatar_url;
         } else {
-            $this->chatAvatar = $this->chat->otherUsers(Auth::id())->first()->avatar;
+            $this->chatAvatar = $this->chat->otherUsers(Auth::id())->first()->avatar_url;
         }
 
         $this->chatAvatar = $this->chatAvatar ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->chatName) . '&background=random';
