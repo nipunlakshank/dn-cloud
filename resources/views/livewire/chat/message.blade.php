@@ -113,7 +113,7 @@
                                                 </clipPath>
                                             </defs>
                                         </svg>
-                                        <span class="line-clamp-2 text-sm">Document</span>
+                                        <span class="line-clamp-2 text-sm">{{ $attachment['name'] }}</span>
                                     </div>
                                     <span class="flex gap-2 text-xs font-normal text-gray-500 dark:text-gray-400">
                                         12 Pages
