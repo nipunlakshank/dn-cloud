@@ -39,6 +39,12 @@ class Message extends Component
         $this->state = app(MessageService::class)->getState($this->message, Auth::user());
     }
 
+    public function markAsDelivered()
+    {
+        app(MessageService::class)->markAsDelivered($this->message, Auth::user());
+        $this->state = app(MessageService::class)->getState($this->message, Auth::user());
+    }
+
     public function markAsRead()
     {
         app(MessageService::class)->markAsRead($this->message, Auth::user());

@@ -93,7 +93,6 @@ class MessageService
                 ->wherePivot('user_id', $user->id)
                 ->whereNull('read_at')
                 ->updateExistingPivot($user->id, [
-                    'delivered_at' => DB::raw('COALESCE(delivered_at, NOW())'),
                     'read_at' => now(),
                 ]);
         });

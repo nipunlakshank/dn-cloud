@@ -22,7 +22,7 @@
             options,
             instanceOptions
         )
-
+    
         if (isOwner) {
             const senderState = setInterval(() => {
                 if (state === 'read') {
@@ -33,13 +33,17 @@
             }, 1000)
             return
         }
-
+    
         recieverState = setInterval(() => {
             if (state === 'read') {
                 clearInterval(recieverState)
                 return
             }
-            $wire.markAsRead()
+            if (state === 'delivered') {
+                $wire.markAsRead()
+                return
+            }
+            $wire.markAsDelivered()
         }, 1000);
     }"
     id="message-{{ $message->id }}"
