@@ -34,7 +34,7 @@ class ReportAttachmentModal extends Component
         $message = app(MessageService::class)->send(
             $this->chat,
             Auth::user(),
-            $this->text,
+            $this->text ?? '',
             $attachments,
             null,
             true
