@@ -14,20 +14,23 @@ use Illuminate\Support\Facades\Storage;
 
 class MessageService
 {
-    public function send(Chat $chat, User $user, string $text, $attachments = [], ?int $repliedToId = null, bool $isReport = false)
+    public function send(Chat $chat, User $user, string $text, array $attachments = [], ?int $repliedToId = null, bool $isReport = false): Message
     {
-        return DB::transaction(function () use ($chat, $user, $text, $attachments, $repliedToId) {
+        return DB::transaction(function () use ($chat, $user, $text, $attachments, $repliedToId, $isReport) {
             $message = Message::create([
                 'chat_id' => $chat->id,
                 'user_id' => $user->id,
                 'text' => $text,
                 'replied_to' => $repliedToId,
+                'is_report' => $isReport,
             ]);
 
             foreach ($attachments as $attachment) {
-                $path = Storage::disk('public')->put('attachments', $attachment['path']);
+                $name = $attachment['file']->getClientOriginalName() ?? null;
+                $path = Storage::disk('public')->put('attachments', $attachment['file']);
                 MessageAttachment::create([
                     'message_id' => $message->id,
+                    'name' => $name,
                     'path' => $path,
                     'type' => $attachment['type'],
                 ]);
@@ -37,16 +40,16 @@ class MessageService
         });
     }
 
-    public function delete(Message $message)
+    public function delete(Message $message): void
     {
         DB::transaction(function () use ($message) {
             $message->update(['is_deleted' => true]);
         });
     }
 
-    public function reply(Message $replyTo, User $user, string $text, string $type, $attachments = [])
+    public function reply(Message $replyTo, User $user, string $text, $attachments = [], bool $isReport = false): Message
     {
-        return $this->send($replyTo->chat, $user, $text, $type, $attachments, $replyTo->id);
+        return $this->send($replyTo->chat, $user, $text, $attachments, $replyTo->id, $isReport);
     }
 
     public function react(Message $message, User $user, string $reaction)

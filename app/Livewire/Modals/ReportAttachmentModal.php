@@ -25,10 +25,10 @@ class ReportAttachmentModal extends Component
         $attachments = [];
 
         foreach ($this->images as $image) {
-            $attachments[] = ['path' => $image, 'type' => 'image'];
+            $attachments[] = ['file' => $image, 'type' => 'image'];
         }
         foreach ($this->documents as $document) {
-            $attachments[] = ['path' => $document, 'type' => 'document'];
+            $attachments[] = ['file' => $document, 'type' => 'document'];
         }
 
         $message = app(MessageService::class)->send(

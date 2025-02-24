@@ -18,7 +18,7 @@ class Message extends Component
     public bool $inAGroup;
     public string $state;
     public array $attachments;
-    public int $attachmentCount;
+    public int $imageCount;
 
     public function mount(MessageModel $message)
     {
@@ -31,7 +31,7 @@ class Message extends Component
         $this->inAGroup = $message->chat->is_group;
         $this->state = app(MessageService::class)->getState($message);
         $this->attachments = $message->attachments->toArray();
-        $this->attachmentCount = $message->attachments->count();
+        $this->imageCount = $message->attachments()->where('type', 'image')->count();
     }
 
     public function refreshState()

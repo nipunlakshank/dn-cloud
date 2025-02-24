@@ -24,6 +24,7 @@ class Message extends Model
         'user_id',
         'text',
         'is_reply',
+        'is_report',
         'is_deleted',
     ];
 

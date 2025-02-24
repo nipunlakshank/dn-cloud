@@ -22,7 +22,7 @@ class ImageAttachmentModal extends Component
         $attachments = [];
 
         foreach ($this->images as $image) {
-            $attachments[] = ['path' => $image, 'type' => 'image'];
+            $attachments[] = ['file' => $image, 'type' => 'image'];
         }
 
         $message = app(MessageService::class)->send(

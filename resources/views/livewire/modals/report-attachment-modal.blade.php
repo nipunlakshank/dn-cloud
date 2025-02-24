@@ -91,7 +91,7 @@
                                             <span class="truncate text-nowrap text-sm" x-text="doc.name"></span>
                                             <button type="button"
                                                 x-on:click="e => {
-                                                    // FIXME: Can't remove last item, can't add more yet
+                                                    // FIXME: Can't remove last item, can't add more
                                                     e.preventDefault()
                                                     docs = docs.filter(item => {
                                                         console.group('Item')

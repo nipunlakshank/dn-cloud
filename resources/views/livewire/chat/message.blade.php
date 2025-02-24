@@ -42,7 +42,8 @@
             $wire.markAsRead()
         }, 1000);
     }"
-    id="message-{{ $message->id }}" class="group flex items-center gap-2.5" dir="{{ $isOwner ? 'rtl' : 'ltr' }}">
+    id="message-{{ $message->id }}"
+    class="group flex items-center gap-2.5" dir="{{ $isOwner ? 'rtl' : 'ltr' }}">
 
     @if ($inAGroup && !$isOwner)
         <img class="h-8 w-8 select-none rounded-full" src="{{ $avatar }}" alt="Avatar">
@@ -57,7 +58,20 @@
         <div
             class="{{ $isOwner ? 'bg-green-200 dark:bg-teal-900' : 'bg-white dark:bg-gray-700' }} flex flex-col justify-between gap-1 rounded-e-xl rounded-es-xl border-gray-200 px-4 py-2 transition-colors">
 
-            <div class="grid-cols-{{ $attachmentCount > 1 ? 2 : 1 }} grid gap-1">
+            @if ($message->is_report)
+                <div class="mb-1 flex items-center gap-2 text-xs font-medium text-red-500 dark:text-red-400">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M9 7V2.22117C8.81709 2.31517 8.64812 2.43766 8.5 2.58579L4.58579 6.5C4.43766 6.64812 4.31517 6.81709 4.22117 7H9ZM11 7V2H18C19.1046 2 20 2.89543 20 4V20C20 21.1046 19.1046 22 18 22H6C4.89543 22 4 21.1046 4 20V9H9C10.1046 9 11 8.10457 11 7ZM10 16C10 15.4477 9.55228 15 9 15C8.44772 15 8 15.4477 8 16V18C8 18.5523 8.44772 19 9 19C9.55228 19 10 18.5523 10 18V16ZM12 11C12.5523 11 13 11.4477 13 12V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V12C11 11.4477 11.4477 11 12 11ZM16 15C16 14.4477 15.5523 14 15 14C14.4477 14 14 14.4477 14 15V18C14 18.5523 14.4477 19 15 19C15.5523 19 16 18.5523 16 18V15Z"
+                            fill="#f87171" />
+                    </svg>
+
+                    <span class="italic">Report</span>
+                </div>
+            @endif
+
+            <div class="grid-cols-{{ $imageCount > 1 ? 2 : 1 }} grid gap-2">
                 @foreach ($attachments as $attachment)
                     @if ($attachment['type'] === 'image')
                         <div class="group relative" wire:key="message-attachment-{{ $attachment['id'] }}">
@@ -67,11 +81,12 @@
                         </div>
                     @else
                         <div wire:key="message-attachment-{{ $attachment['id'] }}"
+                            dir="ltr"
                             class="leading-1.5 col-span-2 flex w-full flex-col rounded border-gray-200 bg-gray-50 dark:bg-gray-700">
-                            <div class="flex items-start rounded-xl bg-white p-2 dark:bg-gray-600">
+                            <div class="flex items-start justify-between rounded-xl bg-white p-2 dark:bg-gray-600">
                                 <div class="me-2">
                                     <div
-                                        class="flex max-w-[10%] items-center gap-2 pb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                        class="flex min-w-0 flex-1 items-center gap-2 pb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         <svg fill="none" aria-hidden="true" class="h-5 w-5 flex-shrink-0"
                                             viewBox="0 0 20 21">
                                             <g clip-path="url(#clip0_3173_1381)">
@@ -94,7 +109,7 @@
                                                 </clipPath>
                                             </defs>
                                         </svg>
-                                        <span class="text-sm">Document</span>
+                                        <span class="line-clamp-2 text-sm">Document</span>
                                     </div>
                                     <span class="flex gap-2 text-xs font-normal text-gray-500 dark:text-gray-400">
                                         12 Pages
@@ -153,7 +168,8 @@
                             <!-- Second Check (Only visible when delivered or read) -->
                             <svg class="{{ $state === 'read' ? 'text-blue-500' : 'text-gray-400' }} absolute left-[0.33rem] top-0 h-[18px] w-[18px]"
                                 viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 12L9 16L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                <path d="M5 12L9 16L19 6" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round"
                                     stroke-linejoin="round" />
                             </svg>
                         @endif
