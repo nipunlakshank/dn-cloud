@@ -13,21 +13,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         if (App::environment('production')) {
-
-            /** Warning : Do not change the seeding order  */
             $this->call([
-                PermissionSeeder::class,
-                UserRoleSeeder::class,
                 ProductionSeeder::class,
             ]);
 
             return;
         }
 
-        /** Warning : Do not change the seeding order  */
         $this->call([
-            PermissionSeeder::class,
-            UserRoleSeeder::class,
             UserSeeder::class,
             ChatSeeder::class,
             MessageSeeder::class,

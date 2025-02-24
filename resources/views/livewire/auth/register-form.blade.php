@@ -48,18 +48,9 @@
                             class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
                             placeholder="Email" required />
                     </div>
-
-                    <div class="col-span-2">
-                        <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Assign a Role</label>
-                        <select id="role" wire:model="role" class="w-fit bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option value="admin">Admin</option>
-                            <option value="accountant">Accountant</option>
-                            <option value="worker">Worker</option>
-                        </select>
-                        <x-input-error :messages="$errors->get('role')" class="mt-2" />
-                    </div>
                 </div>
 
+                <input type="text" id="role" name="role" value="worker" hidden />
                 <button type="submit"
                     class="inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     Register

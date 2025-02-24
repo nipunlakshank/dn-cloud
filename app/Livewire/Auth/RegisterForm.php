@@ -17,10 +17,11 @@ class RegisterForm extends Component
         $validated = $this->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'role' => ['string', 'in:admin,supervisor,accountant,worker'],
         ]);
 
-        User::create($validated)->assignRole($this->validate(['role' => ['string', 'in:admin,supervisor,accountant,worker']])['role']);
+        User::create($validated);
         $this->reset(['first_name', 'last_name', 'email']);
         $this->dispatch('alert', ['message' => 'User created successfully', 'type' => 'success']);
     }

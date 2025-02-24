@@ -8,6 +8,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
@@ -30,14 +31,13 @@ class RegisteredUserController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'role' => ['string', 'in:admin,supervisor,accountant,worker'],
         ]);
 
-        $validatedRole = $request->validate(['role' => ['in:admin,accountant,worker']]);
-
-        $user = User::create($validated)->assignRole($validatedRole['role']);
+        $user = User::create($validated);
 
         event(new Registered($user));
 
-        return redirect()->route($user->hasRole(['dev', 'super-admin', 'admin', 'accountant']) ? 'dashboard' : 'chat');
+        return redirect(route(Str::contains($validated['role'], ['admin', 'supervisor']) ? 'dashboard' : 'chat', absolute: false));
     }
 }
