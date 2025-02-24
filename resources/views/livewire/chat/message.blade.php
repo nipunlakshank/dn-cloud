@@ -22,7 +22,7 @@
             options,
             instanceOptions
         )
-    
+
         if (isOwner) {
             const senderState = setInterval(() => {
                 if (state === 'read') {
@@ -33,7 +33,7 @@
             }, 1000)
             return
         }
-    
+
         recieverState = setInterval(() => {
             if (state === 'read') {
                 clearInterval(recieverState)
@@ -52,7 +52,7 @@
     <div class="flex w-fit max-w-[60%] flex-col gap-1 lg:max-w-md">
         @if ($inAGroup && !$isOwner)
             <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                {{ $user->name ?? 'Unknown' }}
+                {{ $user->name() ?? 'Unknown' }}
             </span>
         @endif
         <div
