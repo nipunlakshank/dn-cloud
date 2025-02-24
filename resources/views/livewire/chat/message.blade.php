@@ -66,7 +66,7 @@
                                 data-modal-toggle="chat-image-viewer" />
                         </div>
                     @else
-                        <div
+                        <div wire:key="message-attachment-{{ $attachment['id'] }}"
                             class="leading-1.5 col-span-2 flex w-full flex-col rounded border-gray-200 bg-gray-50 dark:bg-gray-700">
                             <div class="flex items-start rounded-xl bg-white p-2 dark:bg-gray-600">
                                 <div class="me-2">
@@ -131,7 +131,7 @@
                 @endforeach
             </div>
 
-            <p dir="ltr" class="text-sm font-normal text-gray-900 dark:text-white">
+            <p dir="ltr" class="break-words text-sm font-normal text-gray-900 dark:text-white">
                 {!! nl2br(e($message->text ?? 'Message')) !!}</p>
 
             <div class="flex select-none items-end justify-end gap-1" dir="ltr">
@@ -176,6 +176,7 @@
     </button>
 
     <div id="messageOptions-{{ $message->id }}" dir="ltr"
+        wire:ignore
         class="z-10 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow dark:divide-gray-600 dark:bg-gray-700">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
             aria-labelledby="messageOptionsButton-{{ $message->id }}">

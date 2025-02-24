@@ -1,12 +1,12 @@
 <div class="flex w-full border border-gray-100 dark:border-gray-900">
     <!-- Sidebar -->
     <div id="chat-sidebar" wire:key="chat-sidebar-{{ auth()->id() }}"
-        class="{{ $chat ? 'hidden' : 'block' }} w-full gap-4 overflow-y-auto pb-4 text-white transition-transform sm:block sm:w-[45%] md:w-1/2 lg:w-2/5">
+        class="{{ $chat ? 'hidden' : 'block' }} w-full gap-4 overflow-y-auto pb-4 text-white transition-transform sm:block sm:w-1/3 lg:w-1/4">
         @livewire('chat.chat-sidebar')
     </div>
 
     <!-- Chat Content Area -->
-    <div id="chat-container" class="{{ $chat ? 'flex' : 'hidden' }} w-full sm:flex">
+    <div id="chat-container" class="{{ $chat ? 'flex' : 'hidden' }} min-w-0 flex-1 sm:flex">
         @if ($chat)
             <div id="chat-content"
                 class="flex w-full flex-col"
