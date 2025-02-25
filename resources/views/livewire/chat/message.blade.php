@@ -25,25 +25,33 @@
     
         if (isOwner) {
             const senderState = setInterval(() => {
-                if (state === 'read') {
+                try {
+                    if (state === 'read') {
+                        clearInterval(senderState)
+                        return
+                    }
+                    $wire.refreshState()
+                } catch (e) {
                     clearInterval(senderState)
-                    return
                 }
-                $wire.refreshState()
             }, 1000)
             return
         }
     
-        recieverState = setInterval(() => {
-            if (state === 'read') {
+        const recieverState = setInterval(() => {
+            try {
+                if (state === 'read') {
+                    clearInterval(recieverState)
+                    return
+                }
+                if (state === 'delivered') {
+                    $wire.markAsRead()
+                    return
+                }
+                $wire.markAsDelivered()
+            } catch (e) {
                 clearInterval(recieverState)
-                return
             }
-            if (state === 'delivered') {
-                $wire.markAsRead()
-                return
-            }
-            $wire.markAsDelivered()
         }, 1000);
     }"
     id="message-{{ $message->id }}"
