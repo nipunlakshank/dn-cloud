@@ -7,12 +7,15 @@ use App\Models\Group;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class GroupService
 {
     public function create(string $name, ?string $avatar, array $memberIds, ?User $owner = null)
     {
+        Gate::authorize('create', Group::class);
+
         return DB::transaction(function () use ($owner, $name, $avatar, $memberIds) {
             $chat = Chat::create(['is_group' => true]);
 
@@ -32,6 +35,8 @@ class GroupService
 
     public function update(Group $group, string $name, ?string $avatar = null): bool
     {
+        Gate::authorize('update', $group);
+
         return DB::transaction(function () use ($group, $name, $avatar) {
             if ($avatar && $group->avatar) {
                 Storage::delete($group->avatar);
@@ -46,6 +51,8 @@ class GroupService
 
     public function addUser(User $user, Group $group, string $role = 'member'): void
     {
+        Gate::authorize('addUser', $group);
+
         DB::transaction(function () use ($user, $group, $role) {
             $group->chat->users()->attach($user->id, ['role' => $role]);
         });
@@ -53,6 +60,8 @@ class GroupService
 
     public function removeUser(User $user, Group $group): void
     {
+        Gate::authorize('removeUser', $group);
+
         DB::transaction(function () use ($user, $group) {
             $group->chat->users()->detach($user->id);
         });
@@ -60,6 +69,8 @@ class GroupService
 
     public function changeUserRole(User $user, Group $group, string $role): void
     {
+        Gate::authorize('changeUserRole', $group);
+
         DB::transaction(function () use ($user, $group, $role) {
             $group->chat->users()->updateExistingPivot($user->id, ['role' => $role]);
         });
@@ -67,6 +78,8 @@ class GroupService
 
     public function delete(Group $group): bool
     {
+        Gate::authorize('delete', $group);
+
         return DB::transaction(function () use ($group) {
             // Delete the associated chat (cascade will delete group)
             $group->chat->delete();
