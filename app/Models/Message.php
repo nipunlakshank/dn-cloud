@@ -72,9 +72,11 @@ class Message extends Model
         $this->info()->where('user_id', Auth::id())->update(['deleted_at' => now()]);
     }
 
-    public function canDeleteForAll(): bool
+    public function canDeleteForAll(?User $user = null): bool
     {
-        return Auth::user()->id === $this->user_id
+        $user = $user ?? Auth::user();
+
+        return $user->id === $this->user_id
             && $this->created_at->diffInSeconds() < $this->deleteBeforeSeconds;
     }
 

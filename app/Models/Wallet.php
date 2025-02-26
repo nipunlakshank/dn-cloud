@@ -7,7 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Wallet extends Model
 {
     protected $fillable = [
-        'name' => 'string',
-        'is_active' => 'boolean'
+        'name',
+        'group_id',
+        'is_active',
     ];
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
+
+    public function operations()
+    {
+        return $this->hasMany(WalletOperation::class);
+    }
+
+    public function users()
+    {
+        return $this->group->chat->users();
+    }
 }
