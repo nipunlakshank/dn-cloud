@@ -15,7 +15,7 @@ class WalletPolicy
     public function viewAny(User $user): bool
     {
         return $user->is_active
-            && ($user->role === AppRoles::SuperAdmin || $user->role === AppRoles::Admin);
+            && ($user->role === AppRoles::SuperAdmin->value || $user->role === AppRoles::Admin->value);
     }
 
     /**
@@ -27,8 +27,8 @@ class WalletPolicy
 
         return $user->is_active
             && (
-                $user->role === AppRoles::SuperAdmin
-                || $user->role === AppRoles::Admin
+                $user->role === AppRoles::SuperAdmin->value
+                || $user->role === AppRoles::Admin->value
                 || $walletUserIds->contains($user->id)
             );
     }
@@ -39,19 +39,19 @@ class WalletPolicy
     public function create(User $user): bool
     {
         return $user->is_active
-            && ($user->role === AppRoles::SuperAdmin || $user->role === AppRoles::Admin);
+            && ($user->role === AppRoles::SuperAdmin->value || $user->role === AppRoles::Admin->value);
     }
 
     public function assignGroups(User $user): bool
     {
         return $user->is_active
-            && ($user->role === AppRoles::SuperAdmin || $user->role === AppRoles::Admin);
+            && ($user->role === AppRoles::SuperAdmin->value || $user->role === AppRoles::Admin->value);
     }
 
     public function assignUsers(User $user): bool
     {
         return $user->is_active
-            && ($user->role === AppRoles::SuperAdmin || $user->role === AppRoles::Admin);
+            && ($user->role === AppRoles::SuperAdmin->value || $user->role === AppRoles::Admin->value);
     }
 
     public function open(User $user, Wallet $wallet): bool
@@ -60,8 +60,8 @@ class WalletPolicy
             ->group
             ?->users()
             ->where('users.id', $user->id)
-            ->where('role', ChatRoles::Owner)
-            ->orWhere('role', ChatRoles::Admin)
+            ->where('role', ChatRoles::Owner->value)
+            ->orWhere('role', ChatRoles::Admin->value)
             ->first()
             ->exists();
     }
@@ -72,8 +72,8 @@ class WalletPolicy
             ->group
             ?->users()
             ->where('users.id', $user->id)
-            ->where('role', ChatRoles::Owner)
-            ->orWhere('role', ChatRoles::Admin)
+            ->where('role', ChatRoles::Owner->value)
+            ->orWhere('role', ChatRoles::Admin->value)
             ->first()
             ->exists();
     }

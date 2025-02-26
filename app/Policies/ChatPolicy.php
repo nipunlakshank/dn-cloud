@@ -41,8 +41,8 @@ class ChatPolicy
         $chatUser = $user->activeChats()
             ->where('chat_id', $chat->id)
             ->where('user_id', $user->id)
-            ->where('role', ChatRoles::Owner)
-            ->where('role', ChatRoles::Admin)
+            ->where('role', ChatRoles::Owner->value)
+            ->where('role', ChatRoles::Admin->value)
             ->first();
 
         return $chatUser !== null;

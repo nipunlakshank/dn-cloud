@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\App\UserRoles;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +21,7 @@ class StagingSeeder extends Seeder
             'email' => 'dev@gmail.com',
             'password' => Hash::make('Dev@123'),
             'remember_token' => Str::random(10),
-            'role' => 'admin',
+            'role' => UserRoles::Admin->value,
             'email_verified_at' => now(),
         ]);
 
@@ -30,7 +31,17 @@ class StagingSeeder extends Seeder
             'email' => 'test@gmail.com',
             'password' => Hash::make('Test@123'),
             'remember_token' => Str::random(10),
-            'role' => 'admin',
+            'role' => UserRoles::Admin->value,
+            'email_verified_at' => now(),
+        ]);
+
+        User::create([
+            'first_name' => 'Super',
+            'last_name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('Admin@123'),
+            'remember_token' => Str::random(10),
+            'role' => UserRoles::SuperAdmin->value,
             'email_verified_at' => now(),
         ]);
 
@@ -41,7 +52,7 @@ class StagingSeeder extends Seeder
             'email' => 'nipun@gmail.com',
             'password' => Hash::make('Nipun@123'),
             'remember_token' => Str::random(10),
-            'role' => 'admin',
+            'role' => UserRoles::Developer->value,
             'email_verified_at' => now(),
         ]);
 
@@ -51,7 +62,7 @@ class StagingSeeder extends Seeder
             'email' => 'brayan@gmail.com',
             'password' => Hash::make('Brayan@123'),
             'remember_token' => Str::random(10),
-            'role' => 'admin',
+            'role' => UserRoles::Developer->value,
             'email_verified_at' => now(),
         ]);
 
@@ -61,7 +72,7 @@ class StagingSeeder extends Seeder
             'email' => 'madhuka@gmail.com',
             'password' => Hash::make('Madhuka@123'),
             'remember_token' => Str::random(10),
-            'role' => 'admin',
+            'role' => UserRoles::Developer->value,
             'email_verified_at' => now(),
         ]);
     }

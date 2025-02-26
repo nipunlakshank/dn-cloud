@@ -32,7 +32,7 @@ class GroupPolicy
     public function create(User $user): bool
     {
         return $user->is_active
-            && ($user->role === UserRoles::SuperAdmin || $user->role === UserRoles::Admin);
+            && ($user->role === UserRoles::SuperAdmin->value || $user->role === UserRoles::Admin->value);
     }
 
     /**
@@ -43,8 +43,51 @@ class GroupPolicy
         return $user->is_active
             && $user->activeChats()
                 ->where('chat_id', $group->chat_id)
-                ->where('role', ChatRoles::Owner)
-                ->where('role', ChatRoles::Admin)
+                ->whereIn('role', [ChatRoles::Owner->value, ChatRoles::Admin->value])
+                ->exists();
+    }
+
+    public function addUser(User $user, Group $group): bool
+    {
+        return $user->is_active
+            && $user->activeChats()
+                ->where('chat_id', $group->chat_id)
+                ->whereIn('role', [ChatRoles::Owner->value, ChatRoles::Admin->value])
+                ->exists();
+    }
+
+    public function removeUser(User $user, Group $group, User $member): bool
+    {
+        $member = $group->chat->users()->where('user_id', $member->id)->first();
+        if (!$member->exists()) {
+            return false;
+        }
+
+        if ($member->pivot->role === ChatRoles::Owner->value) {
+            return false;
+        }
+
+        if ($member->pivot->role === ChatRoles::Admin->value) {
+            return $user->is_active
+                && $user->activeChats()
+                    ->where('chats.id', $group->chat_id)
+                    ->where('role', ChatRoles::Owner->value)
+                    ->exists();
+        }
+
+        return $user->is_active
+            && $user->activeChats()
+                ->where('chat_id', $group->chat_id)
+                ->whereIn('role', [ChatRoles::Owner->value, ChatRoles::Admin->value])
+                ->exists();
+    }
+
+    public function changeUserRole(User $user, Group $group): bool
+    {
+        return $user->is_active
+            && $user->activeChats()
+                ->where('chat_id', $group->chat_id)
+                ->where('chat_user.role', ChatRoles::Owner->value)
                 ->exists();
     }
 
@@ -56,7 +99,7 @@ class GroupPolicy
         return $user->is_active
             && $user->activeChats()
                 ->where('chat_id', $group->chat_id)
-                ->where('role', ChatRoles::Owner)
+                ->where('role', ChatRoles::Owner->value)
                 ->exists();
     }
 

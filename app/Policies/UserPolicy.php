@@ -12,7 +12,7 @@ class UserPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->is_active && $user->role === UserRoles::SuperAdmin;
+        return $user->is_active && $user->role === UserRoles::SuperAdmin->value;
     }
 
     /**
@@ -24,11 +24,11 @@ class UserPolicy
             return false;
         }
 
-        if ($user->role === UserRoles::SuperAdmin) {
+        if ($user->role === UserRoles::SuperAdmin->value) {
             return true;
         }
 
-        if ($user->role === UserRoles::Admin && $model->role !== UserRoles::SuperAdmin && $model->role !== UserRoles::Admin) {
+        if ($user->role === UserRoles::Admin->value && $model->role !== UserRoles::SuperAdmin->value && $model->role !== UserRoles::Admin->value) {
             return true;
         }
 
@@ -40,7 +40,7 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        return $user->is_active && $user->role === UserRoles::SuperAdmin;
+        return $user->is_active && $user->role === UserRoles::SuperAdmin->value;
     }
 
     /**
@@ -48,7 +48,7 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        return $user->is_active && $user->role === UserRoles::SuperAdmin || $user->id === $model->id;
+        return $user->is_active && $user->role === UserRoles::SuperAdmin->value || $user->id === $model->id;
     }
 
     /**
@@ -77,11 +77,11 @@ class UserPolicy
 
     public function changeStatus(User $user, User $model): bool
     {
-        return $user->is_active && $user->role === UserRoles::SuperAdmin && $user->id !== $model->id;
+        return $user->is_active && $user->role === UserRoles::SuperAdmin->value && $user->id !== $model->id;
     }
 
     public function changeRole(User $user, User $model): bool
     {
-        return $user->is_active && $user->role === UserRoles::SuperAdmin && $user->id !== $model->id;
+        return $user->is_active && $user->role === UserRoles::SuperAdmin->value && $user->id !== $model->id;
     }
 }
