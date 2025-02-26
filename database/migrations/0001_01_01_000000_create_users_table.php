@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();
-            $table->enum('role', array_column(UserRoles::cases->value(), 'value'))->default(UserRoles::Worker->value);
+            $table->enum('role', array_column(UserRoles::cases(), 'value'))->default(UserRoles::Worker->value);
             $table->boolean('is_active')->default(true);
             $table->timestamp('active_since')->useCurrent();
             $table->string('avatar')->nullable();
