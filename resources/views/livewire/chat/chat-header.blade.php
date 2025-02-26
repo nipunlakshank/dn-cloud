@@ -1,4 +1,4 @@
-<div class="flex gap-4 py-4" wire:transition.origin.left>
+<div id="profile-details" class="flex gap-4 py-4" data-modal-target="profile-info-modal" wire:transition.origin.left>
     <button
         class="flex items-center rounded-lg border border-transparent bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-300"
         type="button" onclick="deselectChat()">
@@ -12,9 +12,33 @@
             src="{{ $chatAvatar }}" alt="Avatar">
         <div class="flex flex-col">
             <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ $chatName ?? 'Unknown' }}</span>
-
             <span class="text-sm font-light text-gray-900 dark:text-white">online</span>
         </div>
-
     </div>
+
+    <!-- Profile Info Modal -->
+    <x-chat.profile-info-modal :avatar=$chatAvatar :name=$chatName></x-chat.profile-info-modal>
+
+    @script
+    <script>
+        const modal = new Modal(document.getElementById('profile-info-modal'), {
+            placement: 'center-center',
+            backdrop: 'dynamic',
+            backdropClasses: 'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
+            closable: false,
+        }, {
+            id: 'profile-info-modal',
+            override: true
+        });
+
+        document.querySelector('#profile-details').addEventListener('click', () => {
+            modal.show();
+        });
+
+        document.querySelector('#profile-modal-close').addEventListener('click', () => {
+            console.log('Clicked');
+            modal.hide();
+        });
+    </script>
+    @endscript
 </div>
