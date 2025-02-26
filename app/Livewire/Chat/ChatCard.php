@@ -25,6 +25,7 @@ class ChatCard extends Component
     public function deselectChat()
     {
         $this->selected = false;
+        session()->forget('chatId');
     }
 
     public function selectChat()
@@ -98,7 +99,7 @@ class ChatCard extends Component
     {
         $this->user = Auth::user();
         $this->chat = $chat;
-        $this->selected = false;
+        $this->selected = session('chatId') && session('chatId') === $chat->id;
         $this->lastMessage = $chat->lastMessage ?? null;
         $this->timeElapsed = $this->calculateTimeElapsed($this->lastMessage?->created_at);
         $this->unreadCount = app(ChatService::class)->getUnreadCount($chat, $this->user);

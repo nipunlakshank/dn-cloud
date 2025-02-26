@@ -12,7 +12,10 @@ class Index extends Component
 
     public function mount()
     {
-        $this->chat = null;
+        $this->chat = session('chatId') ? Chat::find(session('chatId')) : null;
+        if ($this->chat) {
+            $this->dispatch('chat.select', $this->chat);
+        }
     }
 
     public function render()
@@ -24,11 +27,13 @@ class Index extends Component
     public function selectChat(Chat $chat)
     {
         $this->chat = $chat;
+        session()->put('chatId', $chat->id);
     }
 
     #[On('chat.deselect')]
     public function deselectChat()
     {
         $this->chat = null;
+        session()->forget('chatId');
     }
 }
