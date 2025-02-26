@@ -14,7 +14,7 @@
     @transitionstart="initScroll()">
 
     @foreach ($messages as $message)
-        @livewire('chat.message', ['message' => $message], key('message-' . $message->id))
+        @livewire('chat.message', ['message' => $message], key('chat-message-' . $message->id))
     @endforeach
 
 </div>

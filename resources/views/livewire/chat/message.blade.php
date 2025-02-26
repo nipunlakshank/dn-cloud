@@ -63,7 +63,7 @@
 
     <div class="flex w-fit max-w-[80%] flex-col gap-1 lg:max-w-md">
         @if ($inAGroup && !$isOwner)
-            <span class="text-sm font-semibold text-gray-900 dark:text-white">
+            <span class="text-sm font-semibold text-gray-900 dark:text-white" wire:ignore>
                 {{ $user->name() ?? 'Unknown' }}
             </span>
         @endif
@@ -71,7 +71,8 @@
             class="{{ $isOwner ? 'bg-green-200 dark:bg-teal-900' : 'bg-white dark:bg-gray-700' }} flex flex-col justify-between gap-1 rounded-e-xl rounded-es-xl border-gray-200 px-4 py-2 transition-colors">
 
             @if ($message->is_report)
-                <div class="mb-1 flex items-center gap-2 text-xs font-medium text-red-500 dark:text-red-400">
+                <div class="mb-1 flex items-center gap-2 text-xs font-medium text-red-500 dark:text-red-400"
+                    wire:ignore>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -83,7 +84,7 @@
                 </div>
             @endif
 
-            <div class="grid-cols-{{ $imageCount > 1 ? 2 : 1 }} grid gap-2">
+            <div class="grid-cols-{{ $imageCount > 1 ? 2 : 1 }} grid gap-2" wire:ignore>
                 @foreach ($attachments as $attachment)
                     @if ($attachment['type'] === 'image')
                         <div class="group relative" wire:key="message-attachment-{{ $attachment['id'] }}">
@@ -161,13 +162,15 @@
             <p dir="ltr" class="break-words text-sm font-normal text-gray-900 dark:text-white">
                 {!! nl2br(e($message->text ?? 'Message')) !!}</p>
 
-            <div class="flex select-none items-end justify-end gap-1" dir="ltr">
+            <div class="flex select-none items-end justify-end gap-1" dir="ltr"
+                wire:key="message-footer-{{ $message->id }}">
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
                     {{ $message->created_at->format('h:i a') ?? '00:00' }}
                 </span>
 
                 @if ($isOwner)
                     <div
+                        wire:key="message-state-{{ $message->id }}"
                         class="{{ $state === 'read' ? 'text-blue-500' : 'text-gray-400' }} relative h-[18px] w-[24px]">
                         <!-- First Check (Always visible) -->
                         <svg class="absolute left-0 top-0 h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none"
@@ -193,6 +196,7 @@
     </div>
 
     <button id="messageOptionsButton-{{ $message->id }}" data-dropdown-toggle="messageOptions-{{ $message->id }}"
+        wire:ignore
         data-dropdown-placement="bottom-start"
         class="hidden items-center self-center rounded-lg bg-white p-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-50 group-hover:inline-flex dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800 dark:focus:ring-gray-600"
         type="button">

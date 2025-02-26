@@ -26,7 +26,7 @@ class Message extends Component
         $this->messageId = $message->id;
         $this->user = $message->user()->withFullName()->first();
         $this->avatar = $this->user->avatar
-            ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->user->name) . '&background=random';
+                        ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->user->name) . '&background=random';
         $this->isOwner = $this->user->id === Auth::id();
         $this->inAGroup = $message->chat->is_group;
         $this->state = app(MessageService::class)->getState($message);
