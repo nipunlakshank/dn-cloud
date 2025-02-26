@@ -49,15 +49,18 @@
                 </button>
             </li>
 
-            <li>
-                <button
-                    x-on:click="() => dropdown.hide()"
-                    data-modal-target="create-group-modal"
-                    data-modal-toggle="create-group-modal"
-                    class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Create Group
-                </button>
-            </li>
+            @can('create', App\Models\Group::class)
+                <li>
+                    <button
+                        x-on:click="() => dropdown.hide()"
+                        data-modal-target="create-group-modal"
+                        data-modal-toggle="create-group-modal"
+                        class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                        Create Group
+                    </button>
+                </li>
+            @endcan
+
             <li>
                 <button
                     x-on:click="() => dropdown.hide()"
@@ -79,4 +82,3 @@
         </div>
     </div>
 </div>
-
