@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ChatUserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Chat\Index as ChatIndex;
@@ -37,6 +39,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('/reports', 'livewire.reports.main')->name('reports');
 
     Route::get('/reports', Reports::class)->name('reports');
+
+    Route::delete('chat-user', [GroupController::class, 'removeUser'])->name('chat-user.remove');
 });
 
 if (app()->isLocal()) {

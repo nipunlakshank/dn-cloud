@@ -7,7 +7,7 @@
                 d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13" />
         </svg>
     </button>
-    <div class="flex gap-3">
+    <div class="flex gap-3" data-modal-target="profile-info-modal" data-modal-show="profile-info-modal">
         <img class="relative h-10 w-10 rounded-full"
             src="{{ $chatAvatar }}" alt="Avatar">
         <div class="flex flex-col">
@@ -17,27 +17,18 @@
     </div>
 
     <!-- Profile Info Modal -->
-    <x-chat.profile-info-modal :avatar=$chatAvatar :name=$chatName></x-chat.profile-info-modal>
+    <x-chat.profile-info-modal :chat=$chat></x-chat.profile-info-modal>
 
     @script
     <script>
         const modal = new Modal(document.getElementById('profile-info-modal'), {
-            placement: 'center-center',
+            placement: 'bottom-right',
             backdrop: 'dynamic',
             backdropClasses: 'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
-            closable: false,
+            closable: true,
         }, {
-            id: 'profile-info-modal',
+            id: 'profile-info-close',
             override: true
-        });
-
-        document.querySelector('#profile-details').addEventListener('click', () => {
-            modal.show();
-        });
-
-        document.querySelector('#profile-modal-close').addEventListener('click', () => {
-            console.log('Clicked');
-            modal.hide();
         });
     </script>
     @endscript
