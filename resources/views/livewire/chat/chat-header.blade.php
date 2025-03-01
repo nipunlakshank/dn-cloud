@@ -1,4 +1,4 @@
-<div id="profile-details" class="flex gap-4 py-4" data-modal-target="profile-info-modal" wire:transition.origin.left>
+<div id="profile-details" class="flex gap-4 py-4" wire:transition.origin.left>
     <button
         class="flex items-center rounded-lg border border-transparent bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-300"
         type="button" onclick="deselectChat()">
@@ -7,7 +7,10 @@
                 d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13" />
         </svg>
     </button>
-    <div class="flex gap-3" data-modal-target="profile-info-modal" data-modal-show="profile-info-modal">
+    <div class="flex gap-3"
+        @if($chat->is_group)
+        @click="$dispatch('showProfile')"
+        @endif >
         <img class="relative h-10 w-10 rounded-full"
             src="{{ $chatAvatar }}" alt="Avatar">
         <div class="flex flex-col">
@@ -17,19 +20,5 @@
     </div>
 
     <!-- Profile Info Modal -->
-    <x-chat.profile-info-modal :chat=$chat></x-chat.profile-info-modal>
-
-    @script
-    <script>
-        const modal = new Modal(document.getElementById('profile-info-modal'), {
-            placement: 'bottom-right',
-            backdrop: 'dynamic',
-            backdropClasses: 'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
-            closable: true,
-        }, {
-            id: 'profile-info-close',
-            override: true
-        });
-    </script>
-    @endscript
+    @livewire('chat.profile-info-modal',["chat"=>$chat],$chat->id)
 </div>

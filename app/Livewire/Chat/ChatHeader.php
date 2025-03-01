@@ -19,6 +19,11 @@ class ChatHeader extends Component
         $this->setChatDetails($chat);
     }
 
+    public function render()
+    {
+        return view('livewire.chat.chat-header');
+    }
+
     #[On('chat.select')]
     public function setChatDetails(Chat $chat)
     {
@@ -37,10 +42,5 @@ class ChatHeader extends Component
         }
 
         $this->chatAvatar = $this->chatAvatar ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->chatName) . '&background=random';
-    }
-
-    public function render()
-    {
-        return view('livewire.chat.chat-header');
     }
 }
