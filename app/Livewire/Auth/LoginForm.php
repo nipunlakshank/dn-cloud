@@ -63,6 +63,8 @@ class LoginForm extends Component
 
         if (Auth::attempt($credentials, $this->remember)) {
             $this->login($credentials);
+
+            return;
         }
 
         $this->message = Messages::Failed;
