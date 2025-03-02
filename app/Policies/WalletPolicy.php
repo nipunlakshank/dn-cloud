@@ -14,8 +14,7 @@ class WalletPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->is_active
-            && ($user->role === AppRoles::SuperAdmin->value || $user->role === AppRoles::Admin->value);
+        return $user->is_active;
     }
 
     /**

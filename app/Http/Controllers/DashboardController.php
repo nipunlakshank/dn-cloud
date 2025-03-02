@@ -5,22 +5,52 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        $wallets = Wallet::all();
+        $users = [];
+        $wallets = [];
+
+        if (Gate::allows('viewAny', User::class)) {
+            $users = User::all();
+        }
+
+        if (Gate::allows('viewAny', Wallet::class)) {
+            $wallets = Wallet::all()->collect()
+                ->filter(function ($wallet) {
+                    return Gate::allows('view', $wallet);
+                })
+                ->map(function ($wallet) {
+                    return [
+                        'id' => $wallet->id,
+                        'name' => $wallet->name,
+                        'is_active' => $wallet->is_active,
+                        'group' => $wallet->group->name,
+                    ];
+                });
+        }
+
         return view('dashboard', compact(var_name: ['users', 'wallets']));
     }
 
     public function walletStatusUpdate(Request $request)
     {
-        if ($request->status == 0) {
-            Wallet::where('id', $request->id)->update(['is_active' => true]);
+        $data = $request->validate([
+            'id' => 'required|integer',
+            'status' => 'required|integer',
+        ]);
+
+        $wallet = Wallet::find($data['id']);
+
+        if ($data['status'] == 0) {
+            Gate::authorize('open', $wallet);
+            $wallet->update(['is_active' => true]);
         } else {
-            Wallet::where('id', $request->id)->update(['is_active' => false]);
+            Gate::authorize('close', $wallet);
+            $wallet->update(['is_active' => false]);
         }
 
         return Redirect('dashboard');
@@ -28,10 +58,19 @@ class DashboardController extends Controller
 
     public function userStatusUpdate(Request $request)
     {
-        if ($request->status == 0) {
-            User::where('id', $request->id)->update(['is_active' => true]);
+        $data = $request->validate([
+            'id' => 'required|integer',
+            'status' => 'required|integer',
+        ]);
+
+        $user = User::find($data['id']);
+
+        Gate::authorize('changeRole', $user);
+
+        if ($data['status'] == 0) {
+            $user->update(['is_active' => true]);
         } else {
-            User::where('id', $request->id)->update(['is_active' => false]);
+            $user->update(['is_active' => false]);
         }
 
         return redirect('dashboard');

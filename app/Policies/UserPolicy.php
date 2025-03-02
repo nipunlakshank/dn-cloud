@@ -12,7 +12,7 @@ class UserPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->is_active && $user->role === UserRoles::SuperAdmin->value;
+        return $user->is_active && $user->role === UserRoles::SuperAdmin->value || $user->role === UserRoles::Admin->value;
     }
 
     /**

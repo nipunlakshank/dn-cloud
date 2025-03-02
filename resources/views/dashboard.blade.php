@@ -99,8 +99,12 @@
 
         <!-- Dashboard table Area -->
         <div class="flex h-full w-full flex-row justify-center gap-6 overflow-hidden align-top max-sm:flex-col">
-            <x-dashboard-table :wallets="$wallets"></x-dashboard-table>
-            <x-users-table :users="$users"></x-users-table>
+            @can('viewAny', App\Models\Wallet::class)
+                <x-wallets-table :wallets="$wallets"></x-wallets-table>
+            @endcan
+            @can('viewAny', App\Models\User::class)
+                <x-users-table :users="$users"></x-users-table>
+            @endcan
         </div>
 
     </div>
@@ -111,4 +115,3 @@
     <!-- Logout -->
     <x-settings.logout></x-settings.logout>
 </x-app-layout>
-
