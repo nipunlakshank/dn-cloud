@@ -17,7 +17,7 @@ else document.documentElement.classList.remove("dark");
 
 function logout() {
     axios.post(`/logout`)
-        .then(() => (window.location.href = "/"))
+        .then(() => setTimeout(() => window.location.href = "/", 0))
         .catch((error) => console.error(error));
 }
 
