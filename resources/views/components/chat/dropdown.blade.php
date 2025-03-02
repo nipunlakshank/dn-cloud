@@ -29,9 +29,12 @@
     <div id="navigation-menu"
         x-init="dropdown = new Dropdown(target, trigger, options, instanceOptions)"
         class="z-10 hidden w-44 divide-y divide-gray-100 rounded-lg bg-white shadow shadow-slate-500/10 dark:divide-gray-600 dark:bg-gray-800 dark:shadow-slate-200/10">
-        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-            <span>{{ Auth::user()->name() }}</span>
-            <span class="truncate font-medium">{{ Auth::user()->email }}</span>
+        <div class="overflow-hidden px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <span class="block w-full">{{ Auth::user()->name() }}</span>
+            <span
+                class="animate-slide inline-block w-full whitespace-nowrap font-medium transition-transform duration-500 ease-in-out">
+                {{ Auth::user()->email }}
+            </span>
         </div>
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="navigation-menu-toggle">
 
