@@ -1,21 +1,27 @@
-<div id="profile-info-modal" class="{{ $visibility }} overflow-y-hidden overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] bg-black bg-opacity-50">
-    <div class="p-4 max-lg:w-80 max-h-60">
+<div id="profile-info-modal"
+    class="{{ $visibility }} absolute bottom-0 left-0 right-0 top-0 z-50 h-full w-full items-center justify-center overflow-x-hidden overflow-y-hidden bg-black bg-opacity-50 md:inset-0">
+    <div class="p-4 max-lg:w-80">
         <!-- Modal content -->
-        <div class="bg-white rounded-lg shadow-sm dark:bg-gray-700">
+        <div class="rounded-lg bg-white shadow-sm dark:bg-gray-700">
             <!-- Modal header -->
-            <div class="relative flex items-center justify-between rounded dark:border-gray-600 border-gray-200" wire:click="closeProfile()">
-                <button id="profile-close" type="button" class="absolute top-[-1rem] right-[-1rem] bg-gray-200 text-gray-900 hover:bg-red-500 hover:text-gray-100 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-red-500 dark:hover:text-white">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            <div class="relative flex items-center justify-between rounded border-gray-200 dark:border-gray-600"
+                wire:click="closeProfile()">
+                <button id="profile-close" type="button"
+                    class="absolute right-[-1rem] top-[-1rem] ms-auto inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-sm text-gray-900 hover:bg-red-500 hover:text-gray-100 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-red-500 dark:hover:text-white">
+                    <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                     </svg>
                     <span class="sr-only">Close</span>
                 </button>
             </div>
 
             <!-- Modal body -->
-            <div class="w-full p-4 md:p-5 space-y-4">
-                @livewire('chat.profile.profile-info',['chat'=>$chat],$chat->id)
+            <div class="w-full p-4 md:p-5">
+                @livewire('chat.profile.profile-info', ['chat' => $chat], key('chat-info-profile'))
             </div>
         </div>
     </div>
 </div>
+

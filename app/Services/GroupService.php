@@ -58,11 +58,11 @@ class GroupService
         });
     }
 
-    public function removeUser(User $user, Group $group): void
+    public function removeUser(Group $group, User $user): void
     {
-        Gate::authorize('removeUser', $group);
+        Gate::authorize('removeUser', [$group, $user->id]);
 
-        DB::transaction(function () use ($user, $group) {
+        DB::transaction(function () use ($group, $user) {
             $group->chat->users()->detach($user->id);
         });
     }

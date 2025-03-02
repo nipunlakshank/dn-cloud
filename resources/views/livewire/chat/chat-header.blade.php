@@ -1,4 +1,4 @@
-<div id="profile-details" class="flex gap-4 py-4" wire:transition.origin.left>
+<div x-data="{ isGroup: @entangle('isGroup') }" id="profile-details" class="flex gap-4 py-4" wire:transition.origin.left>
     <button
         class="flex items-center rounded-lg border border-transparent bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-300"
         type="button" onclick="deselectChat()">
@@ -8,9 +8,7 @@
         </svg>
     </button>
     <div class="flex gap-3"
-        @if($chat->is_group)
-        @click="$dispatch('showProfile')"
-        @endif >
+        x-init="() => isGroup && $el.addEventListener('click', () => $dispatch('showProfile'))">
         <img class="relative h-10 w-10 rounded-full"
             src="{{ $chatAvatar }}" alt="Avatar">
         <div class="flex flex-col">
@@ -20,5 +18,6 @@
     </div>
 
     <!-- Profile Info Modal -->
-    @livewire('chat.profile-info-modal',["chat"=>$chat],$chat->id)
+    @livewire('chat.profile-info-modal', ['chat' => $chat], $chat->id)
 </div>
+
