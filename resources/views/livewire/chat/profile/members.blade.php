@@ -1,7 +1,7 @@
 <div class="h-[60%] w-full">
     <div
         class="font-small flex max-h-full w-full flex-col gap-3 overflow-y-auto text-sm text-gray-500 md:mb-0 md:me-4 dark:text-gray-400">
-        @foreach ($chatMembers as $member)
+        @forelse ($chatMembers as $member)
             <div wire:key="chat-info-group-member-{{ $member->id }}"
                 class="inline-flex min-h-8 w-full items-center rounded-lg bg-gray-100 px-3 py-2 text-gray-900 dark:bg-gray-700 dark:text-white">
                 <p class="w-full">
@@ -18,6 +18,10 @@
                     </button>
                 @endcan
             </div>
-        @endforeach
+        @empty
+            <div class="w-full text-center text-gray-500 dark:text-gray-400">
+                No members found
+            </div>
+        @endforelse
     </div>
 </div>
