@@ -1,4 +1,4 @@
-<div class="h-[40%] w-full">
+<div class="h-[60%] w-full">
     <div
         class="font-small flex max-h-full w-full flex-col gap-3 overflow-y-auto text-sm text-gray-500 md:mb-0 md:me-4 dark:text-gray-400">
         @foreach ($chatMembers as $member)
@@ -21,4 +21,3 @@
         @endforeach
     </div>
 </div>
-

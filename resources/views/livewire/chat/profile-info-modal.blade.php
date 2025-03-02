@@ -1,11 +1,11 @@
 <div id="profile-info-modal"
-    class="{{ $visibility }} absolute bottom-0 left-0 right-0 top-0 z-50 h-full w-full items-center justify-center overflow-x-hidden overflow-y-hidden bg-black bg-opacity-50 md:inset-0">
-    <div class="p-4 max-lg:w-80">
+    class="{{ $visibility }} absolute inset-0 z-50 h-full w-full items-center justify-center overflow-x-hidden overflow-y-hidden bg-black bg-opacity-50 md:inset-0">
+    <div class="p-2">
         <!-- Modal content -->
-        <div class="rounded-lg bg-white shadow-sm dark:bg-gray-700">
+        <div class="min-w-[60vw] rounded-lg bg-white shadow-sm dark:bg-gray-700">
             <!-- Modal header -->
             <div class="relative flex items-center justify-between rounded border-gray-200 dark:border-gray-600"
-                wire:click="closeProfile()">
+                wire:click="closeProfile">
                 <button id="profile-close" type="button"
                     class="absolute right-[-1rem] top-[-1rem] ms-auto inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-sm text-gray-900 hover:bg-red-500 hover:text-gray-100 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-red-500 dark:hover:text-white">
                     <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -24,4 +24,3 @@
         </div>
     </div>
 </div>
-
