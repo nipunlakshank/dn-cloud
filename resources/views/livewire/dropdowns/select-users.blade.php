@@ -19,7 +19,7 @@
             return this.selectedUsers.has(id)
         },
     }"
-    id="dropdownSearch"
+    id="selectUsersDropdown"
     class="z-10 hidden w-fit min-w-60 max-w-80 rounded-lg bg-white shadow dark:bg-gray-700">
     <div class="p-3">
         <label for="input-group-search" class="sr-only">Search</label>
@@ -38,7 +38,7 @@
         </div>
     </div>
     <ul class="h-48 overflow-y-auto px-3 pb-3 text-sm text-gray-700 dark:text-gray-200"
-        aria-labelledby="dropdownSearchButton">
+        aria-labelledby="selectUsersDropdownButton">
 
         <template x-for="user in filteredUsers" :key="user.id">
             <li>
@@ -46,10 +46,10 @@
                     x-on:click="() => {
                         if (isSelected(user.id)) {
                             removeUser(user.id)
-                            $wire.dispatch('group.create.removeUser', {id: user.id});
+                            $wire.dispatch('group.removeUser', {id: user.id});
                         } else {
                             addUser(user.id);
-                            $wire.dispatch('group.create.addUser', {id: user.id});
+                            $wire.dispatch('group.addUser', {id: user.id});
                         }
                     }"
                     class="flex items-center rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
@@ -77,7 +77,7 @@
             class="cursor-pointer text-red-600 hover:bg-gray-100 hover:underline dark:text-red-500 dark:hover:bg-gray-600"
             x-on:click="() => {
                 selectedUsers.clear()
-                $wire.dispatch('group.create.clearSelectedUsers');
+                $wire.dispatch('group.clearSelectedUsers');
             }">
             Clear
         </span>

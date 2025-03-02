@@ -11,7 +11,6 @@ class Members extends Component
 {
     public Chat $chat;
     public $chatMembers;
-    public $allUsers;
 
     public function getChatMembers() {}
 
@@ -22,11 +21,10 @@ class Members extends Component
         $this->chatMembers = $this->chat->users()->get();
     }
 
-    public function mount($chat, $users)
+    public function mount(Chat $chat)
     {
         $this->chat = $chat;
         $this->chatMembers = $chat->users;
-        $this->allUsers = $users;
     }
 
     public function render()

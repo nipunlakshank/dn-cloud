@@ -21,7 +21,7 @@ class CreateGroup extends Component
     public Collection $selectedUserIds;
     public int $selectedUserCount = 0;
 
-    #[On('group.create.addUser')]
+    #[On('group.addUser')]
     public function addUser($id)
     {
         if (!$this->selectedUserIds->contains($id)) {
@@ -30,14 +30,14 @@ class CreateGroup extends Component
         }
     }
 
-    #[On('group.create.removeUser')]
+    #[On('group.removeUser')]
     public function removeUser($id)
     {
         $this->selectedUserIds = $this->selectedUserIds->reject(fn ($selectedId) => $selectedId === $id);
         $this->selectedUserCount = $this->selectedUserIds->count();
     }
 
-    #[On('group.create.clearSelectedUsers')]
+    #[On('group.clearSelectedUsers')]
     public function clearSelectedUsers()
     {
         $this->selectedUserIds = Collection::empty();

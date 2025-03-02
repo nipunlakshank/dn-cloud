@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-span-2">
                         <div class="flex items-center gap-2">
-                            <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch"
+                            <button id="selectUsersDropdownButton" data-dropdown-toggle="selectUsersDropdown"
                                 class="inline-flex items-center rounded-lg bg-blue-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 type="button"> Select Users <svg class="ms-2.5 h-2.5 w-2.5" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
