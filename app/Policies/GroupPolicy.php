@@ -62,7 +62,7 @@ class GroupPolicy
             return false;
         }
 
-        $member = $group->chat->users()->where('user_id', $memberId)->first();
+        $member = $group->chat->activeUsers()->where('user_id', $memberId)->first();
 
         if (!$member->exists()) {
             return false;
