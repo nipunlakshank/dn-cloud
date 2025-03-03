@@ -21,7 +21,7 @@
     <div class="p-2"
         x-on:click="e => e.stopPropagation()">
         <!-- Modal content -->
-        <div class="max-h-[90vh] min-w-[60vw] rounded-lg bg-white shadow-sm dark:bg-gray-700">
+        <div class="h-[70vh] min-w-[60vw] rounded-lg bg-white shadow-sm dark:bg-gray-700">
             <!-- Modal header -->
             <div class="relative flex items-center justify-between rounded border-gray-200 dark:border-gray-600"
                 wire:click="closeProfile">
@@ -37,7 +37,7 @@
             </div>
 
             <!-- Modal body -->
-            <div class="w-full p-4 md:p-5">
+            <div class="h-full w-full p-4 md:p-5">
                 @livewire('chat.profile.profile-info', ['chat' => $chat], key('chat-info-profile'))
             </div>
         </div>
