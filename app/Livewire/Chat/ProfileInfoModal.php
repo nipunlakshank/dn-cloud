@@ -2,23 +2,14 @@
 
 namespace App\Livewire\Chat;
 
+use App\Models\Chat;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ProfileInfoModal extends Component
 {
-    public $visibility = Visibility::HIDE;
-    public $chat;
-
-    public function mount($chat)
-    {
-        $this->chat = $chat;
-    }
-
-    public function render()
-    {
-        return view('livewire.chat.profile-info-modal');
-    }
+    public Visibility $visibility;
+    public Chat $chat;
 
     #[On('showProfile')]
     public function showProfile()
@@ -29,6 +20,17 @@ class ProfileInfoModal extends Component
     public function closeProfile()
     {
         $this->visibility = Visibility::HIDE;
+    }
+
+    public function mount($chat)
+    {
+        $this->chat = $chat;
+        $this->visibility = Visibility::HIDE;
+    }
+
+    public function render()
+    {
+        return view('livewire.chat.profile-info-modal');
     }
 }
 

@@ -56,9 +56,14 @@ class GroupPolicy
                 ->exists();
     }
 
-    public function removeUser(User $user, Group $group, User $member): bool
+    public function removeUser(User $user, Group $group, int $memberId): bool
     {
-        $member = $group->chat->users()->where('user_id', $member->id)->first();
+        if (!$user->is_active) {
+            return false;
+        }
+
+        $member = $group->chat->activeUsers()->where('user_id', $memberId)->first();
+
         if (!$member->exists()) {
             return false;
         }
@@ -67,19 +72,20 @@ class GroupPolicy
             return false;
         }
 
-        if ($member->pivot->role === ChatRoles::Admin->value) {
-            return $user->is_active
-                && $user->activeChats()
-                    ->where('chats.id', $group->chat_id)
-                    ->where('role', ChatRoles::Owner->value)
-                    ->exists();
+        if ($user->role === ChatRoles::Owner->value) {
+            return true;
         }
 
-        return $user->is_active
-            && $user->activeChats()
-                ->where('chat_id', $group->chat_id)
-                ->whereIn('role', [ChatRoles::Owner->value, ChatRoles::Admin->value])
+        if ($member->pivot->role === ChatRoles::Admin->value) {
+            return $user->activeChats()
+                ->where('chats.id', $group->chat_id)
                 ->exists();
+        }
+
+        return $user->activeChats()
+            ->where('chats.id', $group->chat_id)
+            ->whereIn('chat_user.role', [ChatRoles::Owner->value, ChatRoles::Admin->value])
+            ->exists();
     }
 
     public function changeUserRole(User $user, Group $group): bool

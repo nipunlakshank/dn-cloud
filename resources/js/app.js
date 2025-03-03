@@ -1,4 +1,5 @@
-import "./bootstrap";
+import './bootstrap';
+import 'flowbite'
 
 const axios = window.axios;
 
@@ -17,7 +18,7 @@ else document.documentElement.classList.remove("dark");
 
 function logout() {
     axios.post(`/logout`)
-        .then(() => (window.location.href = "/"))
+        .then(() => setTimeout(() => window.location.href = "/", 0))
         .catch((error) => console.error(error));
 }
 
