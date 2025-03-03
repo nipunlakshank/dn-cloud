@@ -26,27 +26,47 @@
             <form class="p-4 md:p-5" wire:submit.prevent="register">
                 <div class="mb-4 grid grid-cols-2 gap-4">
                     <div class="col-span-2">
-                        <label for="name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">First
-                            Name</label>
+                        <label for="name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                            First Name
+                        </label>
                         <input wire:click="register" wire:model="first_name" type="text" name="first_name"
                             id="first_name"
                             class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
                             placeholder="First name" required />
                     </div>
                     <div class="col-span-2">
-                        <label for="name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Last
-                            Name</label>
+                        <label for="name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                            Last Name
+                        </label>
                         <input wire:click="register" wire:model="last_name" type="text" name="last_name"
                             id="last_name"
                             class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
                             placeholder="Last name" required />
                     </div>
                     <div class="col-span-2">
-                        <label for="name"
-                            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <label for="name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                            Email
+                        </label>
                         <input wire:click="register" type="email" wire:model="email" name="email" id="email"
                             class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
                             placeholder="Email" required />
+                    </div>
+                    <div class="col-span-2">
+
+                        <label for="countries"
+                            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                            Assign a Role
+                        </label>
+                        <select id="role"
+                            required
+                            wire:model="role"
+                            class="{{ $submitted && $errors->has('role') ? 'border-red-400' : 'border-gray-300 dark:border-gray-600' }} block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500">
+                            <option value='' selected>Choose a role</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role }}">{{ ucfirst($role) }}</option>
+                            @endforeach
+                        </select>
+
                     </div>
                 </div>
 
