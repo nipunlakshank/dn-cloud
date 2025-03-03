@@ -44,6 +44,12 @@
                                 </button>
                             </form>
                         @endcan
+                        @cannot('changeRole', $user)
+                            <span
+                                class="{{ $user->is_active ? 'bg-green-500' : 'bg-red-500' }} w-full rounded-md px-3 py-2">
+                                {{ $user->is_active ? 'Active' : 'Inactive' }}
+                            </span>
+                        @endcannot
                     </td>
                 </tr>
             @endforeach
