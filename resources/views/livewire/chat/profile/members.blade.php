@@ -1,14 +1,15 @@
-<div class="h-[60%] w-full">
+<div style="width:30rem; height: 20rem;">
     <div
-        class="font-small flex max-h-full w-full flex-col gap-3 overflow-y-auto text-sm text-gray-500 md:mb-0 md:me-4 dark:text-gray-400">
-        @forelse ($chatMembers as $member)
-            <div wire:key="chat-info-group-member-{{ $member->id }}"
-                class="inline-flex min-h-8 w-full items-center rounded-lg bg-gray-100 px-3 py-2 text-gray-900 dark:bg-gray-700 dark:text-white">
-                <p class="w-full">
-                    {{ $member->name() }}
-                </p>
+        class="font-small flex h-full w-full flex-col gap-3 overflow-y-auto text-sm text-gray-500 md:mb-0 md:me-4 dark:text-gray-400">
+        @foreach ($chatMembers as $member)
+            <div wire:key="chat-info-member-{{ $member->id }}"
+                class="inline-flex w-full items-center rounded-lg bg-gray-100 px-3 py-2 text-gray-900 dark:bg-gray-700 dark:text-white">
+                <span class="w-full">{{ $member->name() }}</span>
+                @if (Auth::user()->id == $member->id)
+                    <span class="self-center py-2 text-center text-green-500">You</span>
+                @endif
                 @can('removeUser', [$chat->group, $member->id])
-                    <button type="button" wire:click="removeMember({{ $chat }},{{ $member }})"
+                    <button type="button" wire:click="removeMember({{ $member }})"
                         class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-sm text-gray-900 hover:bg-red-500 hover:text-gray-100 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-red-500 dark:hover:text-white">
                         <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -18,10 +19,6 @@
                     </button>
                 @endcan
             </div>
-        @empty
-            <div class="w-full text-center text-gray-500 dark:text-gray-400">
-                No members found
-            </div>
-        @endforelse
+        @endforeach
     </div>
 </div>
