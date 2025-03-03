@@ -21,8 +21,18 @@
                         {{ $user->id }}
                     </td>
                     <th scope="row"
-                        class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 max-[990px]:px-3 max-sm:px-2 dark:text-white">
-                        {{ $user->first_name . ' ' . $user->last_name }}
+                        class="flex flex-col whitespace-nowrap px-6 py-4 font-medium text-gray-900 max-[990px]:px-3 max-sm:px-2 dark:text-white">
+                        <span class="flex gap-2 items-center">
+                            {{ $user->first_name . ' ' . $user->last_name }}
+                            @if (auth()->user()->id == $user->id)
+                                <span class="text-xs text-gray-500 dark:text-gray-400">
+                                    (You)
+                                </span>
+                            @endif
+                        </span>
+                        <span class="text-xs">
+                            {{ $user->email }}
+                        </span>
                     </th>
                     <td class="whitespace-nowrap px-6 py-4 text-gray-900 max-[990px]:px-3 max-sm:px-2 dark:text-white">
                         @can('changeRole', $user)
@@ -41,4 +51,3 @@
         </tbody>
     </table>
 </div>
-
