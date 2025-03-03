@@ -27,11 +27,11 @@
             </a>
         </div>
     </div>
-    <div id="tab-content" @removed="$refresh"
+    <div id="tab-content" @member.updated="$refresh"
         class="w-full h-full overflow-y-scroll p-6 bg-gray-50 text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg">
 
         @if ($isGroup)
-        @livewire('chat.profile.members' ,['chat'=>$chat,'users'=>$users])
+        @livewire('chat.profile.members' ,['chat'=>$chat])
         @endif
     </div>
 </div>
