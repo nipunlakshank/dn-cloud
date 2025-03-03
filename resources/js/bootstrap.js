@@ -1,5 +1,3 @@
-import "flowbite";
-
 import axios from 'axios';
 window.axios = axios;
 
