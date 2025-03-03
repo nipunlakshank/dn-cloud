@@ -64,20 +64,28 @@ class User extends Authenticatable implements MustVerifyEmail
     protected function firstName(): Attribute
     {
         return Attribute::make(
-            set: fn ($value) => ucfirst(strtolower($value))
+            set: fn ($value) => ucfirst(strtolower(trim($value)))
         );
     }
 
     protected function lastName(): Attribute
     {
         return Attribute::make(
-            set: fn ($value) => ucfirst(strtolower($value))
+            set: fn ($value) => ucfirst(strtolower(trim($value)))
         );
     }
 
     public function name(): string
     {
         return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function role(): string
+    {
+        $words = explode('_', $this->role);
+        $words = array_map(fn ($value) => ucfirst(strtolower($value)), $words);
+
+        return implode(' ', $words);
     }
 
     public function getAvatarUrlAttribute(): string

@@ -22,12 +22,11 @@
                     </td>
                     <th scope="row"
                         class="flex flex-col whitespace-nowrap px-6 py-4 font-medium text-gray-900 max-[990px]:px-3 max-sm:px-2 dark:text-white">
-                        <span class="flex gap-2 items-center">
+                        <span class="flex items-center gap-2">
                             {{ $user->first_name . ' ' . $user->last_name }}
-                            @if (auth()->user()->id == $user->id)
-                                <span class="text-xs text-gray-500 dark:text-gray-400">
-                                    (You)
-                                </span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400"> - {{ $user->role() }} </span>
+                            @if ($user->is(auth()->user()))
+                                <span class="text-xs text-gray-500 dark:text-gray-400"> (You) </span>
                             @endif
                         </span>
                         <span class="text-xs">
