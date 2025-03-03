@@ -13,7 +13,7 @@ class ReportAttachmentModal extends Component
 {
     use WithFileUploads;
 
-    public Chat $chat;
+    public ?Chat $chat;
     public array $images;
     public array $documents;
     public array $imageInfos;
@@ -79,6 +79,7 @@ class ReportAttachmentModal extends Component
 
     public function mount()
     {
+        $this->chat = session('chatId') ? Chat::find(session('chatId')) : null;
         $this->images = [];
         $this->documents = [];
         $this->imageInfos = [];
