@@ -1,6 +1,6 @@
-<div style="width:30rem; height: 20rem;">
+<div class="h-full w-full">
     <div
-        class="font-small flex h-full w-full flex-col gap-3 overflow-y-auto text-sm text-gray-500 md:mb-0 md:me-4 dark:text-gray-400">
+        class="font-small flex h-full w-full flex-col gap-2 overflow-y-auto text-sm text-gray-500 dark:text-gray-400">
         @foreach ($chatMembers as $member)
             <div wire:key="chat-info-member-{{ $member->id }}"
                 class="inline-flex w-full items-center rounded-lg bg-gray-100 px-3 py-2 text-gray-900 dark:bg-gray-700 dark:text-white">

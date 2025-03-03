@@ -1,8 +1,8 @@
 <div id="profile-info-modal"
-    class="{{ $visibility }} absolute inset-0 z-50 h-full w-full items-center justify-center overflow-x-hidden overflow-y-hidden bg-black bg-opacity-50 md:inset-0">
+    class="{{ $visibility }} absolute inset-0 z-50 h-full w-full items-center justify-center overflow-x-hidden overflow-y-hidden bg-gray-900/80 bg-opacity-50 md:inset-0">
     <div class="p-2">
         <!-- Modal content -->
-        <div class="min-w-[60vw] rounded-lg bg-white shadow-sm dark:bg-gray-700">
+        <div class="max-h-[90vh] min-w-[60vw] rounded-lg bg-white shadow-sm dark:bg-gray-700">
             <!-- Modal header -->
             <div class="relative flex items-center justify-between rounded border-gray-200 dark:border-gray-600"
                 wire:click="closeProfile">

@@ -1,5 +1,5 @@
-<div class="gap-4 md:flex">
-    <div class="mb-4 flex flex-col gap-3 text-sm font-medium text-gray-500 md:mb-0 md:me-4 dark:text-gray-400">
+<div class="h-full gap-4 md:flex">
+    <div class="flex flex-col gap-3 text-sm font-medium text-gray-500 dark:text-gray-400">
         <div>
             <a href="#"
                 class="active inline-flex w-full items-center rounded-lg bg-blue-700 px-4 py-3 text-white dark:bg-blue-600"
