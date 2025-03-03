@@ -1,6 +1,25 @@
 <div id="profile-info-modal"
+    x-data="{ modal: null }"
+    x-init="() => {
+        const target = $el;
+    
+        const options = {
+            placement: 'center-center',
+            backdrop: 'dynamic',
+            closable: true,
+        };
+    
+        const instanceOptions = {
+            id: 'profile-info-modal',
+            override: true
+        };
+    
+        modal = new Modal(target, options, instanceOptions);
+    }"
+    x-on:click="modal.hide()"
     class="{{ $visibility }} absolute inset-0 z-50 h-full w-full items-center justify-center overflow-x-hidden overflow-y-hidden bg-gray-900/80 bg-opacity-50 md:inset-0">
-    <div class="p-2">
+    <div class="p-2"
+        x-on:click="e => e.stopPropagation()">
         <!-- Modal content -->
         <div class="max-h-[90vh] min-w-[60vw] rounded-lg bg-white shadow-sm dark:bg-gray-700">
             <!-- Modal header -->
