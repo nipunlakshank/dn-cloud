@@ -38,13 +38,16 @@ class ChatService
     public function markAsRead(Chat $chat, User $user)
     {
         DB::transaction(function () use ($chat, $user) {
-            Message::query()
-                ->join('message_status as status', 'messages.id', '=', 'status.message_id')
-                ->where('chat_id', $chat->id)
-                ->where('messages.user_id', '!=', $user->id)
-                ->where('status.user_id', $user->id)
-                ->whereNull('status.read_at')
-                ->update(['status.read_at' => now()]);
+            DB::update('
+                UPDATE message_status
+                SET read_at = ?
+                WHERE user_id = ?
+                AND message_id IN (
+                    SELECT id FROM messages
+                    WHERE chat_id = ? AND user_id != ?
+                )
+                AND read_at IS NULL
+            ', [now(), $user->id, $chat->id, $user->id]);
         });
     }
 }
