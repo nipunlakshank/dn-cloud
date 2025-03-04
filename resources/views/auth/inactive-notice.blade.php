@@ -12,12 +12,9 @@
             <h3 class="text-lg font-medium">Notice</h3>
         </div>
         <div class="my-2 text-sm">
-            Your Account is Currently in Inactive State.<br>
-            <br>
-            Please contact 'Admin' for 'Activate' your account. Otherwise you can't access your account.
-            <br>
-            <br>
-            Email : admin@dncloud.work
+            Your Account is Currently in Inactive State.
+            <br><br>
+            Please contact 'Admin' to 'Activate' your account. Otherwise you can't access your account.
         </div>
         <div class="mt-4 flex justify-end">
             <a href="{{ route('login') }}" autofocus
@@ -32,4 +29,3 @@
         </div>
     </div>
 </x-guest-layout>
-
