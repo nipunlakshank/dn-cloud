@@ -37,9 +37,10 @@ class ChatCard extends Component
     }
 
     #[On('chat.select')]
-    public function updatedSelected(Chat $chat)
+    public function updatedSelected(?Chat $chat = null)
     {
-        $this->selected = $chat->id === $this->chat->id;
+        $chatId = $chat?->id ?? session('chatId');
+        $this->selected = $chatId === $this->chat->id;
     }
 
     #[On('chat.read')]
@@ -65,6 +66,7 @@ class ChatCard extends Component
 
     public function refreshLastMessage()
     {
+        $this->updatedSelected();
         if ($this->chat->lastMessage === null) {
             return;
         }
