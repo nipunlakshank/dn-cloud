@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ChatUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\IndexController;
@@ -36,7 +35,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/chat', ChatIndex::class)->name('chat');
 
-    Route::view('/reports', 'livewire.reports.main')->name('reports');
+    // TODO: enable this route when the reports page is ready
+    // Route::view('/reports', 'livewire.reports.main')->name('reports');
 
     Route::get('/reports', Reports::class)->name('reports');
 
