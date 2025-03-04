@@ -2,9 +2,12 @@
 
 namespace App\Services;
 
+use App\Enums\Wallet\WalletActions;
 use App\Models\Chat;
 use App\Models\Group;
 use App\Models\User;
+use App\Models\Wallet;
+use App\Models\WalletOperation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -16,7 +19,7 @@ class GroupService
     {
         Gate::authorize('create', Group::class);
 
-        return DB::transaction(function () use ($owner, $name, $avatar, $memberIds) {
+        return DB::transaction(function () use ($owner, $name, $avatar, $memberIds, $isWallet) {
             $chat = Chat::create(['is_group' => true]);
 
             $group = Group::create([
@@ -28,6 +31,11 @@ class GroupService
             $owner = $owner ?? Auth::user();
             $chat->users()->attach($owner->id, ['role' => 'owner']);
             $chat->users()->sync($memberIds, ['role' => 'member']);
+
+            if ($isWallet) {
+                $wallet = Wallet::create(['name' => $name, 'group_id' => $group->id]);
+                WalletOperation::create(['wallet_id' => $wallet->id, 'user_id' => $owner->id, 'action' => WalletActions::Open]);
+            }
 
             return $group;
         });

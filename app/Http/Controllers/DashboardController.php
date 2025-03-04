@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Gate;
 
 class DashboardController extends Controller
 {
+    public Wallet $wallets;
+
     public function index()
     {
         $users = [];
-        $wallets = [];
 
         if (Gate::allows('viewAny', User::class)) {
             $users = User::all();
