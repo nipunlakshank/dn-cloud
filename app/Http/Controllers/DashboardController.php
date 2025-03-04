@@ -23,14 +23,6 @@ class DashboardController extends Controller
             $wallets = Wallet::all()->collect()
                 ->filter(function ($wallet) {
                     return Gate::allows('view', $wallet);
-                })
-                ->map(function ($wallet) {
-                    return [
-                        'id' => $wallet->id,
-                        'name' => $wallet->name,
-                        'is_active' => $wallet->is_active,
-                        'group' => $wallet->group->name,
-                    ];
                 });
         }
 
@@ -46,11 +38,11 @@ class DashboardController extends Controller
 
         $wallet = Wallet::find($data['id']);
 
+        Gate::authorize('changeStatus', $wallet);
+
         if ($data['status'] == 0) {
-            Gate::authorize('open', $wallet);
             $wallet->update(['is_active' => true]);
         } else {
-            Gate::authorize('close', $wallet);
             $wallet->update(['is_active' => false]);
         }
 

@@ -53,27 +53,15 @@ class WalletPolicy
             && ($user->role === AppRoles::SuperAdmin->value || $user->role === AppRoles::Admin->value);
     }
 
-    public function open(User $user, Wallet $wallet): bool
+    public function changeStatus(User $user, Wallet $wallet): bool
     {
         return $wallet
             ->group
-            ?->users()
+            ?->chat
+            ->users()
             ->where('users.id', $user->id)
-            ->where('role', ChatRoles::Owner->value)
-            ->orWhere('role', ChatRoles::Admin->value)
-            ->first()
-            ->exists();
-    }
-
-    public function close(User $user, Wallet $wallet): bool
-    {
-        return $wallet
-            ->group
-            ?->users()
-            ->where('users.id', $user->id)
-            ->where('role', ChatRoles::Owner->value)
-            ->orWhere('role', ChatRoles::Admin->value)
-            ->first()
+            ->where('chat_user.role', ChatRoles::Owner->value)
+            ->orWhere('chat_user.role', ChatRoles::Admin->value)
             ->exists();
     }
 
