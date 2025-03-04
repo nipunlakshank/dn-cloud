@@ -52,9 +52,11 @@ class ChatCard extends Component
     }
 
     #[On('message.sent')]
-    public function newMessageCheck(Message $message)
+    public function newMessageCheck(?int $messageId = null)
     {
-        if ($message->chat_id !== $this->chat->id) {
+        $message = $messageId ? Message::find($messageId) : null;
+
+        if (!$message || $message->chat_id !== $this->chat->id) {
             return;
         }
         $this->refreshLastMessage();

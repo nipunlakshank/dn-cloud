@@ -31,7 +31,7 @@ class ChatInput extends Component
 
         $message = app(MessageService::class)->send($this->chat, Auth::user(), $this->text);
 
-        $this->dispatch('message.sent', $message);
+        $this->dispatch('message.sent', $message->id);
         $this->reset('text');
     }
 }

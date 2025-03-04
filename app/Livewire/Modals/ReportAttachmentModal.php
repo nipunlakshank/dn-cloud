@@ -22,14 +22,7 @@ class ReportAttachmentModal extends Component
 
     public function send()
     {
-        $attachments = [];
-
-        foreach ($this->images as $image) {
-            $attachments[] = ['file' => $image, 'type' => 'image'];
-        }
-        foreach ($this->documents as $document) {
-            $attachments[] = ['file' => $document, 'type' => 'document'];
-        }
+        $attachments = array_merge($this->images, $this->documents);
 
         $message = app(MessageService::class)->send(
             $this->chat,
@@ -40,7 +33,7 @@ class ReportAttachmentModal extends Component
             true
         );
 
-        $this->dispatch('message.sent', $message);
+        $this->dispatch('message.sent', $message?->id);
 
         if ($message) {
             $this->reset(['images', 'text']);

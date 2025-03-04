@@ -30,7 +30,9 @@ return new class extends Migration
             $table->foreignIdFor(Message::class)->constrained()->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('path');
-            $table->enum('type', ['document', 'image']);
+            $table->enum('category', ['document', 'image', 'unknown']);
+            $table->string('type', 20);
+            $table->unsignedBigInteger('size')->default(0);
             $table->timestamps();
         });
 

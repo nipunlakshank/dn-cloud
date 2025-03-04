@@ -13,26 +13,20 @@ class DocumentAttachmentModal extends Component
 {
     use WithFileUploads;
 
-    public Chat $chat;
+    public ?Chat $chat;
     public array $documents;
     public string $text;
 
     public function send()
     {
-        $attachments = [];
-
-        foreach ($this->documents as $document) {
-            $attachments[] = ['file' => $document, 'type' => 'document'];
-        }
-
         $message = app(MessageService::class)->send(
             $this->chat,
             Auth::user(),
             $this->text ?? '',
-            $attachments,
+            $this->documents,
         );
 
-        $this->dispatch('message.sent', $message);
+        $this->dispatch('message.sent', $message?->id);
 
         if ($message) {
             $this->reset(['documents', 'text']);
@@ -47,6 +41,7 @@ class DocumentAttachmentModal extends Component
 
     public function mount()
     {
+        $this->chat = session('chatId') ? Chat::find(session('chatId')) : null;
         $this->documents = [];
         $this->text = '';
     }

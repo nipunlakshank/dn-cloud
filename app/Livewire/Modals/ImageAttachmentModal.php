@@ -13,26 +13,20 @@ class ImageAttachmentModal extends Component
 {
     use WithFileUploads;
 
-    public Chat $chat;
+    public ?Chat $chat;
     public array $images;
     public string $text;
 
     public function send()
     {
-        $attachments = [];
-
-        foreach ($this->images as $image) {
-            $attachments[] = ['file' => $image, 'type' => 'image'];
-        }
-
         $message = app(MessageService::class)->send(
             $this->chat,
             Auth::user(),
             $this->text ?? '',
-            $attachments,
+            $this->images,
         );
 
-        $this->dispatch('message.sent', $message);
+        $this->dispatch('message.sent', $message?->id);
 
         if ($message) {
             $this->reset(['images', 'text']);
@@ -47,6 +41,7 @@ class ImageAttachmentModal extends Component
 
     public function mount()
     {
+        $this->chat = session('chatId') ? Chat::find(session('chatId')) : null;
         $this->images = [];
         $this->text = '';
     }

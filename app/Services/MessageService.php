@@ -26,13 +26,14 @@ class MessageService
             ]);
 
             foreach ($attachments as $attachment) {
-                $name = $attachment['file']->getClientOriginalName() ?? null;
-                $path = Storage::disk('public')->put('attachments', $attachment['file']);
+                $name = $attachment->getClientOriginalName() ?? null;
+                $path = Storage::disk('public')->put('attachments', $attachment);
+                $size = Storage::disk('public')->size($path);
                 MessageAttachment::create([
                     'message_id' => $message->id,
                     'name' => $name,
                     'path' => $path,
-                    'type' => $attachment['type'],
+                    'size' => $size,
                 ]);
             }
 

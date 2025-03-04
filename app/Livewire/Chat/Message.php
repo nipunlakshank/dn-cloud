@@ -6,6 +6,7 @@ use App\Models\Message as MessageModel;
 use App\Models\User;
 use App\Services\MessageService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Number;
 use Livewire\Component;
 
 class Message extends Component
@@ -30,8 +31,18 @@ class Message extends Component
         $this->isOwner = $this->user->id === Auth::id();
         $this->inAGroup = $message->chat->is_group;
         $this->state = app(MessageService::class)->getState($message);
-        $this->attachments = $message->attachments->toArray();
-        $this->imageCount = $message->attachments()->where('type', 'image')->count();
+
+        $this->imageCount = 0;
+        $this->attachments = $message->attachments
+            ->map(function ($attachment) {
+                $attachment->size = Number::fileSize($attachment->size);
+                if ($attachment->category === 'image') {
+                    $this->imageCount++;
+                }
+
+                return $attachment;
+            })
+            ->toArray();
     }
 
     public function refreshState()
