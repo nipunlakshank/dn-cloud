@@ -1,4 +1,4 @@
-<div class="h-full w-full">
+<div class="h-[80%] w-full">
     <div
         class="font-small flex h-full w-full flex-col gap-2 overflow-y-auto text-sm text-gray-500 dark:text-gray-400">
         @foreach ($chatMembers as $member)

@@ -36,14 +36,14 @@
         </div>
     </div>
     <div id="tab-content"
-        class="text-medium flex h-full w-full flex-col items-center justify-center gap-y-2 rounded-lg bg-gray-50 p-6 text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+        class="text-medium flex h-[80%] w-full flex-col items-center justify-between gap-2 rounded-lg bg-gray-50 p-2 text-gray-500 md:h-full dark:bg-gray-800 dark:text-gray-400">
 
         @livewire('chat.profile.members', ['chat' => $chat, 'users' => $users], key('chat-info-group-members'))
 
         @can('addUser', $chat->group)
             <div wire:ignore class="w-full text-sm">
                 <button id="select-user-dropdown-button" type="button" data-dropdown-toggle="user-select-dropdown"
-                    class="active mb-4 inline-flex w-full cursor-pointer items-center rounded-lg bg-blue-700 px-3 py-2 text-white dark:bg-blue-600">
+                    class="active inline-flex w-full cursor-pointer items-center rounded-lg bg-blue-700 px-3 py-2 text-white dark:bg-blue-600">
                     <svg class="me-2 h-4 w-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor" viewBox="0 0 20 20">
                         <path
