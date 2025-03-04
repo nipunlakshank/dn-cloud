@@ -31,8 +31,7 @@ class GroupPolicy
      */
     public function create(User $user): bool
     {
-        return $user->is_active
-            && ($user->role === UserRoles::SuperAdmin->value || $user->role === UserRoles::Admin->value);
+        return $user->is_active && $user->role === UserRoles::SuperAdmin->value;
     }
 
     /**
