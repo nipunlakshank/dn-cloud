@@ -5,6 +5,7 @@ namespace App\Livewire\Chat\Profile;
 use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -15,6 +16,7 @@ class SelectUserDropdown extends Component
 
     public function addMember(int $user_id)
     {
+        Gate::authorize('addUser', $this->chat->group);
         $this->dispatch('group-addMember', ['user_id' => $user_id])->to(Members::class);
     }
 

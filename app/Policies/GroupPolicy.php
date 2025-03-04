@@ -51,7 +51,7 @@ class GroupPolicy
         return $user->is_active
             && $user->activeChats()
                 ->where('chat_id', $group->chat_id)
-                ->whereIn('role', [ChatRoles::Owner->value, ChatRoles::Admin->value])
+                ->whereIn('chat_user.role', [ChatRoles::Owner->value])
                 ->exists();
     }
 
