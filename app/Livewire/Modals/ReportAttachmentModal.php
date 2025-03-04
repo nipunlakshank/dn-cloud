@@ -36,7 +36,7 @@ class ReportAttachmentModal extends Component
         $this->dispatch('message.sent', $message?->id);
 
         if ($message) {
-            $this->reset(['images', 'text']);
+            $this->reset(['images', 'documents', 'text']);
         }
     }
 
