@@ -47,78 +47,21 @@
                 <div class="mb-4 grid grid-cols-2 gap-4">
 
                     <div class="col-span-2">
-                        <label for="img-input"
-                            class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 flex w-full items-center gap-2 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M13 10C13 9.44772 13.4477 9 14 9H14.01C14.5623 9 15.01 9.44772 15.01 10C15.01 10.5523 14.5623 11 14.01 11H14C13.4477 11 13 10.5523 13 10Z"
-                                    fill="currentColor" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M2 6C2 4.89543 2.89543 4 4 4H20C21.1046 4 22 4.89543 22 6V18C22 18.5561 21.7731 19.0591 21.4068 19.4216C21.3579 19.5267 21.2907 19.6236 21.2071 19.7071C21.0196 19.8946 20.7652 20 20.5 20L4 20C3.86193 20 3.72713 19.986 3.59693 19.9594C2.79951 19.7962 2.17496 19.1584 2.03125 18.3541C2.01072 18.2392 2 18.1208 2 18V6ZM8.89188 18L12.7246 12.644L8.7348 8.32172C8.53068 8.10059 8.23781 7.98314 7.93746 8.00196C7.6371 8.02078 7.36119 8.17387 7.18627 8.41876L4 12.8795V6L20 6V15.9496L16.7433 12.331C16.5405 12.1057 16.2464 11.9845 15.9437 12.0016C15.6411 12.0186 15.3625 12.1721 15.1863 12.4188L11.1997 18H8.89188Z"
-                                    fill="currentColor" />
-                            </svg>Select Image Files</label>
-                        <input multiple type="file" accept=".png, .jpg, .jpeg"
+                        <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                            for="images">Select image(s)</label>
+                        <input
                             wire:model="images"
-                            name="img-input" id="img-input" class="hidden">
+                            class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"
+                            id="images" type="file" multiple>
                     </div>
 
                     <div class="col-span-2">
-                        <label for="doc-input"
-                            x-on:click="e => docCount > 0 && e.preventDefault()"
-                            class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 flex w-full items-center gap-2 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M9 2.22117V7H4.22117C4.31517 6.81709 4.43766 6.64812 4.58579 6.5L8.5 2.58579C8.64812 2.43766 8.81709 2.31517 9 2.22117ZM11 2V7C11 8.10457 10.1046 9 9 9H4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2H11Z"
-                                    fill="currentColor" />
-                            </svg>
-                            <div
-                                class="scrollbar-hide relative flex items-center gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-                                <span x-show="docCount === 0">Select documents</span>
-                                <button x-show="docCount > 0"
-                                    for="doc-input"
-                                    class="sticky left-0 inline-block text-nowrap rounded bg-blue-400 px-2 py-1 text-sm text-gray-200 dark:bg-blue-600 dark:text-gray-100">
-                                    Add more
-                                </button>
-                                <div x-show="docCount > 0"
-                                    class="flex w-full gap-1">
-                                    <template x-for="doc in docInfos">
-                                        <div
-                                            tabindex="0"
-                                            x-data="{ doc: doc }"
-                                            class="flex gap-1 bg-gray-200 p-1 text-gray-800 dark:bg-gray-500 dark:text-gray-100">
-                                            <span class="truncate text-nowrap text-sm" x-text="doc.name"></span>
-                                            <button type="button"
-                                                x-on:click="e => {
-                                                    // FIXME: Can't remove last item, can't add more
-                                                    e.preventDefault()
-                                                    docs = docs.filter(item => {
-                                                        console.group('Item')
-                                                        console.dir(doc.file)
-                                                        console.dir(item)
-                                                        console.groupEnd()
-                                                        return item !== doc.file
-                                                    })
-                                                    console.dir(docs)
-                                                }"
-                                                class="flex items-center text-gray-500 dark:text-gray-200">
-                                                <svg width="18" height="18" viewBox="0 0 20 20" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                                        d="M6 6 18 18M6 18 18 6" stroke="currentColor"
-                                                        stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="1" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </template>
-                                </div>
-                            </div>
-                        </label>
-                        <input tabindex=0 required multiple type="file" accept=".pdf, .doc, .docx, .xlsx, .xls, .csv"
+                        <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                            for="docs">Select document(s)</label>
+                        <input
                             wire:model="documents"
-                            id="doc-input" name="doc-input" class="hidden">
+                            class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"
+                            id="docs" type="file" multiple>
                     </div>
 
                     <div class="col-span-2">
