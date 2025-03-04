@@ -27,7 +27,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form wire:submit.prevent="createGroup" class="p-4 md:p-5">
+            <form wire:submit.prevent="createGroup" class="h-full p-4 md:p-5">
                 <div class="mb-4 grid grid-cols-2 gap-4">
                     <div class="col-span-2">
                         <label for="name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
@@ -65,6 +65,13 @@
                         <!-- Select users -->
                         @livewire('dropdowns.select-users', ['users' => $users])
 
+                    </div>
+                    <div class="col-span-2">
+                        <input id="is-wallet" type="checkbox" value="" wire:model="isWallet" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="is-wallet" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                            Is Wallet
+                            <span class="inline-flex text-sm text-gray-400">( Check if this group is a 'Wallet' )</span>
+                        </label>
                     </div>
                 </div>
                 <button type="submit"

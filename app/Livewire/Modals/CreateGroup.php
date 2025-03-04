@@ -20,6 +20,18 @@ class CreateGroup extends Component
     public array $users = [];
     public Collection $selectedUserIds;
     public int $selectedUserCount = 0;
+    public bool $isWallet = false;
+
+    public function mount()
+    {
+        $this->selectedUserIds = collect();
+        $this->users = User::where('id', '!=', Auth::id())->withFullName()->get()->toArray();
+    }
+
+    public function render()
+    {
+        return view('livewire.modals.create-group');
+    }
 
     #[On('group.addUser')]
     public function addUser($id)
@@ -61,23 +73,16 @@ class CreateGroup extends Component
         $members = $this->selectedUserIds->toArray();
         $members[] = Auth::id();
 
-        app(GroupService::class)->create($this->name, $avatarPath, $members);
+        app(GroupService::class)->create($this->name, $avatarPath, $members, $this->isWallet);
 
         $this->dispatch('group.created');
-        $this->dispatch('alert', ['message' => 'Group created successfully!', 'type' => 'success']);
+        if ($this->isWallet) {
+            $this->dispatch('alert', ['message' => 'Wallet created successfully!', 'type' => 'success']);
+        } else {
+            $this->dispatch('alert', ['message' => 'Group created successfully!', 'type' => 'success']);
+        }
 
         $this->clearSelectedUsers();
-        $this->reset(['name', 'avatar']);
-    }
-
-    public function mount()
-    {
-        $this->selectedUserIds = collect();
-        $this->users = User::where('id', '!=', Auth::id())->withFullName()->get()->toArray();
-    }
-
-    public function render()
-    {
-        return view('livewire.modals.create-group');
+        $this->reset(['name', 'avatar', 'isWallet']);
     }
 }

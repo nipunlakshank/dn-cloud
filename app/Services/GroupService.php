@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class GroupService
 {
-    public function create(string $name, ?string $avatar, array $memberIds, ?User $owner = null)
+    public function create(string $name, ?string $avatar, array $memberIds, bool $isWallet, ?User $owner = null)
     {
         Gate::authorize('create', Group::class);
 
