@@ -67,7 +67,7 @@ class DashboardController extends Controller
 
         Gate::authorize('changeRole', $user);
 
-        if ($data['status'] == 0) {
+        if (intval($data['status']) === 0) {
             $user->update(['is_active' => true]);
         } else {
             $user->update(['is_active' => false]);

@@ -30,8 +30,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/wallet/{id}/{status}', [DashboardController::class, 'walletStatusUpdate'])->name('wallet-status');
-    Route::get('/dashboard/user/{id}/{status}', [DashboardController::class, 'userStatusUpdate'])->name('user-status');
+    Route::post('/dashboard/wallet/status', [DashboardController::class, 'walletStatusUpdate'])->name('wallet-status');
+    Route::post('/dashboard/user/status', [DashboardController::class, 'userStatusUpdate'])->name('user-status');
 
     Route::get('/chat', ChatIndex::class)->name('chat');
 
