@@ -21,6 +21,28 @@ class Message extends Component
     public array $attachments;
     public int $imageCount;
 
+    public function refreshState()
+    {
+        $this->state = app(MessageService::class)->getState($this->message, Auth::user());
+    }
+
+    public function markAsDelivered()
+    {
+        app(MessageService::class)->markAsDelivered($this->message, Auth::user());
+        $this->state = app(MessageService::class)->getState($this->message, Auth::user());
+    }
+
+    public function markAsRead()
+    {
+        app(MessageService::class)->markAsRead($this->message, Auth::user());
+        $this->state = app(MessageService::class)->getState($this->message, Auth::user());
+    }
+
+    public function downloadAttachment($attachmentId)
+    {
+        return app(MessageService::class)->downloadAttachment($attachmentId);
+    }
+
     public function mount(MessageModel $message)
     {
         $this->message = $message;
@@ -43,23 +65,6 @@ class Message extends Component
                 return $attachment;
             })
             ->toArray();
-    }
-
-    public function refreshState()
-    {
-        $this->state = app(MessageService::class)->getState($this->message, Auth::user());
-    }
-
-    public function markAsDelivered()
-    {
-        app(MessageService::class)->markAsDelivered($this->message, Auth::user());
-        $this->state = app(MessageService::class)->getState($this->message, Auth::user());
-    }
-
-    public function markAsRead()
-    {
-        app(MessageService::class)->markAsRead($this->message, Auth::user());
-        $this->state = app(MessageService::class)->getState($this->message, Auth::user());
     }
 
     public function render()

@@ -10,6 +10,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class MessageService
@@ -39,6 +40,14 @@ class MessageService
 
             return $message;
         });
+    }
+
+    public function downloadAttachment(int $attachmentId)
+    {
+        // Gate::authorize('view', MessageAttachment::class);
+        $attachment = MessageAttachment::findOrFail($attachmentId);
+
+        return Storage::disk('public')->download($attachment->path, $attachment->name);
     }
 
     public function delete(Message $message): void

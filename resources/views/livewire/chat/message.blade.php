@@ -150,9 +150,9 @@
                                     </span>
                                 </div>
                                 <div class="inline-flex items-center self-center">
-                                    <a
-                                        target="_blank"
-                                        href="{{ Storage::url($attachment['path']) }}"
+                                    <button
+                                        title="Download"
+                                        wire:click="downloadAttachment({{ $attachment['id'] }})"
                                         class="inline-flex items-center self-center rounded-lg bg-gray-50 p-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-50 dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500 dark:focus:ring-gray-600"
                                         type="button">
                                         <svg class="h-4 w-4 text-gray-900 dark:text-white" aria-hidden="true"
@@ -162,7 +162,7 @@
                                             <path
                                                 d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
                                         </svg>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
