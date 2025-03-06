@@ -58,7 +58,7 @@ class Message extends Model
     public function status(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'message_status')
-            ->withPivot('sent_at', 'delivered_at', 'read_at', 'deleted_at')
+            ->withPivot('sent_at', 'delivered_at', 'read_at', 'deleted_at', 'noted')
             ->withTimestamps();
     }
 

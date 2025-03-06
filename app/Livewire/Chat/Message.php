@@ -14,6 +14,7 @@ class Message extends Component
     public MessageModel $message;
     public int $messageId;
     public User $user;
+    public $messageStatus;
     public string $avatar;
     public bool $isOwner;
     public bool $inAGroup;
@@ -38,6 +39,12 @@ class Message extends Component
         $this->state = app(MessageService::class)->getState($this->message, Auth::user());
     }
 
+    public function markAsNoted()
+    {
+        app(MessageService::class)->markAsNoted($this->message, Auth::user());
+        $this->state = app(MessageService::class)->getState($this->message, Auth::user());
+    }
+
     public function downloadAttachment($attachmentId)
     {
         return app(MessageService::class)->downloadAttachment($attachmentId);
@@ -48,8 +55,9 @@ class Message extends Component
         $this->message = $message;
         $this->messageId = $message->id;
         $this->user = $message->user()->withFullName()->first();
+        $this->messageStatus = $message->status();
         $this->avatar = $this->user->avatar
-                        ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->user->name) . '&background=random';
+            ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->user->name) . '&background=random';
         $this->isOwner = $this->user->id === Auth::id();
         $this->inAGroup = $message->chat->is_group;
         $this->state = app(MessageService::class)->getState($message);
