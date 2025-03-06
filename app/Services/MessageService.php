@@ -42,6 +42,17 @@ class MessageService
         });
     }
 
+    public function markAsNoted(Message $message, User $user): void
+    {
+        DB::transaction(function () use ($message, $user) {
+            $message->status()
+                ->wherePivot('user_id', $user->id)
+                ->updateExistingPivot($user->id, [
+                    'noted' => true,
+                ]);
+        });
+    }
+
     public function downloadAttachment(int $attachmentId)
     {
         // Gate::authorize('view', MessageAttachment::class);
