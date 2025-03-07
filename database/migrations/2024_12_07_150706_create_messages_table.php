@@ -48,7 +48,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(Message::class)->constrained()->onDelete('cascade');
-            $table->boolean('noted')->default(false);
+            $table->timestamp('noted_at')->nullable();
             $table->timestamp('sent_at')->nullable();
             $table->timestamp('delivered_at')->nullable();
             $table->timestamp('read_at')->nullable();

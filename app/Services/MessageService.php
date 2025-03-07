@@ -46,9 +46,8 @@ class MessageService
     {
         DB::transaction(function () use ($message, $user) {
             $message->status()
-                ->wherePivot('user_id', $user->id)
                 ->updateExistingPivot($user->id, [
-                    'noted' => true,
+                    'noted_at' => now(),
                 ]);
         });
     }

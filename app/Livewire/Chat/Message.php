@@ -5,6 +5,7 @@ namespace App\Livewire\Chat;
 use App\Models\Message as MessageModel;
 use App\Models\User;
 use App\Services\MessageService;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Number;
 use Livewire\Component;
@@ -14,13 +15,13 @@ class Message extends Component
     public MessageModel $message;
     public int $messageId;
     public User $user;
-    public $messageStatus;
     public string $avatar;
     public bool $isOwner;
     public bool $inAGroup;
     public string $state;
     public array $attachments;
     public int $imageCount;
+    public Collection $notedAt;
 
     public function refreshState()
     {
@@ -55,13 +56,11 @@ class Message extends Component
         $this->message = $message;
         $this->messageId = $message->id;
         $this->user = $message->user()->withFullName()->first();
-        $this->messageStatus = $message->status();
         $this->avatar = $this->user->avatar
             ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->user->name) . '&background=random';
         $this->isOwner = $this->user->id === Auth::id();
         $this->inAGroup = $message->chat->is_group;
         $this->state = app(MessageService::class)->getState($message);
-
         $this->imageCount = 0;
         $this->attachments = $message->attachments
             ->map(function ($attachment) {
@@ -73,6 +72,14 @@ class Message extends Component
                 return $attachment;
             })
             ->toArray();
+        $this->notedAt = $message->status->map(function ($status) {
+            return [
+                'user_id' => $status->pivot->user_id,
+                'noted_at' => $status->pivot->noted_at,
+            ];
+        })->filter(function ($status) {
+            return !empty($status['noted_at']);
+        });
     }
 
     public function render()
