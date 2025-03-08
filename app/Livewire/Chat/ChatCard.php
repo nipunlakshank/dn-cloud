@@ -20,6 +20,7 @@ class ChatCard extends Component
     public ?string $chatName;
     public ?string $chatAvatar;
     public bool $selected;
+    public bool $isGroup;
 
     #[On('chat.deselect')]
     public function deselectChat()
@@ -104,7 +105,7 @@ class ChatCard extends Component
         $this->user = Auth::user();
         $this->chat = $chat;
         $this->selected = session('chatId') && session('chatId') === $chat->id;
-        $this->lastMessage = $chat->lastMessage ?? null;
+        $this->lastMessage = $chat->lastMessage()->with('user')->first() ?? null;
         $this->timeElapsed = $this->calculateTimeElapsed($this->lastMessage?->created_at);
         $this->unreadCount = app(ChatService::class)->getUnreadCount($chat, $this->user);
 
@@ -114,7 +115,9 @@ class ChatCard extends Component
             $this->chatName = $chat->otherUsers(Auth::id())->first()->name();
         }
 
-        if ($chat->is_group) {
+        $this->isGroup = $chat->is_group;
+
+        if ($this->isGroup) {
             $this->chatAvatar = $chat->group->avatar_url;
         } else {
             $this->chatAvatar = $chat->otherUsers(Auth::id())->first()->avatar_url;
