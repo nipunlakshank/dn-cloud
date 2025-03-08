@@ -10,7 +10,6 @@ use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class MessageService
@@ -49,6 +48,18 @@ class MessageService
                 ->updateExistingPivot($user->id, [
                     'noted_at' => now(),
                 ]);
+        });
+    }
+
+    public function isNoted(Message $message, ?User $user = null): bool
+    {
+        return DB::transaction(function () use ($message, $user) {
+            $user = $user ?? Auth::user();
+
+            return $message->status()
+                ->where('user_id', $user->id)
+                ->whereNotNull('noted_at')
+                ->exists();
         });
     }
 

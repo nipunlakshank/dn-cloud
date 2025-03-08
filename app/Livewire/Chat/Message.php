@@ -22,6 +22,7 @@ class Message extends Component
     public array $attachments;
     public int $imageCount;
     public Collection $notedAt;
+    public bool $markedAsNoted;
 
     public function refreshState()
     {
@@ -44,11 +45,25 @@ class Message extends Component
     {
         app(MessageService::class)->markAsNoted($this->message, Auth::user());
         $this->state = app(MessageService::class)->getState($this->message, Auth::user());
+        $this->notedAt = $this->getNotedAt($this->message);
+        $this->markedAsNoted = true;
     }
 
     public function downloadAttachment($attachmentId)
     {
         return app(MessageService::class)->downloadAttachment($attachmentId);
+    }
+
+    protected function getNotedAt(MessageModel $message)
+    {
+        return $message->status->map(function ($status) {
+            return [
+                'user_id' => $status->pivot->user_id,
+                'noted_at' => $status->pivot->noted_at,
+            ];
+        })->filter(function ($status) {
+            return !empty($status['noted_at']);
+        });
     }
 
     public function mount(MessageModel $message)
@@ -72,14 +87,8 @@ class Message extends Component
                 return $attachment;
             })
             ->toArray();
-        $this->notedAt = $message->status->map(function ($status) {
-            return [
-                'user_id' => $status->pivot->user_id,
-                'noted_at' => $status->pivot->noted_at,
-            ];
-        })->filter(function ($status) {
-            return !empty($status['noted_at']);
-        });
+        $this->notedAt = $this->getNotedAt($message);
+        $this->markedAsNoted = app(MessageService::class)->isNoted($message, Auth::user());
     }
 
     public function render()

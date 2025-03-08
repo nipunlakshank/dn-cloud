@@ -3,6 +3,7 @@
         isOwner: @entangle('isOwner'),
         state: @entangle('state'),
         messageId: @entangle('messageId'),
+        markedAsNoted: @entangle('markedAsNoted'),
     }"
     x-init="() => {
         const options = {
@@ -22,7 +23,7 @@
             options,
             instanceOptions
         )
-
+    
         if (isOwner) {
             const senderState = setInterval(() => {
                 try {
@@ -37,7 +38,7 @@
             }, 1000)
             return
         }
-
+    
         const recieverState = setInterval(() => {
             try {
                 if (state === 'read') {
@@ -255,14 +256,14 @@
         class="z-10 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow dark:divide-gray-600 dark:bg-gray-700">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
             aria-labelledby="messageOptionsButton-{{ $message->id }}">
-            @if (!$isOwner)
+            <template x-if="!isOwner && !markedAsNoted">
                 <li class="border-b-1 border-gray-200 dark:border-gray-500">
                     <button wire:click="markAsNoted" type="button"
                         class="inline-flex w-full cursor-pointer gap-3 px-4 py-2 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white dark:active:bg-gray-500">
                         Mark as Noted
                     </button>
                 </li>
-            @endif
+            </template>
             <li>
                 <a href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reply</a>
