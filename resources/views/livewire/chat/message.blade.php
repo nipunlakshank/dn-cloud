@@ -22,7 +22,7 @@
             options,
             instanceOptions
         )
-    
+
         if (isOwner) {
             const senderState = setInterval(() => {
                 try {
@@ -37,7 +37,7 @@
             }, 1000)
             return
         }
-    
+
         const recieverState = setInterval(() => {
             try {
                 if (state === 'read') {
@@ -258,7 +258,7 @@
             @if (!$isOwner)
                 <li class="border-b-1 border-gray-200 dark:border-gray-500">
                     <button wire:click="markAsNoted" type="button"
-                        class="inline-flex cursor-pointer gap-3 px-4 py-2 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white dark:active:bg-gray-500">
+                        class="inline-flex w-full cursor-pointer gap-3 px-4 py-2 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white dark:active:bg-gray-500">
                         Mark as Noted
                     </button>
                 </li>
