@@ -23,6 +23,7 @@ class Message extends Component
     public int $imageCount;
     public Collection $notedAt;
     public bool $markedAsNoted;
+    public string $messageText;
 
     public function refreshState()
     {
@@ -69,11 +70,12 @@ class Message extends Component
     public function mount(MessageModel $message)
     {
         $this->message = $message;
+        $this->messageText = $message->text;
         $this->messageId = $message->id;
         $this->user = $message->user()->withFullName()->first();
         $this->avatar = $this->user->avatar
             ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->user->name) . '&background=random';
-        $this->isOwner = $this->user->id === Auth::id();
+        $this->isOwner = $this->user->is(Auth::user());
         $this->inAGroup = $message->chat->is_group;
         $this->state = app(MessageService::class)->getState($message);
         $this->imageCount = 0;
