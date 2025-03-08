@@ -24,6 +24,7 @@ class Message extends Component
     public Collection $notedAt;
     public bool $markedAsNoted;
     public string $messageText;
+    public string $createdAt;
 
     public function refreshState()
     {
@@ -91,6 +92,10 @@ class Message extends Component
             ->toArray();
         $this->notedAt = $this->getNotedAt($message);
         $this->markedAsNoted = app(MessageService::class)->isNoted($message, Auth::user());
+        $createdAt = $message->created_at;
+        $this->createdAt = $createdAt->isToday()
+            ? $createdAt->format('h:i a')
+            : $createdAt->day . ' ' . $createdAt->format('M') . ($createdAt->isCurrentYear() ? '' : ' ' . $createdAt->year) . ' ' . $createdAt->format('h:i a');
     }
 
     public function render()

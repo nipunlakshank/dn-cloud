@@ -179,7 +179,7 @@
             <div class="flex select-none items-end justify-end gap-1" dir="ltr"
                 wire:key="message-footer-{{ $message->id }}">
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                    {{ $message->created_at->format('h:i a') ?? '00:00' }}
+                    {{ $createdAt }}
                 </span>
 
                 @if ($notedAt->count() > 0)
