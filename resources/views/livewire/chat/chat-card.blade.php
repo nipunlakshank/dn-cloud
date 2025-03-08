@@ -36,7 +36,7 @@
                 </span>
             </div>
             <div class="flex w-full items-center justify-between gap-1">
-                <div class="flex w-full gap-1 py-1">
+                <div class="flex w-[90%] gap-1 py-1">
                     @if ($isGroup && $chat->lastMessage)
                         <span
                             class="inline-block whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-gray-200">
@@ -50,7 +50,7 @@
                 </div>
                 <span
                     x-show="unreadCount > 0"
-                    class="h-fit rounded-full bg-lime-400 px-[0.5em] py-[0.1em] text-xs text-gray-800 dark:bg-lime-700 dark:text-gray-100">
+                    class="inline-block h-fit rounded-full bg-lime-400 px-[0.5em] py-[0.1em] text-xs text-gray-800 dark:bg-lime-700 dark:text-gray-100">
                     {{ $unreadCount ?? '0' }}
                 </span>
             </div>
