@@ -25,7 +25,7 @@
             options,
             instanceOptions
         )
-
+    
         if (isOwner) {
             const senderState = setInterval(() => {
                 try {
@@ -40,7 +40,7 @@
             }, 1000)
             return
         }
-
+    
         const recieverState = setInterval(() => {
             try {
                 if (state === 'read') {
@@ -261,7 +261,7 @@
             <template x-if="!isOwner && !markedAsNoted">
                 <li>
                     <button wire:click="markAsNoted" type="button"
-                        class="inline-flex w-full cursor-pointer gap-3 px-4 py-2 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white dark:active:bg-gray-500">
+                        class="w-full cursor-pointer gap-3 px-4 py-2 text-left hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white dark:active:bg-gray-500">
                         Mark as Noted
                     </button>
                 </li>
@@ -273,7 +273,7 @@
                         optionsMenu.hide()
                     }"
                     title="Copy"
-                    class="block w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    class="w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Copy
                 </button>
             </li>
