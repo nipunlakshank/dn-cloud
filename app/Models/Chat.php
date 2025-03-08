@@ -47,9 +47,9 @@ class Chat extends Model
             ->withTimestamps();
     }
 
-    public function otherUsers(?int $userId): BelongsToMany
+    public function otherUsers(int $currentUserId): BelongsToMany
     {
-        return $this->users()->where('user_id', '!=', $userId ?? Auth::id());
+        return $this->users()->where('user_id', '!=', $currentUserId);
     }
 
     public function activeUsers(): BelongsToMany

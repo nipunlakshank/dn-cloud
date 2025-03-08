@@ -17,7 +17,7 @@
             src="{{ $chatAvatar }}" alt="Avatar">
         <div class="flex flex-col">
             <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ $chatName ?? 'Unknown' }}</span>
-            <span class="text-sm font-light text-gray-900 dark:text-white">online</span>
+            <span class="text-sm font-light text-gray-900 dark:text-white">{{$chatInfo}}</span>
         </div>
     </div>
 

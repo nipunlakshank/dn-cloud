@@ -10,19 +10,10 @@ use Livewire\Component;
 class ChatHeader extends Component
 {
     public Chat $chat;
-    public $chatName;
-    public $chatAvatar;
-    public $isGroup = false;
-
-    public function mount(Chat $chat)
-    {
-        $this->setChatDetails($chat);
-    }
-
-    public function render()
-    {
-        return view('livewire.chat.chat-header');
-    }
+    public string $chatName;
+    public string $chatAvatar;
+    public bool $isGroup = false;
+    public string $chatInfo;
 
     #[On('chat.select')]
     public function setChatDetails(Chat $chat)
@@ -42,5 +33,17 @@ class ChatHeader extends Component
         }
 
         $this->chatAvatar = $this->chatAvatar ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->chatName) . '&background=random';
+
+        $this->chatInfo = $this->isGroup ? 'Members: ' . $this->chat->group->chat->users()->count() : $this->chat->otherUsers(Auth::id())->first()->email;
+    }
+
+    public function mount(Chat $chat)
+    {
+        $this->setChatDetails($chat);
+    }
+
+    public function render()
+    {
+        return view('livewire.chat.chat-header');
     }
 }
