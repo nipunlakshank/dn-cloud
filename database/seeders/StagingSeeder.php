@@ -16,61 +16,40 @@ class StagingSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'first_name' => 'Dev',
-            'last_name' => 'User',
-            'email' => 'dev@gmail.com',
-            'password' => Hash::make('Dev@123'),
-            'remember_token' => Str::random(10),
-            'role' => UserRoles::Admin->value,
-            'email_verified_at' => now(),
-        ]);
-
-        User::create([
-            'first_name' => 'Test',
-            'last_name' => 'User',
-            'email' => 'test@gmail.com',
-            'password' => Hash::make('Test@123'),
-            'remember_token' => Str::random(10),
-            'role' => UserRoles::Admin->value,
-            'email_verified_at' => now(),
-        ]);
-
-        User::create([
             'first_name' => 'Super',
             'last_name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('Admin@123'),
+            'email' => 'super@gmail.com',
+            'password' => Hash::make('Super@123'),
             'remember_token' => Str::random(10),
             'role' => UserRoles::SuperAdmin->value,
             'email_verified_at' => now(),
         ]);
 
-        // Dev Users
         User::create([
-            'first_name' => 'Nipun',
-            'last_name' => 'Lakshan',
-            'email' => 'nipun@gmail.com',
-            'password' => Hash::make('Nipun@123'),
+            'first_name' => 'Admin',
+            'last_name' => 'User',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('Admin@123'),
             'remember_token' => Str::random(10),
-            'role' => UserRoles::Developer->value,
+            'role' => UserRoles::Admin->value,
             'email_verified_at' => now(),
         ]);
 
         User::create([
-            'first_name' => 'Brayan',
-            'last_name' => 'Dewitt',
-            'email' => 'brayan@gmail.com',
-            'password' => Hash::make('Brayan@123'),
+            'first_name' => 'Accountant',
+            'last_name' => 'User',
+            'email' => 'accountant@gmail.com',
+            'password' => Hash::make('Accountant@123'),
             'remember_token' => Str::random(10),
-            'role' => UserRoles::Developer->value,
+            'role' => UserRoles::Admin->value,
             'email_verified_at' => now(),
         ]);
 
         User::create([
-            'first_name' => 'Madhuka',
-            'last_name' => 'Kumarage',
-            'email' => 'madhuka@gmail.com',
-            'password' => Hash::make('Madhuka@123'),
+            'first_name' => 'Dev',
+            'last_name' => 'User',
+            'email' => 'dev@gmail.com',
+            'password' => Hash::make('Dev@123'),
             'remember_token' => Str::random(10),
             'role' => UserRoles::Developer->value,
             'email_verified_at' => now(),
