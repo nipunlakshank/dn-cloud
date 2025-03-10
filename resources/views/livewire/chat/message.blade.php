@@ -1,7 +1,6 @@
 <div
     x-data="{
         optionsMenu: null,
-        optionsMenuMobile: null,
         isOwner: @entangle('isOwner'),
         state: @entangle('state'),
         messageId: @entangle('messageId'),
@@ -16,13 +15,9 @@
             offsetDistance: 10,
             ignoreClickOutsideClass: false,
         }
+    
         const instanceOptions = {
             id: `messageOptions-${messageId}`,
-            override: true,
-        }
-    
-        const instanceOptionsMobile = {
-            id: `messageOptionsMobile-${messageId}`,
             override: true,
         }
         optionsMenu = new Dropdown(
@@ -30,13 +25,6 @@
             document.getElementById(`messageOptionsButton-${messageId}`),
             options,
             instanceOptions
-        )
-    
-        optionsMenuMobile = new Dropdown(
-            document.getElementById(`messageOptions-${messageId}`),
-            document.getElementById(`messageBody-${messageId}`),
-            options,
-            instanceOptionsMobile
         )
     
         if (isOwner) {
@@ -85,6 +73,7 @@
         @endif
         <div
             id="messageBody-{{ $message->id }}"
+            x-on:click="$refs.messageOptionsButton.click()"
             class="{{ $isOwner ? 'bg-green-200 dark:bg-teal-900' : 'bg-white dark:bg-gray-700' }} flex flex-col justify-between gap-1 rounded-e-xl rounded-es-xl border-gray-200 px-4 py-2 transition-colors">
 
             @if ($message->is_report)
@@ -256,6 +245,7 @@
     </div>
 
     <button id="messageOptionsButton-{{ $message->id }}" data-dropdown-toggle="messageOptions-{{ $message->id }}"
+        x-ref="messageOptionsButton"
         wire:ignore
         data-dropdown-placement="bottom-start"
         class="hidden items-center self-center rounded-lg bg-white p-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-50 group-hover:inline-flex dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800 dark:focus:ring-gray-600"
