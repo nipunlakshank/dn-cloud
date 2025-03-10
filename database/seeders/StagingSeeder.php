@@ -41,7 +41,17 @@ class StagingSeeder extends Seeder
             'email' => 'accountant@gmail.com',
             'password' => Hash::make('Accountant@123'),
             'remember_token' => Str::random(10),
-            'role' => UserRoles::Admin->value,
+            'role' => UserRoles::Accountant->value,
+            'email_verified_at' => now(),
+        ]);
+
+        User::create([
+            'first_name' => 'Worker',
+            'last_name' => 'User',
+            'email' => 'worker@gmail.com',
+            'password' => Hash::make('Worker@123'),
+            'remember_token' => Str::random(10),
+            'role' => UserRoles::Worker->value,
             'email_verified_at' => now(),
         ]);
 
