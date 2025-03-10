@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'active'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/dashboard/wallet/status', [DashboardController::class, 'walletStatusUpdate'])->name('wallet-status');
     Route::post('/dashboard/user/status', [DashboardController::class, 'userStatusUpdate'])->name('user-status');
