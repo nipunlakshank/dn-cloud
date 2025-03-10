@@ -3,7 +3,7 @@
         class="font-small flex h-full w-full flex-col gap-2 overflow-y-auto text-sm text-gray-500 dark:text-gray-400">
         @foreach ($chatMembers as $member)
             <div wire:key="chat-info-member-{{ $member->id }}"
-                class="inline-flex w-full items-center rounded-lg bg-gray-100 px-3 py-2 text-gray-900 dark:bg-gray-700 dark:text-white">
+                class="inline-flex w-full items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-900 dark:bg-gray-700 dark:text-white">
                 <div class="flex w-full flex-col gap-2">
                     <div class="flex items-center gap-2">
                         <span class="w-full">{{ $member->name() }}</span>
