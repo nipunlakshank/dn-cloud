@@ -31,6 +31,7 @@ class ChatCard extends Component
 
     public function selectChat()
     {
+        session()->put('chatId', $this->chat->id);
         if ($this->selected) {
             return;
         }

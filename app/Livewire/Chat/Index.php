@@ -27,7 +27,6 @@ class Index extends Component
     public function selectChat(Chat $chat)
     {
         $this->chat = $chat;
-        session()->put('chatId', $chat->id);
     }
 
     #[On('chat.deselect')]
