@@ -1,6 +1,7 @@
 <div
     x-data="{
         optionsMenu: null,
+        optionsMenuMobile: null,
         isOwner: @entangle('isOwner'),
         state: @entangle('state'),
         messageId: @entangle('messageId'),
@@ -19,11 +20,23 @@
             id: `messageOptions-${messageId}`,
             override: true,
         }
+    
+        const instanceOptionsMobile = {
+            id: `messageOptionsMobile-${messageId}`,
+            override: true,
+        }
         optionsMenu = new Dropdown(
             document.getElementById(`messageOptions-${messageId}`),
             document.getElementById(`messageOptionsButton-${messageId}`),
             options,
             instanceOptions
+        )
+    
+        optionsMenuMobile = new Dropdown(
+            document.getElementById(`messageOptions-${messageId}`),
+            document.getElementById(`messageBody-${messageId}`),
+            options,
+            instanceOptionsMobile
         )
     
         if (isOwner) {
@@ -71,6 +84,7 @@
             </span>
         @endif
         <div
+            id="messageBody-{{ $message->id }}"
             class="{{ $isOwner ? 'bg-green-200 dark:bg-teal-900' : 'bg-white dark:bg-gray-700' }} flex flex-col justify-between gap-1 rounded-e-xl rounded-es-xl border-gray-200 px-4 py-2 transition-colors">
 
             @if ($message->is_report)
