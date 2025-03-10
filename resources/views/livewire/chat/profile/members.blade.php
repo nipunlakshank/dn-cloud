@@ -4,10 +4,16 @@
         @foreach ($chatMembers as $member)
             <div wire:key="chat-info-member-{{ $member->id }}"
                 class="inline-flex w-full items-center rounded-lg bg-gray-100 px-3 py-2 text-gray-900 dark:bg-gray-700 dark:text-white">
-                <span class="w-full">{{ $member->name() }}</span>
-                @if (Auth::user()->id == $member->id)
-                    <span class="self-center py-2 text-center text-green-500">You</span>
-                @endif
+                <div class="flex w-full flex-col gap-2">
+                    <div class="flex items-center gap-2">
+                        <span class="w-full">{{ $member->name() }}</span>
+                        <span class="text-xm whitespace-nowrap text-gray-400">{{ $member->role() }}</span>
+                        @if (Auth::user()->id == $member->id)
+                            <span class="self-center text-center text-green-500">(You)</span>
+                        @endif
+                    </div>
+                    <span>{{ $member->email }}</span>
+                </div>
                 @can('removeUser', [$chat->group, $member->id])
                     <button type="button" wire:click="removeMember({{ $member }})"
                         class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-sm text-gray-900 hover:bg-red-500 hover:text-gray-100 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-red-500 dark:hover:text-white">
