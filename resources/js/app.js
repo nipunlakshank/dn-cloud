@@ -1,5 +1,5 @@
-import './bootstrap';
-import 'flowbite'
+import "./bootstrap";
+import "flowbite";
 
 const axios = window.axios;
 
@@ -15,10 +15,10 @@ let darkMode = localStorage.getItem("theme") === "dark";
 if (darkMode) document.documentElement.classList.add("dark");
 else document.documentElement.classList.remove("dark");
 
-
 function logout() {
-    axios.post(`/logout`)
-        .then(() => setTimeout(() => window.location.href = "/", 0))
+    axios
+        .post(`/logout`)
+        .then(() => setTimeout(() => (window.location.href = "/"), 0))
         .catch((error) => console.error(error));
 }
 
@@ -55,12 +55,10 @@ document.querySelector("#avatar")?.addEventListener("input", (event) => {
 });
 
 // Chat Image Viewer
-document.querySelectorAll(".chat-image-bubble").forEach((bubble) => {
+window.addEventListener("image.open", (event) => {
     const viewer = document.querySelector("#chat-image-viewer");
-    bubble.addEventListener("click", (event) => {
-        // let messageId = event.target.getAttribute("data-message-id");
-        viewer.querySelector("#message-image").srcset = event.target.src;
-    });
+    viewer.querySelector("#message-image").srcset = event.target.src;
+    document.dispatchEvent(new Event("open-image-viewer", { bubbles: true }));
 });
 
 // Dashboard Drawer Toggle : Small Screen
@@ -87,26 +85,30 @@ function deselectChat() {
 }
 
 // to prevent multiple loading of more messages
-let loadingMoreMessages = false
+let loadingMoreMessages = false;
 
 function loadMoreMessages() {
-    if (loadingMoreMessages) return
-    const chatMessages = document.getElementById("chat-messages")
-    if (!chatMessages) return
+    if (loadingMoreMessages) return;
+    const chatMessages = document.getElementById("chat-messages");
+    if (!chatMessages) return;
     if (chatMessages.scrollTop === 0) {
-        loadingMoreMessages = true
-        Livewire.dispatch("chat.scrollUpdate", { scrollHeight: chatMessages.scrollHeight })
-        Livewire.dispatch("chat.loadMoreMessages")
+        loadingMoreMessages = true;
+        Livewire.dispatch("chat.scrollUpdate", {
+            scrollHeight: chatMessages.scrollHeight,
+        });
+        Livewire.dispatch("chat.loadMoreMessages");
     }
 }
 
 function updateChatScroll(data, el) {
     setTimeout(() => {
-        const topMessage = document.getElementById(`message-${data.topMessageId}`)
-        if (!topMessage) return
-        el.scrollTop = el.scrollHeight - data.scrollHeight
-        loadingMoreMessages = false
-    }, 0)
+        const topMessage = document.getElementById(
+            `message-${data.topMessageId}`
+        );
+        if (!topMessage) return;
+        el.scrollTop = el.scrollHeight - data.scrollHeight;
+        loadingMoreMessages = false;
+    }, 0);
 }
 
 window.addEventListener("keyup", (event) => {
@@ -145,10 +147,10 @@ window.addEventListener("message.pushed", (event) => {
     setTimeout(() => clearInterval(intervalId), 5000);
 });
 
-window.addEventListener("chat.moreMessagesLoaded", event => {
-    const chatMassages = document.getElementById("chat-messages")
-    updateChatScroll(event.detail[0], chatMassages)
-})
+window.addEventListener("chat.moreMessagesLoaded", (event) => {
+    const chatMassages = document.getElementById("chat-messages");
+    updateChatScroll(event.detail[0], chatMassages);
+});
 
 // Expose functions
 window.toggleTheme = toggleTheme;
