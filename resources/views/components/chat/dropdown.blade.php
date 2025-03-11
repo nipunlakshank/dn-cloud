@@ -1,5 +1,4 @@
-<div
-    x-data="{
+<div x-data="{
         target: document.getElementById('navigation-menu'),
         trigger: document.getElementById('navigation-menu-toggle'),
         options: {
@@ -28,6 +27,7 @@
     <!-- Dropdown menu -->
     <div id="navigation-menu"
         x-init="dropdown = new Dropdown(target, trigger, options, instanceOptions)"
+        x-on:hide-dropdown-menu.window="dropdown.hide()"
         class="z-10 hidden w-44 divide-y divide-gray-100 rounded-lg bg-white shadow shadow-slate-500/10 dark:divide-gray-600 dark:bg-gray-800 dark:shadow-slate-200/10">
         <div class="overflow-hidden px-4 py-3 text-sm text-gray-900 dark:text-white">
             <span class="block w-full">{{ Auth::user()->name() }}</span>
@@ -53,15 +53,15 @@
             </li>
 
             @can('create', App\Models\Group::class)
-                <li>
-                    <button
-                        x-on:click="() => dropdown.hide()"
-                        data-modal-target="create-group-modal"
-                        data-modal-toggle="create-group-modal"
-                        class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                        Create Group
-                    </button>
-                </li>
+            <li>
+                <button
+                    x-on:click="() => dropdown.hide()"
+                    data-modal-target="create-group-modal"
+                    data-modal-toggle="create-group-modal"
+                    class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Create Group
+                </button>
+            </li>
             @endcan
 
             <li>
@@ -75,10 +75,8 @@
             </li>
         </ul>
         <div class="py-2">
-            <button
-                x-on:click="() => dropdown.hide()"
-                data-modal-target="logout"
-                data-modal-toggle="logout"
+            <button id="logout-button"
+                x-on:click="$dispatch('show-modal')"
                 class="block w-full px-4 py-2 text-start text-sm text-gray-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
                 Log Out
             </button>
