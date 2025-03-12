@@ -21,6 +21,7 @@ class ChatCard extends Component
     public ?string $chatAvatar;
     public bool $selected;
     public bool $isGroup;
+    public bool $isPinned;
 
     #[On('chat.deselect')]
     public function deselectChat()
@@ -36,6 +37,11 @@ class ChatCard extends Component
             return;
         }
         $this->dispatch('chat.select', $this->chat);
+    }
+
+    public function togglePin()
+    {
+        $this->isPinned = ChatService::togglePin($this->chat);
     }
 
     #[On('chat.select')]
@@ -125,6 +131,7 @@ class ChatCard extends Component
         }
 
         $this->chatAvatar = $this->chatAvatar ?? 'https://ui-avatars.com/api/?name=' . urlencode($this->chatName) . '&background=random';
+        $this->isPinned = $chat->isPinned($this->user->id);
     }
 
     public function render()

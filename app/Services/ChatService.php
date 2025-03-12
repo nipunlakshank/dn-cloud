@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Chat;
 use App\Models\Message;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ChatService
@@ -17,6 +18,27 @@ class ChatService
             })
             ->where('user_id', '!=', $user->id)
             ->count();
+    }
+
+    public static function pin(Chat $chat)
+    {
+        $chat->users()->updateExistingPivot(Auth::id(), [
+            'pinned_at' => now(),
+        ]);
+    }
+
+    public static function unPin(Chat $chat)
+    {
+        $chat->users()->updateExistingPivot(Auth::id(), [
+            'pinned_at' => null,
+        ]);
+    }
+
+    public static function togglePin(Chat $chat): bool
+    {
+        $chat->isPinned() ? self::unPin($chat) : self::pin($chat);
+
+        return $chat->isPinned();
     }
 
     public function markAsDelivered(Chat $chat, User $user)

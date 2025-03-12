@@ -1,14 +1,84 @@
 <div
-    x-data="{ unreadCount: @entangle('unreadCount') }"
-    x-init="() => setInterval(() => $wire.refreshLastMessage(), 1000)"
+    x-data="{
+        unreadCount: @entangle('unreadCount'),
+        isPinned: @entangle('isPinned'),
+        optionsMenu: null,
+    }"
+    x-init="() => {
+        setInterval(() => $wire.refreshLastMessage(), 1000)
+    
+        const options = {
+            placement: 'bottom-end',
+            triggerType: 'click',
+            offsetSkidding: 0,
+            offsetDistance: 10,
+            ignoreClickOutsideClass: false,
+        }
+    
+        const instanceOptions = {
+            id: 'chatOptions-{{ $chat->id }}',
+            override: true,
+        }
+        optionsMenu = new Dropdown(
+            $refs.chatOptions,
+            $refs.chatOptionsButton,
+            options,
+            instanceOptions
+        )
+    
+    }"
     tabindex="0"
     wire:click="selectChat"
     x-on:keyup.enter="$wire.selectChat()"
-    class="chat-card {{ $selected ? ' bg-gray-400 dark:bg-gray-800' : 'bg-gray-200 dark:bg-gray-700' }} relative cursor-pointer select-none justify-between rounded-lg border-none p-4 pt-6 text-start">
+    class="chat-card {{ $selected ? ' bg-gray-400 dark:bg-gray-800' : 'bg-gray-200 dark:bg-gray-700' }} group relative cursor-pointer select-none justify-between rounded-lg border-none p-4 pt-6 text-start">
 
     <span class="absolute right-4 top-2 text-xs font-normal text-gray-500 dark:text-gray-400">
         {{ $timeElapsed }}
     </span>
+
+    <template x-if="isPinned">
+        <span class="absolute left-4 top-2 text-xs font-normal text-gray-500 dark:text-gray-400">
+            <svg
+                version="1.1"
+                id="svg216"
+                xml:space="preserve"
+                width="15"
+                height="15"
+                viewBox="0 0 32 32"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:svg="http://www.w3.org/2000/svg">
+                <defs
+                    id="defs220">
+                    <clipPath
+                        clipPathUnits="userSpaceOnUse"
+                        id="clipPath230">
+                        <path
+                            d="M 0,24 H 24 V 0 H 0 Z"
+                            id="path228" />
+                    </clipPath>
+                </defs>
+                <g
+                    id="g222"
+                    transform="matrix(1.3333333,0,0,-1.3333333,0,32)">
+                    <g
+                        id="g224">
+                        <g
+                            id="g226"
+                            clip-path="url(#clipPath230)">
+                            <g
+                                id="g232"
+                                transform="translate(13.8359,3.3369)">
+                                <path
+                                    d="m 0,0 c 1.863,1.864 2.606,4.605 1.942,7.146 l -0.312,1.276 3.62,3.64 0.57,-0.571 c 0.902,-0.901 2.318,-1.05 3.293,-0.346 0.604,0.435 0.984,1.104 1.043,1.836 0.059,0.732 -0.205,1.451 -0.724,1.97 L 4.508,19.875 C 3.607,20.776 2.191,20.923 1.215,20.221 0.611,19.787 0.231,19.118 0.172,18.385 0.113,17.653 0.377,16.935 0.896,16.416 l 0.647,-0.647 -3.621,-3.64 -1.268,0.311 c -2.549,0.666 -5.291,-0.077 -7.154,-1.941 l -0.353,-0.353 10.499,-10.5 z m -6.3,2.765 -5.829,-5.809 -1.414,1.414 5.829,5.809 z"
+                                    style="fill: currentColor;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    id="path234" />
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </span>
+    </template>
 
     <div class="relative flex items-center gap-2">
         <img class="h-10 w-10 rounded-full" src="{{ $chatAvatar }}" alt="Chat Avatar">
@@ -35,8 +105,10 @@
                     {{ $chatName }}
                 </span>
             </div>
-            <div class="flex w-full items-center justify-between gap-1">
-                <div class="flex w-[90%] gap-1 py-1">
+            <div
+                x-bind:class="{ 'group-hover:pr-10': unreadCount > 0 }"
+                class="relative flex w-full items-center justify-between gap-2 pr-2">
+                <div class="flex w-full max-w-[90%] gap-1 py-1">
                     @if ($isGroup && $chat->lastMessage)
                         <span
                             class="inline-block whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-gray-200">
@@ -53,7 +125,42 @@
                     class="inline-block h-fit rounded-full bg-lime-400 px-[0.5em] py-[0.1em] text-xs text-gray-800 dark:bg-lime-700 dark:text-gray-100">
                     {{ $unreadCount ?? '0' }}
                 </span>
+                <button title="Chat Options"
+                    id="chatOptionsButton-{{ $chat->id }}"
+                    x-ref="chatOptionsButton"
+                    data-dropdown-target="chatOptions-{{ $chat->id }}"
+                    x-on:click="e => {
+                        e.stopPropagation()
+                    }"
+                    class="absolute right-0 top-0 cursor-pointer rounded bg-gray-100 text-gray-800 transition-all hover:bg-gray-300 hover:text-gray-600 group-hover:block sm:hidden dark:bg-gray-500 dark:text-gray-300">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 12H6.01M12.01 12H12.02M18.01 12H18.02" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
             </div>
         </div>
     </div>
+
+    <!-- Dropdown menu -->
+    <div id="chatOptions-{{ $chat->id }}"
+        wire:ignore
+        x-ref="chatOptions"
+        class="z-10 hidden w-44 divide-y divide-gray-100 rounded-lg bg-white shadow-sm dark:bg-gray-800">
+        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="ksdfsl">
+            <li>
+                <button title="Pin chat"
+                    x-on:click="e => {
+                        e.stopPropagation()
+                        $wire.togglePin()
+                        optionsMenu.hide()
+                    }"
+                    x-text="isPinned ? 'Unpin chat' : 'Pin chat'"
+                    class="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                </button>
+            </li>
+        </ul>
+    </div>
+
 </div>

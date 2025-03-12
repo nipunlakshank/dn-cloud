@@ -22,5 +22,6 @@ class ChatUser extends Pivot
         'user_id',
         'role',
         'active_since',
+        'pinned_at',
     ];
 }

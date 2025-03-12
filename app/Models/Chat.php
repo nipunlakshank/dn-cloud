@@ -63,4 +63,9 @@ class Chat extends Model
             'active_since' => now(),
         ]);
     }
+
+    public function isPinned(): bool
+    {
+        return $this->users()->wherePivot('pinned_at', '!=', null)->wherePivot('user_id', Auth::id())->exists();
+    }
 }

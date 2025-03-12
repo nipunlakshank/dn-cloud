@@ -134,15 +134,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->chats()
             ->whereNotNull('chat_user.active_since')
             ->where('chat_user.active_since', '<', now())
+            ->orderByDesc(DB::raw('chat_user.pinned_at IS NOT NULL'))
+            ->orderByDesc('chat_user.pinned_at')
             ->orderByDesc(
                 DB::raw('
-                    COALESCE(
-                        (SELECT created_at FROM messages
-                         WHERE messages.chat_id = chats.id
-                         ORDER BY created_at DESC, id DESC LIMIT 1),
-                        chats.created_at
-                    )
-                ')
+                COALESCE(
+                    (SELECT created_at FROM messages
+                     WHERE messages.chat_id = chats.id
+                     ORDER BY created_at DESC, id DESC LIMIT 1),
+                    chats.created_at
+                )
+            ')
             );
     }
 }

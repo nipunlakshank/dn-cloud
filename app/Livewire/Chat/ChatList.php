@@ -26,7 +26,8 @@ class ChatList extends Component
 
     public function loadChats()
     {
-        $this->chats = User::find(Auth::id())
+        $this->chats = User::query()
+            ->find(Auth::id())
             ->activeChats()
             ->with('lastMessage')
             ->with('group')
