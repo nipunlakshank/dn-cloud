@@ -19,36 +19,17 @@ class ChatCard extends Component
     public ?int $unreadCount;
     public ?string $chatName;
     public ?string $chatAvatar;
-    public bool $selected;
     public bool $isGroup;
     public bool $isPinned;
 
-    #[On('chat.deselect')]
-    public function deselectChat()
-    {
-        $this->selected = false;
-        session()->forget('chatId');
-    }
-
     public function selectChat()
     {
-        session()->put('chatId', $this->chat->id);
-        if ($this->selected) {
-            return;
-        }
         $this->dispatch('chat.select', $this->chat);
     }
 
     public function togglePin()
     {
         $this->isPinned = ChatService::togglePin($this->chat);
-    }
-
-    #[On('chat.select')]
-    public function updatedSelected(?Chat $chat = null)
-    {
-        $chatId = $chat?->id ?? session('chatId');
-        $this->selected = $chatId === $this->chat->id;
     }
 
     #[On('chat.read')]
@@ -74,7 +55,6 @@ class ChatCard extends Component
 
     public function refreshLastMessage()
     {
-        $this->updatedSelected();
         if ($this->chat->lastMessage === null) {
             return;
         }
@@ -111,7 +91,6 @@ class ChatCard extends Component
     {
         $this->user = Auth::user();
         $this->chat = $chat;
-        $this->selected = session('chatId') && session('chatId') === $chat->id;
         $this->lastMessage = $chat->lastMessage()->with('user')->first() ?? null;
         $this->timeElapsed = $this->calculateTimeElapsed($this->lastMessage?->created_at);
         $this->unreadCount = app(ChatService::class)->getUnreadCount($chat, $this->user);

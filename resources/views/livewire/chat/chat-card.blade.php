@@ -1,11 +1,32 @@
 <div
     x-data="{
+        selected: false,
+        chatId: Number({{ $chat->id }}),
         unreadCount: @entangle('unreadCount'),
         isPinned: @entangle('isPinned'),
         optionsMenu: null,
+        selectChat() {
+            if (this.selected) return
+            $wire.selectChat()
+            setActiveChat({{ $chat->id }})
+            this.selected = true
+            const event = new CustomEvent('activeChatUpdated', { detail: {} })
+            document.dispatchEvent(event)
+        },
+        updateSelected() {
+            this.selected = isActiveChat({{ $chat->id }})
+        },
     }"
     x-init="() => {
         setInterval(() => $wire.refreshLastMessage(), 1000)
+    
+        document.addEventListener('activeChatUpdated', e => updateSelected())
+        document.addEventListener('deselectChat', e => { selected = false })
+    
+        selected = isActiveChat({{ $chat->id }})
+        if (selected) {
+            $wire.selectChat()
+        }
     
         const options = {
             placement: 'bottom-end',
@@ -27,10 +48,12 @@
         )
     
     }"
+    @chat-deselect.window="selected = false"
     tabindex="0"
-    wire:click="selectChat"
-    x-on:keyup.enter="$wire.selectChat()"
-    class="chat-card {{ $selected ? ' bg-gray-400 dark:bg-gray-800' : 'bg-gray-200 dark:bg-gray-700' }} group relative cursor-pointer select-none justify-between rounded-lg border-none p-4 pt-6 text-start">
+    x-on:click="selectChat()"
+    x-on:keyup.enter="selectChat()"
+    x-bind:class="{ 'bg-gray-400 dark:bg-gray-800': selected, 'bg-gray-200 dark:bg-gray-700': !selected }"
+    class="chat-card group relative cursor-pointer select-none justify-between rounded-lg border-none p-4 pt-6 text-start">
 
     <span class="absolute right-4 top-2 text-xs font-normal text-gray-500 dark:text-gray-400">
         {{ $timeElapsed }}

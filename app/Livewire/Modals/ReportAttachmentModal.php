@@ -70,9 +70,9 @@ class ReportAttachmentModal extends Component
         $this->chat = $chat;
     }
 
-    public function mount()
+    public function mount(?Chat $chat = null)
     {
-        $this->chat = session('chatId') ? Chat::find(session('chatId')) : null;
+        $this->chat = $chat;
         $this->images = [];
         $this->documents = [];
         $this->imageInfos = [];
