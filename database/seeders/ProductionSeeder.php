@@ -16,7 +16,7 @@ class ProductionSeeder extends Seeder
         User::create([
             'first_name' => 'Super',
             'last_name' => 'Admin',
-            'email' => 'Sachs0895@gmail.com',
+            'email' => 'sachs0895@gmail.com',
             'role' => UserRoles::SuperAdmin->value,
         ]);
     }
