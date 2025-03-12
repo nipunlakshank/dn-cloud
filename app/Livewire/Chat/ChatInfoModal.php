@@ -6,7 +6,7 @@ use App\Models\Chat;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class ProfileInfoModal extends Component
+class ChatInfoModal extends Component
 {
     public Visibility $visibility;
     public Chat $chat;
@@ -30,7 +30,7 @@ class ProfileInfoModal extends Component
 
     public function render()
     {
-        return view('livewire.chat.profile-info-modal');
+        return view('livewire.chat.chat-info-modal');
     }
 }
 

@@ -1,4 +1,4 @@
-<div id="profile-info-modal"
+<div id="chat-info-modal"
     x-data="{ modal: null }"
     x-init="() => {
         const target = $el;
@@ -10,7 +10,7 @@
         };
     
         const instanceOptions = {
-            id: 'profile-info-modal',
+            id: 'chat-info-modal',
             override: true
         };
     

@@ -22,5 +22,5 @@
     </div>
 
     <!-- Profile Info Modal -->
-    @livewire('chat.profile-info-modal', ['chat' => $chat], key('chat-header-profile-modal'))
+    @livewire('chat.chat-info-modal', ['chat' => $chat], key('chat-header-profile-modal'))
 </div>
