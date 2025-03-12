@@ -38,11 +38,13 @@
                 <li class="group">
                     <a href="/chat"
                         class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                        <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 20 20">
-                            <path
-                                d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
+                        <svg
+                            class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                            width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M3 6C3 4.89543 3.89543 4 5 4H19C20.1046 4 21 4.89543 21 6V15C21 16.1046 20.1046 17 19 17L12.3837 17L9.50345 19.5923C8.53816 20.461 7 19.776 7 18.4773V17H5C3.89543 17 3 16.1046 3 15V6ZM7 8C6.44772 8 6 8.44772 6 9C6 9.55228 6.44772 10 7 10H12C12.5523 10 13 9.55228 13 9C13 8.44772 12.5523 8 12 8H7ZM15 8C14.4477 8 14 8.44772 14 9C14 9.55228 14.4477 10 15 10H17C17.5523 10 18 9.55228 18 9C18 8.44772 17.5523 8 17 8H15ZM7 11C6.44772 11 6 11.4477 6 12C6 12.5523 6.44772 13 7 13H9C9.55228 13 10 12.5523 10 12C10 11.4477 9.55228 11 9 11H7ZM12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13H17C17.5523 13 18 12.5523 18 12C18 11.4477 17.5523 11 17 11H12Z"
+                                fill="currentColor" />
                         </svg>
                         <span
                             class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">Chat</span>
@@ -51,11 +53,16 @@
                 <li class="group">
                     <button data-modal-target="profile-update-modal" data-modal-toggle="profile-update-modal"
                         class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                        <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 20 18">
-                            <path
-                                d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
+                        <svg
+                            class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                            width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M5 8C5 5.79086 6.79086 4 9 4C11.2091 4 13 5.79086 13 8C13 8.44133 12.9285 8.86597 12.7965 9.26297L10.263 11.7965C9.86597 11.9285 9.44133 12 9 12C6.79086 12 5 10.2091 5 8ZM9.05949 13H7C4.79086 13 3 14.7909 3 17V18C3 19.1046 3.89543 20 5 20H7.17157C6.99406 19.4979 6.95065 18.9499 7.05823 18.4118L7.73245 15.0397C7.84859 14.4589 8.13407 13.9254 8.55291 13.5066L9.05949 13Z"
+                                fill="currentColor" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M18.0922 8C17.7103 8 17.3321 8.07524 16.9793 8.22142C16.6266 8.36757 16.3059 8.58192 16.036 8.85194L9.96712 14.9208C9.82751 15.0604 9.73235 15.2382 9.69364 15.4318L9.01941 18.8039C8.95386 19.1318 9.05648 19.4707 9.29289 19.7071C9.5293 19.9435 9.86822 20.0461 10.1961 19.9806L13.5682 19.3064C13.7618 19.2677 13.9396 19.1725 14.0792 19.0329L20.1482 12.9639C20.4182 12.6939 20.6324 12.3734 20.7786 12.0207C20.9248 11.6679 21 11.2897 21 10.9078C21 10.5259 20.9248 10.1478 20.7786 9.79499C20.6324 9.44219 20.4181 9.12164 20.1481 8.85166C19.8781 8.5817 19.5577 8.36754 19.205 8.22142C18.8522 8.07524 18.474 8 18.0922 8Z"
+                                fill="currentColor" />
                         </svg>
                         <span
                             class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">Profile</span>
@@ -65,33 +72,36 @@
                     <li class="group">
                         <button data-modal-target="user-registration-modal" data-modal-toggle="user-registration-modal"
                             class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                            <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                viewBox="0 0 20 18">
-                                <path
-                                    d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
+                            <svg
+                                class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M9 4C6.79086 4 5 5.79086 5 8C5 10.2091 6.79086 12 9 12C11.2091 12 13 10.2091 13 8C13 5.79086 11.2091 4 9 4ZM7 13C4.79086 13 3 14.7909 3 17V18C3 19.1046 3.89543 20 5 20H13C14.1046 20 15 19.1046 15 18V17C15 14.7909 13.2091 13 11 13H7ZM15 12C15 11.4477 15.4477 11 16 11H17V10C17 9.44772 17.4477 9 18 9C18.5523 9 19 9.44772 19 10V11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H19V14C19 14.5523 18.5523 15 18 15C17.4477 15 17 14.5523 17 14V13H16C15.4477 13 15 12.5523 15 12Z"
+                                    fill="currentColor" />
                             </svg>
                             <span
-                                class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">User
-                                Registration</span>
+                                class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">
+                                User Registration
+                            </span>
                         </button>
                     </li>
                 @endcan
                 <li class="group">
                     <button data-modal-target="logout" data-modal-toggle="logout"
                         class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                        <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 20 20">
-                            <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
+                        <svg
+                            class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                            width="5" height="5" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
                             <path
-                                d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z" />
-                            <path
-                                d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
+                                d="M4 12L16 12M4 12L8 16M4 12L8 8M15 4H17C18.6569 4 20 5.34315 20 7V17C20 18.6569 18.6569 20 17 20H15"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                         <span
-                            class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">Sign
-                            Out</span>
+                            class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">
+                            Sign Out
+                        </span>
                     </button>
                 </li>
             </ul>
