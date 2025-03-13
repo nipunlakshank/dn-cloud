@@ -4,7 +4,7 @@ namespace App\Livewire\Chat\Profile;
 
 use Livewire\Component;
 
-class BIO extends Component
+class Bio extends Component
 {
     public function render()
     {
