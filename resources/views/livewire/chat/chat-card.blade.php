@@ -22,18 +22,18 @@
             const event = new CustomEvent('activeChatUpdated', { detail: { chatId: this.chatId } })
             window.dispatchEvent(event)
         },
-        updateSelected(chatId) {
-            this.state.selected = chatId === this.chatId
+        updateSelected() {
+            this.state.selected = isActiveChat(this.chatId)
         },
     }"
     x-init="() => {
         setInterval(() => $wire.refreshLastMessage(), 1000)
     
-        window.addEventListener('newChat', e => updateSelected(e.detail[0].chatId))
-        window.addEventListener('activeChatUpdated', e => updateSelected(e.detail.chatId))
+        window.addEventListener('newChat', e => updateSelected())
+        window.addEventListener('activeChatUpdated', e => updateSelected())
         window.addEventListener('deselectChat', () => state.selected = false)
     
-        state.selected = isActiveChat({{ $chat->id }})
+        state.selected = isActiveChat(chatId)
         if (state.selected) {
             $wire.selectChat()
         }
