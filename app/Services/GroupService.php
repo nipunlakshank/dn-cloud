@@ -57,25 +57,25 @@ class GroupService
         });
     }
 
-    public function addUser(User $user, Group $group, string $role = 'member'): void
+    public function addUser(Group $group, int $userId, string $role = 'member'): void
     {
         Gate::authorize('addUser', $group);
 
-        DB::transaction(function () use ($user, $group, $role) {
-            $userExists = $group->chat->users()->where('user_id', $user->id)->exists();
+        DB::transaction(function () use ($group, $userId, $role) {
+            $userExists = $group->chat->users()->where('user_id', $userId)->exists();
             if ($userExists) {
                 return;
             }
-            $group->chat->users()->attach($user->id, ['role' => $role]);
+            $group->chat->users()->attach($userId, ['role' => $role]);
         });
     }
 
-    public function removeUser(Group $group, User $user): void
+    public function removeUser(Group $group, int $userId): void
     {
-        Gate::authorize('removeUser', [$group, $user->id]);
+        Gate::authorize('removeUser', [$group, $userId]);
 
-        DB::transaction(function () use ($group, $user) {
-            $group->chat->users()->detach($user->id);
+        DB::transaction(function () use ($group, $userId) {
+            $group->chat->users()->detach($userId);
         });
     }
 

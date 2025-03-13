@@ -3,38 +3,51 @@
 namespace App\Livewire\Chat\Profile;
 
 use App\Models\Chat;
-use App\Models\ChatUser;
-use App\Models\User;
 use App\Services\GroupService;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Members extends Component
 {
     public Chat $chat;
-    public $chatMembers;
+    public Collection $chatMembers;
 
-    public function removeMember(User $member)
+    public function removeMember(int $userId)
     {
-        $group = $this->chat->group;
-        app(GroupService::class)->removeUser($group, $member);
-        $this->chatMembers = $this->chat->users()->get();
+        app(GroupService::class)->removeUser($this->chat->group, $userId);
+        $this->updateMembers();
         $this->dispatch('member.updated');
     }
 
     #[On('group-addMember')]
-    public function addMemberToGroup($params)
+    public function addMemberToGroup($event)
     {
-        ChatUser::create(['chat_id' => $this->chat->id, 'user_id' => $params['user_id'], 'role' => 'member']);
-        $this->chat = Chat::firstWhere('id', $this->chat->id);
-        $this->chatMembers = $this->chat->users()->get();
+        app(GroupService::class)->addUser($this->chat->group, $event['userId']);
+        $this->updateMembers();
         $this->dispatch('member.updated');
+    }
+
+    protected function updateMembers()
+    {
+        $this->chatMembers = $this->chat->users()->get()
+            ->collect()
+            ->map(function ($user) {
+                return [
+                    'id' => $user->id,
+                    'name' => $user->name(),
+                    'email' => $user->email,
+                    'role' => $user->role(),
+                    'canRemove' => Gate::allows('removeUser', [$this->chat->group, $user->id]),
+                ];
+            });
     }
 
     public function mount(Chat $chat)
     {
         $this->chat = $chat;
-        $this->chatMembers = $chat->users;
+        $this->updateMembers();
     }
 
     public function render()

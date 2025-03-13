@@ -5,7 +5,6 @@ namespace App\Livewire\Chat\Profile;
 use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -14,22 +13,30 @@ class SelectUserDropdown extends Component
     public Chat $chat;
     public Collection $users;
 
-    public function addMember(int $user_id)
+    public function addMember(int $userId)
     {
-        Gate::authorize('addUser', $this->chat->group);
-        $this->dispatch('group-addMember', ['user_id' => $user_id])->to(Members::class);
+        $this->dispatch('group-addMember', ['userId' => $userId])->to(Members::class);
     }
 
     #[On('member.updated')]
-    public function updatedMembers()
+    public function updateUsers()
     {
-        $this->users = User::whereNotIn('id', $this->chat->users->pluck('id'))->get()->collect();
+        $this->users = User::whereNotIn('id', $this->chat->users->pluck('id'))
+            ->get()
+            ->collect()
+            ->map(function ($user) {
+                return [
+                    'id' => $user->id,
+                    'name' => $user->name(),
+                    'email' => $user->email,
+                ];
+            });
     }
 
     public function mount(Chat $chat)
     {
         $this->chat = $chat;
-        $this->users = User::whereNotIn('id', $chat->users->pluck('id'))->get()->collect();
+        $this->updateUsers();
     }
 
     public function render()
