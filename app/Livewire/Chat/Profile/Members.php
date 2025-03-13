@@ -22,6 +22,15 @@ class Members extends Component
         $this->dispatch('member.updated');
     }
 
+    #[On('group-addMember')]
+    public function addMemberToGroup($params)
+    {
+        ChatUser::create(['chat_id' => $this->chat->id, 'user_id' => $params['user_id'], 'role' => 'member']);
+        $this->chat = Chat::firstWhere('id', $this->chat->id);
+        $this->chatMembers = $this->chat->users()->get();
+        $this->dispatch('member.updated');
+    }
+
     public function mount(Chat $chat)
     {
         $this->chat = $chat;
@@ -31,14 +40,5 @@ class Members extends Component
     public function render()
     {
         return view('livewire.chat.profile.members');
-    }
-
-    #[On('group-addMember')]
-    public function addMemberToGroup($params)
-    {
-        ChatUser::create(['chat_id' => $this->chat->id, 'user_id' => $params['user_id'], 'role' => 'member']);
-        $this->chat = Chat::firstWhere('id', $this->chat->id);
-        $this->chatMembers = $this->chat->users()->get();
-        $this->dispatch('member.updated');
     }
 }
