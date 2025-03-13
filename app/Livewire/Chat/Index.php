@@ -24,11 +24,13 @@ class Index extends Component
     public function selectChat(Chat $chat)
     {
         $this->chat = $chat;
+        $this->dispatch('chat.selected', ['chatId' => $chat->id]);
     }
 
     #[On('chat.deselect')]
     public function deselectChat()
     {
         $this->chat = null;
+        $this->dispatch('chat.deselected');
     }
 }

@@ -2,13 +2,46 @@ import './bootstrap'
 import 'flowbite'
 
 const axios = window.axios
+let lastChatSelectionDone = true
 
-function setActiveChat(chatId) {
+async function setActiveChat(chatId, callbacks) {
+    if (!lastChatSelectionDone) return
     sessionStorage.setItem('activeChat', chatId)
+    if (
+        typeof callbacks === 'object' &&
+        typeof callbacks.callback === 'function'
+    ) {
+        lastChatSelectionDone = false
+        if (typeof callbacks.before === 'function') callbacks.before()
+        callbacks.callback()
+        window.addEventListener(
+            'chat.selected',
+            (e) => {
+                if (typeof callbacks.after === 'function') callbacks.after()
+                lastChatSelectionDone = e.detail[0].chatId === chatId
+            },
+            { once: true }
+        )
+    }
 }
 
 function getActiveChat() {
     return Number(sessionStorage.getItem('activeChat') || 0)
+}
+
+function deselectChat() {
+    Livewire.dispatch('chat.deselect')
+    setActiveChat(0)
+    lastChatSelectionDone = false
+    window.addEventListener(
+        'chat.deselected',
+        () => {
+            lastChatSelectionDone = true
+        },
+        { once: true }
+    )
+    const event = new CustomEvent('deselectChat', { detail: {} })
+    window.dispatchEvent(event)
 }
 
 function isActiveChat(chatId) {
@@ -90,13 +123,6 @@ document
 const chatCanvas = document.getElementById('chat-canvas')
 if (chatCanvas) {
     chatCanvas.scrollTop = chatCanvas.scrollHeight
-}
-
-function deselectChat() {
-    Livewire.dispatch('chat.deselect')
-    setActiveChat(0)
-    const event = new CustomEvent('deselectChat', { detail: {} })
-    document.dispatchEvent(event)
 }
 
 // to prevent multiple loading of more messages
