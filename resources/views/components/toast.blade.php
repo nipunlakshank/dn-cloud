@@ -6,6 +6,7 @@
         show = true;
         setTimeout(() => show = false, 5000);
      "
+    x-cloak
     x-show="show"
     x-transition:enter="transition ease-out duration-300"
     x-transition:enter-start="opacity-0 translate-y-10"
@@ -66,4 +67,3 @@
         </button>
     </div>
 </div>
-

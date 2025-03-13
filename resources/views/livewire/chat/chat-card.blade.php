@@ -144,6 +144,7 @@
                     </span>
                 </div>
                 <span
+                    x-cloak
                     x-show="unreadCount > 0"
                     class="inline-block h-fit rounded-full bg-lime-400 px-[0.5em] py-[0.1em] text-xs text-gray-800 dark:bg-lime-700 dark:text-gray-100">
                     {{ $unreadCount ?? '0' }}
