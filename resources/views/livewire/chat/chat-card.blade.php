@@ -23,11 +23,7 @@
             window.dispatchEvent(event)
         },
         updateSelected(chatId) {
-            if (chatId === this.chatId) {
-                this.state.selected = true
-            } else {
-                this.state.selected = false
-            }
+            this.state.selected = chatId === this.chatId
         },
     }"
     x-init="() => {
@@ -37,12 +33,12 @@
         window.addEventListener('activeChatUpdated', e => updateSelected(e.detail.chatId))
         window.addEventListener('deselectChat', () => state.selected = false)
     
-        if (!state.selected) {
-            window.addEventListener('newMessage', e => {
-                const data = typeof e.detail === 'array' ? e.detail[0] : e.detail
-                state.selected = data.chatId === chatId
-            })
-        }
+        // if (!state.selected) {
+        //     window.addEventListener('newChat', e => {
+        //         const data = e.detail[0]
+        //         state.selected = data.chatId === chatId
+        //     }, { once: true })
+        // }
     
         state.selected = isActiveChat({{ $chat->id }})
         if (state.selected) {
@@ -170,8 +166,8 @@
                 <span
                     x-cloak
                     x-show="unreadCount > 0"
+                    x-text="unreadCount"
                     class="inline-block h-fit rounded-full bg-lime-400 px-[0.5em] py-[0.1em] text-xs text-gray-800 dark:bg-lime-700 dark:text-gray-100">
-                    {{ $unreadCount ?? '0' }}
                 </span>
                 <button title="Chat Options"
                     id="chatOptionsButton-{{ $chat->id }}"
