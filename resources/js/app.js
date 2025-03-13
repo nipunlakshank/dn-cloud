@@ -4,6 +4,10 @@ import 'flowbite'
 const axios = window.axios
 let lastChatSelectionDone = true
 
+window.addEventListener('newChat', (event) => {
+    setActiveChat(event.detail[0].chatId)
+})
+
 async function setActiveChat(chatId, callbacks) {
     if (!lastChatSelectionDone) return
     sessionStorage.setItem('activeChat', chatId)

@@ -28,6 +28,7 @@ class NewChat extends Component
         $chat = app(CreatePrivateChatAction::class)->execute($userId);
 
         $this->dispatch('chat.select', Chat::find($chat->id));
+        $this->dispatch('newChat', ['chatId' => $chat->id]);
     }
 
     public function mount()

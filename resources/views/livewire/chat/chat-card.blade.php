@@ -19,18 +19,23 @@
                 }
             })
             this.state.selected = true
-            const event = new CustomEvent('activeChatUpdated', { detail: {} })
+            const event = new CustomEvent('activeChatUpdated', { detail: { chatId: this.chatId } })
             window.dispatchEvent(event)
         },
-        updateSelected() {
-            this.state.selected = isActiveChat({{ $chat->id }})
+        updateSelected(chatId) {
+            if (chatId === this.chatId) {
+                this.state.selected = true
+            } else {
+                this.state.selected = false
+            }
         },
     }"
     x-init="() => {
         setInterval(() => $wire.refreshLastMessage(), 1000)
     
-        window.addEventListener('activeChatUpdated', e => updateSelected())
-        window.addEventListener('deselectChat', e => { state.selected = false })
+        window.addEventListener('newChat', e => updateSelected(e.detail[0].chatId))
+        window.addEventListener('activeChatUpdated', e => updateSelected(e.detail.chatId))
+        window.addEventListener('deselectChat', () => state.selected = false)
     
         state.selected = isActiveChat({{ $chat->id }})
         if (state.selected) {
@@ -184,7 +189,8 @@
         wire:ignore
         x-ref="chatOptions"
         class="z-10 hidden w-44 divide-y divide-gray-100 rounded-lg bg-white shadow-sm dark:bg-gray-800">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="ksdfsl">
+        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="chatOptionsButton-{{ $chat->id }}">
             <li>
                 <button title="Pin chat"
                     x-on:click="e => {
