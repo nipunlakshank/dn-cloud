@@ -37,6 +37,13 @@
         window.addEventListener('activeChatUpdated', e => updateSelected(e.detail.chatId))
         window.addEventListener('deselectChat', () => state.selected = false)
     
+        if (!state.selected) {
+            window.addEventListener('newMessage', e => {
+                const data = typeof e.detail === 'array' ? e.detail[0] : e.detail
+                state.selected = data.chatId === chatId
+            })
+        }
+    
         state.selected = isActiveChat({{ $chat->id }})
         if (state.selected) {
             $wire.selectChat()
