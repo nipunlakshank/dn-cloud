@@ -76,7 +76,7 @@ class ChatMessages extends Component
         $this->chat = $chat;
     }
 
-    #[On(['message.sent', 'message.received'])]
+    #[On('newMessage')]
     public function pushMessage()
     {
         $lastestMessage = $this->chat->messages()->latest()->first();

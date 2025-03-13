@@ -26,7 +26,7 @@ class DocumentAttachmentModal extends Component
             $this->documents,
         );
 
-        $this->dispatch('message.sent', $message?->id);
+        $this->dispatch('newMessage', ['messageId' => $message?->id, 'chatId' => $this->chat?->id]);
 
         if ($message) {
             $this->reset(['documents', 'text']);

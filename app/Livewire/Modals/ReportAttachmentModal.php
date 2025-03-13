@@ -33,7 +33,7 @@ class ReportAttachmentModal extends Component
             true
         );
 
-        $this->dispatch('message.sent', $message?->id);
+        $this->dispatch('newMessage', ['messageId' => $message?->id, 'chatId' => $this->chat?->id]);
 
         if ($message) {
             $this->reset(['images', 'documents', 'text']);

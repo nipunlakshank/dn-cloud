@@ -41,9 +41,10 @@ class ChatCard extends Component
         $this->unreadCount = 0;
     }
 
-    #[On('message.sent')]
-    public function newMessageCheck(?int $messageId = null)
+    #[On('newMessage')]
+    public function newMessageCheck(?array $data = null)
     {
+        $messageId = $data['messageId'] ?? null;
         $message = $messageId ? Message::find($messageId) : null;
 
         if (!$message || $message->chat_id !== $this->chat->id) {
@@ -65,7 +66,7 @@ class ChatCard extends Component
             $this->lastMessage = $this->chat->lastMessage()->first();
             if ($this->lastMessage->user_id !== $this->user->id) {
                 $this->unreadCount = ($this->unreadCount ?? 0) + 1;
-                $this->dispatch('message.received', $this->lastMessage);
+                $this->dispatch('newMessage', ['messageId' => $this->lastMessage?->id, 'chatId' => $this->chat->id]);
                 if ($this->selected) {
                     $this->markAsRead($this->chat->id);
                 }

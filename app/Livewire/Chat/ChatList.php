@@ -18,7 +18,7 @@ class ChatList extends Component
         $this->loadChats();
     }
 
-    #[On(['message.sent', 'message.received'])]
+    #[On('newMessage')]
     public function refreshChats()
     {
         $this->loadChats();
