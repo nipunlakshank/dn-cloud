@@ -62,6 +62,8 @@
     x-bind:class="{
         'bg-gray-400 dark:bg-gray-800': state.selected,
         'bg-gray-200 dark:bg-gray-700': !state.selected,
+        'animate-pulse': state.waiting,
+        '': !state.waiting,
     }"
     class="chat-card group relative select-none justify-between rounded-lg border-none p-4 pt-6 text-start">
 
