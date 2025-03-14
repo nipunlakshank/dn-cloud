@@ -51,7 +51,10 @@
                     </a>
                 </li>
                 <li class="group">
-                    <button data-modal-target="profile-update-modal" data-modal-toggle="profile-update-modal"
+                    <button
+                        x-data="{profileUpdateModal:null}"
+                        x-on:click="$dispatch('show-profile-update-modal')"
+                        type="button"
                         class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         <svg
                             class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"

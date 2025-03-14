@@ -1,6 +1,22 @@
   <!-- Profile Update modal -->
-  <div id="profile-update-modal" tabindex="-1" aria-hidden="true"
+  <div x-data="{
+            target:document.getElementById('profile-update-modal'),
+            options:{
+                placement: 'center-center',
+                backdrop: 'dynamic',
+                backdropClasses: 'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
+                closable: true,
+            },
+            instanceOptions:{
+                id: 'profile-update-modal',
+                override: true
+            },
+        }"
+      x-init="profileUpdateModal = new Modal(target,options,instanceOptions)"
+      x-on:show-profile-update-modal.window="profileUpdateModal.show()"
+      id="profile-update-modal"
       class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] w-full items-center justify-center overflow-hidden md:inset-0">
+
       <div class="relative max-h-full w-full max-w-md p-4">
           <!-- Modal content -->
           <div class="relative rounded-lg bg-white dark:bg-gray-700">
@@ -10,8 +26,8 @@
                       Profile
                   </h3>
                   <button type="button"
-                      class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-                      data-modal-toggle="profile-update-modal">
+                      x-on:click="profileUpdateModal.hide()"
+                      class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
                       <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                           viewBox="0 0 14 14">
                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -31,18 +47,18 @@
                               class="group relative mb-2 flex cursor-pointer flex-col items-center justify-center text-sm font-medium text-gray-900 dark:text-white"
                               for="avatar">
                               @if (Auth()->user()->avatar != null)
-                                  <picture class="h-[6rem] w-[6rem] overflow-hidden rounded-full">
-                                      <img id="avatar_preview"
-                                          src="{{ route('profile.avatar', Auth()->user()->avatar) }}"
-                                          alt="Profile Image">
-                                  </picture>
+                              <picture class="h-[6rem] w-[6rem] overflow-hidden rounded-full">
+                                  <img id="avatar_preview"
+                                      src="{{ route('profile.avatar', Auth()->user()->avatar) }}"
+                                      alt="Profile Image">
+                              </picture>
                               @else
-                                  <svg width="72" height="72" viewBox="0 0 24 24" fill="none"
-                                      xmlns="http://www.w3.org/2000/svg">
-                                      <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M12 20C10.107 20 8.36763 19.3425 6.99768 18.2435C6.99845 18.2441 6.99923 18.2448 7 18.2454V17.5625C7 15.7676 8.49238 14.3125 10.3333 14.3125H13.6667C15.5076 14.3125 17 15.7676 17 17.5625V18.2454C15.6304 19.3433 13.8919 20 12 20ZM2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5003 17.5593 21.9635 12.0675 21.9998C12.045 21.9999 12.0225 22 12 22C11.9763 22 11.9527 21.9999 11.9291 21.9998C6.43889 21.9616 2 17.4992 2 12ZM12 7C10.1591 7 8.66667 8.45507 8.66667 10.25C8.66667 12.0449 10.1591 13.5 12 13.5C13.8409 13.5 15.3333 12.0449 15.3333 10.25C15.3333 8.45507 13.8409 7 12 7Z"
-                                          fill="currentColor" />
-                                  </svg>
+                              <svg width="72" height="72" viewBox="0 0 24 24" fill="none"
+                                  xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M12 20C10.107 20 8.36763 19.3425 6.99768 18.2435C6.99845 18.2441 6.99923 18.2448 7 18.2454V17.5625C7 15.7676 8.49238 14.3125 10.3333 14.3125H13.6667C15.5076 14.3125 17 15.7676 17 17.5625V18.2454C15.6304 19.3433 13.8919 20 12 20ZM2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5003 17.5593 21.9635 12.0675 21.9998C12.045 21.9999 12.0225 22 12 22C11.9763 22 11.9527 21.9999 11.9291 21.9998C6.43889 21.9616 2 17.4992 2 12ZM12 7C10.1591 7 8.66667 8.45507 8.66667 10.25C8.66667 12.0449 10.1591 13.5 12 13.5C13.8409 13.5 15.3333 12.0449 15.3333 10.25C15.3333 8.45507 13.8409 7 12 7Z"
+                                      fill="currentColor" />
+                              </svg>
                               @endif
                               <div
                                   class="absolute flex h-full w-fit flex-col items-center justify-center rounded-full opacity-0 transition-all ease-in group-hover:opacity-100">
