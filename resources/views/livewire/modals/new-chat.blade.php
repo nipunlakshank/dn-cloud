@@ -1,4 +1,20 @@
-<div id="new-chat-modal" tabindex="-1" aria-hidden="true"
+<div id="new-chat-modal"
+    x-data="{
+        target:document.getElementById('new-chat-modal'),
+        options:{
+            placement: 'center-center',
+            backdrop: 'dynamic',
+            backdropClasses: 'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
+            closable: true,
+            onShow:()=>{$dispatch('hide-dropdown-menu')}
+        },
+        instanceOptions:{
+            id: 'new-chat-modal',
+            override: true
+        },
+    }"
+    x-init="newChatModal = new Modal(target,options,instanceOptions)"
+    x-on:show-new-chat-modal.window="newChatModal.show()"
     class="fixed inset-0 z-50 hidden items-center justify-center overflow-x-hidden">
     <div class="relative w-full max-w-md p-4">
         <!-- Modal content -->
@@ -10,8 +26,8 @@
                     New Chat
                 </h3>
                 <button type="button"
-                    class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-                    data-modal-toggle="new-chat-modal">
+                    x-on:click="newChatModal.hide()"
+                    class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
                     <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

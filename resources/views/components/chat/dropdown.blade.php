@@ -65,8 +65,8 @@
 
             <li>
                 <button
-                    data-modal-target="new-chat-modal"
-                    data-modal-toggle="new-chat-modal"
+                    x-data="{newChatModal:null}"
+                    x-on:click="$dispatch('show-new-chat-modal')"
                     class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     New Chat
                 </button>
