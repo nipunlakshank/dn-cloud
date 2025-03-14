@@ -1,11 +1,26 @@
 <!-- Add Group Modal -->
-<div id="create-group-modal" tabindex="-1" aria-hidden="true" wire:ignore
-    x-data="{ selectedUserIds: @entangle('selectedUserIds'), selectedUserCount: 0 }"
+<div id="create-group-modal" wire:ignore
+    x-data="{
+    target:document.getElementById('create-group-modal'),
+    options:{
+        placement: 'center-center',
+        backdrop: 'dynamic',
+        backdropClasses: 'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
+        closable: true,
+    },
+    instanceOptions:{
+        id: 'create-group-modal',
+        override: true
+    },
+    selectedUserIds: @entangle('selectedUserIds'), selectedUserCount: 0 
+    }"
     x-init="() => {
         $watch('selectedUserIds', value => {
             selectedUserCount = value.length;
         });
+        createGroupModal = new Modal(target,options,instanceOptions);
     }"
+    x-on:show-create-group-modal.window="createGroupModal.show()"
     class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0">
     <div class="relative max-h-full w-full max-w-md p-4">
         <!-- Modal content -->
@@ -16,8 +31,8 @@
                     Create Group
                 </h3>
                 <button type="button"
-                    class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-                    data-modal-toggle="create-group-modal">
+                    x-on:click="createGroupModal.hide()"
+                    class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
                     <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
