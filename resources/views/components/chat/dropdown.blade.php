@@ -44,7 +44,7 @@
             </li>
             <li>
                 <button
-                    x-on:click="() => dropdown.hide()"
+                    x-on:click="dropdown.hide()"
                     data-modal-target="settings-modal"
                     data-modal-toggle="settings-modal"
                     class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
@@ -55,7 +55,7 @@
             @can('create', App\Models\Group::class)
             <li>
                 <button
-                    x-on:click="() => dropdown.hide()"
+                    x-on:click="dropdown.hide()"
                     data-modal-target="create-group-modal"
                     data-modal-toggle="create-group-modal"
                     class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
@@ -66,7 +66,7 @@
 
             <li>
                 <button
-                    x-on:click="() => dropdown.hide()"
+                    x-on:click="dropdown.hide()"
                     data-modal-target="new-chat-modal"
                     data-modal-toggle="new-chat-modal"
                     class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
@@ -74,9 +74,9 @@
                 </button>
             </li>
         </ul>
-        <div class="py-2">
+        <div class="py-2" x-data="{logoutModal:null}">
             <button id="logout-button"
-                x-on:click="$dispatch('show-modal')"
+                x-on:click="$dispatch('show-logout-modal')"
                 class="block w-full px-4 py-2 text-start text-sm text-gray-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
                 Log Out
             </button>

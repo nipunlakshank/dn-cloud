@@ -20,20 +20,20 @@
                     </a>
                 </li>
                 @if (false)
-                    <li class="group">
-                        <a href="/reports"
-                            class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                            <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                viewBox="0 0 18 18">
-                                <path
-                                    d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
-                            </svg>
-                            <span
-                                class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">Reports</span>
+                <li class="group">
+                    <a href="/reports"
+                        class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            viewBox="0 0 18 18">
+                            <path
+                                d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
+                        </svg>
+                        <span
+                            class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">Reports</span>
 
-                        </a>
-                    </li>
+                    </a>
+                </li>
                 @endif
                 <li class="group">
                     <a href="/chat"
@@ -69,26 +69,28 @@
                     </button>
                 </li>
                 @can('create', App\Models\User::class)
-                    <li class="group">
-                        <button data-modal-target="user-registration-modal" data-modal-toggle="user-registration-modal"
-                            class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                            <svg
-                                class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M9 4C6.79086 4 5 5.79086 5 8C5 10.2091 6.79086 12 9 12C11.2091 12 13 10.2091 13 8C13 5.79086 11.2091 4 9 4ZM7 13C4.79086 13 3 14.7909 3 17V18C3 19.1046 3.89543 20 5 20H13C14.1046 20 15 19.1046 15 18V17C15 14.7909 13.2091 13 11 13H7ZM15 12C15 11.4477 15.4477 11 16 11H17V10C17 9.44772 17.4477 9 18 9C18.5523 9 19 9.44772 19 10V11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H19V14C19 14.5523 18.5523 15 18 15C17.4477 15 17 14.5523 17 14V13H16C15.4477 13 15 12.5523 15 12Z"
-                                    fill="currentColor" />
-                            </svg>
-                            <span
-                                class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">
-                                User Registration
-                            </span>
-                        </button>
-                    </li>
+                <li class="group">
+                    <button
+                        type="button"
+                        @click="$dispatch('open-registration-modal')"
+                        class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            viewBox="0 0 20 18">
+                            <path
+                                d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
+                        </svg>
+                        <span
+                            class="ms-3 flex-1 whitespace-nowrap sm:max-[990px]:hidden group-hover:sm:max-[990px]:absolute group-hover:sm:max-[990px]:left-10 group-hover:sm:max-[990px]:z-50 group-hover:sm:max-[990px]:mb-3 group-hover:sm:max-[990px]:flex group-hover:sm:max-[990px]:rounded-lg group-hover:sm:max-[990px]:bg-gray-400 group-hover:max-[990px]:sm:py-2 group-hover:sm:max-[990px]:px-3 group-hover:sm:max-[990px]:text-[12px] group-hover:sm:max-[990px]:text-gray-100 group-hover:sm:dark:max-[990px]:bg-gray-100 group-hover:sm:max-[990px]:dark:text-gray-900">User
+                            Registration</span>
+                    </button>
+                </li>
                 @endcan
                 <li class="group">
-                    <button data-modal-target="logout" data-modal-toggle="logout"
+                    <button
+                        type="button"
+                        x-data="{logoutModal:null}"
+                        x-on:click="$dispatch('show-logout-modal')"
                         class="group flex w-full items-center rounded-lg p-2 text-start text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         <svg
                             class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
@@ -114,10 +116,10 @@
         <!-- Dashboard table Area -->
         <div class="flex h-full w-full flex-row justify-center gap-6 overflow-hidden align-top max-sm:flex-col">
             @can('viewAny', App\Models\Wallet::class)
-                <x-wallets-table :wallets="$wallets"></x-wallets-table>
+            <x-wallets-table :wallets="$wallets"></x-wallets-table>
             @endcan
             @can('viewAny', App\Models\User::class)
-                <x-users-table :users="$users"></x-users-table>
+            <x-users-table :users="$users"></x-users-table>
             @endcan
         </div>
 
