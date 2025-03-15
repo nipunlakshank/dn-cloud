@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Chat;
-use App\Models\Message;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,20 +19,23 @@ class ChatService
             ->count();
     }
 
-    public static function pin(Chat $chat)
+    public static function pin(Chat $chat): void
     {
         $chat->users()->updateExistingPivot(Auth::id(), [
             'pinned_at' => now(),
         ]);
     }
 
-    public static function unPin(Chat $chat)
+    public static function unPin(Chat $chat): void
     {
         $chat->users()->updateExistingPivot(Auth::id(), [
             'pinned_at' => null,
         ]);
     }
 
+    /**
+     * @return bool The new pinned state
+     */
     public static function togglePin(Chat $chat): bool
     {
         $chat->isPinned() ? self::unPin($chat) : self::pin($chat);
@@ -44,16 +46,16 @@ class ChatService
     public function markAsDelivered(Chat $chat, User $user)
     {
         DB::transaction(function () use ($chat, $user) {
-            Message::where('chat_id', $chat->id)
-                ->where('user_id', '!=', $user->id)
-                ->whereDoesntHave('status', function ($query) use ($user) {
-                    $query->where('user_id', $user->id)->whereNotNull('delivered_at');
-                })
-                ->each(function ($message) use ($user) {
-                    $message->status()->updateExistingPivot($user->id, [
-                        'delivered_at' => now(),
-                    ]);
-                });
+            DB::update('
+                UPDATE message_status
+                SET delivered_at = ?
+                WHERE user_id = ?
+                AND message_id IN (
+                    SELECT id FROM messages
+                    WHERE chat_id = ? AND user_id != ?
+                )
+                AND delivered_at IS NULL
+            ', [now(), $user->id, $chat->id, $user->id]);
         });
     }
 

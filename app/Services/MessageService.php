@@ -143,7 +143,6 @@ class MessageService
     {
         $user = $user ?? Auth::user();
 
-        // Check if any status is not delivered
         $notDelivered = $message->status()
             ->where('user_id', '!=', $user->id)
             ->whereNull('delivered_at')
@@ -153,7 +152,6 @@ class MessageService
             return 'sent';
         }
 
-        // Check if any status is not read
         $notRead = $message->status()
             ->where('user_id', '!=', $user->id)
             ->whereNull('read_at')

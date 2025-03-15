@@ -31,7 +31,7 @@ class Chat extends Model
 
     public function lastMessage(): HasOne
     {
-        return $this->hasOne(Message::class)->orderByDesc('created_at')->orderByDesc('id');
+        return $this->hasOne(Message::class)->orderByDesc('created_at')->orderByDesc('id')->limit(1);
     }
 
     public function group(): HasOne
