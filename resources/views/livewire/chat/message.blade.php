@@ -158,7 +158,10 @@
                                 <div class="inline-flex items-center self-center">
                                     <button
                                         title="Download"
-                                        wire:click="downloadAttachment({{ $attachment['id'] }})"
+                                        x-on:click="e => {
+                                            e.stopPropagation()
+                                            $wire.downloadAttachment({{ $attachment['id'] }})
+                                        }"
                                         class="inline-flex items-center self-center rounded-lg bg-gray-50 p-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-50 dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500 dark:focus:ring-gray-600"
                                         type="button">
                                         <svg class="h-4 w-4 text-gray-900 dark:text-white" aria-hidden="true"
