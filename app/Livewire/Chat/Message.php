@@ -26,11 +26,6 @@ class Message extends Component
     public string $messageText;
     public string $createdAt;
 
-    public function refreshState()
-    {
-        $this->state = app(MessageService::class)->getState($this->message, Auth::user());
-    }
-
     public function markAsDelivered()
     {
         app(MessageService::class)->markAsDelivered($this->message, Auth::user());
