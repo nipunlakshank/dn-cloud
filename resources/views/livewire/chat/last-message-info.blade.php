@@ -11,11 +11,11 @@
 
     <div class="inline-flex w-full items-end gap-1">
         <div class="inline">
-            <template x-if="sender && sender.id !== authId">
-                <span class="font-semibold" x-text="sender.first_name + ': '"></span>
-            </template>
-
             @if ($message)
+                <template x-if="sender && sender.id !== authId">
+                    <span class="font-semibold" x-text="sender.first_name + ': '"></span>
+                </template>
+
                 <template x-if="hasMessage && sender && sender.id === authId">
                     {{--
                         BUG: below is message-ticks component. when its included as a separate livewire compoenent, the page become unresponsive.
@@ -64,6 +64,8 @@
                         </template>
                     </div>
                 </template>
+            @else
+                <span class="italic">No messages yet</span>
             @endif
         </div>
 
