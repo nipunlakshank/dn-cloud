@@ -17,7 +17,8 @@ class LastMessageInfo extends Component
     public bool $isGroup;
     public string $text;
     public bool $isReport;
-    public string $state;
+    public ?string $state = null;
+    public bool $hasMessages;
 
     public function refreshState()
     {
@@ -43,6 +44,7 @@ class LastMessageInfo extends Component
         }
 
         $lastMessage = $this->chat->lastMessage()->first();
+        $this->hasMessages = true;
 
         if ($lastMessage->id === $this->message?->id) {
             return;
@@ -62,6 +64,7 @@ class LastMessageInfo extends Component
     {
         $this->chat = $chat;
         $this->isGroup = $chat->is_group;
+        $this->hasMessages = false;
         $this->updateLastMessage();
     }
 

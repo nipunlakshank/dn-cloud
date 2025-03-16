@@ -14,7 +14,7 @@ class ChatCard extends Component
 {
     public User $user;
     public Chat $chat;
-    public ?Message $lastMessage;
+    public ?Message $lastMessage = null;
     public ?string $timeElapsed;
     public int $unreadCount;
     public ?string $chatName;
