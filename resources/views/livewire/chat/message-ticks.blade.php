@@ -1,7 +1,6 @@
 <div
     x-data="{
-        message: @entangle('message'),
-        state: @entangle('state')
+        state: @entangle('state'),
     }"
     x-init="() => {
         const senderState = setInterval(() => {

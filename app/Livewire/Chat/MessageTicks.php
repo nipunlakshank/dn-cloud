@@ -10,7 +10,6 @@ class MessageTicks extends Component
 {
     public Message $message;
     public string $state;
-    private MessageService $messageService;
 
     public function refreshState()
     {
@@ -19,9 +18,8 @@ class MessageTicks extends Component
 
     public function mount(Message $message)
     {
-        $this->messageService = app(MessageService::class);
         $this->message = $message;
-        $this->state = $this->messageService->getState($message);
+        $this->state = app(MessageService::class)->getState($message);
     }
 
     public function render()

@@ -15,7 +15,7 @@
             offsetDistance: 10,
             ignoreClickOutsideClass: false,
         }
-
+    
         const instanceOptions = {
             id: `messageOptions-${messageId}`,
             override: true,
@@ -26,9 +26,9 @@
             options,
             instanceOptions
         )
-
+    
         if (isOwner) return
-
+    
         const recieverState = setInterval(() => {
             try {
                 if (state === 'read') {
@@ -64,7 +64,7 @@
             class="{{ $isOwner ? 'bg-green-200 dark:bg-teal-900' : 'bg-white dark:bg-gray-700' }} flex flex-col justify-between gap-1 rounded-e-xl rounded-es-xl border-gray-200 px-4 py-2 transition-colors">
 
             @if ($message->is_report)
-                <div class="mb-1 flex items-center gap-2 text-xs font-medium text-red-500 dark:text-red-400"
+                <div class="mb-1 flex items-center gap-2 text-xs font-medium text-red-400 rtl:flex-row-reverse"
                     wire:ignore>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
@@ -207,7 +207,9 @@
                 @endif
 
                 @if ($isOwner)
-                    @livewire('chat.message-ticks', ['message' => $message])
+                    <div wire:key="message-ticks-{{ $message->id }}">
+                        @livewire('chat.message-ticks', ['message' => $message])
+                    </div>
                 @endif
 
             </div>

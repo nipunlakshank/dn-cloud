@@ -1,7 +1,7 @@
 <div
     x-data="{
         state: { waiting: false, selected: false },
-        chatId: Number({{ $chat->id }}),
+        chatId: @json($chat->id),
         unreadCount: @entangle('unreadCount'),
         isPinned: @entangle('isPinned'),
         optionsMenu: null,
@@ -47,7 +47,7 @@
         }
     
         const instanceOptions = {
-            id: 'chatOptions-{{ $chat->id }}',
+            id: `chatOptions-${chatId}`,
             override: true,
         }
         optionsMenu = new Dropdown(
@@ -61,7 +61,7 @@
     x-on:click="selectChat()"
     x-on:keyup.enter="selectChat()"
     x-bind:class="{
-        'bg-gray-400 dark:bg-gray-800': state.selected,
+        'bg-gray-300 dark:bg-gray-800': state.selected,
         'bg-gray-200 dark:bg-gray-700': !state.selected,
         'animate-pulse': state.waiting,
         '': !state.waiting,
@@ -144,17 +144,8 @@
             <div
                 x-bind:class="{ 'group-hover:pr-10': unreadCount > 0 }"
                 class="relative flex w-full items-center justify-between gap-2 pr-2">
-                <div class="flex w-full max-w-[90%] gap-1 py-1">
-                    @if ($isGroup && $chat->lastMessage)
-                        <span
-                            class="inline-block whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-gray-200">
-                            {{ $chat->lastMessage->user->is(auth()->user()) ? 'Me' : $chat->lastMessage->user->name() ?? '-' }}:
-                        </span>
-                    @endif
-                    <span
-                        class="last-message inline-block truncate text-sm font-normal text-gray-700 dark:text-gray-300">
-                        {{ $chat->lastMessage->text ?? '-' }}
-                    </span>
+                <div class="flex w-full max-w-[90%]">
+                    @livewire('chat.last-message-info', ['chat' => $chat])
                 </div>
                 <span
                     x-cloak
