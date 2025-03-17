@@ -38,9 +38,9 @@ return [
      | Leaving it to null will allow localhost only.
      */
     'storage' => [
-        'enabled' => true,
+        'enabled' => env('DEBUGBAR_STORAGE_ENABLED', true),
         'open' => env('DEBUGBAR_OPEN_STORAGE'), // bool/callback.
-        'driver' => 'file', // redis, file, pdo, socket, custom
+        'driver' => env('DEBUGBAR_STORAGE_DRIVER', 'file'), // redis, file, pdo, socket, custom
         'path' => storage_path('debugbar'), // For file driver
         'connection' => null,   // Leave null for default connection (Redis/PDO)
         'provider' => '', // Instance of StorageInterface for custom driver
