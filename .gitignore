@@ -23,8 +23,8 @@ yarn-error.log
 /.zed
 
 
-# Created by https://www.toptal.com/developers/gitignore/api/macos,windows,linux,visualstudiocode,phpstorm
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,linux,visualstudiocode,phpstorm
+# Created by https://www.toptal.com/developers/gitignore/api/macos,windows,linux,visualstudiocode,phpstorm,redis
+# Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,linux,visualstudiocode,phpstorm,redis
 
 ### Linux ###
 *~
@@ -232,5 +232,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,visualstudiocode,phpstorm
+### Redis ###
+# Ignore redis binary dump (dump.rdb) files
+*.rdb
+
+# End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,visualstudiocode,phpstorm,redis
 .rnd
