@@ -24,7 +24,11 @@ class UserPolicy
             return false;
         }
 
-        if ($model->role === UserRoles::Developer->value && $user->role !== UserRoles::Developer->value) {
+        if ($user->role === UserRoles::Developer->value) {
+            return true;
+        }
+
+        if ($model->role === UserRoles::Developer->value) {
             return false;
         }
 
