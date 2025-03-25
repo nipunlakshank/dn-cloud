@@ -5,6 +5,7 @@ namespace App\Livewire\Chat\Profile;
 use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -24,6 +25,7 @@ class SelectUserDropdown extends Component
         $this->users = User::whereNotIn('id', $this->chat->users->pluck('id'))
             ->get()
             ->collect()
+            ->filter(fn ($user) => Gate::allows('chatWith', $user))
             ->map(function ($user) {
                 return [
                     'id' => $user->id,

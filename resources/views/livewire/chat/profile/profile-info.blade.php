@@ -38,7 +38,7 @@
     <div id="tab-content"
         class="text-medium relative flex h-[80%] w-full flex-col items-center justify-between gap-2 rounded-lg bg-gray-50 p-2 text-gray-500 md:h-full dark:bg-gray-800 dark:text-gray-400">
 
-        @livewire('chat.profile.members', ['chat' => $chat, 'users' => $users])
+        @livewire('chat.profile.members', ['chat' => $chat])
 
         @can('addUser', $chat->group)
             <div wire:ignore class="w-full text-sm">

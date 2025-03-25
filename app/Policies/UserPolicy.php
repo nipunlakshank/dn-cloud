@@ -43,6 +43,18 @@ class UserPolicy
         return $user->id === $model->id;
     }
 
+    public function chatWith(User $user, User $model): bool
+    {
+        if ($user->role === UserRoles::Developer->value && $model->role === UserRoles::Developer->value) {
+            return true;
+        }
+        if ($model->role === UserRoles::Developer->value) {
+            return false;
+        }
+
+        return true;
+    }
+
     /**
      * Determine whether the user can create models.
      */
