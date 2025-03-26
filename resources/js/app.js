@@ -4,23 +4,20 @@ import 'flowbite'
 const axios = window.axios
 let lastChatSelectionDone = true
 
-window.addEventListener('newChat', (event) => {
+window.addEventListener('newChat', event => {
     setActiveChat(event.detail[0].chatId)
 })
 
 async function setActiveChat(chatId, callbacks) {
     if (!lastChatSelectionDone) return
     sessionStorage.setItem('activeChat', chatId)
-    if (
-        typeof callbacks === 'object' &&
-        typeof callbacks.callback === 'function'
-    ) {
+    if (typeof callbacks === 'object' && typeof callbacks.callback === 'function') {
         lastChatSelectionDone = false
         if (typeof callbacks.before === 'function') callbacks.before()
         callbacks.callback()
         window.addEventListener(
             'chat.selected',
-            (e) => {
+            e => {
                 if (typeof callbacks.after === 'function') callbacks.after()
                 lastChatSelectionDone = e.detail[0].chatId === chatId
             },
@@ -53,8 +50,7 @@ function isActiveChat(chatId) {
 }
 
 function toggleTheme(darkMode) {
-    if (darkMode === undefined)
-        darkMode = !(localStorage.getItem('theme') === 'dark')
+    if (darkMode === undefined) darkMode = !(localStorage.getItem('theme') === 'dark')
 
     localStorage.setItem('theme', darkMode ? 'dark' : 'light')
     document.documentElement.classList.toggle('dark')
@@ -68,7 +64,7 @@ function logout() {
     axios
         .post(`/logout`)
         .then(() => setTimeout(() => (window.location.href = '/'), 0))
-        .catch((error) => console.error(error))
+        .catch(error => console.error(error))
 }
 
 function scrollManager(element) {
@@ -95,34 +91,31 @@ function scrollManager(element) {
 }
 
 // Profile Image Preview Update Listener
-document.querySelector('#avatar')?.addEventListener('input', (event) => {
+document.querySelector('#avatar')?.addEventListener('input', event => {
     const new_avatar = event.target.files[0]
     if (new_avatar) {
-        document.querySelector('#avatar_preview').src =
-            URL.createObjectURL(new_avatar)
+        document.querySelector('#avatar_preview').src = URL.createObjectURL(new_avatar)
     }
 })
 
 // Chat Image Viewer
-window.addEventListener('image.open', (event) => {
+window.addEventListener('image.open', event => {
     const viewer = document.querySelector('#chat-image-viewer')
     viewer.querySelector('#message-image').srcset = event.target.src
     document.dispatchEvent(new Event('open-image-viewer', { bubbles: true }))
 })
 
 // Dashboard Drawer Toggle : Small Screen
-document
-    .querySelector('#drawer-toggle-button')
-    ?.addEventListener('click', () => {
-        const drawer = document.querySelector('#chat-sidebar')
-        if (drawer.classList.contains('max-sm:-translate-x-full')) {
-            drawer.classList.remove('max-sm:-translate-x-full')
-            drawer.classList.add('max-sm:translate-x-0')
-        } else {
-            drawer.classList.remove('max-sm:translate-x-0')
-            drawer.classList.add('max-sm:-translate-x-full')
-        }
-    })
+document.querySelector('#drawer-toggle-button')?.addEventListener('click', () => {
+    const drawer = document.querySelector('#chat-sidebar')
+    if (drawer.classList.contains('max-sm:-translate-x-full')) {
+        drawer.classList.remove('max-sm:-translate-x-full')
+        drawer.classList.add('max-sm:translate-x-0')
+    } else {
+        drawer.classList.remove('max-sm:translate-x-0')
+        drawer.classList.add('max-sm:-translate-x-full')
+    }
+})
 
 const chatCanvas = document.getElementById('chat-canvas')
 if (chatCanvas) {
@@ -147,16 +140,14 @@ function loadMoreMessages() {
 
 function updateChatScroll(data, el) {
     setTimeout(() => {
-        const topMessage = document.getElementById(
-            `message-${data.topMessageId}`
-        )
+        const topMessage = document.getElementById(`message-${data.topMessageId}`)
         if (!topMessage) return
         el.scrollTop = el.scrollHeight - data.scrollHeight
         loadingMoreMessages = false
     }, 0)
 }
 
-window.addEventListener('keyup', (event) => {
+window.addEventListener('keyup', event => {
     const chatContent = document.getElementById('chat-content')
     const chatInput = document.getElementById('message-text')
 
@@ -172,7 +163,7 @@ window.addEventListener('keyup', (event) => {
     }
 })
 
-window.addEventListener('message.pushed', (event) => {
+window.addEventListener('message.pushed', event => {
     const intervalId = setInterval(() => {
         const messageId = event.detail[0]
         const chatContent = document.getElementById('chat-messages')
@@ -192,7 +183,7 @@ window.addEventListener('message.pushed', (event) => {
     setTimeout(() => clearInterval(intervalId), 5000)
 })
 
-window.addEventListener('chat.moreMessagesLoaded', (event) => {
+window.addEventListener('chat.moreMessagesLoaded', event => {
     const chatMassages = document.getElementById('chat-messages')
     updateChatScroll(event.detail[0], chatMassages)
 })

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FcmTokenController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
@@ -41,6 +42,8 @@ Route::middleware(['auth', 'verified', 'active'])->group(function () {
     Route::get('/reports', Reports::class)->name('reports');
 
     Route::delete('chat-user', [GroupController::class, 'removeUser'])->name('chat-user.remove');
+
+    Route::resource('/fcm-tokens', FcmTokenController::class)->only(['store', 'destroy']);
 });
 
 if (app()->isLocal()) {

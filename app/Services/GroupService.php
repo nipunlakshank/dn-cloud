@@ -93,7 +93,6 @@ class GroupService
         Gate::authorize('delete', $group);
 
         return DB::transaction(function () use ($group) {
-            // Delete the associated chat (cascade will delete group)
             $group->chat->delete();
         });
     }

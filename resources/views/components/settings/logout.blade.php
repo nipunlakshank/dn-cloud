@@ -1,21 +1,21 @@
 <!-- Logout Modal -->
 <div
     x-data="{
-        target:document.getElementById('logout'),
-        options:{
+        target: document.getElementById('logout'),
+        options: {
             placement: 'center-center',
             backdrop: 'dynamic',
             backdropClasses: 'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
             closable: true,
-            onShow:()=>{$dispatch('hide-dropdown-menu')}
+            onShow: () => { $dispatch('hide-dropdown-menu') }
         },
-        instanceOptions:{
+        instanceOptions: {
             id: 'logout',
             override: true
         },
     }"
     id="logout"
-    x-init="logoutModal = new Modal(target,options,instanceOptions)"
+    x-init="logoutModal = new Modal(target, options, instanceOptions)"
     x-on:show-logout-modal.window="logoutModal.show()"
     class="absolute left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0">
 
@@ -50,9 +50,11 @@
                 <button
                     type="button"
                     x-on:click="() => logoutModal.hide()"
-                    class="ms-3 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">No,
-                    cancel</button>
+                    class="ms-3 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
+                    No, cancel
+                </button>
             </div>
         </div>
     </div>
 </div>
+

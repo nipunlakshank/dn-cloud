@@ -138,13 +138,23 @@ class User extends Authenticatable implements MustVerifyEmail
             ->orderByDesc('chat_user.pinned_at')
             ->orderByDesc(
                 DB::raw('
-                COALESCE(
-                    (SELECT created_at FROM messages
-                     WHERE messages.chat_id = chats.id
-                     ORDER BY created_at DESC, id DESC LIMIT 1),
-                    chats.created_at
-                )
-            ')
+                    COALESCE(
+                        (SELECT created_at FROM messages
+                         WHERE messages.chat_id = chats.id
+                         ORDER BY created_at DESC, id DESC LIMIT 1),
+                        chats.created_at
+                    )
+                ')
             );
+    }
+
+    public function fcmTokens(): HasMany
+    {
+        return $this->hasMany(FcmToken::class);
+    }
+
+    public function routeNotificationForFcm(): array
+    {
+        return $this->fcmTokens()->pluck('token')->toArray();
     }
 }
